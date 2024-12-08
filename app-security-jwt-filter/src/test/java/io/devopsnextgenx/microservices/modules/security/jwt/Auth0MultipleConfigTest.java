@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {SecurityTokenConfig.class, Auth0MultipleConfigTest.TestConfig.class})
+@ContextConfiguration(classes = {SecurityConfiguration.class, Auth0MultipleConfigTest.TestConfig.class})
 @TestPropertySource(properties = {"spring.config.location = classpath:auth-config-test.yaml"})
 public class Auth0MultipleConfigTest {
 

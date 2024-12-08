@@ -47,7 +47,7 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
         /**
          * for non-authenticated request (e.g /health), The request will still need to path through the filter chain
          * just without having any authentication on the context.
-         * The decision if its ok not to have authentication is configured in {@link SecurityTokenConfig.ApiJwtSecurityConfig}
+         * The decision if its ok not to have authentication is configured in {@link SecurityConfiguration.ApiJwtSecurityConfig}
          */
         if (rawToken != null && rawToken.length() > 10) { // some quick & basic validation without iteration on the chars
 

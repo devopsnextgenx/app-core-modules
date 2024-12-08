@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 @Configuration
-@AutoConfigureBefore(SecurityTokenConfig.class)
+@AutoConfigureBefore(SecurityConfiguration.class)
 
 public class SelfSignedTokenValidatorConfig {
 

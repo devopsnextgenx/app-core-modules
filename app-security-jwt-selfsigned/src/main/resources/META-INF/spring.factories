@@ -1,2 +1,2 @@
-org.springframework.boot.autoconfigure.AutoConfigureBefore=io.devopsnextgenx.microservices.modules.security.jwt.SecurityTokenConfig
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.devopsnextgenx.microservices.modules.security.jwt.SelfSignedTokenValidatorConfig
+org.springframework.boot.autoconfigure.AutoConfigureBefore=io.devopsnextgenx.microservices.modules.security.jwt.SecurityConfiguration
+org.springframework.boot.autoconfigure.AutoConfiguration=io.devopsnextgenx.microservices.modules.security.jwt.SelfSignedTokenValidatorConfig

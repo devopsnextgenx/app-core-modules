@@ -8,7 +8,6 @@ import io.devopsnextgenx.microservices.modules.security.jwt.helpers.JwtVerifierH
 import io.devopsnextgenx.microservices.modules.security.jwt.helpers.OAuthLoginHelper;
 import io.devopsnextgenx.microservices.modules.security.jwt.helpers.YamlPropertyLoaderFactory;
 import io.devopsnextgenx.microservices.modules.security.jwt.validators.ProductionTokenValidator;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -20,25 +19,27 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.security.config.Customizer;
 
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
 @EnableWebSecurity
 @EnableConfigurationProperties
 @PropertySources({@PropertySource(name = "oauthApplications", value = {"${APPCONFIGFILE}"}, ignoreResourceNotFound = true, factory = YamlPropertyLoaderFactory.class)})
-public class SecurityTokenConfig extends WebSecurityConfiguration {
+public class SecurityConfiguration {
 
     @Bean
     @ConfigurationProperties("app.oauth")
@@ -99,59 +100,60 @@ public class SecurityTokenConfig extends WebSecurityConfiguration {
         return manager;
     }
 
-    // @Configuration
-    // @Order(1)
-    // public static class SwaggerActuatorBasicSecurityConfig extends WebSecurityConfiguration {
+    @Configuration
+    @Order(1)
+    public static class SwaggerActuatorBasicSecurityConfig {
 
-    //     @Override
-    //     protected void configure(HttpSecurity http) throws Exception {
-    //         http.csrf().disable()
-    //                 .antMatcher("/swagger**")
-    //                 .authorizeRequests()
-    //                 .anyRequest().hasRole("ADMIN")
-    //                 .and()
-    //                 .httpBasic();
-    //     }
-    // }
+        @Bean
+        public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+            http
+                .authorizeHttpRequests((authz) -> authz
+                    .anyRequest().authenticated()
+                )
+                .httpBasic(Customizer.withDefaults());
+            return http.build();
+        }
+    }
 
-    // @Configuration
-    // @Order(2)
-    // public class ApiJwtSecurityConfig extends WebSecurityConfiguration {
+    @Configuration
+    @Order(2)
+    public class ApiJwtSecurityConfig {
+        
+        @Autowired
+        @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+        private JwtTokenAuthenticationFilter jwtTokenAuthenticationFilter;
 
-    //     @Autowired
-    //     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    //     private JwtTokenAuthenticationFilter jwtTokenAuthenticationFilter;
+        // TODO devopsnextgenx
+        @Bean
+        public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+            http.sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and()
+                    .csrf().disable()
+                    // .antMatcher("/api/**")
+                    // handle an authorized attempts
+                    .exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+                    .and()
+                    // Add a filter to validate the tokens with every request
+                    .addFilterAfter(jwtTokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                    // authorization requests config
+                    .authorizeRequests().requestMatchers("/api/**")
+                    .authenticated();
+            return http.build();
+        }
+    }
 
-    //     @Override
-    //     protected void configure(HttpSecurity http) throws Exception {
-    //         http.sessionManagement()
-    //                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-    //                 .and()
-    //                 .csrf().disable()
-    //                 .antMatcher("/api/**")
-
-    //                 // handle an authorized attempts
-    //                 .exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-    //                 .and()
-    //                 // Add a filter to validate the tokens with every request
-    //                 .addFilterAfter(jwtTokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-    //                 // authorization requests config
-    //                 .authorizeRequests().antMatchers("/api/**")
-    //                 .authenticated();
-    //     }
-    // }
-
-    // @Configuration
-    // @Order(3)
-    // public class HystrixNoAuthSecurityConfig extends WebSecurityConfiguration {
-    //     @Override
-    //     public void configure(WebSecurity web) {
-    //         web.ignoring().antMatchers("/actuator/hystrix.stream");
-    //         web.ignoring().antMatchers("/turbine.stream");
-    //         web.ignoring().antMatchers("/actuator/health");
-    //         web.ignoring().antMatchers("/HealthCheck");
-    //         web.ignoring().antMatchers("/health");
-    //         web.ignoring().antMatchers("/metrics");
-    //     }
-    // }
+    @Configuration
+    @Order(3)
+    public class HystrixNoAuthSecurityConfig {
+        @Bean
+        public WebSecurityCustomizer webSecurityCustomizer() {
+            return (web) -> web.ignoring().requestMatchers("/actuator/hystrix.stream"
+                ,"/turbine.stream"
+                ,"/actuator/health"
+                ,"/HealthCheck"
+                ,"/health"
+                ,"/metrics");
+        }
+    }
 }
