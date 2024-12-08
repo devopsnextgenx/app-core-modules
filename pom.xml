@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.4.0</version>
+	</parent>
+
+    <groupId>io.devopsnextgenx.microservices.modules</groupId>
+    <artifactId>app-core-modules</artifactId>
+    <name>app-core-modules</name>
+    <version>current-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>app-xmodules-parent</module>
+        <module>app-xmodules-bom</module>
+        <module>app-exception</module>
+        <module>app-access</module>
+        <module>app-tracing</module>
+        <module>app-logging</module>
+        <module>app-aws-environment</module>
+        <module>app-base-model</module>
+        <module>app-security-jwt-filter</module>
+        <module>app-security-jwt-selfsigned</module>
+        <module>app-service</module>
+    </modules>
+
+</project>

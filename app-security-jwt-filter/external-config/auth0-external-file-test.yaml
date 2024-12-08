@@ -1,0 +1,16 @@
+app:
+  oauth.applications:
+    test1:
+      authType: AUTH0
+      domain: https://devopsnextgenx.auth0.com/
+      clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPwx
+      redirectUrl: http://devopsnextgenx.localtest.me/
+      clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKNx
+      dbConnection: Username-Password-Authentication
+    test2:
+      authType: AUTH0
+      domain: https://devopsnextgenx.auth0.com/
+      clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPwx
+      redirectUrl: http://devopsnextgenx.localtest.me/
+      clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKNx
+      dbConnection: Username-Password-Authentication

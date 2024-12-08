@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  io.devopsnextgenx.microservices.modules.tracing.TracingAutoConfiguration
+org.springframework.boot.autoconfigure.AutoConfigureBefore=\
+  io.devopsnextgenx.microservices.modules.logging.config.LoggingAutoConfiguration,\
+  io.devopsnextgenx.microservices.modules.config.aws.AwsEnvironmentModuleAutoConfiguration

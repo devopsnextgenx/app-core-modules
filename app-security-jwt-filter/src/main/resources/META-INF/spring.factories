@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.devopsnextgenx.microservices.modules.security.jwt.SecurityTokenConfig

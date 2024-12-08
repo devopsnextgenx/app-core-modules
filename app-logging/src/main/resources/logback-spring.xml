@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="logPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{26}.%M T[%thread] CID[%X{Correlation-ID}] SVC[%X{Service}] ORIG[%X{ORIGINATOR}] COMP[%X{COMPANY-ID}] ORG[%X{ORG-ID}] UID[%X{UID}] SID[%X{SessionID}] IP[%X{ForwardIP}] DUR[%X{Duration}] STS[%X{Status}] [%X{METHOD}] [%X{PATH}] %msg%n"/>
+    <property name="testPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %logger{26}.%M - T[%thread] CID[%X{Correlation-ID}] SVC[%X{Service}] %msg%n"/>
+
+    <appender name="API-STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+            <evaluator class="ch.qos.logback.classic.boolex.OnMarkerEvaluator">
+                <marker>API_LOG</marker>
+            </evaluator>
+            <onMismatch>DENY</onMismatch>
+            <onMatch>NEUTRAL</onMatch>
+        </filter>
+        <encoder>
+            <pattern>${logPattern}</pattern>
+        </encoder>
+    </appender>
+    <springProfile name="default">
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+                <evaluator class="io.devopsnextgenx.microservices.modules.logging.config.filter.OnNoMarkerEvaluator"/>
+                <onMismatch>DENY</onMismatch>
+                <onMatch>NEUTRAL</onMatch>
+            </filter>
+            <encoder>
+                <pattern>${logPattern}</pattern>
+            </encoder>
+        </appender>
+        <root level="${env:app.logLevel:-INFO}">get log level property
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="API-STDOUT"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="${env:app.dev.profiles:-dev|test}">
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+                <evaluator class="io.devopsnextgenx.microservices.modules.logging.config.filter.OnNoMarkerEvaluator"/>
+                <onMismatch>DENY</onMismatch>
+                <onMatch>NEUTRAL</onMatch>
+            </filter>
+            <encoder>
+                <pattern>${testPattern}</pattern>
+            </encoder>
+        </appender>
+        <appender name="LOG-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${env:app.logPath:-/var/log}/${log.fileName:-defaultLog}.log</file>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <Pattern>${testPattern}</Pattern>
+            </encoder>
+
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <maxFileSize>${log.maxFileSize:-10MB}</maxFileSize>
+                <fileNamePattern>
+                    ${env:app.logPath:-/var/log}/archived/${log.fileName:-defaultLog}_%d{dd-MM-yyyy}_%i.log
+                </fileNamePattern>
+                <maxHistory>${log.maxHistory:-10}</maxHistory>
+                <totalSizeCap>${log.totalSizeCap:-100MB}</totalSizeCap>
+            </rollingPolicy>
+        </appender>
+        <root level="${env:app.logLevel:-INFO}">get log level property
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="API-STDOUT"/>
+            <appender-ref ref="LOG-FILE"/>
+        </root>
+    </springProfile>
+    <logger name="io.jaegertracing.internal.reporters.LoggingReporter" level="WARN"/>
+</configuration>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.devopsnextgenx.microservices.modules</groupId>
+        <artifactId>app-xmodules-parent</artifactId>
+        <relativePath>../app-xmodules-parent/pom.xml</relativePath>
+        <version>current-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>app-service</artifactId>
+    <name>app-service</name>
+    <version>current-SNAPSHOT</version>
+    <description>Import This to enable Spring Boot Service</description>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-logging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-tracing</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-access</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-exception</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-security-jwt-filter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-security-jwt-selfsigned</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>

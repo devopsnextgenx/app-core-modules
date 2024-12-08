@@ -1,0 +1,12 @@
+app:
+  modules:
+    opentracing:
+      jaeger:
+        enabled: true
+        agent:
+          jaegerHost: localhost
+          jaegerPort: 6831
+        trace:
+          samplingRate: 1
+          flushInterval: 1000
+          maxQueueSize: 1000
