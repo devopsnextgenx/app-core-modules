@@ -17,6 +17,7 @@ public class AppClientFacade extends AbstractAuthClientFacade {
 
     private final RestTemplate restTemplate = new RestTemplate();
     private final AppAuthTokenClient client;
+    @SuppressWarnings("unused")
     private Supplier<TokenBearer> server2serverTokenCache;
 
     public AppClientFacade(OAuthConfig authConfig) {

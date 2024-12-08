@@ -31,7 +31,7 @@ public interface AuthClientFacade {
      * @param <T>             primitive claim value
      * @return a sign JWT token provided by the Auth IDP with additional claims
      */
-    default TokenBearer login(String subject, Pair<String, Object>... additionalClaim) {
+    default TokenBearer login(String subject, @SuppressWarnings("unchecked") Pair<String, Object>... additionalClaim) {
         throw new UnsupportedOperationException(String.format("login operation is not supported in '%s' Client ", getAuthProviderType()));
     }
 

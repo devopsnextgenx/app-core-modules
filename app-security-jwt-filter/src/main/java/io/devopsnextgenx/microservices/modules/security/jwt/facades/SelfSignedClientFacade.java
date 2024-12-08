@@ -26,24 +26,28 @@ import static io.devopsnextgenx.microservices.modules.security.jwt.JwtTokenAuthe
 @Slf4j
 public class SelfSignedClientFacade extends AbstractAuthClientFacade {
 
-
     public SelfSignedClientFacade(OAuthConfig authConfig) {
         super(authConfig);
-        // in order to use one self signed tenant that will work for both AppAuthFilter, UserIdentityAuthFilter
+        // in order to use one self signed tenant that will work for both AppAuthFilter,
+        // UserIdentityAuthFilter
         // the domains of should contain 'devopsnextgenx' to pass AppAuthFilter
-        Assert.isTrue(authConfig.getDomain().contains("devopsnextgenx"), "SelfSigned token domain should contains 'appauth'");
+        Assert.isTrue(authConfig.getDomain().contains("devopsnextgenx"),
+                "SelfSigned token domain should contains 'appauth'");
     }
 
     @Override
     public TokenBearer login(String subject) {
-        return login(subject, null);
+        return login(subject, (Pair<String, Object>[]) null);
     }
 
     @SneakyThrows
     @Override
-    public TokenBearer login(String subject, Pair<String, Object>... additionalClaims) {
+    @SafeVarargs
+    public final TokenBearer login(String subject, Pair<String, Object>... additionalClaims) {
         OAuthConfig authProperties = Optional.ofNullable(authConfig)
-                .orElseThrow(() -> new AppException(AppException.ERROR_CODE.OTHER, "Missing security configuration entry '%s' for SelfSigned JWT", AuthProviderType.SELFSIGNED.getNodeName()));
+                .orElseThrow(() -> new AppException(AppException.ERROR_CODE.OTHER,
+                        "Missing security configuration entry '%s' for SelfSigned JWT",
+                        AuthProviderType.SELFSIGNED.getNodeName()));
 
         // use the AuthClientId as secret for testing
         Algorithm algorithm = Algorithm.HMAC256(authProperties.getClientId());
@@ -61,7 +65,7 @@ public class SelfSignedClientFacade extends AbstractAuthClientFacade {
                 .withAudience(authProperties.getClientId());
 
         // https://stackoverflow.com/questions/30308839/why-does-passing-null-to-varargs-give-length-1/30308865
-        if (additionalClaims != null && additionalClaims[0] != null) {
+        if (additionalClaims != null && additionalClaims.length > 0 && additionalClaims[0] != null) {
             Stream.of(additionalClaims).forEach(additionalClaim -> {
                 switch (additionalClaim.getValue().getClass().getSimpleName()) {
                     case "Integer":
@@ -75,7 +79,9 @@ public class SelfSignedClientFacade extends AbstractAuthClientFacade {
                         break;
                     default:
                         if (additionalClaim.getValue() instanceof Map) {
-                            jwtBuilder.withClaim(additionalClaim.getKey(), (Map<String, ?>) additionalClaim.getValue());
+                            @SuppressWarnings("unchecked")
+                            Map<String, ?> mapValue = (Map<String, ?>) additionalClaim.getValue();
+                            jwtBuilder.withClaim(additionalClaim.getKey(), mapValue);
                         }
                 }
             });
@@ -98,7 +104,8 @@ public class SelfSignedClientFacade extends AbstractAuthClientFacade {
         Pair<String, Object> federatedClaim = null;
 
         if (StringUtils.containsIgnoreCase(redirectUri, "federated")) {
-            federatedClaim = Pair.of(CLAIM_USER_ARRAY, ImmutableMap.of(CLAIM_FEDERATED, true, CLAIM_ORG_CODE, grantCode));
+            federatedClaim = Pair.of(CLAIM_USER_ARRAY,
+                    ImmutableMap.of(CLAIM_FEDERATED, true, CLAIM_ORG_CODE, grantCode));
         }
         return login(grantCode, federatedClaim);
     }
@@ -132,8 +139,9 @@ public class SelfSignedClientFacade extends AbstractAuthClientFacade {
         return true;
     }
 
-    private <T> Optional<T> getClaim(String claim, Class<T> type, Pair... additionalClaims) {
-        if (additionalClaims != null && additionalClaims[0] != null) {
+    @SafeVarargs
+    private <T> Optional<T> getClaim(String claim, Class<T> type, Pair<String, ?>... additionalClaims) {
+        if (additionalClaims != null && additionalClaims.length > 0 && additionalClaims[0] != null) {
             return Stream.of(additionalClaims).filter(claimPair -> claimPair.getKey().equals(claim))
                     .map(Pair::getValue)
                     .map(type::cast)

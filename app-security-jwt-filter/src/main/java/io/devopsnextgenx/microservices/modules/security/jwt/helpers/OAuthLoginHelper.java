@@ -34,9 +34,8 @@ public class OAuthLoginHelper {
      * @param <T>     String, Integer, Boolean or Map of claim name and its value
      * @return A signed JWT of the respected subject.
      */
-    @SuppressWarnings("unchecked")
     public <T> String login(String subject) {
-        return login(subject, null);
+        return login(subject, (Pair<String, Object>[]) null);
     }
 
     /**
