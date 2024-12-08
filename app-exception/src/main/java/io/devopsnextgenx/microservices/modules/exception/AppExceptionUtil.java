@@ -15,7 +15,7 @@ import java.util.function.Function;
 @Slf4j
 public class AppExceptionUtil {
 
-    private static HashMap<Class, Function<Throwable, String>> exceptionMsgResolverMap = getMsgResolverFunctionalMap();
+    private static HashMap<Class<?>, Function<Throwable, String>> exceptionMsgResolverMap = getMsgResolverFunctionalMap();
 
     public static String getInnerExceptionData(Throwable e) {
         if (e == null) {
@@ -30,8 +30,8 @@ public class AppExceptionUtil {
         return returnMsg;
     }
 
-    private static HashMap<Class, Function<Throwable, String>> getMsgResolverFunctionalMap() {
-        HashMap<Class, Function<Throwable, String>> excpetionMsgResolverMap = new HashMap<>();
+    private static HashMap<Class<?>, Function<Throwable, String>> getMsgResolverFunctionalMap() {
+        HashMap<Class<?>, Function<Throwable, String>> excpetionMsgResolverMap = new HashMap<>();
         excpetionMsgResolverMap.put(HttpServerErrorException.class, AppExceptionUtil::getMsgFromBody);
         excpetionMsgResolverMap.put(HttpClientErrorException.class, AppExceptionUtil::getMsgFromBody);
         return excpetionMsgResolverMap;

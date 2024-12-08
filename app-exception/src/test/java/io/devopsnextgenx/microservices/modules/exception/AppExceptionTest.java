@@ -1,6 +1,5 @@
 package io.devopsnextgenx.microservices.modules.exception;
 
-import io.devopsnextgenx.microservices.modules.exception.AppException;
 import org.junit.Assert;
 import org.junit.Test;
 

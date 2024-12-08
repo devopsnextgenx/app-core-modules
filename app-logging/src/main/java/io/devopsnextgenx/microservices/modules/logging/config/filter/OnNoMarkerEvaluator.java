@@ -9,8 +9,9 @@ import org.slf4j.Marker;
  */
 public class OnNoMarkerEvaluator extends OnMarkerEvaluator {
 
-    @Override public boolean evaluate(ILoggingEvent event) {
-        Marker eventsMarker = event.getMarker();
+    @Override
+    public boolean evaluate(ILoggingEvent event) {
+        Marker eventsMarker = event.getMarkerList().isEmpty() ? null : event.getMarkerList().get(0);
         if (eventsMarker == null) {
             return true;
         }

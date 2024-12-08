@@ -52,10 +52,10 @@ public class BaseApiLogger {
         if (MDC.get(MDC_START_TIME) != null) {
             MDC.put(DURATION_NAME, String.valueOf(System.currentTimeMillis() - Long.valueOf(MDC.get(MDC_START_TIME))));
         }
-        if (HttpStatus.resolve(status).is2xxSuccessful()) {
+        HttpStatus httpStatus = HttpStatus.resolve(status);
+        if (httpStatus != null && httpStatus.is2xxSuccessful()) {
             log.info(API_MARKER, "API_END");
         } else {
             log.error(API_MARKER, "API_END");
         }
-    }
-}
+    }}
