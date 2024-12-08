@@ -38,7 +38,8 @@ import lombok.extern.slf4j.Slf4j;
 @Configuration
 @EnableWebSecurity
 @EnableConfigurationProperties
-@PropertySources({@PropertySource(name = "oauthApplications", value = {"${APPCONFIGFILE}"}, ignoreResourceNotFound = true, factory = YamlPropertyLoaderFactory.class)})
+@PropertySources({ @PropertySource(name = "oauthApplications", value = {
+        "${APPCONFIGFILE}" }, ignoreResourceNotFound = true, factory = YamlPropertyLoaderFactory.class) })
 public class SecurityConfiguration {
 
     @Bean
@@ -67,15 +68,20 @@ public class SecurityConfiguration {
 
     @Bean
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    public JWTVerifierCache audienceVerifierCache(OAuthLoginHelper oAuthLoginHelper, RestTemplate restTemplate, AppConfig appConfig, @Value("${app.services.userServiceHost}") String userServiceHost) {
-        return new JWTVerifierCache(oAuthLoginHelper, restTemplate, new JwtVerifierHelper(), appConfig, userServiceHost);
+    public JWTVerifierCache audienceVerifierCache(OAuthLoginHelper oAuthLoginHelper, RestTemplate restTemplate,
+            AppConfig appConfig, @Value("${app.services.userServiceHost}") String userServiceHost) {
+        return new JWTVerifierCache(oAuthLoginHelper, restTemplate, new JwtVerifierHelper(), appConfig,
+                userServiceHost);
     }
 
     @Bean
     @ConditionalOnMissingBean(TokenValidator.class)
-    public TokenValidator tokenValidator(OAuthApplicationsConfig oAuthApplicationsConfig, JWTVerifierCache jwtVerifierCache) {
-        Assert.notNull(oAuthApplicationsConfig, String.format("Missing required configurations for OAuth security applications"));
-        Assert.notEmpty(oAuthApplicationsConfig.getApplications(), "Configurations for OAuth security applications is empty");
+    public TokenValidator tokenValidator(OAuthApplicationsConfig oAuthApplicationsConfig,
+            JWTVerifierCache jwtVerifierCache) {
+        Assert.notNull(oAuthApplicationsConfig,
+                String.format("Missing required configurations for OAuth security applications"));
+        Assert.notEmpty(oAuthApplicationsConfig.getApplications(),
+                "Configurations for OAuth security applications is empty");
         return new ProductionTokenValidator(oAuthApplicationsConfig, jwtVerifierCache, new JwtVerifierHelper());
     }
 
@@ -85,6 +91,7 @@ public class SecurityConfiguration {
         return new JwtTokenAuthenticationFilter(tokenValidator);
     }
 
+    @SuppressWarnings("deprecation")
     @Bean
     public UserDetailsService userDetailsService(SwaggerUISecurityConfig appSwaggerUISecurityConfig) {
         User.UserBuilder users = User.withDefaultPasswordEncoder();
@@ -107,10 +114,9 @@ public class SecurityConfiguration {
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             http
-                .authorizeHttpRequests((authz) -> authz
-                    .anyRequest().authenticated()
-                )
-                .httpBasic(Customizer.withDefaults());
+                    .authorizeHttpRequests((authz) -> authz
+                            .anyRequest().authenticated())
+                    .httpBasic(Customizer.withDefaults());
             return http.build();
         }
     }
@@ -118,27 +124,25 @@ public class SecurityConfiguration {
     @Configuration
     @Order(2)
     public class ApiJwtSecurityConfig {
-        
+
         @Autowired
         @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
         private JwtTokenAuthenticationFilter jwtTokenAuthenticationFilter;
 
-        // TODO devopsnextgenx
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-            http.sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                    .and()
-                    .csrf().disable()
-                    // .antMatcher("/api/**")
+            http.sessionManagement(management -> management
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                    .csrf(csrf -> csrf.disable())
                     // handle an authorized attempts
-                    .exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-                    .and()
+                    .exceptionHandling(handling -> handling
+                            .authenticationEntryPoint(
+                                    (req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED)))
                     // Add a filter to validate the tokens with every request
                     .addFilterAfter(jwtTokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                     // authorization requests config
-                    .authorizeRequests().requestMatchers("/api/**")
-                    .authenticated();
+                    .authorizeHttpRequests(request -> request.requestMatchers("/api/**")
+                            .authenticated());
             return http.build();
         }
     }
@@ -148,12 +152,8 @@ public class SecurityConfiguration {
     public class HystrixNoAuthSecurityConfig {
         @Bean
         public WebSecurityCustomizer webSecurityCustomizer() {
-            return (web) -> web.ignoring().requestMatchers("/actuator/hystrix.stream"
-                ,"/turbine.stream"
-                ,"/actuator/health"
-                ,"/HealthCheck"
-                ,"/health"
-                ,"/metrics");
+            return (web) -> web.ignoring().requestMatchers("/actuator/hystrix.stream", "/turbine.stream",
+                    "/actuator/health", "/HealthCheck", "/health", "/metrics");
         }
     }
 }

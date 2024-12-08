@@ -31,6 +31,7 @@ public class AppAuthTokenClient {
     private final ClientSecretBasic clientSecretBasic;
     private final OIDCProviderMetadata providerMetadata;
 
+    @SuppressWarnings("deprecation")
     @SneakyThrows
     public AppAuthTokenClient(OAuthConfig authConfig) {
         this.authConfig = authConfig;
@@ -51,6 +52,7 @@ public class AppAuthTokenClient {
      * @param redirectUrl the redirect URL that was used in the login process.
      * @return a new pair of OIDCTokens
      */
+    @SuppressWarnings("deprecation")
     @SneakyThrows
     public OIDCTokens exchangeCode(String code, String redirectUrl) {
         AuthorizationGrant authGrant = new AuthorizationCodeGrant(new AuthorizationCode(code), new URI(redirectUrl));
@@ -73,6 +75,7 @@ public class AppAuthTokenClient {
      * @param refreshToken the users refresh token from the session
      * @return a new set of valid token
      */
+    @SuppressWarnings("deprecation")
     @SneakyThrows
     public OIDCTokens renewToken(String refreshToken) {
 
@@ -97,6 +100,7 @@ public class AppAuthTokenClient {
      *
      * @return a new access key token
      */
+    @SuppressWarnings("deprecation")
     @SneakyThrows
     public AccessToken clientCredentials() {
         log.info("Issuing App access token (ServerToServer)");
