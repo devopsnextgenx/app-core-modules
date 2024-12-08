@@ -43,8 +43,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
-@TestPropertySource(properties = {"spring.config.location = classpath:auth-config-test.yaml"})
-@ContextConfiguration(classes = {SelfSignedTokenValidatorConfig.class, SecurityConfiguration.class, SelfSignedJwtFilterTest.TestConfig.class})
+@TestPropertySource(properties = { "spring.config.location = classpath:auth-config-test.yaml" })
+@ContextConfiguration(classes = { SelfSignedTokenValidatorConfig.class, SecurityConfiguration.class,
+        SelfSignedJwtFilterTest.TestConfig.class })
 public class SelfSignedJwtFilterTest {
 
     @Autowired
@@ -58,7 +59,6 @@ public class SelfSignedJwtFilterTest {
 
     @Autowired
     OAuthLoginHelper loginHelper;
-
 
     @Autowired
     private MockMvc mockMvc;
@@ -78,54 +78,59 @@ public class SelfSignedJwtFilterTest {
 
         jwtFilter.doFilterInternal(request, null, new EmptyChain());
 
-        AccessDataAuthenticationToken authentication = (AccessDataAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        AccessDataAuthenticationToken authentication = (AccessDataAuthenticationToken) SecurityContextHolder
+                .getContext().getAuthentication();
         assertThat(authentication).isNotNull();
         assertThat(authentication.getPrincipal()).isEqualTo(testSubjectName);
         assertThat(authentication.isFederated()).isFalse(); // no user array claim at all.
     }
 
     @Test
-    public void givenFederatedUser_whenTokenHasFederatedClaim_accessDataShouldHaveFlagFederatedTrue() throws ServletException, IOException {
+    public void givenFederatedUser_whenTokenHasFederatedClaim_accessDataShouldHaveFlagFederatedTrue()
+            throws ServletException, IOException {
 
         String testSubjectName = "unknown-user@some-domain.com";
         @SuppressWarnings("unchecked")
-        String token = loginHelper.login(testSubjectName, Pair.of(JwtTokenAuthenticationFilter.CLAIM_USER_ARRAY, Collections.singletonMap(JwtTokenAuthenticationFilter.CLAIM_FEDERATED, true)));
+        String token = loginHelper.login(testSubjectName, Pair.of(JwtTokenAuthenticationFilter.CLAIM_USER_ARRAY,
+                Collections.singletonMap(JwtTokenAuthenticationFilter.CLAIM_FEDERATED, true)));
         when(request.getHeader(eq(AuthHeaders.AUTHORIZATION_HEADER))).thenReturn(token);
 
         jwtFilter.doFilterInternal(request, null, new EmptyChain());
 
-        AccessDataAuthenticationToken authentication = (AccessDataAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        AccessDataAuthenticationToken authentication = (AccessDataAuthenticationToken) SecurityContextHolder
+                .getContext().getAuthentication();
         assertThat(authentication.isFederated()).isTrue();
     }
 
     @Test
-    public void givenRegularUserWithUserArrayClaim_whenNoFederatedClaimExists_accessDataShouldHaveFlagFederatedFalse() throws ServletException, IOException {
+    public void givenRegularUserWithUserArrayClaim_whenNoFederatedClaimExists_accessDataShouldHaveFlagFederatedFalse()
+            throws ServletException, IOException {
 
         String testSubjectName = "unknown-user@some-domain.com";
         @SuppressWarnings("unchecked")
-        String token = loginHelper.login(testSubjectName, Pair.of(JwtTokenAuthenticationFilter.CLAIM_USER_ARRAY, Collections.singletonMap("SomethingElse", true)));
+        String token = loginHelper.login(testSubjectName, Pair.of(JwtTokenAuthenticationFilter.CLAIM_USER_ARRAY,
+                Collections.singletonMap("SomethingElse", true)));
         when(request.getHeader(eq(AuthHeaders.AUTHORIZATION_HEADER))).thenReturn(token);
 
         jwtFilter.doFilterInternal(request, null, new EmptyChain());
 
-        AccessDataAuthenticationToken authentication = (AccessDataAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        AccessDataAuthenticationToken authentication = (AccessDataAuthenticationToken) SecurityContextHolder
+                .getContext().getAuthentication();
         assertThat(authentication.isFederated()).isFalse();
     }
 
+    @Test
+    public void when_validTokenHeader__controllersShouldReturnResponse() throws Exception {
 
-        @Test
-        public void when_validTokenHeader__controllersShouldReturnResponse() throws Exception {
+        String testSubjectName = "test@some-domain.com";
+        String token = loginHelper.login(testSubjectName, (Pair<String, Object>[]) null);
+        when(request.getHeader(eq(AuthHeaders.AUTHORIZATION_HEADER))).thenReturn(token);
 
-            String testSubjectName = "test@some-domain.com";
-            @SuppressWarnings("unchecked")
-            String token = loginHelper.login(testSubjectName, (Pair<String, Object>[]) null);
-            when(request.getHeader(eq(AuthHeaders.AUTHORIZATION_HEADER))).thenReturn(token);
+        this.mockMvc.perform(get("/api/test").header(HttpHeaders.AUTHORIZATION, token)).andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString(TestController.TEST_REPLY_FROM_CONTROLLER)));
 
-            this.mockMvc.perform(get("/api/test").header(HttpHeaders.AUTHORIZATION, token)).andDo(print())
-                    .andExpect(status().isOk())
-                    .andExpect(content().string(containsString(TestController.TEST_REPLY_FROM_CONTROLLER)));
-
-        }
+    }
 
     @Test
     public void when_invalidTokenHeader__controllersShouldFailUnAuthorized() throws Exception {
@@ -138,14 +143,14 @@ public class SelfSignedJwtFilterTest {
     public void when_tokenExpired__controllersShouldFailTokenExpiredException() throws Exception {
 
         @SuppressWarnings("unchecked")
-        String token = loginHelper.login("unknown-user@some-domain.com", Pair.of(PublicClaims.EXPIRES_AT, new Date(10000)));
+        String token = loginHelper.login("unknown-user@some-domain.com",
+                Pair.of(PublicClaims.EXPIRES_AT, new Date(10000)));
         System.out.println(token);
         when(request.getHeader(eq(AuthHeaders.AUTHORIZATION_HEADER))).thenReturn(token);
 
         this.mockMvc.perform(get("/api/test").header(HttpHeaders.AUTHORIZATION, token)).andDo(print())
                 .andExpect(status().is(HttpStatus.UNAUTHORIZED.value()));
     }
-
 
     class EmptyChain implements FilterChain {
 
