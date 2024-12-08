@@ -23,11 +23,12 @@
         <module>app-access</module>
         <module>app-tracing</module>
         <module>app-logging</module>
-        <module>app-aws-environment</module>
+        <module>app-aws</module>
         <module>app-base-model</module>
         <module>app-security-jwt-filter</module>
         <module>app-security-jwt-selfsigned</module>
         <module>app-service</module>
+        <module>user-service</module>
     </modules>
 
 </project>

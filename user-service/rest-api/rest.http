@@ -1,0 +1,27 @@
+
+### Create a new demo
+POST http://localhost:8080/api/demos
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Demo 1",
+  "description": "This is a demo",
+  "price": 100.00
+}
+
+### Get all demos
+GET http://localhost:8080/api/demos
+
+### Get a demo by id
+GET http://localhost:8080/api/demos/1
+
+### Update a demo
+PUT http://localhost:8080/api/demos/1
+Content-Type: application/json
+
+{
+    "name": "Demo 1 x",
+    "description": "This is a demo X",
+    "price": 100.00
+}
