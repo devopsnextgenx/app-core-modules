@@ -13,6 +13,9 @@ import io.devopsnextgenx.microservices.modules.security.jwt.dto.UserClientIdResp
 import io.devopsnextgenx.microservices.modules.security.jwt.helpers.OAuthLoginHelper;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+
+import javax.annotation.Nonnull;
+
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,16 +26,17 @@ public class JWTVerifierCache {
     private final String APP_CLIENT_URL = "/api/app/client/";
     private final LoadingCache<String, JWTVerifier> jwtVerifierCache;
 
-    public JWTVerifierCache(OAuthLoginHelper oAuthLoginHelper, RestTemplate restTemplate, JwtVerifierHelper jwtVerifierHelper, AppConfig appConfig, String userServiceHost) {
+    public JWTVerifierCache(OAuthLoginHelper oAuthLoginHelper, RestTemplate restTemplate,
+            JwtVerifierHelper jwtVerifierHelper, AppConfig appConfig, String userServiceHost) {
         jwtVerifierCache = initCache(oAuthLoginHelper, restTemplate, jwtVerifierHelper, appConfig, userServiceHost);
     }
 
-    private LoadingCache<String, JWTVerifier> initCache(OAuthLoginHelper oAuthLoginHelper, RestTemplate restTemplate, JwtVerifierHelper jwtVerifierHelper, AppConfig appConfig, String userServiceHost) {
+    private LoadingCache<String, JWTVerifier> initCache(OAuthLoginHelper oAuthLoginHelper, RestTemplate restTemplate,
+            JwtVerifierHelper jwtVerifierHelper, AppConfig appConfig, String userServiceHost) {
         return CacheBuilder.newBuilder().build(new CacheLoader<String, JWTVerifier>() {
 
             @Override
-            public JWTVerifier load(String clientID) {
-
+            public JWTVerifier load(@Nonnull String clientID) {
                 String serverToServerToken = oAuthLoginHelper.getServerToServerToken();
 
                 verifyClientRegistered(clientID, serverToServerToken, userServiceHost, restTemplate, appConfig);
@@ -57,9 +61,12 @@ public class JWTVerifierCache {
      * @param restTemplate
      * @param appConfig
      */
-    private void verifyClientRegistered(String clientID, String serverToServerToken, String userServiceHost, RestTemplate restTemplate, AppConfig appConfig) {
+    private void verifyClientRegistered(String clientID, String serverToServerToken, String userServiceHost,
+            RestTemplate restTemplate, AppConfig appConfig) {
         final String loadClientsUrl = userServiceHost + APP_CLIENT_URL + clientID;
-        ResponseEntity<UserClientIdResponse> response = restTemplate.exchange(loadClientsUrl, HttpMethod.GET, getServiceApiHeaders(serverToServerToken, appConfig.getServerToServerUser()), UserClientIdResponse.class);
+        ResponseEntity<UserClientIdResponse> response = restTemplate.exchange(loadClientsUrl, HttpMethod.GET,
+                getServiceApiHeaders(serverToServerToken, appConfig.getServerToServerUser()),
+                UserClientIdResponse.class);
         UserClientIdResponse clientExist = response.getBody();
 
         if (!clientExist.isClientExist()) {
@@ -67,7 +74,7 @@ public class JWTVerifierCache {
         }
     }
 
-    private HttpEntity getServiceApiHeaders(String token, String serverToServerUser) {
+    private HttpEntity<?> getServiceApiHeaders(String token, String serverToServerUser) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", token);
         headers.set("username", serverToServerUser);
