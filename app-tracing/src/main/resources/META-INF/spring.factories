@@ -1,4 +1,4 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.springframework.boot.autoconfigure.AutoConfiguration.imports=\
   io.devopsnextgenx.microservices.modules.tracing.TracingAutoConfiguration
 org.springframework.boot.autoconfigure.AutoConfigureBefore=\
   io.devopsnextgenx.microservices.modules.logging.config.LoggingAutoConfiguration,\

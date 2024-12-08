@@ -16,6 +16,8 @@
     <name>app-xmodules-parent</name>
 
     <properties>
+        <spring-cloud.version>2024.0.0</spring-cloud.version>
+        <awspring.version>3.2.1</awspring.version>
         <aws.sdk.version>2.29.29</aws.sdk.version>
         <nimbusds-oidc.version>11.20.1</nimbusds-oidc.version>
         <nimbusds-jose-jwt.version>9.47</nimbusds-jose-jwt.version>
@@ -34,14 +36,40 @@
         <lombok.version>1.18.36</lombok.version>
         <openapi.version>2.7.0</openapi.version>
         <mysql.version>9.1.0</mysql.version>
+        <spring-cloud-messaging.version>2.2.6.RELEASE</spring-cloud-messaging.version>
+        <jackson-datatype-jsr310.version>2.18.2</jackson-datatype-jsr310.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
+                <version>${jackson-datatype-jsr310.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-aws-messaging</artifactId>
+                <version>${spring-cloud-messaging.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
                 <groupId>io.devopsnextgenx.microservices.modules</groupId>
                 <artifactId>app-xmodules-bom</artifactId>
                 <version>current-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.awspring.cloud</groupId>
+                <artifactId>spring-cloud-aws-dependencies</artifactId>
+                <version>${awspring.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

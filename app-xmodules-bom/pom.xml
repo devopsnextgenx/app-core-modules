@@ -19,6 +19,36 @@
         <dependencies>
             <dependency>
                 <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>app-aws</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>app-aws-dynamodb</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>app-aws-environment-configuration</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>app-aws-s3</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>app-aws-sns</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>app-aws-sqs</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
                 <artifactId>aws-environment</artifactId>
                 <version>current-SNAPSHOT</version>
             </dependency>

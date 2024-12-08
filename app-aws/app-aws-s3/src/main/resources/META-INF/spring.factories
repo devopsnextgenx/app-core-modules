@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  io.devopsnextgenx.base.modules.aws.s3.S3AutoConfiguration
