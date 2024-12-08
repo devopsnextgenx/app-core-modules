@@ -27,11 +27,10 @@ public class AwsEnvironmentModuleAutoConfiguration {
         try {
             Class<?> credentialsClass = Class.forName(credentialsClassName);
             log.info("AWS Credentials class is: '{}'", credentialsClass.getSimpleName());
-            return (AwsCredentialsProvider) credentialsClass.newInstance();
+            return (AwsCredentialsProvider) credentialsClass.getDeclaredConstructor().newInstance();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(String.format("Could not initialize AWS credentials, provided class unknown: '%s'", credentialsClassName));
-        } catch (IllegalAccessException | InstantiationException e) {
+        } catch (ReflectiveOperationException e) {
             throw new RuntimeException(String.format("Could not initialize AWS credentials, provided class  '%s' could not be initialized", credentialsClassName));
         }
-    }
-}
+    }}
