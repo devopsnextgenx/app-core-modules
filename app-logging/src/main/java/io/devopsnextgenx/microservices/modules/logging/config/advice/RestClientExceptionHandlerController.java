@@ -21,11 +21,13 @@ import org.springframework.web.client.RestClientResponseException;
 import jakarta.servlet.http.HttpServletRequest;
 
 /**
- * Handle application global aspect of exception handling, logging and error response.
+ * Handle application global aspect of exception handling, logging and error
+ * response.
  * <p>
  * Intentional Exception Flow
  * <p>
- * Where a RestClient specific exception is thrown E.g {@link RestClientResponseException} its an indication to fail the request
+ * Where a RestClient specific exception is thrown E.g
+ * {@link RestClientResponseException} its an indication to fail the request
  * and return an error message to the user.
  * In case the exception contains a cause, it will be logged as well.
  * <p>
@@ -40,26 +42,41 @@ public class RestClientExceptionHandlerController extends BaseHandlerController 
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception, HttpServletRequest request) {
+    public ResponseEntity<ErrorDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception,
+            HttpServletRequest request) {
         MethodParameter methodParameter = exception.getParameter();
-        String message = String.format("Missing required parameter in request. Method: [%s], Parameter[%s:%s]", methodParameter.getMethod().getName(), methodParameter.getParameter().getParameterizedType().getTypeName(), methodParameter.getParameter().getName());
-        return createResponseEntity(message, exception, HttpStatus.BAD_REQUEST, AppException.ERROR_CODE.OTHER, request, MDC.get(BaseApiLogger.CORRELATION_ID));
+        @SuppressWarnings("null")
+        String methodName = methodParameter.getMethod() == null ? "Unknown" : methodParameter.getMethod().getName();
+        String message = String.format("Missing required parameter in request. Method: [%s], Parameter[%s:%s]",
+                methodName, methodParameter.getParameter().getParameterizedType().getTypeName(),
+                methodParameter.getParameter().getName());
+        return createResponseEntity(message, exception, HttpStatus.BAD_REQUEST, AppException.ERROR_CODE.OTHER, request,
+                MDC.get(BaseApiLogger.CORRELATION_ID));
     }
 
     @ExceptionHandler(value = MissingPathVariableException.class)
-    public ResponseEntity<ErrorDTO> handleMissingPathVariableException(MissingPathVariableException exception, HttpServletRequest request) {
-        String message = String.format("Missing path variable parameter in request. Variable: [%s]", exception.getVariableName());
-        return createResponseEntity(message, exception, HttpStatus.BAD_REQUEST, AppException.ERROR_CODE.OTHER, request, MDC.get(BaseApiLogger.CORRELATION_ID));
+    public ResponseEntity<ErrorDTO> handleMissingPathVariableException(MissingPathVariableException exception,
+            HttpServletRequest request) {
+        String message = String.format("Missing path variable parameter in request. Variable: [%s]",
+                exception.getVariableName());
+        return createResponseEntity(message, exception, HttpStatus.BAD_REQUEST, AppException.ERROR_CODE.OTHER, request,
+                MDC.get(BaseApiLogger.CORRELATION_ID));
     }
 
     @ExceptionHandler(value = MissingMatrixVariableException.class)
-    public ResponseEntity<ErrorDTO> handleMissingMatrixVariableException(MissingMatrixVariableException exception, HttpServletRequest request) {
-        String message = String.format("Missing matrix variable parameter in request. Variable: [%s]", exception.getVariableName());
-        return createResponseEntity(message, exception, HttpStatus.BAD_REQUEST, AppException.ERROR_CODE.OTHER, request, MDC.get(BaseApiLogger.CORRELATION_ID));
+    public ResponseEntity<ErrorDTO> handleMissingMatrixVariableException(MissingMatrixVariableException exception,
+            HttpServletRequest request) {
+        String message = String.format("Missing matrix variable parameter in request. Variable: [%s]",
+                exception.getVariableName());
+        return createResponseEntity(message, exception, HttpStatus.BAD_REQUEST, AppException.ERROR_CODE.OTHER, request,
+                MDC.get(BaseApiLogger.CORRELATION_ID));
     }
 
     @ExceptionHandler(value = RestClientResponseException.class)
-    public ResponseEntity<ErrorDTO> handleHttpStatusCodeException(RestClientResponseException exception, HttpServletRequest request) {
-        return createResponseEntity(exception.getResponseBodyAsString(), exception, HttpStatus.resolve(exception.getRawStatusCode()), AppException.ERROR_CODE.OTHER, request, MDC.get(BaseApiLogger.CORRELATION_ID));
+    public ResponseEntity<ErrorDTO> handleHttpStatusCodeException(RestClientResponseException exception,
+            HttpServletRequest request) {
+        return createResponseEntity(exception.getResponseBodyAsString(), exception,
+                HttpStatus.resolve(exception.getStatusCode().value()), AppException.ERROR_CODE.OTHER, request,
+                MDC.get(BaseApiLogger.CORRELATION_ID));
     }
 }

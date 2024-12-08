@@ -17,10 +17,10 @@ public class LoggingAutoConfiguration {
 
     @Bean
     public FilterRegistrationBean<TomcatApiLoggerFilter> tomcatApiLoggerFilterRegistrationBean() {
-        FilterRegistrationBean<TomcatApiLoggerFilter> registrationBean = new FilterRegistrationBean();
-        TomcatApiLoggerFilter TomcatApiLoggerFilter = new TomcatApiLoggerFilter(applicationName);
+        FilterRegistrationBean<TomcatApiLoggerFilter> registrationBean = new FilterRegistrationBean<>();
+        TomcatApiLoggerFilter tomcatApiLoggerFilter = new TomcatApiLoggerFilter(applicationName);
 
-        registrationBean.setFilter(TomcatApiLoggerFilter);
+        registrationBean.setFilter(tomcatApiLoggerFilter);
         registrationBean.addUrlPatterns("/api/*");
         registrationBean.setOrder(10);
         return registrationBean;
