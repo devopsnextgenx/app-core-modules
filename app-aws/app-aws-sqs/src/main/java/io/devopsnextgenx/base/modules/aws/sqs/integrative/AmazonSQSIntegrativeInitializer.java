@@ -11,9 +11,11 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AmazonSQSIntegrativeInitializer {
     private AppSqsConfig config;
+    @SuppressWarnings("unused")
     private AmazonSQS amazonSqs;
 
     public AmazonSQSIntegrativeInitializer initialize() {
+        @SuppressWarnings("unused")
         String envPrefix = Optional.ofNullable(config.getEnvironmentPrefix())
                 .map(env -> env + "_")
                 .orElse(null);

@@ -3,7 +3,6 @@ package io.devopsnextgenx.base.modules.aws.s3.providers;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.S3ClientOptions;
 import io.devopsnextgenx.base.modules.aws.s3.config.AppS3Config;
 import io.devopsnextgenx.base.modules.config.aws.AppResourceClientProvider;
 import io.devopsnextgenx.base.modules.config.aws.exceptions.AppAwsResourceException;

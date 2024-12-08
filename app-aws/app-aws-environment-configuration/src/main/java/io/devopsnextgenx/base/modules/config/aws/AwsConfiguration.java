@@ -1,3 +1,5 @@
+package io.devopsnextgenx.base.modules.config.aws;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
