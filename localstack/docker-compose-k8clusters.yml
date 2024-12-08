@@ -1,0 +1,10 @@
+version: '3.6'
+
+services:
+  mongo:
+    domainname: local.k8cluster.io
+    hostname: mongo
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - 27017:27017

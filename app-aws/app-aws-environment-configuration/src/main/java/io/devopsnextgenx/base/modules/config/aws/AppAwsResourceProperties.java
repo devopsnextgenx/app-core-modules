@@ -8,7 +8,7 @@ import lombok.Data;
 public abstract class AppAwsResourceProperties {
     private String arn;
     private String region;
-    private String environmentPrefix;
+    private String environmentPrefix = "local";
     private boolean local;
     private Development development;
 

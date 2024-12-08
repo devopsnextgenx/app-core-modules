@@ -24,6 +24,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ActiveProfiles("local")
 @TestPropertySource(properties = {
         "app.aws.region = us-east-1" ,
+        "app.modules.dynamodb.local = true",
         "app.modules.dynamodb.integrative = false",
         "app.modules.dynamodb.development.modelsPackage = io.devopsnextgenx.base.modules.test",
         "app.modules.dynamodb.development.httpPort = 4569"
