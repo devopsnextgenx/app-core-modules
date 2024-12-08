@@ -14,24 +14,18 @@ import io.devopsnextgenx.base.modules.aws.sns.providers.AwsLocalSNSClientProvide
 import io.devopsnextgenx.base.modules.aws.sns.providers.AwsRuntimeSNSClientProvider;
 import io.devopsnextgenx.base.modules.config.aws.AppAwsProperties;
 import io.devopsnextgenx.base.modules.config.aws.exceptions.AppAwsResourceException;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.aws.messaging.config.SimpleMessageListenerContainerFactory;
 import org.springframework.cloud.aws.messaging.core.NotificationMessagingTemplate;
-import org.springframework.cloud.aws.messaging.listener.SimpleMessageListenerContainer;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.EventListener;
-import org.springframework.core.task.AsyncTaskExecutor;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * SNSAutoConfiguration:

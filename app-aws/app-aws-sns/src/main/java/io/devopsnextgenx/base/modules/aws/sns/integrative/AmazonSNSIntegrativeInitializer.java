@@ -11,9 +11,11 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AmazonSNSIntegrativeInitializer {
     private AppSnsConfig config;
+    @SuppressWarnings("unused")
     private AmazonSNS amazonSns;
 
     public AmazonSNSIntegrativeInitializer initialize() {
+        @SuppressWarnings("unused")
         String envPrefix = Optional.ofNullable(config.getEnvironmentPrefix())
                 .map(env -> env + "_")
                 .orElse(null);
