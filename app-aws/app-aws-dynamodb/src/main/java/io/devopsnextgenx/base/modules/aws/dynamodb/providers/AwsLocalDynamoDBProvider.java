@@ -1,6 +1,5 @@
 package io.devopsnextgenx.base.modules.aws.dynamodb.providers;
 
-import com.amazonaws.ClientConfiguration;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
