@@ -26,7 +26,7 @@
 //        "app.aws.region = us-east-1" ,
 //        "app.modules.dynamodb.integrative = false",
 //        "app.modules.dynamodb.development.modelsPackage = io.devopsnextgenx.base.modules.test",
-//        "app.modules.dynamodb.development.httpPort = 4569"
+//        "app.modules.dynamodb.development.httpPort = 4566"
 //})
 //@SpringBootTest(classes = {DynamodbAutoConfiguration.class, AwsEnvironmentModuleAutoConfiguration.class})
 //public class IntegrativeDynamoDBTest {

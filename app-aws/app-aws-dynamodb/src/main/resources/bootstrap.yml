@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    consul:
+      host: ${CONSULHOST:consul.localhost}
+      port: ${CONSULPORT:8500}
+      discovery:
+        instance-id: ${spring.application.name}-${hostname}-${server.port}
+        prefer-ip-address: true
+    vault:
+      host: ${VAULTHOST:vault.localhost}
+      port: ${VAULTPORT:8200}
+      kv:
+        enabled: true
+      scheme: ${VAULT_METHOD:http}
+      token: ${VAULT_TOKEN:00000000-0000-0000-0000-000000000000}

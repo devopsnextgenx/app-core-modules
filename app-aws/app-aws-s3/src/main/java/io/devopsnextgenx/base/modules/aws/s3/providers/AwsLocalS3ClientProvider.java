@@ -27,11 +27,11 @@ public class AwsLocalS3ClientProvider extends AppResourceClientProvider implemen
 
         AmazonS3 amazonS3 = AmazonS3ClientBuilder.standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(
-                        String.format("http://%s:%s", resourceDetails.getHostname(), resourceDetails.getPort()),
+                        String.format("http://%s:%s", resourceDetails.getHostname(), resourceDetails.getHttpPort()),
                         config.getRegion())
                 ).withPathStyleAccessEnabled(true)
                 .build();
-        log.info("Local S3 client was created at port '{}' .", resourceDetails.getPort());
+        log.info("Local S3 client was created at port '{}' .", resourceDetails.getHttpPort());
         return amazonS3;
     }
 }

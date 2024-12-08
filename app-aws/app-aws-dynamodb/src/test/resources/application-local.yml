@@ -1,0 +1,49 @@
+app:
+  aws:
+    region: us-east-1
+    credentialsClass: com.amazonaws.auth.profile.ProfileCredentialsProvider
+  modules:
+    cache:
+      redis:
+        clusterMode: false
+        redisHost: ${REDISHOST:redis.localhost}
+        redisPort: 6379
+        password: redis
+        nodes: localhost:6379
+    dynamodb:
+      local: true
+      environmentPrefix: local
+      region: us-east-1
+      development:
+        hostName: localhost.localstack.cloud
+        httpPort: 4566
+        modelsPackage: io.app.base.modules.test.model
+    s3:
+      local: true
+      environmentPrefix: local
+      region: us-east-1
+      development:
+        hostName: localhost
+        httpPort: 4572
+        bucketName: images:docs:jsons
+    sns:
+      local: true
+      environmentPrefix: local
+      region: us-east-1
+      topicList:
+        - spring-cloud-test-topic
+      development:
+        hostName: localhost
+        httpPort: 4575
+    sqs:
+      local: true
+      environmentPrefix: local
+      region: us-east-1
+      queueList:
+        - message
+        - conversion
+        - printability
+        - spring-cloud-test-topic
+      development:
+        hostName: localhost
+        httpPort: 4576

@@ -15,7 +15,7 @@ npm install dynamodb-admin -g
 export DYNAMO_ENDPOINT=http://localhost:8000
 dynamodb-admin
 
-export DYNAMO_ENDPOINT=http://localhost:4569 && dynamodb-admin
+export DYNAMO_ENDPOINT=http://localhost:4566 && dynamodb-admin
 
 http://localhost:8001
 

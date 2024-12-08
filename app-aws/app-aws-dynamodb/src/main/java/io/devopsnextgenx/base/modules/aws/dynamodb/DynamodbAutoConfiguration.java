@@ -36,7 +36,7 @@ public class DynamodbAutoConfiguration {
 
     @Bean
     @ConfigurationProperties(prefix = "app.modules.dynamodb")
-    public AppDynamoDBConfig AppDynamoDBConfig() {
+    public AppDynamoDBConfig appDynamoDBConfig() {
         return new AppDynamoDBConfig();
     }
 

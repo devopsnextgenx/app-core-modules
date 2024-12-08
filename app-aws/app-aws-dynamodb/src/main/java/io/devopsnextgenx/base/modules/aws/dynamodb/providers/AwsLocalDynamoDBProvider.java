@@ -1,5 +1,6 @@
 package io.devopsnextgenx.base.modules.aws.dynamodb.providers;
 
+import com.amazonaws.ClientConfiguration;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
@@ -22,12 +23,12 @@ public class AwsLocalDynamoDBProvider extends AppResourceClientProvider implemen
     public AmazonDynamoDB provide(AppDynamoDBConfig config) throws AppAwsResourceException {
         AppResourceClientProvider.AppResource resourceDetails = getResourceDetails(config);
         AmazonDynamoDB dynamoDB = AmazonDynamoDBClientBuilder.standard()
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(
-                        String.format("http://%s:%s", resourceDetails.getHostname(), resourceDetails.getPort()),
-                        config.getRegion())
-                )
-                .build();
-        log.info("Local Dynamo DB client was created at port '{}' .", resourceDetails.getPort());
+            .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(
+                    String.format("https://%s:%s", resourceDetails.getHostname(), resourceDetails.getHttpPort()),
+                    config.getRegion())
+            )
+            .build();
+        log.info("Local Dynamo DB client was created at port '{}' .", String.format("https://%s:%s", resourceDetails.getHostname(), resourceDetails.getHttpPort()));
         return dynamoDB;
     }
 }

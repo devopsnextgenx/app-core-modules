@@ -1,0 +1,9 @@
+app:
+  aws:
+    region: us-east-1
+    credentialsClass: com.amazonaws.auth.InstanceProfileCredentialsProvider
+  modules:
+    dynamodb:
+      environmentPrefix: dev
+      development:
+        modelsPackage: io.app.base.modules.test.model

@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+import io.devopsnextgenx.base.modules.aws.dynamodb.config.YamlPropertyLoaderFactory;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * IntegrativeDynamoDBTest:
@@ -22,12 +24,9 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @ActiveProfiles("local")
+@PropertySource(value = "classpath:application-local.yml", factory = YamlPropertyLoaderFactory.class)
 @TestPropertySource(properties = {
-        "app.aws.region = us-east-1" ,
-        "app.modules.dynamodb.local = true",
-        "app.modules.dynamodb.integrative = false",
-        "app.modules.dynamodb.development.modelsPackage = io.devopsnextgenx.base.modules.test",
-        "app.modules.dynamodb.development.httpPort = 4569"
+    "app.modules.dynamodb.local = true"
 })
 @SpringBootTest(classes = {DynamodbAutoConfiguration.class, AwsEnvironmentModuleAutoConfiguration.class})
 public class IntegrativeDynamoDBTest {

@@ -28,11 +28,11 @@ public class AwsLocalSNSClientProvider extends AppResourceClientProvider impleme
 
         AmazonSNS amazonSNS = AmazonSNSClientBuilder.standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(
-                        String.format("http://%s:%s", resourceDetails.getHostname(), resourceDetails.getPort()),
+                        String.format("http://%s:%s", resourceDetails.getHostname(), resourceDetails.getHttpPort()),
                         config.getRegion())
                 )
                 .build();
-        log.info("Local SNS client was created at '[{}:{}]' .", resourceDetails.getHostname(), resourceDetails.getPort());
+        log.info("Local SNS client was created at '[{}:{}]' .", resourceDetails.getHostname(), resourceDetails.getHttpPort());
         return amazonSNS;
     }
 
@@ -42,11 +42,11 @@ public class AwsLocalSNSClientProvider extends AppResourceClientProvider impleme
 
         AmazonSNSAsync amazonSNSAsync = AmazonSNSAsyncClientBuilder.standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(
-                        String.format("http://%s:%s", resourceDetails.getHostname(), resourceDetails.getPort()),
+                        String.format("http://%s:%s", resourceDetails.getHostname(), resourceDetails.getHttpPort()),
                         config.getRegion())
                 )
                 .build();
-        log.info("Local SNSAsync client was created at '[{}:{}]' .", resourceDetails.getHostname(), resourceDetails.getPort());
+        log.info("Local SNSAsync client was created at '[{}:{}]' .", resourceDetails.getHostname(), resourceDetails.getHttpPort());
         return amazonSNSAsync;
     }
 }

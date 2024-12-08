@@ -1,0 +1,64 @@
+server:
+  hostname: ${VHOSTNAME:test-module.local.k8cluster.io}
+  port: ${VPORT:2000}
+
+app:
+  aws:
+    region: us-east-1
+    credentialsClass: com.amazonaws.auth.profile.ProfileCredentialsProvider
+  #    credentialsClass: com.amazonaws.auth.InstanceProfileCredentialsProvider
+  modules:
+    cache:
+      redis:
+        clusterMode: false
+    dynamodb:
+      environmentPrefix: integrative
+      region: us-east-1
+    s3:
+      environmentPrefix: integrative
+      region: us-east-1
+  swagger:
+    title: Modules Test Application
+    description: |-
+      Test Modules with importing dependencies
+    version: 1.0.0
+    contacts:
+      name: Amit Kshirsagar
+      email: amit.kshirsagar.13@gmail.com
+      url: https://www.github.com/amitkshirsagar13
+
+spring:
+  application:
+    name: test-module
+  security:
+    filter:
+      order: 5
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+#  autoconfigure:
+#    exclude:
+#      - org.springframework.cloud.aws.autoconfigure.cache.ElastiCacheAutoConfiguration
+#      - org.springframework.cloud.aws.autoconfigure.context.ContextCredentialsAutoConfiguration
+#      - org.springframework.cloud.aws.autoconfigure.context.ContextInstanceDataAutoConfiguration
+#      - org.springframework.cloud.aws.autoconfigure.context.ContextRegionProviderAutoConfiguration
+#      - org.springframework.cloud.aws.autoconfigure.context.ContextRegionProviderAutoConfiguration
+#      - org.springframework.cloud.aws.autoconfigure.context.ContextRegionProviderAutoConfiguration
+#      - org.springframework.cloud.aws.autoconfigure.jdbc.AmazonRdsDatabaseAutoConfiguration
+#      - org.springframework.cloud.aws.autoconfigure.mail.MailSenderAutoConfiguration
+#      - org.springframework.cloud.aws.autoconfigure.metrics.CloudWatchExportAutoConfiguration
+#      - org.springframework.cloud.aws.autoconfigure.messaging.MessagingAutoConfiguration
+  cloud:
+    function:
+      scan:
+        packages: io.app.base.modules.test.functions
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      base-path: /actuator

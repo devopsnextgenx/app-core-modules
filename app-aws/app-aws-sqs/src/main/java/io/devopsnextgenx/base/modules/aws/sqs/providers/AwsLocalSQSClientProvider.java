@@ -28,11 +28,11 @@ public class AwsLocalSQSClientProvider extends AppResourceClientProvider impleme
 
         AmazonSQS amazonSQS = AmazonSQSClientBuilder.standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(
-                        String.format("http://%s:%s", resourceDetails.getHostname(), resourceDetails.getPort()),
+                        String.format("http://%s:%s", resourceDetails.getHostname(), resourceDetails.getHttpPort()),
                         config.getRegion())
                 )
                 .build();
-        log.info("Local SQS client was created at '[{}:{}]' .", resourceDetails.getHostname(), resourceDetails.getPort());
+        log.info("Local SQS client was created at '[{}:{}]' .", resourceDetails.getHostname(), resourceDetails.getHttpPort());
         return amazonSQS;
     }
 
@@ -42,11 +42,11 @@ public class AwsLocalSQSClientProvider extends AppResourceClientProvider impleme
 
         AmazonSQSAsync amazonSQSAsync = AmazonSQSAsyncClientBuilder.standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(
-                        String.format("http://%s:%s", resourceDetails.getHostname(), resourceDetails.getPort()),
+                        String.format("http://%s:%s", resourceDetails.getHostname(), resourceDetails.getHttpPort()),
                         config.getRegion())
                 )
                 .build();
-        log.info("Local SQSAsync client was created at '[{}:{}]' .", resourceDetails.getHostname(), resourceDetails.getPort());
+        log.info("Local SQSAsync client was created at '[{}:{}]' .", resourceDetails.getHostname(), resourceDetails.getHttpPort());
         return amazonSQSAsync;
     }
 
