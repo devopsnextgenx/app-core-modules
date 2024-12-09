@@ -36,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
-// @EnableWebSecurity
+@EnableWebSecurity
 @EnableConfigurationProperties
 @PropertySources({
     @PropertySource(name = "oauthApplications", 
