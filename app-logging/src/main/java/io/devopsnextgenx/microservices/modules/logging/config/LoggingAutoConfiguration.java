@@ -26,6 +26,7 @@ public class LoggingAutoConfiguration {
         return registrationBean;
     }
 
+    @Bean
     public GlobalExceptionHandlerController globalExceptionHandlerController(Tracer tracer) {
         return new GlobalExceptionHandlerController(tracer);
     }
