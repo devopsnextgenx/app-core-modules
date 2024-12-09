@@ -2,3 +2,4 @@ target/
 demo/
 mysql-data/
 localstack-data/
+consul-data/

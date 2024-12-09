@@ -55,25 +55,6 @@ services:
       '
     ]
 
-  localstack-ui:
-    domainname: localhost
-    hostname: localstack-ui
-    image: amitkshirsagar13/localstack-ui
-    container_name: "localstack-ui"
-    ports:
-      - "8001:8001"
-      - "8002:8002" # sqs-admin
-    environment:
-      - DYNAMO_ENDPOINT=http://localhost.localstack.cloud:4566
-      - SQS_ENDPOINT=http://localhost.localstack.cloud:4566
-      - AWS_REGION="us-east-1"
-    entrypoint: /bin/sh
-    command: -c "env DYNAMO_ENDPOINT=http://localhost.localstack.cloud:4566 dynamodb-admin & env SQS_ENDPOINT=http://localhost.localstack.cloud:4566 sqs-admin"
-    links:
-      - "localstack:localstack"
-    depends_on:
-      - localstack
-
   vault:
     domainname: localhost
     hostname: vault
@@ -104,7 +85,9 @@ services:
     command: agent -server -bind 0.0.0.0 -client 0.0.0.0 -bootstrap-expect 1 -config-file=/consul/config/config.json
     volumes:
       - ./consul/config/consul-config.json:/consul/config/config.json
-      - ./consul/data:/consul/data
+      - ./consul-data:/consul/data
+
+
 #
 #  test-module1:
 #    domainname: localhost
