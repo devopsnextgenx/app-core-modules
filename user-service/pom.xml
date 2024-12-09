@@ -44,10 +44,10 @@
 			<groupId>io.devopsnextgenx.microservices.modules</groupId>
 			<artifactId>app-security-jwt-filter</artifactId>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>io.devopsnextgenx.microservices.modules</groupId>
 			<artifactId>app-security-jwt-selfsigned</artifactId>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
