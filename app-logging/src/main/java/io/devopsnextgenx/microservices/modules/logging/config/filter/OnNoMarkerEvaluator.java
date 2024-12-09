@@ -11,7 +11,7 @@ public class OnNoMarkerEvaluator extends OnMarkerEvaluator {
 
     @Override
     public boolean evaluate(ILoggingEvent event) {
-        Marker eventsMarker = event.getMarkerList().isEmpty() ? null : event.getMarkerList().get(0);
+        Marker eventsMarker = event.getMarker();
         if (eventsMarker == null) {
             return true;
         }
