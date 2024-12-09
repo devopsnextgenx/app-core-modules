@@ -10,6 +10,7 @@ import io.devopsnextgenx.microservices.modules.security.jwt.helpers.YamlProperty
 import io.devopsnextgenx.microservices.modules.security.jwt.validators.ProductionTokenValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -58,11 +60,12 @@ public class SecurityConfiguration {
     //     return new AppConfig();
     // }
 
-    // @Bean
-    // @ConfigurationProperties(prefix = "app.auth.swagger")
-    // public SwaggerUISecurityConfig swaggerUISecurityConfig() {
-    //     return new SwaggerUISecurityConfig();
-    // }
+    @Bean
+    @ConfigurationProperties(prefix = "app.auth.swagger")
+    public SwaggerUISecurityConfig swaggerUISecurityConfig() {
+        log.info("SwaggerUISecurityConfig: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        return new SwaggerUISecurityConfig();
+    }
 
     // @Bean
     // @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
