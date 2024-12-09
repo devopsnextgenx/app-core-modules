@@ -6,4 +6,4 @@ app:
     dynamodb:
       environmentPrefix: dev
       development:
-        modelsPackage: io.app.base.modules.test.model
+        modelsPackage: io.devopsnextgenx.base.modules.test.model

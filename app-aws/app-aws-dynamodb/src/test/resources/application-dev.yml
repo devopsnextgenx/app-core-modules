@@ -17,7 +17,7 @@ app:
       development:
         hostName: ${DYNAMODBHOST:localstack}
         httpPort: ${DYNAMODBPORT:4566}
-        modelsPackage: io.app.base.modules.test.model
+        modelsPackage: io.devopsnextgenx.base.modules.test.model
     s3:
       local: true
       environmentPrefix: ${ENVPREFIX:dev}

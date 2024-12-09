@@ -1,4 +1,4 @@
-package io.devopsnextgenx.base.modules.test;
+package io.devopsnextgenx.base.modules.test.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;

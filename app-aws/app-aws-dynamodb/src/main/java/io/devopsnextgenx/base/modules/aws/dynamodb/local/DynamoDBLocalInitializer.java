@@ -54,7 +54,10 @@ public class DynamoDBLocalInitializer extends BaseDynamoDBMapperInitializer {
             throw new RuntimeException(String.format("Failed to list tables from local dynamoDB, check if local dynamoDB server is running:  %s", e.toString()));
         }
 
+        log.info("Model Package for table list: '{}'", appDynamoDBConfig.getDevelopment().getModelsPackage());
+
         for (Class<?> model : findAllConfigurationClassesInPackage(appDynamoDBConfig.getDevelopment().getModelsPackage())) {
+            log.info("Creating table for model: {}", model.getName());
             CreateTableRequest tableRequest = dynamoDBMapper().generateCreateTableRequest(model);
 
             if (tables.contains(tableRequest.getTableName())) {

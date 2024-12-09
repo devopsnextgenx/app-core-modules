@@ -20,7 +20,7 @@ services:
       - HOSTNAME_EXTERNAL=localstack
       - DEFAULT_REGION=us-east-1
     volumes:
-      # - "${TMP_DIR:-/tmp}/localstack:/tmp/localstack" # TMP_DIR=/Users/admin/tmp
+      - "${TMP_DIR:-/tmp}/localstack:/var/lib/localstack" # TMP_DIR=/Users/admin/tmp
       - "/var/run/docker.sock:/var/run/docker.sock"
 
   mongo:
@@ -64,11 +64,11 @@ services:
       - "8001:8001"
       - "8002:8002" # sqs-admin
     environment:
-      - DYNAMO_ENDPOINT=http://localstack:4569
-      - SQS_ENDPOINT=http://localstack:4576
+      - DYNAMO_ENDPOINT=http://localhost.localstack.cloud:4566
+      - SQS_ENDPOINT=http://localhost.localstack.cloud:4566
       - AWS_REGION="us-east-1"
     entrypoint: /bin/sh
-    command: -c "env DYNAMO_ENDPOINT=http://localstack:4569 dynamodb-admin & env SQS_ENDPOINT=http://localstack:4576 sqs-admin"
+    command: -c "env DYNAMO_ENDPOINT=http://localhost.localstack.cloud:4566 dynamodb-admin & env SQS_ENDPOINT=http://localhost.localstack.cloud:4566 sqs-admin"
     links:
       - "localstack:localstack"
     depends_on:

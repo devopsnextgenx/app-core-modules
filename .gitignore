@@ -1,3 +1,4 @@
 target/
 demo/
 mysql-data/
+localstack-data/

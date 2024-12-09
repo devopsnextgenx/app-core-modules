@@ -3,6 +3,8 @@ package io.devopsnextgenx.base.modules.test;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import io.devopsnextgenx.base.modules.aws.dynamodb.DynamodbAutoConfiguration;
 import io.devopsnextgenx.base.modules.config.aws.AwsEnvironmentModuleAutoConfiguration;
+import io.devopsnextgenx.base.modules.test.model.MessageTest;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
