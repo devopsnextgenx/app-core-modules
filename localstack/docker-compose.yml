@@ -20,14 +20,29 @@ services:
       - HOSTNAME_EXTERNAL=localhost.localstack.cloud
       - DEFAULT_REGION=us-east-1
     volumes:
-      - "${TMP_DIR:-/tmp}/localstack:/var/lib/localstack" # TMP_DIR=/Users/admin/tmp
+      - "${TMP_DIR:-/tmp}/localstack-data:/var/lib/localstack" # TMP_DIR=/Users/admin/tmp
       - "/var/run/docker.sock:/var/run/docker.sock"
+
+  mysql:
+    domainname: localhost
+    hostname: mysql.localtest.me
+    image: mysql
+    container_name: mysql-server
+    ports:
+    - "3306:3306"
+    environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=user
+    - MYSQL_USER=admin
+    - MYSQL_PASSWORD=admin
+    volumes:
+    - "${TMP_DIR:-/tmp}/mysql-data:/var/lib/mysql"
 
   mongo:
     domainname: localhost
-    hostname: mongo
+    hostname: mongo.localtest.me
     image: mongo
-    container_name: "mongo-server"
+    container_name: mongo-server
     ports:
       - "27017:27017"
     environment:
@@ -40,7 +55,7 @@ services:
     domainname: localhost
     hostname: redis
     image: redis:4.0.2
-    container_name: "redis-server"
+    container_name: redis-server
     ports:
       - "6379:6379"
     environment:
@@ -57,15 +72,15 @@ services:
 
   vault:
     domainname: localhost
-    hostname: vault
+    hostname: vault.localtest.me
     image: vault:1.13.3
-    container_name: "vault"
+    container_name: vault-server
     ports:
       - "8200:8200"
     volumes:
-      - ./vault/policies:/vault/policies
-      - ./vault/data:/vault/data
-      - ./vault/logs:/vault/logs
+      - "${TMP_DIR:-/tmp}/vault/policies:/vault/policies"
+      - "${TMP_DIR:-/tmp}/vault-data:/vault/data"
+      - "${TMP_DIR:-/tmp}/vault/logs:/vault/logs"
     environment:
       - VAULT_ADDR=http://0.0.0.0:8200
       - VAULT_TOKEN=00000000-0000-0000-0000-000000000000
@@ -77,16 +92,15 @@ services:
 
   consul:
     domainname: localhost
-    hostname: consul:1.15.4
+    hostname: consul.localtest.me
     image: amitkshirsagar13/consul
-    container_name: "consul"
+    container_name: consul-server
     ports:
       - 8500:8500
     command: agent -server -bind 0.0.0.0 -client 0.0.0.0 -bootstrap-expect 1 -config-file=/consul/config/config.json
     volumes:
       - ./consul/config/consul-config.json:/consul/config/config.json
-      - ./consul-data:/consul/data
-
+      - "${TMP_DIR:-/tmp}/consul-data:/consul/data"
 
 #
 #  test-module1:
