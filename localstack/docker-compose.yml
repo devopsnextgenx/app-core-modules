@@ -3,7 +3,7 @@ version: '3.6'
 services:
   localstack:
     domainname: localhost
-    hostname: localstack
+    hostname: localhost.localstack.cloud
     image: localstack/localstack:latest
     container_name: localstack
     ports:
@@ -17,7 +17,7 @@ services:
       - LAMBDA_EXECUTOR=${LOCALSTACK_LAMBDA_EXECUTOR- }
       - KINESIS_ERROR_PROBABILITY=${LOCALSTACK_KINESIS_ERROR_PROBABILITY- }
       - DOCKER_HOST=unix:///var/run/docker.sock
-      - HOSTNAME_EXTERNAL=localstack
+      - HOSTNAME_EXTERNAL=localhost.localstack.cloud
       - DEFAULT_REGION=us-east-1
     volumes:
       - "${TMP_DIR:-/tmp}/localstack:/var/lib/localstack" # TMP_DIR=/Users/admin/tmp
