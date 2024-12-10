@@ -14,6 +14,36 @@ spring:
             hibernate:
                 '[dialect]': org.hibernate.dialect.MySQL8Dialect
                 '[format_sql]': false
+app:
+  modules:
+    tracing:
+      jaeger:
+        enabled: true
+        agent:
+          jaegerHost: localhost
+          jaegerPort: 6831
+        trace:
+          samplingRate: 1
+          flushInterval: 1000
+          maxQueueSize: 1000
+  oauth:
+    defaultAuthType: SELFSIGNED
+    applications:
+      self-signed:
+        domain: https://devopsnextgenx.auth0.com/
+        dBConnection: SelfSigned-Authentication
+        clientId: SelfSigned-Client-ID
+        clientSecret: fake-client-secret
+        expirationSec: 808080
+        notBeforeSec: 4
+        issuedAtSec: 4
+        authType: SELFSIGNED
+  auth:
+    swagger:
+      swaggerUser: ${SWAGGER_USER:user}
+      swaggerUserPassword: ${SWAGGER_USER_PASS:user}
+      swaggerAdmin: ${SWAGGER_ADMIN:admin}
+      swaggerAdminPassword: ${SWAGGER_ADMIN_PASS:admin}
 
 springdoc:
     api-docs:
