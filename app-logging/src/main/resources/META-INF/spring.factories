@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.AutoConfiguration.imports=\
-    io.devopsnextgenx.microservices.modules.logging.config.LoggingAutoConfiguration

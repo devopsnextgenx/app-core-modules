@@ -19,14 +19,14 @@
     <modules>
         <module>app-xmodules-parent</module>
         <module>app-xmodules-bom</module>
+        <module>app-configuration</module>
         <module>app-exception</module>
         <module>app-access</module>
         <module>app-tracing</module>
         <module>app-logging</module>
         <module>app-aws</module>
         <module>app-base-model</module>
-        <module>app-security-jwt-filter</module>
-        <module>app-security-jwt-selfsigned</module>
+        <module>app-security</module>
         <module>app-service</module>
         <module>user-service</module>
     </modules>

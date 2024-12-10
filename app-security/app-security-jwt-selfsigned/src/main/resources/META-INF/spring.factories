@@ -1,0 +1,3 @@
+# spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+# org.springframework.boot.autoconfigure.AutoConfiguration=io.devopsnextgenx.microservices.modules.security.jwt.SecurityConfiguration
+# # org.springframework.boot.autoconfigure.AutoConfiguration.imports=io.devopsnextgenx.microservices.modules.security.jwt.SelfSignedTokenValidatorConfig

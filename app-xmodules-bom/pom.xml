@@ -19,6 +19,11 @@
         <dependencies>
             <dependency>
                 <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>app-configuration</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
                 <artifactId>app-aws</artifactId>
                 <version>current-SNAPSHOT</version>
             </dependency>
@@ -75,6 +80,11 @@
             <dependency>
                 <groupId>io.devopsnextgenx.microservices.modules</groupId>
                 <artifactId>app-base-model</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>app-security</artifactId>
                 <version>current-SNAPSHOT</version>
             </dependency>
             <dependency>

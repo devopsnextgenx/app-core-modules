@@ -1,13 +1,17 @@
 package io.devopsnextgenx.microservices.modules.tracing;
 
+import io.devopsnextgenx.base.modules.config.YamlPropertyLoaderFactory;
 import io.jaegertracing.internal.JaegerTracer;
 import io.jaegertracing.internal.metrics.NoopMetricsFactory;
 import io.jaegertracing.internal.reporters.RemoteReporter;
 import io.jaegertracing.internal.samplers.ProbabilisticSampler;
 import io.jaegertracing.spi.Sampler;
 import io.jaegertracing.thrift.internal.senders.UdpSender;
+import io.opentracing.Tracer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +22,7 @@ import java.net.UnknownHostException;
 
 @Slf4j
 @Configuration
+@AutoConfiguration
 @EnableConfigurationProperties
 public class TracingAutoConfiguration {
     @Value("${spring.application.name}")
@@ -38,9 +43,9 @@ public class TracingAutoConfiguration {
         return new ProbabilisticSampler(SAMPLING_RATE);
     }
 
-    @Bean
+    @Bean("tracer")
     @ConditionalOnProperty(name = "app.modules.tracing.jaeger.enabled", havingValue = "true")
-    public JaegerTracer tracer(RemoteReporter remoteReporter, Sampler sampler) throws UnknownHostException {
+    public Tracer tracer(RemoteReporter remoteReporter, Sampler sampler) throws UnknownHostException {
         String hostAddress = InetAddress.getLocalHost().getHostName();
         return new JaegerTracer.Builder(SERVICE_NAME)
                 .withTag("ServiceName", SERVICE_NAME)

@@ -2,6 +2,7 @@ package io.devopsnextgenx.base.modules.test;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import io.devopsnextgenx.base.modules.aws.dynamodb.DynamodbAutoConfiguration;
+import io.devopsnextgenx.base.modules.config.YamlPropertyLoaderFactory;
 import io.devopsnextgenx.base.modules.config.aws.AwsEnvironmentModuleAutoConfiguration;
 import io.devopsnextgenx.base.modules.test.model.MessageTest;
 
@@ -13,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
-import io.devopsnextgenx.base.modules.aws.dynamodb.config.YamlPropertyLoaderFactory;
 import org.springframework.context.annotation.PropertySource;
 
 /**

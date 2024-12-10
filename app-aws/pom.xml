@@ -38,6 +38,11 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>app-configuration</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+            <dependency>
                 <groupId>io.micrometer</groupId>
                 <artifactId>micrometer-core</artifactId>
                 <version>${micrometer}</version>
