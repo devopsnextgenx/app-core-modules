@@ -14,7 +14,10 @@ spring:
             hibernate:
                 '[dialect]': org.hibernate.dialect.MySQL8Dialect
                 '[format_sql]': false
+
 app:
+  services:
+    userServiceHost: http://user-service.localtest.me
   modules:
     tracing:
       jaeger:
@@ -29,15 +32,25 @@ app:
   oauth:
     defaultAuthType: SELFSIGNED
     applications:
+      # auth0:
+      #   authType: AUTH0
+      #   domain: https://devopsnextgenx.auth0.com/
+      #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+      #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
+      #   audience: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+      #   redirectUrl: http://devopsnextgenx.localtest.me
+      #   dbConnection: Username-Password-Authentication
+      # auth0-v2:
+      #   authType: AUTH0
+      #   domain: https://devopsnextgenx.auth0.com/
+      #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+      #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
+      #   audience: https://devopsnextgenx.auth0.com/api/v2/
       self-signed:
-        domain: https://devopsnextgenx.auth0.com/
-        dBConnection: SelfSigned-Authentication
-        clientId: SelfSigned-Client-ID
-        clientSecret: fake-client-secret
-        expirationSec: 808080
-        notBeforeSec: 4
-        issuedAtSec: 4
         authType: SELFSIGNED
+        domain: ${AUTH_DOMAIN:https://devopsnextgenx.localtest.me/}
+        clientId: ${AUTH_API_V2_clientId:fake-client-id}
+        clientSecret: fake-client-secret
   auth:
     swagger:
       swaggerUser: ${SWAGGER_USER:user}

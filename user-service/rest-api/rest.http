@@ -2,6 +2,7 @@
 ### Create a new demo
 POST http://localhost:8080/api/demos
 Content-Type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTczYzk0ZC1jNmU0LTRhNTMtYTg3My1iZWJmZDljODI0NWMiLCJhdWQiOiJmYWtlLWNsaWVudC1pZCIsImlzcyI6Imh0dHBzOi8vZGV2b3BzbmV4dGdlbngubG9jYWx0ZXN0Lm1lLyIsImV4cCI6MTczMzc5NjYzNSwidXNlciI6ImFtaXQua3NoaXJzYWdhckBleGFtcGxlLm9yZyIsImlhdCI6MTczMzc5NjMzNX0.NhZUzCEy83oPLiU9HG_22XYVz74lw7JxYyPGtGKvT-M
 
 {
   "id": 1,
@@ -12,13 +13,18 @@ Content-Type: application/json
 
 ### Get all demos
 GET http://localhost:8080/api/demos
+Content-Type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTczYzk0ZC1jNmU0LTRhNTMtYTg3My1iZWJmZDljODI0NWMiLCJhdWQiOiJmYWtlLWNsaWVudC1pZCIsImlzcyI6Imh0dHBzOi8vZGV2b3BzbmV4dGdlbngubG9jYWx0ZXN0Lm1lLyIsImV4cCI6MTczMzc5NjYzNSwidXNlciI6ImFtaXQua3NoaXJzYWdhckBleGFtcGxlLm9yZyIsImlhdCI6MTczMzc5NjMzNX0.NhZUzCEy83oPLiU9HG_22XYVz74lw7JxYyPGtGKvT-M
 
 ### Get a demo by id
 GET http://localhost:8080/api/demos/1
+Content-Type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTczYzk0ZC1jNmU0LTRhNTMtYTg3My1iZWJmZDljODI0NWMiLCJhdWQiOiJmYWtlLWNsaWVudC1pZCIsImlzcyI6Imh0dHBzOi8vZGV2b3BzbmV4dGdlbngubG9jYWx0ZXN0Lm1lLyIsImV4cCI6MTczMzc5NjYzNSwidXNlciI6ImFtaXQua3NoaXJzYWdhckBleGFtcGxlLm9yZyIsImlhdCI6MTczMzc5NjMzNX0.NhZUzCEy83oPLiU9HG_22XYVz74lw7JxYyPGtGKvT-M
 
 ### Update a demo
 PUT http://localhost:8080/api/demos/1
 Content-Type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTczYzk0ZC1jNmU0LTRhNTMtYTg3My1iZWJmZDljODI0NWMiLCJhdWQiOiJmYWtlLWNsaWVudC1pZCIsImlzcyI6Imh0dHBzOi8vZGV2b3BzbmV4dGdlbngubG9jYWx0ZXN0Lm1lLyIsImV4cCI6MTczMzc5NjYzNSwidXNlciI6ImFtaXQua3NoaXJzYWdhckBleGFtcGxlLm9yZyIsImlhdCI6MTczMzc5NjMzNX0.NhZUzCEy83oPLiU9HG_22XYVz74lw7JxYyPGtGKvT-M
 
 {
     "name": "Demo 1 x",
