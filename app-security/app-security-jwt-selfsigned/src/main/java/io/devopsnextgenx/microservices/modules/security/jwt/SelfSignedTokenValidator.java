@@ -35,7 +35,9 @@ public class SelfSignedTokenValidator extends ProductionTokenValidator {
         log.info("Creating JWT validator for domain: '{}' and ClientID '{}'.", authConfig.getDomain(), authConfig.getClientId());
         String jwtToken = JWT.create()
         .withIssuer(authConfig.getDomain())
-        .withClaim("user", "amit.kshirsagar@example.org")
+        .withClaim("email", "amit.kshirsagar@example.org")
+        .withClaim("user", "amit.kshirsagar")
+        .withClaim("role", "admin")
         .withSubject(UUID.randomUUID().toString())
         .withIssuedAt(new Date())
         .withExpiresAt(new Date(System.currentTimeMillis() + 300000L))

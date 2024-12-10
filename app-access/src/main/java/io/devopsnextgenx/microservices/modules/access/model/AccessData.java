@@ -7,6 +7,7 @@ import io.devopsnextgenx.microservices.modules.exception.AppException;
 import lombok.Data;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.Set;
 
 @Data
@@ -32,7 +33,7 @@ public class AccessData {
         AccessData accessData = null;
         if (accessDataString != null) {
             try {
-                accessData = new ObjectMapper().readValue(accessDataString, AccessData.class);
+                accessData = new ObjectMapper().readValue(new String(Base64.getDecoder().decode(accessDataString)), AccessData.class);
             } catch (IOException e) {
                 throw new AppException(AppException.ERROR_CODE.ACCESS_DENIED, "Failed to decode access data");
             }

@@ -33,7 +33,6 @@ public class BaseApiLogger {
     public static final String DURATION_NAME = "Duration";
 
     protected void preFilter(LoggerConfig config) {
-
         MDC.put(MDC_START_TIME, String.valueOf(System.currentTimeMillis()));
         MDC.put(UID, config.getUid());
         MDC.put(ORG_ID, config.getOrgId());

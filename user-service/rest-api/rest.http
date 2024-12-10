@@ -5,8 +5,8 @@ Content-Type: application/json
 Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZTczYzk0ZC1jNmU0LTRhNTMtYTg3My1iZWJmZDljODI0NWMiLCJhdWQiOiJmYWtlLWNsaWVudC1pZCIsImlzcyI6Imh0dHBzOi8vZGV2b3BzbmV4dGdlbngubG9jYWx0ZXN0Lm1lLyIsImV4cCI6MTczMzc5NjYzNSwidXNlciI6ImFtaXQua3NoaXJzYWdhckBleGFtcGxlLm9yZyIsImlhdCI6MTczMzc5NjMzNX0.NhZUzCEy83oPLiU9HG_22XYVz74lw7JxYyPGtGKvT-M
 
 {
-  "name": "Demo 1",
-  "description": "This is a demo",
+  "name": "rest3",
+  "description": "This is a goty",
   "price": 100.00
 }
 
