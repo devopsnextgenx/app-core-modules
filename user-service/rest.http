@@ -1,0 +1,25 @@
+###
+
+GET http://localhost:8080/api/demos
+Content-Type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MTExMzQ4Yi04ZDQ0LTRmM2UtYWQyYi1hMDBmMzQ5MTJmOGIiLCJhdWQiOiJmYWtlLWNsaWVudC1pZCIsImlzcyI6Imh0dHBzOi8vZGV2b3BzbmV4dGdlbngubG9jYWx0ZXN0Lm1lLyIsImV4cCI6MTczMzc5NDIyNCwidXNlciI6ImFtaXQua3NoaXJzYWdhckBleGFtcGxlLm9yZyIsImlhdCI6MTczMzc5MzkyNH0.1Y4aD9IH8NVbl3kLD1vXMwLkXdnpRVvaIlIQRgZ-RiU
+
+###
+
+POST http://localhost:8080/api/demos
+Content-Type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MTExMzQ4Yi04ZDQ0LTRmM2UtYWQyYi1hMDBmMzQ5MTJmOGIiLCJhdWQiOiJmYWtlLWNsaWVudC1pZCIsImlzcyI6Imh0dHBzOi8vZGV2b3BzbmV4dGdlbngubG9jYWx0ZXN0Lm1lLyIsImV4cCI6MTczMzc5NDIyNCwidXNlciI6ImFtaXQua3NoaXJzYWdhckBleGFtcGxlLm9yZyIsImlhdCI6MTczMzc5MzkyNH0.1Y4aD9IH8NVbl3kLD1vXMwLkXdnpRVvaIlIQRgZ-RiU
+
+{
+  "name": "demo",
+  "description": "demo",
+  "price": 200
+}
+
+###
+
+GET http://localhost:8080/api/demos/2
+Content-Type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MTExMzQ4Yi04ZDQ0LTRmM2UtYWQyYi1hMDBmMzQ5MTJmOGIiLCJhdWQiOiJmYWtlLWNsaWVudC1pZCIsImlzcyI6Imh0dHBzOi8vZGV2b3BzbmV4dGdlbngubG9jYWx0ZXN0Lm1lLyIsImV4cCI6MTczMzc5NDIyNCwidXNlciI6ImFtaXQua3NoaXJzYWdhckBleGFtcGxlLm9yZyIsImlhdCI6MTczMzc5MzkyNH0.1Y4aD9IH8NVbl3kLD1vXMwLkXdnpRVvaIlIQRgZ-RiU
+
+###
