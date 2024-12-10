@@ -55,8 +55,6 @@ public class SelfSignedTokenValidator extends ProductionTokenValidator {
 
     @Override
     public void validateToken(DecodedJWT token) {
-        log.info("Validating token: {}", token.getToken());
-        log.info("Token: {}, {}, {}, {}", token.getSubject(), token.getAudience(), token.getIssuer(), token.getClaim("user").asString());
         // Optional.ofNullable(jwtVerifierCache.getJwtVerifierCache().getUnchecked(token.getAudience().get(0)))
         //         .orElseThrow(() -> new AppException(AppException.ERROR_CODE.ACCESS_DENIED, "Could not find JWT token verifier for token with audience (clientID) : '%s'", token.getAudience()))
         //         .verify(token);

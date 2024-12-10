@@ -20,6 +20,7 @@ public class TomcatApiLoggerFilter extends BaseApiLogger implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterchain) throws IOException, ServletException {
+        log.info("TomcatApiLoggerFilter.doFilter()");
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
@@ -50,7 +51,7 @@ public class TomcatApiLoggerFilter extends BaseApiLogger implements Filter {
 
         GlobalTracer.get().activeSpan().setTag("CID", CORRELATION_ID);
 
-        preFilter(loggerConfig);
+        preFilter(loggerConfig, false);
 
         filterchain.doFilter(request, response);
         postFilter(response.getStatus());

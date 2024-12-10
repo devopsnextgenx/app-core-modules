@@ -32,7 +32,7 @@ public class BaseApiLogger {
     public static final String STATUS_NAME = "Status";
     public static final String DURATION_NAME = "Duration";
 
-    protected void preFilter(LoggerConfig config) {
+    public void preFilter(LoggerConfig config, boolean isStart) {
         MDC.put(MDC_START_TIME, String.valueOf(System.currentTimeMillis()));
         MDC.put(UID, config.getUid());
         MDC.put(ORG_ID, config.getOrgId());
@@ -44,6 +44,7 @@ public class BaseApiLogger {
         MDC.put(PATH_NAME, config.getPath());
         MDC.put(CORRELATION_ID, config.getCorrelationId());
         MDC.put(ORIGINATOR_SERVICE_HEADER, config.getOriginator());
+        if(isStart) log.info(API_MARKER, "API_START");
     }
 
     protected void postFilter(int status) {

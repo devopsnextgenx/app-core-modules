@@ -5,6 +5,8 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import io.devopsnextgenx.microservices.modules.access.model.AccessData;
+import io.devopsnextgenx.microservices.modules.logging.config.filter.BaseApiLogger;
+import io.devopsnextgenx.microservices.modules.logging.config.filter.LoggerConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,16 +36,35 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
     public static final String CLAIM_ORG_CODE = "org_code";
 
     private TokenValidator tokenValidator;
+    private BaseApiLogger baseApiLogger;
 
     public JwtTokenAuthenticationFilter(TokenValidator tokenValidator) {
         this.tokenValidator = tokenValidator;
+        this.baseApiLogger = new BaseApiLogger();
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-
+        String accessDataString = request.getHeader(ACCESS_DATA_HEADER);
+        AccessData accessData = null;
+        if(accessDataString!=null) {
+            accessData = AccessData.fromString(accessDataString);
+            LoggerConfig loggerConfig = LoggerConfig.builder()
+            .uid(Optional.ofNullable(accessData)
+            .map(accessData1 -> accessData1.getUserId())
+            .orElse(null))
+            .orgId(Optional.ofNullable(accessData)
+            .map(accessData1 -> accessData1.getOrganizationId())
+            .orElse(null))
+            .companyId(Optional.ofNullable(accessData)
+            .map(accessData1 -> accessData1.getCompanyId())
+            .orElse(null))
+            .method(request.getMethod())
+            .build();
+            this.baseApiLogger.preFilter(loggerConfig, true);
+        }
+        
         String rawToken = request.getHeader(AUTHORIZATION_HEADER);
-        log.debug("Raw '{}' header token [{}]", AUTHORIZATION_HEADER, rawToken);
 
         /**
          * for non-authenticated request (e.g /health), The request will still need to path through the filter chain
@@ -57,7 +78,7 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
                 tokenValidator.validateToken(jwt);
 
                 String headerUsername = request.getHeader(USERNAME_HEADER);
-                AccessData accessData = AccessData.fromString(request.getHeader(ACCESS_DATA_HEADER));
+                
 
                 Map<String, Claim> claims = jwt.getClaims();
 
