@@ -54,13 +54,17 @@ public class BasicSecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
+    @Value("${app.modules.security.basic.api.path:/basic/**}")
+    private String basicApiPath;
+
     @Bean
-    @Order(10)
+    @Order(50)
     public SecurityFilterChain basicFilterChain(HttpSecurity http) throws Exception {
         http
+            .securityMatcher(basicApiPath)
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/basic/**").authenticated()
+                .requestMatchers(basicApiPath).authenticated()
                 .anyRequest().permitAll()
             )
             .httpBasic(Customizer.withDefaults())

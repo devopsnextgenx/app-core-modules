@@ -1,19 +1,19 @@
 spring:
-    application:
-        name: user-service
-    datasource:
-        url: jdbc:mysql://localhost:3306/user
-        username: root
-        password: root
-        driver-class-name: com.mysql.cj.jdbc.Driver
-    jpa:
-        hibernate:
-            ddl-auto: update
-        show-sql: false
-        properties:
-            hibernate:
-                '[dialect]': org.hibernate.dialect.MySQL8Dialect
-                '[format_sql]': false
+  application:
+      name: user-service
+  datasource:
+      url: jdbc:mysql://localhost:3306/user
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+      hibernate:
+          ddl-auto: update
+      show-sql: false
+      properties:
+          hibernate:
+              '[dialect]': org.hibernate.dialect.MySQL8Dialect
+              '[format_sql]': false
 
 app:
   services:
@@ -40,7 +40,7 @@ app:
           password: password
           role: USER
       jwt:
-        enabled: false
+        enabled: true
   oauth:
     defaultAuthType: SELFSIGNED
     applications:

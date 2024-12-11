@@ -31,64 +31,44 @@ public class SecurityFilterConfiguration {
         return http.build();
     }
 
-    @Bean
-    @Order(10)
-    @ConditionalOnMissingBean(name = "basicFilterChain")
-    public SecurityFilterChain basicFilterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/basic/**").authenticated()
-                .anyRequest().permitAll()
-            )
-            .httpBasic(Customizer.withDefaults())
-            .exceptionHandling(handling -> handling
-                .authenticationEntryPoint((request, response, authException) -> {
-                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
-                })
-            );
-        
-        return http.build();
-    }
+    // @Bean
+    // @Order(20)
+    // public SecurityFilterChain adminFilterChain(HttpSecurity http) throws Exception {
+    //     http
+    //         .securityMatcher("/admin/**")
+    //         .authorizeHttpRequests(authorize -> authorize
+    //             .requestMatchers("/admin/**").hasRole("ADMIN")
+    //         )
+    //         .httpBasic(); // Use HTTP Basic authentication for admin endpoints
 
-    @Bean
-    @Order(20)
-    public SecurityFilterChain adminFilterChain(HttpSecurity http) throws Exception {
-        http
-            .securityMatcher("/admin/**")
-            .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-            )
-            .httpBasic(); // Use HTTP Basic authentication for admin endpoints
+    //     return http.build();
+    // }
 
-        return http.build();
-    }
+    // @Bean
+    // @Order(30)
+    // public SecurityFilterChain actuatorFilterChain(HttpSecurity http) throws Exception {
+    //     http
+    //         .securityMatcher("/actuator/**")
+    //         .authorizeHttpRequests(authorize -> authorize
+    //             .requestMatchers("/actuator/**").hasRole("ADMIN")
+    //         )
+    //         .httpBasic(); // Use HTTP Basic authentication for admin endpoints
 
-    @Bean
-    @Order(30)
-    public SecurityFilterChain actuatorFilterChain(HttpSecurity http) throws Exception {
-        http
-            .securityMatcher("/actuator/**")
-            .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/actuator/**").hasRole("ADMIN")
-            )
-            .httpBasic(); // Use HTTP Basic authentication for admin endpoints
+    //     return http.build();
+    // }
 
-        return http.build();
-    }
+    // @Bean
+    // @Order(40)
+    // public SecurityFilterChain managementFilterChain(HttpSecurity http) throws Exception {
+    //     http
+    //         .securityMatcher("/management/**")
+    //         .authorizeHttpRequests(authorize -> authorize
+    //             .requestMatchers("/management/**").hasRole("ADMIN")
+    //         )
+    //         .httpBasic(); // Use HTTP Basic authentication for admin endpoints
 
-    @Bean
-    @Order(40)
-    public SecurityFilterChain managementFilterChain(HttpSecurity http) throws Exception {
-        http
-            .securityMatcher("/management/**")
-            .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/management/**").hasRole("ADMIN")
-            )
-            .httpBasic(); // Use HTTP Basic authentication for admin endpoints
-
-        return http.build();
-    }
+    //     return http.build();
+    // }
 
     // @Bean
     // @Order(40)
@@ -109,23 +89,23 @@ public class SecurityFilterConfiguration {
     // }
 
     // Default configuration for all other endpoints
-    @Bean
-    @Order(50)
-    public SecurityFilterChain defaultFilterChain(HttpSecurity http) throws Exception {
-        http
-            .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/api/**").authenticated()
-                .anyRequest().denyAll()
-            )
-            .formLogin(form -> form
-                .loginPage("/login")
-                .defaultSuccessUrl("/dashboard")
-            )
-            .logout(logout -> logout
-                .logoutSuccessUrl("/login?logout")
-                .deleteCookies("JSESSIONID")
-            );
+    // @Bean
+    // @Order(50)
+    // public SecurityFilterChain defaultFilterChain(HttpSecurity http) throws Exception {
+    //     http
+    //         .authorizeHttpRequests(authorize -> authorize
+    //             .requestMatchers("/api/**").authenticated()
+    //             .anyRequest().denyAll()
+    //         )
+    //         .formLogin(form -> form
+    //             .loginPage("/login")
+    //             .defaultSuccessUrl("/dashboard")
+    //         )
+    //         .logout(logout -> logout
+    //             .logoutSuccessUrl("/login?logout")
+    //             .deleteCookies("JSESSIONID")
+    //         );
 
-        return http.build();
-    }
+    //     return http.build();
+    // }
 }

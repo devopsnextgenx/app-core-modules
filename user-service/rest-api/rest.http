@@ -1,13 +1,18 @@
 ###
 
-GET http://localhost:8080/api/demos
+GET http://localhost:8080/jwt/api/demos
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/jwt/api/demos
 Content-Type: application/json
 Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZjdmODgxZS0xOGNhLTRmYzctYTc1ZC0xMjFjODA5Nzg2NjciLCJhdWQiOiJmYWtlLWNsaWVudC1pZCIsInJvbGUiOiJhZG1pbiIsImlzcyI6Imh0dHBzOi8vZGV2b3BzbmV4dGdlbngubG9jYWx0ZXN0Lm1lLyIsImV4cCI6MTczMzg3OTY3MCwidXNlciI6ImFtaXQua3NoaXJzYWdhciIsImlhdCI6MTczMzg3OTM3MCwiZW1haWwiOiJhbWl0LmtzaGlyc2FnYXJAZXhhbXBsZS5vcmcifQ.L55qC9yMyBsbNvXQiuwUnzVFI4nLXBz0LcXVJvFhwxk
 access-data: eyJ1c2VySWQiOiJhbWl0LmtzaGlyc2FnYXIiLCJjb21wYW55SWQiOiJzaWVtZW5zIiwib3JnYW5pemF0aW9uSWQiOiJETVMiLCAicm9sZUxpc3QiOlsiU1lTVEVNX0FETUlOSVNUUkFUT1IiLCJEQVRBX01BTkFHRVIiXX0=
 
 ###
 
-POST http://localhost:8080/api/demos
+POST http://localhost:8080/jwt/api/demos
 Content-Type: application/json
 Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZjdmODgxZS0xOGNhLTRmYzctYTc1ZC0xMjFjODA5Nzg2NjciLCJhdWQiOiJmYWtlLWNsaWVudC1pZCIsInJvbGUiOiJhZG1pbiIsImlzcyI6Imh0dHBzOi8vZGV2b3BzbmV4dGdlbngubG9jYWx0ZXN0Lm1lLyIsImV4cCI6MTczMzg3OTY3MCwidXNlciI6ImFtaXQua3NoaXJzYWdhciIsImlhdCI6MTczMzg3OTM3MCwiZW1haWwiOiJhbWl0LmtzaGlyc2FnYXJAZXhhbXBsZS5vcmcifQ.L55qC9yMyBsbNvXQiuwUnzVFI4nLXBz0LcXVJvFhwxk
 access-data: eyJ1c2VySWQiOiJhbWl0LmtzaGlyc2FnYXIiLCJjb21wYW55SWQiOiJzaWVtZW5zIiwib3JnYW5pemF0aW9uSWQiOiJETVMiLCAicm9sZUxpc3QiOlsiU1lTVEVNX0FETUlOSVNUUkFUT1IiLCJEQVRBX01BTkFHRVIiXX0=
@@ -20,12 +25,19 @@ access-data: eyJ1c2VySWQiOiJhbWl0LmtzaGlyc2FnYXIiLCJjb21wYW55SWQiOiJzaWVtZW5zIiw
 
 ###
 
-GET http://localhost:8080/api/demos/222
+GET http://localhost:8080/jwt/api/demos/222
 Content-Type: application/json
 Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZjdmODgxZS0xOGNhLTRmYzctYTc1ZC0xMjFjODA5Nzg2NjciLCJhdWQiOiJmYWtlLWNsaWVudC1pZCIsInJvbGUiOiJhZG1pbiIsImlzcyI6Imh0dHBzOi8vZGV2b3BzbmV4dGdlbngubG9jYWx0ZXN0Lm1lLyIsImV4cCI6MTczMzg3OTY3MCwidXNlciI6ImFtaXQua3NoaXJzYWdhciIsImlhdCI6MTczMzg3OTM3MCwiZW1haWwiOiJhbWl0LmtzaGlyc2FnYXJAZXhhbXBsZS5vcmcifQ.L55qC9yMyBsbNvXQiuwUnzVFI4nLXBz0LcXVJvFhwxk
 access-data: eyJ1c2VySWQiOiJhbWl0LmtzaGlyc2FnYXIiLCJjb21wYW55SWQiOiJzaWVtZW5zIiwib3JnYW5pemF0aW9uSWQiOiJETVMiLCAicm9sZUxpc3QiOlsiU1lTVEVNX0FETUlOSVNUUkFUT1IiLCJEQVRBX01BTkFHRVIiXX0=
 
 ###
-GET http://localhost:8080/basic/demos
+GET http://localhost:8080/basic/xxxx
+
+###
+GET http://localhost:8080/basic/xxxx
+Authorization: Basic dXNlcjpwYXNzd29yZA==
+
+###
+GET http://localhost:8080/jwt/api/demos
 Authorization: Basic dXNlcjpwYXNzd29yZA==
 

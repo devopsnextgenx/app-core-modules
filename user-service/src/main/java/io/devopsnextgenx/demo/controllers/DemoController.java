@@ -15,7 +15,7 @@ import java.util.List;
  * related to the demo application.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/jwt/api")
 public class DemoController {
 
     @Autowired
