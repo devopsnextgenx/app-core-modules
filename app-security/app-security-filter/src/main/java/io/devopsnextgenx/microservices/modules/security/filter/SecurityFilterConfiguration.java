@@ -31,6 +31,27 @@ public class SecurityFilterConfiguration {
         return http.build();
     }
 
+    // Default configuration for all other endpoints
+    @Bean
+    @Order(3)
+    public SecurityFilterChain defaultFilterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(authorize -> authorize
+                .requestMatchers("/api/**").authenticated()
+                .anyRequest().denyAll()
+            )
+            .formLogin(form -> form
+                .loginPage("/login")
+                .defaultSuccessUrl("/dashboard")
+            )
+            .logout(logout -> logout
+                .logoutSuccessUrl("/login?logout")
+                .deleteCookies("JSESSIONID")
+            );
+
+        return http.build();
+    }
+    
     // @Bean
     // @Order(20)
     // public SecurityFilterChain adminFilterChain(HttpSecurity http) throws Exception {
