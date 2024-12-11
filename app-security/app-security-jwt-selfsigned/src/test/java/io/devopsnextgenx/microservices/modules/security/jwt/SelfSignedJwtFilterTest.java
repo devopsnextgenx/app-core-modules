@@ -44,7 +44,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 @TestPropertySource(properties = { "spring.config.location = classpath:auth-config-test.yaml" })
-@ContextConfiguration(classes = { SelfSignedTokenValidatorConfig.class, SecurityConfiguration.class,
+@ContextConfiguration(classes = { SelfSignedTokenValidatorConfig.class, JwtSecurityConfiguration.class,
         SelfSignedJwtFilterTest.TestConfig.class })
 public class SelfSignedJwtFilterTest {
 

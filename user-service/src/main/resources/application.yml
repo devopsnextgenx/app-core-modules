@@ -33,8 +33,14 @@ app:
           flushInterval: 1000
           maxQueueSize: 1000
     security:
-      jwt:
+      basic:
         enabled: true
+        user:
+          name: user
+          password: password
+          role: USER
+      jwt:
+        enabled: false
   oauth:
     defaultAuthType: SELFSIGNED
     applications:

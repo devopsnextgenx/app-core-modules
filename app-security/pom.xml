@@ -19,7 +19,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>app-security-jwt-filter</module>
+        <module>app-security-basic</module>
+        <module>app-security-filter</module>
+        <module>app-security-jwt</module>
         <module>app-security-jwt-selfsigned</module>
     </modules>
 
