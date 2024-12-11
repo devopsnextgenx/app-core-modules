@@ -32,8 +32,8 @@ import jakarta.servlet.http.HttpServletRequest;
 @Order(4)
 public class GlobalExceptionHandlerController extends BaseHandlerController {
 
-    public GlobalExceptionHandlerController(Tracer tracer) {
-        super(tracer);
+    public GlobalExceptionHandlerController() {
+        super();
     }
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<ErrorDTO> handleThrowable(Throwable ex, HttpServletRequest request) {

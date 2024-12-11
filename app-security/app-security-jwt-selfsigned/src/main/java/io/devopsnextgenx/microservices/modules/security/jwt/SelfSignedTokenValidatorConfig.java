@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Primary;
 
 @Configuration
 @AutoConfigureBefore(SecurityConfiguration.class)
+@ConditionalOnProperty(value = "app.modules.security.jwt.enabled", havingValue = "true", matchIfMissing = true)
 public class SelfSignedTokenValidatorConfig {
 
     @Bean

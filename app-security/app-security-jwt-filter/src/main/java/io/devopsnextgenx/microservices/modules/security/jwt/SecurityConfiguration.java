@@ -11,6 +11,7 @@ import io.devopsnextgenx.microservices.modules.security.jwt.validators.Productio
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -36,16 +37,17 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
-@EnableWebSecurity
 @EnableConfigurationProperties
+@EnableWebSecurity
 @PropertySources({
     @PropertySource(name = "oauthApplications", 
         value = { "${APPCONFIGFILE}" },
         ignoreResourceNotFound = true,
         factory = YamlPropertyLoaderFactory.class) 
 })
+@ConditionalOnProperty(value = "app.modules.security.jwt.enabled", havingValue = "true", matchIfMissing = true)
 public class SecurityConfiguration {
-
+    
     @Bean
     @ConfigurationProperties("app.oauth")
     public OAuthApplicationsConfig oauthApplicationsConfig() {

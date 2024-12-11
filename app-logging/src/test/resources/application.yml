@@ -1,5 +1,7 @@
 app:
   modules:
+    logging:
+      enabled
     tracing:
       jaeger:
         enabled: true

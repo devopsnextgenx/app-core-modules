@@ -1,6 +1,5 @@
 package io.devopsnextgenx.microservices.modules.tracing;
 
-import io.devopsnextgenx.base.modules.config.YamlPropertyLoaderFactory;
 import io.jaegertracing.internal.JaegerTracer;
 import io.jaegertracing.internal.metrics.NoopMetricsFactory;
 import io.jaegertracing.internal.reporters.RemoteReporter;
@@ -11,7 +10,6 @@ import io.opentracing.Tracer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +22,7 @@ import java.net.UnknownHostException;
 @Configuration
 @AutoConfiguration
 @EnableConfigurationProperties
+@ConditionalOnProperty(name = "app.modules.tracing.enabled", havingValue = "true")
 public class TracingAutoConfiguration {
     @Value("${spring.application.name}")
     private String SERVICE_NAME;

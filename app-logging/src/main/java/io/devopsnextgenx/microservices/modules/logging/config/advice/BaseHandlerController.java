@@ -9,6 +9,7 @@ import io.opentracing.Tracer;
 import io.opentracing.tag.Tags;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -16,20 +17,22 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
 public abstract class BaseHandlerController {
-    protected Tracer jaegerTracer;
 
-    public BaseHandlerController(Tracer tracer) {
-        jaegerTracer = tracer;
-    }
+    @Autowired(required = false)
+    protected Tracer tracer;
 
     protected void enrichMetricsTrace(Throwable ex, String message) {
-        Span activeSpan = jaegerTracer.activeSpan();
-        if (Objects.isNull(jaegerTracer) || Objects.isNull(activeSpan)) {
+        if (Objects.isNull(tracer)) {
             return;
         }
 
-        if (ex instanceof AppException) {
-            activeSpan.setTag("ERROR_CODE", ((AppException) ex).getErrorCode().name());
+        Span activeSpan = tracer.activeSpan();
+        if (Objects.isNull(activeSpan)) {
+            return;
+        }
+
+        if (ex instanceof AppException appexception) {
+            activeSpan.setTag("ERROR_CODE", appexception.getErrorCode().name());
         }
 
         Tags.ERROR.set(activeSpan, true);

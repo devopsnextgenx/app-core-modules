@@ -15,6 +15,9 @@ import java.util.function.Function;
 @Slf4j
 public class AppExceptionUtil {
 
+    private AppExceptionUtil() {
+    }
+
     private static HashMap<Class<?>, Function<Throwable, String>> exceptionMsgResolverMap = getMsgResolverFunctionalMap();
 
     public static String getInnerExceptionData(Throwable e) {

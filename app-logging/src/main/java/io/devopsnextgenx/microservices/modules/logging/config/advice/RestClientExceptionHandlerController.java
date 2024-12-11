@@ -37,8 +37,8 @@ import jakarta.servlet.http.HttpServletRequest;
 @Order(3)
 public class RestClientExceptionHandlerController extends BaseHandlerController {
 
-    public RestClientExceptionHandlerController(Tracer tracer) {
-        super(tracer);
+    public RestClientExceptionHandlerController() {
+        super();
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)

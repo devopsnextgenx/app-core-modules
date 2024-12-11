@@ -29,8 +29,8 @@ import jakarta.servlet.http.HttpServletRequest;
 @Order(1)
 public class AppExceptionHandlerController extends BaseHandlerController {
 
-    public AppExceptionHandlerController(Tracer tracer) {
-        super(tracer);
+    public AppExceptionHandlerController() {
+        super();
     }
 
     @ExceptionHandler(AppException.class)

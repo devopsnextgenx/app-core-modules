@@ -1,4 +1,8 @@
 app:
+  modules:
+    security:
+      jwt:
+        enabled: true
   oauth:
     defaultAuthType: AUTH0
     applications:

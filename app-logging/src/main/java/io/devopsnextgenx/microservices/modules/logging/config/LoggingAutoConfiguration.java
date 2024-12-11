@@ -9,21 +9,26 @@ import io.opentracing.Tracer;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
 @Slf4j
-@AutoConfiguration
+@Configuration
 @EnableConfigurationProperties
 @AutoConfigureAfter(TracingAutoConfiguration.class)
+@ConditionalOnProperty(value = "app.modules.logging.enabled", havingValue = "true", matchIfMissing = true)
 public class LoggingAutoConfiguration {
     @Value("${spring.application.name}")
     private String applicationName;
+
+    public LoggingAutoConfiguration() {
+        log.info("LoggingAutoConfiguration loaded");
+    }
 
     @Bean
     public FilterRegistrationBean<TomcatApiLoggerFilter> tomcatApiLoggerFilterRegistrationBean() {
@@ -37,20 +42,17 @@ public class LoggingAutoConfiguration {
     }
 
     @Bean
-    @DependsOn("tracer")
-    public GlobalExceptionHandlerController globalExceptionHandlerController(Tracer tracer) {
-        return new GlobalExceptionHandlerController(tracer);
+    public GlobalExceptionHandlerController globalExceptionHandlerController() {
+        return new GlobalExceptionHandlerController();
     }
 
     @Bean
-    @DependsOn("tracer")
-    public AppExceptionHandlerController appExceptionHandlerController(Tracer tracer) {
-        return new AppExceptionHandlerController(tracer);
+    public AppExceptionHandlerController appExceptionHandlerController() {
+        return new AppExceptionHandlerController();
     }
 
     @Bean
-    @DependsOn("tracer")
-    public RestClientExceptionHandlerController restClientExceptionHandlerController(Tracer tracer) {
-        return new RestClientExceptionHandlerController(tracer);
+    public RestClientExceptionHandlerController restClientExceptionHandlerController() {
+        return new RestClientExceptionHandlerController();
     }
 }
