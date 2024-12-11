@@ -7,7 +7,10 @@ import org.springframework.context.annotation.ComponentScan;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@SpringBootApplication
+@SpringBootApplication(exclude = {
+	org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,
+	org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration.class
+})
 @ComponentScan(basePackages = "io.devopsnextgenx")
 public class DemoApplication {
 

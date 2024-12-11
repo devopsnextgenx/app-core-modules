@@ -19,7 +19,10 @@ app:
   services:
     userServiceHost: http://user-service.localtest.me
   modules:
+    logging:
+      enabled: true
     tracing:
+      enabled: true
       jaeger:
         enabled: true
         agent:
@@ -29,6 +32,9 @@ app:
           samplingRate: 1
           flushInterval: 1000
           maxQueueSize: 1000
+    security:
+      jwt:
+        enabled: true
   oauth:
     defaultAuthType: SELFSIGNED
     applications:
