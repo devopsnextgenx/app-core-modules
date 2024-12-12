@@ -41,22 +41,24 @@ provided configuration must follow this set of rules:
 
 ```yaml
 app:
-  oauth:
-    defaultAuthType: AUTH0
-    applications:
-      auth0:
-        domain: https://devopsnextgenx.auth0.com
-        clientId: test-client-id
-        clientSecret: fake-client-secret
-        expirationSec: 808800
-        notBeforeSec: 2
-        issuedAtSec: 90
-        authType: AUTH0
-      self-signed:
-        domain: ${AUTH_DOMAIN:https://devopsnextgenx.auth0.com/}
-        clientId: ${AUTH_API_V2_clientId:https://devopsnextgenx.auth0.com/api/v2/}
-        clientSecret: fake-client-secret
-        authType: SELFSIGNED
+  modules:
+    security:
+      oauth:
+        defaultAuthType: AUTH0
+        applications:
+          auth0:
+            domain: https://devopsnextgenx.auth0.com
+            clientId: test-client-id
+            clientSecret: fake-client-secret
+            expirationSec: 808800
+            notBeforeSec: 2
+            issuedAtSec: 90
+            authType: AUTH0
+          self-signed:
+            domain: ${AUTH_DOMAIN:https://devopsnextgenx.auth0.com/}
+            clientId: ${AUTH_API_V2_clientId:https://devopsnextgenx.auth0.com/api/v2/}
+            clientSecret: fake-client-secret
+            authType: SELFSIGNED
 ```
 
 

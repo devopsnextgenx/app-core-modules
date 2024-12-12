@@ -19,7 +19,7 @@ public class SelfSignedTokenValidatorConfig {
 
     @Bean
     @Primary
-    @ConditionalOnProperty(prefix = "app.oauth", name = "defaultAuthType", havingValue = "SELFSIGNED")
+    @ConditionalOnProperty(prefix = "app.modules.security.oauth", name = "defaultAuthType", havingValue = "SELFSIGNED")
     TokenValidator selfSignedTokenValidator(OAuthApplicationsConfig oAuthApplicationsConfig,
             JWTVerifierCache jwtVerifierCache) {
         return new SelfSignedTokenValidator(oAuthApplicationsConfig, jwtVerifierCache);

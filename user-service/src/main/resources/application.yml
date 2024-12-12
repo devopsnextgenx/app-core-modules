@@ -16,8 +16,6 @@ spring:
               '[format_sql]': false
 
 app:
-  services:
-    userServiceHost: http://user-service.localtest.me
   modules:
     logging:
       enabled: true
@@ -47,37 +45,38 @@ app:
         selfSigned:
           enabled: true
           enableController: true
+      oauth:
+        defaultAuthType: SELFSIGNED
+        applications:
+          # auth0:
+          #   authType: AUTH0
+          #   domain: https://devopsnextgenx.auth0.com/
+          #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+          #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
+          #   audience: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+          #   redirectUrl: http://devopsnextgenx.localtest.me
+          #   dbConnection: Username-Password-Authentication
+          # auth0-v2:
+          #   authType: AUTH0
+          #   domain: https://devopsnextgenx.auth0.com/
+          #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+          #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
+          #   audience: https://devopsnextgenx.auth0.com/api/v2/
+          self-signed:
+            authType: SELFSIGNED
+            domain: ${AUTH_DOMAIN:https://devopsnextgenx.localtest.me/}
+            clientId: ${AUTH_API_V2_clientId:fake-client-id}
+            clientSecret: fake-client-secret
+
     swagger:
       enabled: true
-  oauth:
-    defaultAuthType: SELFSIGNED
-    applications:
-      # auth0:
-      #   authType: AUTH0
-      #   domain: https://devopsnextgenx.auth0.com/
-      #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
-      #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
-      #   audience: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
-      #   redirectUrl: http://devopsnextgenx.localtest.me
-      #   dbConnection: Username-Password-Authentication
-      # auth0-v2:
-      #   authType: AUTH0
-      #   domain: https://devopsnextgenx.auth0.com/
-      #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
-      #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
-      #   audience: https://devopsnextgenx.auth0.com/api/v2/
-      self-signed:
-        authType: SELFSIGNED
-        domain: ${AUTH_DOMAIN:https://devopsnextgenx.localtest.me/}
-        clientId: ${AUTH_API_V2_clientId:fake-client-id}
-        clientSecret: fake-client-secret
-  auth:
-    swagger:
-      swaggerUser: ${SWAGGER_USER:user}
-      swaggerUserPassword: ${SWAGGER_USER_PASS:user}
-      swaggerAdmin: ${SWAGGER_ADMIN:admin}
-      swaggerAdminPassword: ${SWAGGER_ADMIN_PASS:admin}
-
+      users:
+        swaggerUser: ${SWAGGER_USER:user}
+        swaggerUserPassword: ${SWAGGER_USER_PASS:user}
+        swaggerAdmin: ${SWAGGER_ADMIN:admin}
+        swaggerAdminPassword: ${SWAGGER_ADMIN_PASS:admin}
+    services:
+      userServiceHost: http://user-service.localtest.me
 springdoc:
     api-docs:
         path: /v3/api-docs
