@@ -15,18 +15,20 @@ following set of properties:
 
 ```yaml
 app:
-  oauth.applications:
-    oauth-selfsigned:
-          domain: https://devopsnextgenx.localtest.me/
-          dBConnection: SelfSigned-Authentication
-          audience: SelfSigned-Client-ID
-    oauth-v2-selfsigned:
-            domain: https://devopsnextgenx.localtest.me/
-            dBConnection: SelfSigned-Authentication-V2
-            audience: SelfSigned-Client-ID-V2
-            expirationSec: 808080
-            notBeforeSec: 4
-            issuedAtSec: 4
+  modules:
+    security:
+      oauth.applications:
+        oauth-selfsigned:
+              domain: https://devopsnextgenx.localtest.me/
+              dBConnection: SelfSigned-Authentication
+              audience: SelfSigned-Client-ID
+        oauth-v2-selfsigned:
+                domain: https://devopsnextgenx.localtest.me/
+                dBConnection: SelfSigned-Authentication-V2
+                audience: SelfSigned-Client-ID-V2
+                expirationSec: 808080
+                notBeforeSec: 4
+                issuedAtSec: 4
 ```
 
 ## IntelliJ Adoption

@@ -3,31 +3,33 @@ app:
     security:
       jwt:
         enabled: true
-  oauth:
-    defaultAuthType: AUTH0
-    applications:
-      auth0:
-        authType: AUTH0
-        domain: https://devopsnextgenx.auth0.com/
-        clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
-        clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
-        audience: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
-        redirectUrl: http://devopsnextgenx.localtest.me
-        dbConnection: Username-Password-Authentication
-      auth0-v2:
-        authType: AUTH0
-        domain: https://devopsnextgenx.auth0.com/
-        clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
-        clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
-        audience: https://devopsnextgenx.auth0.com/api/v2/
-      self-signed:
-        authType: SELFSIGNED
-        domain: ${AUTH_DOMAIN:https://devopsnextgenx.localtest.me/}
-        clientId: ${AUTH_API_V2_clientId:https://devopsnextgenx.localtest.me/api/v2/}
-        clientSecret: fake-client-secret
-  auth:
+      oauth:
+        defaultAuthType: AUTH0
+        applications:
+          auth0:
+            authType: AUTH0
+            domain: https://devopsnextgenx.auth0.com/
+            clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+            clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
+            audience: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+            redirectUrl: http://devopsnextgenx.localtest.me
+            dbConnection: Username-Password-Authentication
+          auth0-v2:
+            authType: AUTH0
+            domain: https://devopsnextgenx.auth0.com/
+            clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+            clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
+            audience: https://devopsnextgenx.auth0.com/api/v2/
+          self-signed:
+            authType: SELFSIGNED
+            domain: ${AUTH_DOMAIN:https://devopsnextgenx.localtest.me/}
+            clientId: ${AUTH_API_V2_clientId:https://devopsnextgenx.localtest.me/api/v2/}
+            clientSecret: fake-client-secret    swagger:
+      enabled: true
     swagger:
-      swaggerUser: ${SWAGGER_USER:user}
-      swaggerUserPassword: ${SWAGGER_USER_PASS:user}
-      swaggerAdmin: ${SWAGGER_ADMIN:admin}
-      swaggerAdminPassword: ${SWAGGER_ADMIN_PASS:admin}
+      enabled: true
+      users:
+        swaggerUser: ${SWAGGER_USER:user}
+        swaggerUserPassword: ${SWAGGER_USER_PASS:user}
+        swaggerAdmin: ${SWAGGER_ADMIN:admin}
+        swaggerAdminPassword: ${SWAGGER_ADMIN_PASS:admin}

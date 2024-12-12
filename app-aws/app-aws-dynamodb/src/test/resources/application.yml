@@ -3,9 +3,10 @@ server:
   port: ${VPORT:2000}
 
 app:
-  aws:
-    region: us-east-1
-    credentialsClass: com.amazonaws.auth.profile.ProfileCredentialsProvider
+  cloud:
+    aws:
+      region: us-east-1
+      credentialsClass: com.amazonaws.auth.profile.ProfileCredentialsProvider
   #    credentialsClass: com.amazonaws.auth.InstanceProfileCredentialsProvider
   modules:
     cache:

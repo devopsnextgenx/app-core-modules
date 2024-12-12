@@ -16,6 +16,10 @@ spring:
               '[format_sql]': false
 
 app:
+  cloud:
+    aws:
+      region: us-east-1
+      credentialsClass: com.amazonaws.auth.profile.ProfileCredentialsProvider
   modules:
     logging:
       enabled: true
@@ -67,7 +71,6 @@ app:
             domain: ${AUTH_DOMAIN:https://devopsnextgenx.localtest.me/}
             clientId: ${AUTH_API_V2_clientId:fake-client-id}
             clientSecret: fake-client-secret
-
     swagger:
       enabled: true
       users:

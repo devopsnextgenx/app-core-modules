@@ -3,21 +3,22 @@ app:
     security:
       jwt:
         enabled: true
-  oauth:
-    defaultAuthType: SELFSIGNED
-    applications:
-      self-signed:
-        domain: https://devopsnextgenx.auth0.com/
-        dBConnection: SelfSigned-Authentication
-        clientId: SelfSigned-Client-ID
-        clientSecret: fake-client-secret
-        expirationSec: 808080
-        notBeforeSec: 4
-        issuedAtSec: 4
-        authType: SELFSIGNED
-  auth:
+      oauth:
+        defaultAuthType: SELFSIGNED
+        applications:
+          self-signed:
+            domain: https://devopsnextgenx.auth0.com/
+            dBConnection: SelfSigned-Authentication
+            clientId: SelfSigned-Client-ID
+            clientSecret: fake-client-secret
+            expirationSec: 808080
+            notBeforeSec: 4
+            issuedAtSec: 4
+            authType: SELFSIGNED
     swagger:
-      swaggerUser: ${SWAGGER_USER:user}
-      swaggerUserPassword: ${SWAGGER_USER_PASS:user}
-      swaggerAdmin: ${SWAGGER_ADMIN:admin}
-      swaggerAdminPassword: ${SWAGGER_ADMIN_PASS:admin}
+      enabled: true
+      users:
+        swaggerUser: ${SWAGGER_USER:user}
+        swaggerUserPassword: ${SWAGGER_USER_PASS:user}
+        swaggerAdmin: ${SWAGGER_ADMIN:admin}
+        swaggerAdminPassword: ${SWAGGER_ADMIN_PASS:admin}

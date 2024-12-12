@@ -1,7 +1,8 @@
 app:
-  aws:
-    region: us-east-1
-    credentialsClass: com.amazonaws.auth.profile.ProfileCredentialsProvider
+  cloud:
+    aws:
+      region: us-east-1
+      credentialsClass: com.amazonaws.auth.profile.ProfileCredentialsProvider
   modules:
     cache:
       redis:
