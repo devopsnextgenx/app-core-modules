@@ -21,6 +21,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
@@ -85,18 +86,19 @@ public class JwtSecurityConfiguration {
     @SuppressWarnings("deprecation")
     @Bean
     @ConditionalOnMissingBean(UserDetailsService.class)
-    public UserDetailsService userDetailsService(SwaggerUISecurityConfig appSwaggerUISecurityConfig) {
-        User.UserBuilder users = User.withDefaultPasswordEncoder();
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(users.username(
-                appSwaggerUISecurityConfig.getSwaggerUser())
-                .password(appSwaggerUISecurityConfig.getSwaggerUserPassword())
-                .roles("USER").build());
-        manager.createUser(users.username(
+    public UserDetailsService userDetailsService(SwaggerUISecurityConfig appSwaggerUISecurityConfig, PasswordEncoder passwordEncoder) {
+        log.info("BasicSecurityConfiguration: userDetailsService");
+        User.UserBuilder userBuilder = User.builder();
+        InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
+        userDetailsManager.createUser(userBuilder.username(
+            appSwaggerUISecurityConfig.getSwaggerUser())
+            .password(passwordEncoder.encode(appSwaggerUISecurityConfig.getSwaggerUserPassword()))
+            .roles("USER").build());
+            userDetailsManager.createUser(userBuilder.username(
                 appSwaggerUISecurityConfig.getSwaggerAdmin())
-                .password(appSwaggerUISecurityConfig.getSwaggerAdminPassword())
+                .password(passwordEncoder.encode(appSwaggerUISecurityConfig.getSwaggerAdminPassword()))
                 .roles("USER", "ADMIN").build());
-        return manager;
+        return userDetailsManager;
     }
 
     @Bean

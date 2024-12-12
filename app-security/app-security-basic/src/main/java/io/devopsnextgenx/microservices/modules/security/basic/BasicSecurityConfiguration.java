@@ -34,17 +34,15 @@ public class BasicSecurityConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(name = "userDetailsService")
+    @ConditionalOnProperty(value = "app.modules.security.basic.user.enabled", havingValue = "true", matchIfMissing = true)
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
         log.info("BasicSecurityConfiguration: userDetailsService");
         User.UserBuilder userBuilder = User.builder();
-        log.info("User created: {}, {}, {}", username, password, role);
         InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
         userDetailsManager.createUser(userBuilder.username(
             username)
             .password(passwordEncoder.encode(password))
             .roles(role).build());
-
-
         return userDetailsManager;
     }
 

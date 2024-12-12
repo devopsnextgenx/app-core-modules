@@ -16,9 +16,19 @@
             <artifactId>commons-lang3</artifactId>
             <scope>provided</scope>
         </dependency>
+		<dependency>
+			<groupId>io.devopsnextgenx.microservices.modules</groupId>
+			<artifactId>app-micro-swagger</artifactId>
+            <scope>provided</scope>
+		</dependency>
         <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>
             <artifactId>app-security-jwt</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>

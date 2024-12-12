@@ -30,7 +30,7 @@ public class JwtTokenProvider {
         .subject(userDetails.getUsername())
         .empty()
         .add("roles", userDetails.getAuthorities())
-        .add("useer", userDetails.getUsername())
+        .add("user", userDetails.getUsername())
         .build();
 
         Date now = new Date();

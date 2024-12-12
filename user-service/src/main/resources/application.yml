@@ -36,6 +36,7 @@ app:
       basic:
         enabled: true
         user:
+          enabled: false
           name: user
           password: password
           role: USER
@@ -43,6 +44,11 @@ app:
         enabled: true
         secret: fake-client-secret
         expiration: 3600
+        selfSigned:
+          enabled: true
+          enableController: true
+    swagger:
+      enabled: true
   oauth:
     defaultAuthType: SELFSIGNED
     applications:
@@ -83,5 +89,3 @@ springdoc:
         operationsSorter: method
         tagsSorter: alpha
         filter: true
-    packages-to-scan:
-    - io.devopsnextgenx.demo.controllers

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,10 +18,17 @@ import org.springframework.security.core.Authentication;
 import io.devopsnextgenx.microservices.modules.security.jwt.JwtTokenProvider;
 import io.devopsnextgenx.microservices.modules.security.models.AuthRequest;
 import io.devopsnextgenx.microservices.modules.security.models.JwtResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("/basic/api")
+@SecurityRequirement(name = "basicAuth")
+@ConditionalOnProperty(value = "app.modules.security.jwt.selfSigned.enableController", havingValue = "true", matchIfMissing = true)
 public class JwtTokenGenerator {
 
     @Autowired
@@ -29,7 +37,11 @@ public class JwtTokenGenerator {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
+    @Autowired
+    private HttpServletRequest request;
+
     @PostMapping("/generate-token")
+    @Operation(summary = "Generate JWT Token", description = "Generate JWT Token")
     public ResponseEntity<JwtResponse> generateTokenPost(@RequestBody AuthRequest authRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
@@ -39,7 +51,9 @@ public class JwtTokenGenerator {
     }
 
     @GetMapping("/generate-token")
-    public ResponseEntity<JwtResponse> generateTokenGet(@RequestHeader("Authorization") String authHeader) {
+    @Operation(summary = "Generate JWT Token", description = "Generate JWT Token")
+    public ResponseEntity<JwtResponse> generateTokenGet() {
+        String authHeader = request.getHeader("Authorization");
         if (authHeader != null && authHeader.startsWith("Basic ")) {
             String base64Credentials = authHeader.substring("Basic ".length()).trim();
             byte[] decodedBytes = Base64.getDecoder().decode(base64Credentials);

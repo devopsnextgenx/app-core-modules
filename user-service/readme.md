@@ -29,3 +29,10 @@ EOF
 
 docker run --name mysql-container -v ./mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=user -p 3306:3306 -d mysql:latest
 ```
+
+
+### Start User Service
+
+- Use Swagger to test the API
+  - default inmemory user/password | admin/admin
+  - [Swagger API Endpoint](http://localhost:8080/swagger-ui/index.html)

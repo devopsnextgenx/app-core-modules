@@ -3,6 +3,7 @@ package io.devopsnextgenx.microservices.modules.security.jwt;
 import io.devopsnextgenx.microservices.modules.security.jwt.cache.JWTVerifierCache;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.OAuthApplicationsConfig;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +14,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
 @Configuration
 @AutoConfigureBefore(JwtSecurityConfiguration.class)
-@ConditionalOnProperty(value = "app.modules.security.jwt.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnExpression(value = "#{${app.modules.security.jwt.enabled:false} and ${app.modules.security.jwt.selfSigned.enabled:false}}")
 public class SelfSignedTokenValidatorConfig {
 
     @Bean
