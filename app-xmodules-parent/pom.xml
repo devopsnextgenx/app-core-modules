@@ -23,6 +23,7 @@
         <nimbusds-jose-jwt.version>9.47</nimbusds-jose-jwt.version>
         <com.auth0.version>1.30.0</com.auth0.version>
         <com.auth0.jwks.version>0.9.0</com.auth0.jwks.version>
+        <jjwt.version>0.12.6</jjwt.version>
         <javax.validation-api.version>2.0.1.Final</javax.validation-api.version>
         <commons.validator.version>1.9.0</commons.validator.version>
         <opentracing.jaeger.version>3.3.1</opentracing.jaeger.version>
@@ -104,6 +105,21 @@
                 <groupId>com.auth0</groupId>
                 <artifactId>jwks-rsa</artifactId>
                 <version>${com.auth0.jwks.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax.validation</groupId>

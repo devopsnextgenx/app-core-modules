@@ -41,6 +41,8 @@ app:
           role: USER
       jwt:
         enabled: true
+        secret: fake-client-secret
+        expiration: 3600
   oauth:
     defaultAuthType: SELFSIGNED
     applications:

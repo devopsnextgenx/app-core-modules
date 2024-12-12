@@ -41,3 +41,12 @@ Authorization: Basic dXNlcjpwYXNzd29yZA==
 GET http://localhost:8080/jwt/api/demos
 Authorization: Basic dXNlcjpwYXNzd29yZA==
 
+
+###
+GET http://localhost:8080/basic/api/generate-token
+Authorization: Basic dXNlcjpwYXNzd29yZA==
+
+###
+GET http://localhost:8080/jwt/api/demos
+Authorization: eyJhbGciOiJub25lIn0.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9VU0VSIn1dLCJ1c2VlciI6InVzZXIiLCJpYXQiOjE3MzM5NzI3MTAsImV4cCI6MTczMzk3MjcxM30.
+access-data: eyJ1c2VySWQiOiJhbWl0LmtzaGlyc2FnYXIiLCJjb21wYW55SWQiOiJzaWVtZW5zIiwib3JnYW5pemF0aW9uSWQiOiJETVMiLCAicm9sZUxpc3QiOlsiU1lTVEVNX0FETUlOSVNUUkFUT1IiLCJEQVRBX01BTkFHRVIiXX0=

@@ -1,7 +1,6 @@
 package io.devopsnextgenx.microservices.modules.security.jwt;
 
 import java.util.Date;
-import java.util.Optional;
 import java.util.UUID;
 
 import com.auth0.jwt.JWT;
@@ -9,7 +8,6 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
-import io.devopsnextgenx.microservices.modules.exception.AppException;
 import io.devopsnextgenx.microservices.modules.security.jwt.cache.JWTVerifierCache;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.OAuthApplicationsConfig;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.OAuthConfig;
