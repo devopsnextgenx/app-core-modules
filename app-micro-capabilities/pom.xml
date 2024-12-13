@@ -20,6 +20,8 @@
 
     <modules>
         <module>app-micro-swagger</module>
+        <module>app-tracing</module>
+        <module>app-monitoring</module>
     </modules>
 
     <properties>

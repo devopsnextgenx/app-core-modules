@@ -31,8 +31,6 @@
         <aws-java-sdk.version>1.11.460</aws-java-sdk.version>
         <aws-dynamodb-encryption-java.version>1.13.0</aws-dynamodb-encryption-java.version>
         <elasticmq>0.14.15</elasticmq>
-        <micrometer>1.5.0</micrometer>
-        <metrics>3.0.2</metrics>
     </properties>
 
     <dependencyManagement>
@@ -41,26 +39,6 @@
                 <groupId>io.devopsnextgenx.microservices.modules</groupId>
                 <artifactId>app-configuration</artifactId>
                 <version>current-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>io.micrometer</groupId>
-                <artifactId>micrometer-core</artifactId>
-                <version>${micrometer}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.codahale.metrics</groupId>
-                <artifactId>metrics-core</artifactId>
-                <version>${metrics}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.codahale.metrics</groupId>
-                <artifactId>metrics-annotation</artifactId>
-                <version>${metrics}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.micrometer</groupId>
-                <artifactId>micrometer-registry-prometheus</artifactId>
-                <version>${micrometer}</version>
             </dependency>
 
             <dependency>

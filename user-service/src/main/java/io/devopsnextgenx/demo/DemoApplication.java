@@ -8,8 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootApplication(exclude = {
-	org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,
-	org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration.class
+	org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class
 })
 @ComponentScan(basePackages = "io.devopsnextgenx")
 public class DemoApplication {

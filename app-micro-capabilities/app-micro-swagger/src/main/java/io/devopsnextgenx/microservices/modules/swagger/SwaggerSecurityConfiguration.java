@@ -1,7 +1,7 @@
 package io.devopsnextgenx.microservices.modules.swagger;
 
-import org.springdoc.core.configuration.SpringDocConfiguration;
-import org.springdoc.core.models.GroupedOpenApi;
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

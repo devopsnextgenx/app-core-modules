@@ -3,10 +3,8 @@ package io.devopsnextgenx.base.modules.config;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.io.support.EncodedResource;
 import org.springframework.core.io.support.PropertySourceFactory;
-
-import io.micrometer.common.lang.NonNull;
-import io.micrometer.common.lang.Nullable;
-
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import java.io.IOException;
 import java.util.Properties;

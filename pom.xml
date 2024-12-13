@@ -22,7 +22,6 @@
         <module>app-configuration</module>
         <module>app-exception</module>
         <module>app-access</module>
-        <module>app-tracing</module>
         <module>app-logging</module>
         <module>app-micro-capabilities</module>
         <module>app-aws</module>

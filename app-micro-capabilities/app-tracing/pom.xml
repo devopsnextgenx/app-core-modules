@@ -6,8 +6,7 @@
 
     <parent>
         <groupId>io.devopsnextgenx.microservices.modules</groupId>
-        <artifactId>app-xmodules-parent</artifactId>
-        <relativePath>../app-xmodules-parent/pom.xml</relativePath>
+        <artifactId>app-micro-capabilities</artifactId>
         <version>current-SNAPSHOT</version>
     </parent>
 

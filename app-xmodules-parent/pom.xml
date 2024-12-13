@@ -40,6 +40,8 @@
         <mysql.version>9.1.0</mysql.version>
         <spring-cloud-messaging.version>2.2.6.RELEASE</spring-cloud-messaging.version>
         <jackson-datatype-jsr310.version>2.18.2</jackson-datatype-jsr310.version>
+        <micrometer.version>1.14.2</micrometer.version>
+        <metrics.version>3.0.2</metrics.version>
     </properties>
 
     <dependencyManagement>
@@ -186,6 +188,27 @@
                 <groupId>com.mysql</groupId>
                 <artifactId>mysql-connector-j</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-core</artifactId>
+                <version>${micrometer.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.codahale.metrics</groupId>
+                <artifactId>metrics-core</artifactId>
+                <version>${metrics.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.codahale.metrics</groupId>
+                <artifactId>metrics-annotation</artifactId>
+                <version>${metrics.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-registry-prometheus</artifactId>
+                <version>${micrometer.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
