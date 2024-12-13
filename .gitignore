@@ -3,7 +3,13 @@ mysql-data/
 localstack-data/
 consul-data/
 
-# .classpath
-# .project
-# .factorypath
-# .settings/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.classpath
+.factorypath
+.project
+.settings/
