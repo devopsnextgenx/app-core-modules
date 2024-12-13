@@ -13,7 +13,6 @@
     <artifactId>app-core-modules</artifactId>
     <name>app-core-modules</name>
     <version>current-SNAPSHOT</version>
-
     <packaging>pom</packaging>
 
     <modules>
