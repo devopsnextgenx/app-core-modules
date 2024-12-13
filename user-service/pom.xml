@@ -15,6 +15,9 @@
 	<name>user-service</name>
 	<version>current-SNAPSHOT</version>
 	<description>Import This to enable Spring Boot Service</description>
+	<properties>
+        <spring.boot.plugin.disabled>false</spring.boot.plugin.disabled>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -96,4 +99,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	
 </project>

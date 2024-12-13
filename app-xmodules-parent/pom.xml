@@ -16,6 +16,13 @@
     <name>app-xmodules-parent</name>
 
     <properties>
+        <flywaydb.skip>true</flywaydb.skip>
+        <spring.boot.plugin.disabled>true</spring.boot.plugin.disabled>
+        <swagger-generated-sources>gen-src</swagger-generated-sources>
+        <swagger.codegen.v3.inputSpec>${project.basedir}/src/main/resources/static</swagger.codegen.v3.inputSpec>
+        <defaultPackage>io.devopsnextgenx.microservices.modules</defaultPackage>
+        <module.java.defaultPackage>${defaultPackage}.${project.artifactId}</module.java.defaultPackage>
+
         <spring-cloud.version>2024.0.0</spring-cloud.version>
         <awspring.version>3.2.1</awspring.version>
         <aws.sdk.version>2.29.29</aws.sdk.version>
@@ -214,6 +221,140 @@
     </dependencyManagement>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <skip>${spring.boot.plugin.disabled}</skip>
+                        <excludes>
+                            <exclude>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                            </exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.openapitools</groupId>
+                    <artifactId>openapi-generator-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>swagger-server-code-gen</id>
+                            <phase>generate-sources</phase>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <skip>${swagger.codegen.v3.skipServer}</skip>
+                                <inputSpec>${swagger.codegen.v3.inputSpec}/${schemaName}-schema.yaml</inputSpec>
+                                <output>${project.basedir}/${swagger-generated-sources}</output>
+                                <generatorName>spring</generatorName>
+                                <basePackage>${module.java.defaultPackage}</basePackage>
+                                <modelPackage>${default.package}.model</modelPackage>
+                                <apiPackage>${default.package}.api</apiPackage>
+                                <generateApis>true</generateApis>
+                                <generateModels>true</generateModels>
+                                <generateApiTests>false</generateApiTests>
+                                <generateModelTests>false</generateModelTests>
+                                <generateSupportingFiles>true</generateSupportingFiles>
+                                <configOptions>
+                                    <useSpringBoot3>true</useSpringBoot3>
+                                    <library>spring-boot</library>
+                                    <sourceFolder>main/java</sourceFolder>
+                                    <dateLibrary>java8</dateLibrary>
+                                    <java8>true</java8>
+                                    <delegatePattern>true</delegatePattern>
+                                    <interfaceOnly>true</interfaceOnly>
+                                    <useBeanValidation>true</useBeanValidation>
+                                    <serializableModel>true</serializableModel>
+                                    <serializationLibrary>jackson</serializationLibrary>
+                                    <useTags>true</useTags>
+                                    <legacyDiscriminatorBehavior>false</legacyDiscriminatorBehavior>
+                                    <additionalModelTypeAnnotations>
+                                        @lombok.Getter
+                                        @lombok.extern.jackson.Jacksonized
+                                    </additionalModelTypeAnnotations>
+                                </configOptions>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>restClient-generation</id>
+                            <phase>generate-sources</phase>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <skip>${swagger.codegen.v3.skipClient}</skip>
+                                <inputSpec>${swagger.codegen.v3.inputSpec}/${schemaName}-schema.yaml</inputSpec>
+                                <output>${project.basedir}/${swagger-generated-sources}</output>
+                                <generatorName>java</generatorName>
+                                <basePackage>${module.java.defaultPackage}</basePackage>
+                                <modelPackage>${module.java.defaultPackage}.dto</modelPackage>
+                                <apiPackage>${module.java.defaultPackage}.api</apiPackage>
+                                <!-- <invokerPackage>${module.java.defaultPackage}.client</invokerPackage> -->
+                                <generateApis>true</generateApis>
+                                <generateModels>true</generateModels>
+                                <generateApiTests>false</generateApiTests>
+                                <generateModelTests>false</generateModelTests>
+                                <withXml>true</withXml>
+                                <generateSupportingFiles>true</generateSupportingFiles>
+                                <configOptions>
+                                    <interfaceOnly>true</interfaceOnly>
+                                    <sourceFolder>main/java</sourceFolder>
+                                    <library>resttemplate</library>
+                                    <useBeanValidation>true</useBeanValidation>
+                                    <serializableModel>true</serializableModel>
+                                    <serializationLibrary>jackson</serializationLibrary>
+                                    <dateLibrary>java8</dateLibrary>
+                                    <java8>true</java8>
+                                    <useTags>true</useTags>
+                                    <legacyDiscriminatorBehavior>false</legacyDiscriminatorBehavior>
+                                    <additionalModelTypeAnnotations>
+                                        @lombok.Getter
+                                        @lombok.extern.jackson.Jacksonized
+                                    </additionalModelTypeAnnotations>
+                                </configOptions>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>generateCarriers</id>
+                            <phase>generate-sources</phase>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <skip>${swagger.codegen.v3.skipTypeScript}</skip>
+                                <inputSpec>${swagger.codegen.v3.inputSpec}/${schemaName}-schema.yaml</inputSpec>
+                                <output>typings</output>
+                                <generatorName>typescript-angular</generatorName>
+                                <generateSupportingFiles>false</generateSupportingFiles>
+                                <generateApis>true</generateApis>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>add-generated-sources</id>
+                            <phase>generate-sources</phase>
+                            <goals>
+                                <goal>add-source</goal>
+                            </goals>
+                            <configuration>
+                                <sources>
+                                    <source>${project.basedir}/${swagger-generated-sources}/main/java</source>
+                                </sources>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
 
         <plugins>
             <plugin>
