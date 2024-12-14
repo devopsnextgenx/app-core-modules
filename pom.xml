@@ -29,8 +29,7 @@
         <module>app-aws</module>
         <module>app-base-model</module>
         <module>app-security</module>
-        <module>app-service</module>
-        <module>user-service</module>
+        <module>appx-services</module>
     </modules>
     <build>
         <plugins>

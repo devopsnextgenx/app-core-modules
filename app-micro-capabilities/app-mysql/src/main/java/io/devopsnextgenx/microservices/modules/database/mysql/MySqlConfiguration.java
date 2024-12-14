@@ -1,4 +1,4 @@
-package io.devopsnextgenx.modules.database,mysql;
+package io.devopsnextgenx.microservices.modules.database,mysql;
 
 import javax.sql.DataSource;
 

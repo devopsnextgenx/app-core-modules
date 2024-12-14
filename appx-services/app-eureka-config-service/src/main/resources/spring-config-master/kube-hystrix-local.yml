@@ -1,0 +1,17 @@
+info:
+  component: Hystrix Turbine Dashboard - ${HOSTNAME:localtest.me}
+server:
+  hostname: ${VHOSTNAME:${HOSTNAME:localtest.me}}
+  port: ${VPORT:1234}
+security:
+  basic:
+    enabled: true
+  user:
+    name: hystrix
+    password: password
+applications: KUBE-SERVER,KUBE-FRONT,ZUUL
+turbine:
+  clusterNameExpression: new String("default")
+  appConfig: ${applications}
+  combineHostPort: true
+  instanceUrlSuffix: admin/hystrix.stream

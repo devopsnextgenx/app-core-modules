@@ -1,0 +1,80 @@
+spring.profiles.active: ${VPROFILE:native}
+
+info:
+  application: 
+    name: Spring Eureka Config Service
+    description: Spring Eureka Config Service
+    version: 1.0.0
+    management: /management
+
+server:
+  port: ${VPORT:8761}
+  ssl:
+    client-auth: want
+    bundle: web-server
+eureka:
+  instance:
+    instance-id: ${VSERVICENAME:${spring.application.name}}.${VSERVICENAME:${HOSTNAME:k8s.localtest.me}}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+    health-check-url-path: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}${management.endpoints.web.base-path}/health
+    home-page-url: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}/swagger-ui.html
+    status-page-url: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}${management.endpoints.web.base-path}/info
+    lease-renewal-interval-in-seconds: 5
+    secure-virtual-host-name: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}
+    virtual-host-name: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}
+    hostname: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}
+    secure-port-enabled: true
+    secure-port: ${VSECUREPORT:${server.port}}
+    non-secure-port-enabled: false
+    non-secure-port: ${VNONSECUREPORT:${server.port}}
+  client:
+    region: default
+    serviceUrl:
+      defaultZone: https://${VEUREKAUSER:config}:${VEUREKAPASS:password}@${VEUREKAHOST:eureka.k8s.localtest.me}:${VEUREKAPORT:8761}/eureka
+    register-with-eureka: false
+    fetchRegistry: false
+  server:
+    enable-replicated-request-compression: false
+    peer-eureka-nodes-update-interval-ms: 10000
+    renewalPercentThreshold: 0.49
+    enableSelfPreservation: true
+    waitTimeInMsWhenSyncEmpty: 0
+
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      base-path: /management/actuator
+      exposure:
+        include: '*'
+
+spring:
+  ssl:
+    bundle:
+      jks:
+        web-server:
+          key:
+            alias: k8s
+            password: 123456
+          keystore:
+            location: classpath:k8s.p12
+            password: 123456
+            type: PKCS12
+  application:
+    name: k8s-oauth-service
+  security:
+    user:
+      name: ${VEUREKAUSER:config}     # eureka dashboard user: user | password from console log
+      password: ${VEUREKAPASS:password} # password can be got from console log
+  cloud:
+    config:
+      discovery:
+        enabled: true
+      uri: config
+      server:
+        prefix: /config
+        native:
+          search-locations: classpath:spring-config-master/
+        git:
+          uri: ${VGITCONFIGURL:https://github.com/amitkshirsagar13/spring-config.git}

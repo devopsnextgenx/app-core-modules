@@ -1,0 +1,84 @@
+server:
+  ssl:
+    # client-auth: need
+    bundle: web-server
+
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      base-path: /management/actuator
+      exposure:
+        include: '*'
+eureka:
+  instance:
+    instance-id: ${VSERVICENAME:${spring.application.name}}.${VSERVICENAME:${HOSTNAME:k8s.localtest.me}}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+    health-check-url-path: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}${management.endpoints.web.base-path}/health
+    home-page-url: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}/swagger-ui.html
+    status-page-url: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}${management.endpoints.web.base-path}/info
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+    secure-virtual-host-name: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}
+    virtual-host-name: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}
+    hostname: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}
+    secure-port-enabled: true
+    secure-port: ${VSECUREPORT:${server.port}}
+    non-secure-port-enabled: false
+    non-secure-port: ${VNONSECUREPORT:${server.port}}
+  client:
+    region: default
+    eureka-connection-idle-timeout-seconds: 60
+    serviceUrl:
+      defaultZone: https://${VEUREKAUSER:config}:${VEUREKAPASS:password}@${VEUREKAHOST:eureka.k8s.localtest.me}:${VEUREKAPORT:8761}/eureka
+    healthcheck:
+      enabled: true
+    tls:
+      enabled: true
+      keyStore: classpath:k8s.p12
+      trustStore: classpath:k8s.p12
+      keyStoreType: PKCS12
+      keyStorePassword: 123456
+      trustStorePassword: 123456
+      keyPassword: 123456
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: WARN
+spring:
+  ssl:
+    bundle:
+      jks:
+        web-server:
+          key:
+            alias: k8s
+            password: 123456
+          keystore:
+            location: classpath:k8s.p12
+            password: 123456
+            type: PKCS12
+  cloud:
+    config:
+      discovery:
+        enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
+      circuitBreaker:
+        requestVolumeThreshold: 4
+        errorThresholdPercentage: 50
+      metrics:
+        rollingStats:
+          timeInMilliseconds: 10000
+          numBuckets: 10
+  threadpool:
+    default:
+      coreSize: 4
+      maxQueueSize: 8
+      queueSizeRejectionThreshold: 5
