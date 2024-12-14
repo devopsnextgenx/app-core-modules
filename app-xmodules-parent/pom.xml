@@ -6,7 +6,6 @@
     <parent>
         <groupId>io.devopsnextgenx.microservices.modules</groupId>
         <artifactId>app-core-modules</artifactId>
-        <relativePath>../pom.xml</relativePath>
         <version>current-SNAPSHOT</version>
     </parent>
 
@@ -23,6 +22,7 @@
         <defaultPackage>io.devopsnextgenx.microservices.modules</defaultPackage>
         <module.java.defaultPackage>${defaultPackage}.${project.artifactId}</module.java.defaultPackage>
 
+        <spring-boot.version>3.4.0</spring-boot.version>
         <spring-cloud.version>2024.0.0</spring-cloud.version>
         <awspring.version>3.2.1</awspring.version>
         <aws.sdk.version>2.29.29</aws.sdk.version>
@@ -54,6 +54,20 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
                 <groupId>com.fasterxml.jackson.datatype</groupId>
                 <artifactId>jackson-datatype-jsr310</artifactId>
                 <version>${jackson-datatype-jsr310.version}</version>
@@ -62,13 +76,6 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-aws-messaging</artifactId>
                 <version>${spring-cloud-messaging.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>io.devopsnextgenx.microservices.modules</groupId>
