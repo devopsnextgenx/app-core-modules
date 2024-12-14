@@ -18,7 +18,7 @@ import io.devopsnextgenx.microservices.modules.security.jwt.JwtSecurityConfigura
 @Configuration
 @EnableWebSecurity
 @EnableConfigurationProperties
-@ConditionalOnProperty(value = "app.modules.security.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(value = "app.modules.security.enabled", havingValue = "true", matchIfMissing = false)
 @AutoConfigureAfter(value = {
     BasicSecurityConfiguration.class,
     JwtSecurityConfiguration.class

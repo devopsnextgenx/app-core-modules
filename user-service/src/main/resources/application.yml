@@ -18,6 +18,7 @@ app:
           flushInterval: 1000
           maxQueueSize: 1000
     security:
+      enabled: true
       basic:
         enabled: true
         user:
