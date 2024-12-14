@@ -37,7 +37,7 @@ import lombok.extern.slf4j.Slf4j;
         ignoreResourceNotFound = true,
         factory = YamlPropertyLoaderFactory.class) 
 })
-@ConditionalOnProperty(value = "app.modules.security.jwt.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(value = "app.modules.security.jwt.enabled", havingValue = "true", matchIfMissing = false)
 public class JwtSecurityConfiguration {
 
     @Bean

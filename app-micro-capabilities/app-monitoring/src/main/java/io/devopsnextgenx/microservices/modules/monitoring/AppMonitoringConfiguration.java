@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
 @EnableConfigurationProperties
-@ConditionalOnProperty(value = "app.modules.monitoring.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(value = "app.modules.monitoring.enabled", havingValue = "true", matchIfMissing = false)
 public class AppMonitoringConfiguration {
       
 }

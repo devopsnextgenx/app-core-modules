@@ -1,4 +1,4 @@
-package io.k8s.framework.config;
+package io.devopsnextgenx.modules.database,mysql;
 
 import javax.sql.DataSource;
 
@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
+@ConditionalOnProperty(value = "app.modules.db.mysql.enabled", havingValue = "true", matchIfMissing = false)
 public class MySqlConfiguration {
     
 	@Bean

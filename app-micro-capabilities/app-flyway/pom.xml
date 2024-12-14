@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>app-flyway</name>
     <description>Flyway Migration</description>
+    
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>
