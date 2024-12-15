@@ -14,17 +14,17 @@ kind: Deployment
 metadata:
   name: echo-service
   labels:
-    k8s-app: echo-service
+    appx-app: echo-service
   namespace: echo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: echo-service
+      appx-app: echo-service
   template:
     metadata:
       labels:
-        k8s-app: echo-service
+        appx-app: echo-service
     spec:
       terminationGracePeriodSeconds: 60
       containers:
@@ -46,13 +46,13 @@ metadata:
   name: echo-service
   namespace: echo
   labels:
-    k8s-app: echo-service
+    appx-app: echo-service
 spec:
   ports:
     - port: 8080
       targetPort: 8080
   selector:
-    k8s-app: echo-service
+    appx-app: echo-service
 ---
 # http://echo.local.k8cluster.io/
 # https://echo.local.k8cluster.io/

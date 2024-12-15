@@ -5,23 +5,25 @@ info:
     name: Spring Eureka Config Service
     description: Spring Eureka Config Service
     version: 1.0.0
-    management: /management
+    management: /actuator
 
 server:
   port: ${VPORT:8761}
   ssl:
     client-auth: want
     bundle: web-server
+  servlet:
+    context-path: /
 eureka:
   instance:
-    instance-id: ${VSERVICENAME:${spring.application.name}}.${VSERVICENAME:${HOSTNAME:k8s.localtest.me}}:${spring.application.name}:${spring.application.instance_id:${server.port}}
-    health-check-url-path: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}${management.endpoints.web.base-path}/health
-    home-page-url: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}/swagger-ui.html
-    status-page-url: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}${management.endpoints.web.base-path}/info
+    instance-id: ${VSERVICENAME:${spring.application.name}}.${VSERVICENAME:${HOSTNAME:appx.localtest.me}}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+    health-check-url-path: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}${management.endpoints.web.base-path}/health
+    home-page-url: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}/swagger-ui.html
+    status-page-url: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}${management.endpoints.web.base-path}/info
     lease-renewal-interval-in-seconds: 5
-    secure-virtual-host-name: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}
-    virtual-host-name: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}
-    hostname: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:k8s.localtest.me}:${server.port}
+    secure-virtual-host-name: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}
+    virtual-host-name: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}
+    hostname: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}
     secure-port-enabled: true
     secure-port: ${VSECUREPORT:${server.port}}
     non-secure-port-enabled: false
@@ -29,7 +31,7 @@ eureka:
   client:
     region: default
     serviceUrl:
-      defaultZone: https://${VEUREKAUSER:config}:${VEUREKAPASS:password}@${VEUREKAHOST:eureka.k8s.localtest.me}:${VEUREKAPORT:8761}/eureka
+      defaultZone: https://${VEUREKAUSER:config}:${VEUREKAPASS:password}@${VEUREKAHOST:eureka.appx.localtest.me}:${VEUREKAPORT:8761}/eureka
     register-with-eureka: false
     fetchRegistry: false
   server:
@@ -45,9 +47,75 @@ management:
       enabled: true
   endpoints:
     web:
-      base-path: /management/actuator
+      base-path: /actuator
       exposure:
         include: '*'
+
+app:
+  user-list:
+    users:
+      - username: eureka
+        password: password
+        role: USER
+      - username: config
+        password: password
+        role: USER
+  cloud:
+    aws:
+      region: us-east-1
+      credentialsClass: com.amazonaws.auth.profile.ProfileCredentialsProvider
+  modules:
+    logging:
+      enabled: true
+    tracing:
+      enabled: true
+      jaeger:
+        enabled: true
+        agent:
+          jaegerHost: localhost
+          jaegerPort: 6831
+        trace:
+          samplingRate: 1
+          flushInterval: 1000
+          maxQueueSize: 1000
+    security:
+      enabled: true
+      basic:
+        enabled: true
+        user:
+          enabled: false
+          name: user
+          password: password
+          role: USER
+      jwt:
+        enabled: true
+        secret: fake-client-secret
+        expiration: 3600
+        selfSigned:
+          enabled: true
+          enableController: true
+      oauth:
+        defaultAuthType: SELFSIGNED
+        applications:
+          # auth0:
+          #   authType: AUTH0
+          #   domain: https://devopsnextgenx.auth0.com/
+          #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+          #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
+          #   audience: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+          #   redirectUrl: http://devopsnextgenx.localtest.me
+          #   dbConnection: Username-Password-Authentication
+          # auth0-v2:
+          #   authType: AUTH0
+          #   domain: https://devopsnextgenx.auth0.com/
+          #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+          #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
+          #   audience: https://devopsnextgenx.auth0.com/api/v2/
+          self-signed:
+            authType: SELFSIGNED
+            domain: ${AUTH_DOMAIN:https://devopsnextgenx.localtest.me/}
+            clientId: ${AUTH_API_V2_clientId:fake-client-id}
+            clientSecret: fake-client-secret
 
 spring:
   ssl:
@@ -55,18 +123,18 @@ spring:
       jks:
         web-server:
           key:
-            alias: k8s
-            password: 123456
+            alias: appx
+            password: appxxppa
           keystore:
-            location: classpath:k8s.p12
-            password: 123456
+            location: classpath:appx.p12
+            password: appxxppa
             type: PKCS12
   application:
-    name: k8s-oauth-service
-  security:
-    user:
-      name: ${VEUREKAUSER:config}     # eureka dashboard user: user | password from console log
-      password: ${VEUREKAPASS:password} # password can be got from console log
+    name: appx-oauth-service
+  # security:
+  #   user:
+  #     name: ${VEUREKAUSER:config}     # eureka dashboard user: user | password from console log
+  #     password: ${VEUREKAPASS:password} # password can be got from console log
   cloud:
     config:
       discovery:

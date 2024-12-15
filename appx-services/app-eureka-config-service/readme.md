@@ -2,8 +2,8 @@
 ```bash
 # Create Certificate
 
-keytool -genkeypair -alias k8s -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore k8s.p12 -validity 3650
-
+keytool -genkeypair -alias appx -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore app-eureka-config-service/src/main/resources/appx.p12 -validity 3650
+# Password: appxxppa
 keytool -keyalg RSA -genkey -alias eureka -keystore eureka.jks
 keytool -keyalg RSA -genkey -alias client -keystore client.jks
 
@@ -17,17 +17,17 @@ keytool -import -alias client -file client.crt -keystore eureka.jks
 
 
 
-keytool -exportcert -keystore eureka-config-service/src/main/resources/k8s.p12 -storepass 123456 -storetype PKCS12 -alias k8s -file eureka-config-service/src/main/resources/k8s.cer
-keytool -importcert -keystore /etc/ssl/certs/java/cacerts -storepass changeit -alias k8s -file eureka-config-service/src/main/resources/k8s.cer
+keytool -exportcert -keystore app-eureka-config-service/src/main/resources/appx.p12 -storepass appxxppa -storetype PKCS12 -alias appx -file app-eureka-config-service/src/main/resources/appx.cer
+keytool -importcert -keystore /etc/ssl/certs/java/cacerts -storepass changeit -alias appx -file app-eureka-config-service/src/main/resources/appx.cer
 ```
 
 ### Actuator Urls:
 
-- [info](https://eureka.k8s.localtest.me:8761/management/actuator/info)
-- [health](https://eureka.k8s.localtest.me:8761/management/actuator/health)
+- [info](https://eureka.appx.localtest.me:8761/management/actuator/info)
+- [health](https://eureka.appx.localtest.me:8761/management/actuator/health)
 
 ### Config Server:
 
-- [user-service:default](https://eureka.k8s.localtest.me:8761/config/user-service/default)
-- [user-service:local](https://eureka.k8s.localtest.me:8761/config/user-service/local)
-- [user-service:dev](https://eureka.k8s.localtest.me:8761/config/user-service/dev)
+- [user-service:default](https://eureka.appx.localtest.me:8761/config/user-service/default)
+- [user-service:local](https://eureka.appx.localtest.me:8761/config/user-service/local)
+- [user-service:dev](https://eureka.appx.localtest.me:8761/config/user-service/dev)
