@@ -31,17 +31,6 @@ public class SelfSignedTokenValidator extends ProductionTokenValidator {
     @Override
     protected JWTVerifier initJWTVerifier(OAuthConfig authConfig) {
         log.info("Creating JWT validator for domain: '{}' and ClientID '{}'.", authConfig.getDomain(), authConfig.getClientId());
-        String jwtToken = JWT.create()
-        .withIssuer(authConfig.getDomain())
-        .withClaim("email", "amit.kshirsagar@example.org")
-        .withClaim("user", "amit.kshirsagar")
-        .withClaim("role", "admin")
-        .withSubject(UUID.randomUUID().toString())
-        .withIssuedAt(new Date())
-        .withExpiresAt(new Date(System.currentTimeMillis() + 300000L))
-        .withAudience(authConfig.getClientId())
-            .sign(Algorithm.HMAC256(authConfig.getClientId()));
-        log.info("Generated JWT token: {}", jwtToken);
         return JWT.require(Algorithm.HMAC256(authConfig.getClientId()))
                 .withIssuer(authConfig.getDomain())
                 .withAudience(authConfig.getClientId())
