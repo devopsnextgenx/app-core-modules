@@ -27,6 +27,7 @@
         <awspring.version>3.2.1</awspring.version>
         <aws.sdk.version>2.29.29</aws.sdk.version>
         <jackson.version>2.15.4</jackson.version>
+        <jackson-datatype-jsr310.version>2.18.2</jackson-datatype-jsr310.version>
         <nimbusds-oidc.version>11.20.1</nimbusds-oidc.version>
         <nimbusds-jose-jwt.version>9.47</nimbusds-jose-jwt.version>
         <com.auth0.version>1.30.0</com.auth0.version>
@@ -46,7 +47,6 @@
         <openapi.version>2.7.0</openapi.version>
         <mysql.version>9.1.0</mysql.version>
         <spring-cloud-messaging.version>2.2.6.RELEASE</spring-cloud-messaging.version>
-        <jackson-datatype-jsr310.version>2.18.2</jackson-datatype-jsr310.version>
         <micrometer.version>1.14.2</micrometer.version>
         <metrics.version>3.0.2</metrics.version>
         <jakarta.validation-api.version>3.1.0</jakarta.validation-api.version>
