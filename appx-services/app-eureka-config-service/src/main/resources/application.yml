@@ -68,7 +68,7 @@ app:
     logging:
       enabled: true
     tracing:
-      enabled: true
+      enabled: false
       jaeger:
         enabled: true
         agent:
