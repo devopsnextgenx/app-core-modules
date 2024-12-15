@@ -1,8 +1,5 @@
 package io.devopsnextgenx.microservices.modules.security.jwt;
 
-import java.util.Date;
-import java.util.UUID;
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
