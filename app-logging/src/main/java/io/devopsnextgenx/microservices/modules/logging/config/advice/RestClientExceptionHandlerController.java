@@ -3,7 +3,6 @@ package io.devopsnextgenx.microservices.modules.logging.config.advice;
 import io.devopsnextgenx.microservices.modules.logging.config.filter.BaseApiLogger;
 import io.devopsnextgenx.microservices.modules.exception.AppException;
 import io.devopsnextgenx.microservices.modules.exception.ErrorDTO;
-import io.opentracing.Tracer;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.core.MethodParameter;
