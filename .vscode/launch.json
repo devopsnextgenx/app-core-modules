@@ -39,6 +39,16 @@
             "projectName": "app-eureka-config-service",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-UserApplication<user-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "io.k8s.framework.UserApplication",
+            "projectName": "user-server",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

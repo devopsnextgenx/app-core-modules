@@ -1,9 +1,6 @@
 package io.k8s.framework.controller;
 
-import java.util.List;
 import java.util.UUID;
-
-import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
