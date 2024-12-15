@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.k8s.framework.api.UserApi;
-import io.k8s.framework.model.User;
+import io.devopsnextgenx.microservices.modules.api.UserApi;
+import io.devopsnextgenx.microservices.modules.model.User;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

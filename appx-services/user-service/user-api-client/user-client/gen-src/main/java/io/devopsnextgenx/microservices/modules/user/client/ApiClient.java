@@ -71,7 +71,7 @@ import java.time.OffsetDateTime;
 
 import io.devopsnextgenx.microservices.modules.user.client.auth.Authentication;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-14T22:46:55.919077581-05:00[America/Detroit]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-14T23:08:02.678516034-05:00[America/Detroit]", comments = "Generator version: 7.10.0")
 public class ApiClient extends JavaTimeFormatter {
     public enum CollectionFormat {
         CSV(","), TSV("\t"), SSV(" "), PIPES("|"), MULTI(null);

@@ -10,7 +10,9 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>user-client</artifactId>
     <name>user-client</name>
+    <version>current-SNAPSHOT</version>
     <description>User Client</description>
+    
     <properties>
         <java.version>17</java.version>
         <default.package>io.devopsnextgenx.microservices.modules</default.package>

@@ -8,8 +8,8 @@
         <version>current-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>user_api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>user-api</artifactId>
+    <version>current-SNAPSHOT</version>
     <name>user-api</name>
     <description>User Api</description>
     <properties>

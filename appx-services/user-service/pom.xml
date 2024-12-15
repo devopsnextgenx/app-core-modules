@@ -11,21 +11,21 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>user-service</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>current-SNAPSHOT</version>
     <name>user-service</name>
     <description>User Micro Services Framework</description>
 
     <modules>
         <module>user-api-client</module>
-        <!-- <module>user-server</module> -->
+        <module>user-server</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>io.k8s.framework</groupId>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
                 <artifactId>user-api</artifactId>
-                <version>${project.version}</version>
+                <version>current-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

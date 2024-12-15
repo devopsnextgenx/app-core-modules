@@ -127,6 +127,21 @@
                 <artifactId>app-service</artifactId>
                 <version>current-SNAPSHOT</version>
             </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>user-api-client</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>user-api</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>user-client</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

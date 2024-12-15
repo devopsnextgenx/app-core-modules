@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>user-api-client</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>current-SNAPSHOT</version>
     <name>user-api-client</name>
     <description>User Api Client</description>
 

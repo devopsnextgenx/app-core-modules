@@ -21,7 +21,7 @@ import jakarta.annotation.Generated;
 @lombok.Getter
 @lombok.extern.jackson.Jacksonized
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-12-14T22:46:54.353949242-05:00[America/Detroit]", comments = "Generator version: 7.10.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-12-14T23:08:02.174052927-05:00[America/Detroit]", comments = "Generator version: 7.10.0")
 public class Error implements Serializable {
 
   private static final long serialVersionUID = 1L;
