@@ -17,7 +17,8 @@
         <java.version>17</java.version>
         <default.package>io.devopsnextgenx.microservices.modules</default.package>
         <module.java.defaultPackage>${defaultPackage}.user.client</module.java.defaultPackage>
-        <openapi.codegen.v3.skipServer>true</openapi.codegen.v3.skipServer>
+        <openapi.codegen.v3.skipClient>false</openapi.codegen.v3.skipClient>
+        <openapi.codegen.v3.skipTypeScript>false</openapi.codegen.v3.skipTypeScript>
         <schemaName>user</schemaName>
     </properties>
     <dependencies>
@@ -46,30 +47,4 @@
             <artifactId>jackson-databind-nullable</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>restClient-generation</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>generateCarriers</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>

@@ -17,8 +17,7 @@
     <properties>
         <java.version>17</java.version>
         <default.package>io.devopsnextgenx.microservices.modules</default.package>
-        <openapi.codegen.v3.skipClient>true</openapi.codegen.v3.skipClient>
-        <openapi.codegen.v3.skipTypeScript>true</openapi.codegen.v3.skipTypeScript>
+        <openapi.codegen.v3.skipServer>false</openapi.codegen.v3.skipServer>
         <schemaName>dataloader</schemaName>
         <module.java.defaultPackage>${defaultPackage}.${schemaName}.api</module.java.defaultPackage>
     </properties>
@@ -52,22 +51,4 @@
             <artifactId>jackson-databind-nullable</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>openapi-server-code-gen</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>

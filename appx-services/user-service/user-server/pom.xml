@@ -7,19 +7,19 @@
         <artifactId>appx-service</artifactId>
         <version>current-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
     <artifactId>user-server</artifactId>
     <name>user-server</name>
     <description>User API Server</description>
+    
     <properties>
         <java.version>17</java.version>
         <default.package>io.devopsnextgenx.microservices.modules</default.package>
         <schemaName>user</schemaName>
         <spring.boot.plugin.disabled>false</spring.boot.plugin.disabled>
-        <openapi.codegen.v3.skipTypeScript>true</openapi.codegen.v3.skipTypeScript>
-        <openapi.codegen.v3.skipClient>true</openapi.codegen.v3.skipClient>
-        <openapi.codegen.v3.skipServer>true</openapi.codegen.v3.skipServer>
-    </properties>
+	</properties>
+    
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -64,6 +64,10 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -117,6 +121,101 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.devopsnextgenx.microservices.modules</groupId>
+			<artifactId>app-logging</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.devopsnextgenx.microservices.modules</groupId>
+			<artifactId>app-tracing</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.devopsnextgenx.microservices.modules</groupId>
+			<artifactId>app-monitoring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.devopsnextgenx.microservices.modules</groupId>
+			<artifactId>app-access</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.devopsnextgenx.microservices.modules</groupId>
+			<artifactId>app-exception</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.devopsnextgenx.microservices.modules</groupId>
+			<artifactId>app-security-basic</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.devopsnextgenx.microservices.modules</groupId>
+			<artifactId>app-security-filter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.devopsnextgenx.microservices.modules</groupId>
+			<artifactId>app-security-jwt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.devopsnextgenx.microservices.modules</groupId>
+			<artifactId>app-security-jwt-selfsigned</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.devopsnextgenx.microservices.modules</groupId>
+			<artifactId>app-micro-swagger</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
     </dependencies>
 
     <dependencyManagement>

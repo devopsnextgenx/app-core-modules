@@ -1,4 +1,4 @@
-package io.k8s.framework;
+package io.devopsnextgenx.microservices.modules.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

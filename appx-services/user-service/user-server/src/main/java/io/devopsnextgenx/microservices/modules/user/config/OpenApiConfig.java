@@ -1,4 +1,4 @@
-package io.k8s.framework.config;
+package io.devopsnextgenx.microservices.config;
 
 import org.springframework.context.annotation.Configuration;
 

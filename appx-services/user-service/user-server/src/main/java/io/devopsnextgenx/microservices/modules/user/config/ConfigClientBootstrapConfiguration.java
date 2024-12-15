@@ -1,4 +1,4 @@
-package io.k8s.framework.config;
+package io.devopsnextgenx.microservices.config;
 
 import org.apache.hc.client5.http.classic.HttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;

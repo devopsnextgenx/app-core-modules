@@ -77,6 +77,11 @@ management:
       base-path: /actuator
       exposure:
         include: prometheus,health,metrics,info
+server:
+  port: ${VPORT:8080}
+  ssl:
+    # client-auth: need
+    bundle: web-server
 
 spring:
   application:
@@ -94,15 +99,28 @@ spring:
           hibernate:
               '[dialect]': org.hibernate.dialect.MySQL8Dialect
               '[format_sql]': false
-
+  ssl:
+    bundle:
+      jks:
+        web-server:
+          key:
+            alias: appx
+            password: appxxppa
+          keystore:
+            location: classpath:appx.p12
+            password: appxxppa
+            type: PKCS12
 springdoc:
     api-docs:
         path: /v3/api-docs
         enabled: true
     swagger-ui:
-        path: /swagger-ui.html
-        enabled: true
-        tryItOutEnabled: true
-        operationsSorter: method
-        tagsSorter: alpha
-        filter: true
+      enabled: true
+      url: user-schema.yaml
+      path: /swagger-ui.html
+      filter: true
+      tryItOutEnabled: true
+      operationsSorter: method
+      tagsSorter: alpha
+      syntaxHighlight:
+        activated: true

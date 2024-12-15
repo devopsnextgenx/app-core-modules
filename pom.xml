@@ -15,9 +15,6 @@
     <version>current-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <properties>
-        <spring.boot.plugin.disabled>true</spring.boot.plugin.disabled>
-    </properties>
     <modules>
         <module>app-xmodules-parent</module>
         <module>app-xmodules-bom</module>
@@ -31,21 +28,4 @@
         <module>app-security</module>
         <module>appx-services</module>
     </modules>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <skip>${spring.boot.plugin.disabled}</skip>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>
