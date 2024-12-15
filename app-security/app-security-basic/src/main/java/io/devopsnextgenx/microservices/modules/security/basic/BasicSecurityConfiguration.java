@@ -16,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -58,6 +57,7 @@ public class BasicSecurityConfiguration {
     @Bean
     @Order(50)
     public SecurityFilterChain basicFilterChain(HttpSecurity http) throws Exception {
+        log.info("SecurityFilterChain: basicFilterChain");
         http
             .securityMatcher(basicApiPath)
             .csrf(csrf -> csrf.disable())
@@ -65,12 +65,7 @@ public class BasicSecurityConfiguration {
                 .requestMatchers(basicApiPath).authenticated()
                 .anyRequest().permitAll()
             )
-            .httpBasic(Customizer.withDefaults())
-            .exceptionHandling(handling -> handling
-                .authenticationEntryPoint((request, response, authException) -> {
-                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
-                })
-            );
+            .httpBasic(Customizer.withDefaults());
         
             // Test using below in console
             // curl -u user:password -X GET http://localhost:8080/api/demos

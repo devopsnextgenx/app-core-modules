@@ -83,21 +83,24 @@ public class JwtSecurityConfiguration {
         return new ProductionTokenValidator(oAuthApplicationsConfig, jwtVerifierCache, new JwtVerifierHelper());
     }
 
-    @SuppressWarnings("deprecation")
     @Bean
     @ConditionalOnMissingBean(UserDetailsService.class)
     public UserDetailsService userDetailsService(SwaggerUISecurityConfig appSwaggerUISecurityConfig, PasswordEncoder passwordEncoder) {
         log.info("BasicSecurityConfiguration: userDetailsService");
         User.UserBuilder userBuilder = User.builder();
         InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
-        userDetailsManager.createUser(userBuilder.username(
-            appSwaggerUISecurityConfig.getSwaggerUser())
-            .password(passwordEncoder.encode(appSwaggerUISecurityConfig.getSwaggerUserPassword()))
-            .roles("USER").build());
-            userDetailsManager.createUser(userBuilder.username(
-                appSwaggerUISecurityConfig.getSwaggerAdmin())
-                .password(passwordEncoder.encode(appSwaggerUISecurityConfig.getSwaggerAdminPassword()))
-                .roles("USER", "ADMIN").build());
+        // if (appSwaggerUISecurityConfig.getSwaggerUser() != null) {
+        //     userDetailsManager.createUser(userBuilder.username(
+        //         appSwaggerUISecurityConfig.getSwaggerUser())
+        //         .password(passwordEncoder.encode(appSwaggerUISecurityConfig.getSwaggerUserPassword()))
+        //         .roles("USER").build());
+        // }
+        // if (appSwaggerUISecurityConfig.getSwaggerAdmin() != null) {
+        //     userDetailsManager.createUser(userBuilder.username(
+        //         appSwaggerUISecurityConfig.getSwaggerAdmin())
+        //         .password(passwordEncoder.encode(appSwaggerUISecurityConfig.getSwaggerAdminPassword()))
+        //         .roles("USER", "ADMIN").build());
+        // }
         return userDetailsManager;
     }
 

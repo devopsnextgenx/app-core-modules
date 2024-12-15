@@ -18,28 +18,24 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
 public class SecurityConfiguration {
-    // @Autowired
-    // UserDetailsService userDetailsService;
+    @Autowired
+    UserDetailsService userDetailsService;
 
-    // @Autowired
-    // PasswordEncoder passwordEncoder;
+    @Autowired
+    PasswordEncoder passwordEncoder;
     
-    // @EventListener(ApplicationReadyEvent.class)
-    // @Bean
-    // @DependsOn("passwordEncoder")
-    // public io.devopsnextgenx.microservices.modules.eureka.models.User insertCredentials(UserList appUserList) {
-    //     User.UserBuilder userBuilder = User.builder();
-    //     for (io.devopsnextgenx.microservices.modules.eureka.models.User user : appUserList.getUsers()) {
-    //         log.info( "User: " + user.getUsername() + " Role: " + user.getRole());
-    //         ((InMemoryUserDetailsManager)userDetailsService).createUser(userBuilder.username(
-    //             user.getUsername())
-    //             .password(passwordEncoder.encode(user.getPassword()))
-    //             .roles(user.getRole()).build());
-    //     }
-    //     log.info("heoloxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-
-    //     return new io.devopsnextgenx.microservices.modules.eureka.models.User();
-    // }
+    @EventListener
+    public void onApplicationReadyEvent(ApplicationReadyEvent event) {
+        UserList appUserList = (UserList) event.getApplicationContext().getBeanFactory().getBean("appUserList");
+        User.UserBuilder userBuilder = User.builder();
+        for (io.devopsnextgenx.microservices.modules.eureka.models.User user : appUserList.getUsers()) {
+            log.info( "User: " + user.getUsername() + " Password: " + user.getPassword());
+            ((InMemoryUserDetailsManager)userDetailsService).createUser(userBuilder.username(
+                user.getUsername())
+                .password(passwordEncoder.encode(user.getPassword()))
+                .roles(user.getRole()).build());
+        }
+    }
 
     @Bean
     @ConfigurationProperties("app.user-list")

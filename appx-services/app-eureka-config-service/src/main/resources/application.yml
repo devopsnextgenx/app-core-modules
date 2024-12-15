@@ -82,40 +82,20 @@ app:
       enabled: true
       basic:
         enabled: true
+        api:
+          path: /
         user:
           enabled: false
           name: user
           password: password
           role: USER
       jwt:
-        enabled: true
+        enabled: false
         secret: fake-client-secret
         expiration: 3600
         selfSigned:
-          enabled: true
-          enableController: true
-      oauth:
-        defaultAuthType: SELFSIGNED
-        applications:
-          # auth0:
-          #   authType: AUTH0
-          #   domain: https://devopsnextgenx.auth0.com/
-          #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
-          #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
-          #   audience: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
-          #   redirectUrl: http://devopsnextgenx.localtest.me
-          #   dbConnection: Username-Password-Authentication
-          # auth0-v2:
-          #   authType: AUTH0
-          #   domain: https://devopsnextgenx.auth0.com/
-          #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
-          #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
-          #   audience: https://devopsnextgenx.auth0.com/api/v2/
-          self-signed:
-            authType: SELFSIGNED
-            domain: ${AUTH_DOMAIN:https://devopsnextgenx.localtest.me/}
-            clientId: ${AUTH_API_V2_clientId:fake-client-id}
-            clientSecret: fake-client-secret
+          enabled: false
+          enableController: false
 
 spring:
   ssl:

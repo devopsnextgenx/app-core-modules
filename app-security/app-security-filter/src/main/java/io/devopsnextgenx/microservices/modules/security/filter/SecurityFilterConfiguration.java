@@ -1,14 +1,11 @@
 package io.devopsnextgenx.microservices.modules.security.filter;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -19,6 +16,7 @@ public class SecurityFilterConfiguration {
     @Bean
     @Order(10)
     public SecurityFilterChain publicFilterChain(HttpSecurity http) throws Exception {
+        log.info("SecurityFilterConfiguration: publicFilterChain");
         http
             .securityMatcher("/public/**", "/login", "/register")
             .authorizeHttpRequests(authorize -> authorize
@@ -35,6 +33,7 @@ public class SecurityFilterConfiguration {
     @Bean
     @Order(3)
     public SecurityFilterChain defaultFilterChain(HttpSecurity http) throws Exception {
+        log.info("SecurityFilterConfiguration: defaultFilterChain");
         http
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/api/**").authenticated()

@@ -30,7 +30,7 @@ public class JwtSecurityFilterConfiguration {
     @Bean
     @Order(100)
     public SecurityFilterChain jwtSecurityFilterChain(HttpSecurity http) throws Exception {
-        log.info("Enabling JWT security filter");
+        log.info("SecurityFilterChain: jwtSecurityFilterChain");
         http.securityMatcher(jwtApiPath).sessionManagement(management -> management
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .csrf(csrf -> csrf.disable())
