@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
@@ -31,6 +32,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @SpringBootApplication
 @EnableEurekaServer
 @EnableConfigServer
+@ComponentScan(basePackages = "io.devopsnextgenx")
 public class EurekaConfigServerApplication {
 
     @Autowired
