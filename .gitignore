@@ -13,3 +13,7 @@ consul-data/
 .factorypath
 .project
 .settings/
+
+# OpenAPI gen-src
+gen-src/
+typings/
