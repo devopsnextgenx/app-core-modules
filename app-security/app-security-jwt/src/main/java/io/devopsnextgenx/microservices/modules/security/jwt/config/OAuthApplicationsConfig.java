@@ -21,12 +21,12 @@ public class OAuthApplicationsConfig {
      * Also used to determine the grant/exchange/renew of token.
      */
     @JsonProperty(required = true)
-    private io.devopsnextgenx.microservices.modules.security.jwt.config.AuthProviderType defaultAuthType;
+    private AuthProviderType defaultAuthType;
 
     @JsonProperty(required = true)
-    private Map<String, io.devopsnextgenx.microservices.modules.security.jwt.config.OAuthConfig> applications = new HashMap<>();
+    private Map<String, OAuthConfig> applications = new HashMap<>();
 
-    public io.devopsnextgenx.microservices.modules.security.jwt.config.OAuthConfig getAppAuthConfig() {
+    public OAuthConfig getAppAuthConfig() {
         return Optional.ofNullable(applications.get(defaultAuthType.getNodeName()))
                 .orElseThrow(() -> new AppException(AppException.ERROR_CODE.UNPROCESSABLE_ENTITY, "Default security tenant configuration is missing. Expected: '%s'", defaultAuthType.getNodeName()));
     }

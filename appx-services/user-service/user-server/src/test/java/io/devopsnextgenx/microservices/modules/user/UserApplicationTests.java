@@ -1,4 +1,4 @@
-package io.k8s.framework;
+package io.devopsnextgenx.microservices.modules.user;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -142,6 +142,21 @@
                 <artifactId>user-client</artifactId>
                 <version>current-SNAPSHOT</version>
             </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>app-data-base</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>app-data-loader</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>dataloader-api</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

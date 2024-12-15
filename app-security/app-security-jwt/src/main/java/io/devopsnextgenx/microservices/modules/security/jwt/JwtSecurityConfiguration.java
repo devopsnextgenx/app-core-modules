@@ -19,7 +19,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -87,20 +86,7 @@ public class JwtSecurityConfiguration {
     @ConditionalOnMissingBean(UserDetailsService.class)
     public UserDetailsService userDetailsService(SwaggerUISecurityConfig appSwaggerUISecurityConfig, PasswordEncoder passwordEncoder) {
         log.info("BasicSecurityConfiguration: userDetailsService");
-        User.UserBuilder userBuilder = User.builder();
         InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
-        // if (appSwaggerUISecurityConfig.getSwaggerUser() != null) {
-        //     userDetailsManager.createUser(userBuilder.username(
-        //         appSwaggerUISecurityConfig.getSwaggerUser())
-        //         .password(passwordEncoder.encode(appSwaggerUISecurityConfig.getSwaggerUserPassword()))
-        //         .roles("USER").build());
-        // }
-        // if (appSwaggerUISecurityConfig.getSwaggerAdmin() != null) {
-        //     userDetailsManager.createUser(userBuilder.username(
-        //         appSwaggerUISecurityConfig.getSwaggerAdmin())
-        //         .password(passwordEncoder.encode(appSwaggerUISecurityConfig.getSwaggerAdminPassword()))
-        //         .roles("USER", "ADMIN").build());
-        // }
         return userDetailsManager;
     }
 

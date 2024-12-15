@@ -19,9 +19,12 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>app-data-base</module>
+        <module>app-flyway</module>
         <module>app-micro-swagger</module>
-        <module>app-tracing</module>
         <module>app-monitoring</module>
+        <module>app-mysql</module>
+        <module>app-tracing</module>
     </modules>
 
     <properties>

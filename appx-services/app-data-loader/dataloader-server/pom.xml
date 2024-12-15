@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.devopsnextgenx.microservices.modules</groupId>
+        <artifactId>app-data-loader</artifactId>
+        <version>current-SNAPSHOT</version>
+    </parent>
+
+    <groupId>io.devopsnextgenx.microservices.modules</groupId>
+    <artifactId>dataloader-server</artifactId>
+    <version>current-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-base-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-data-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>dataloader-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-exception</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-security-filter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-security-jwt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-security-jwt-selfsigned</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
+
+        <!-- <dependency>
+            <groupId>io.k8clusters</groupId>
+            <artifactId>k8clusters-base-repo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.k8clusters</groupId>
+            <artifactId>k8clusters-properties</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.k8clusters</groupId>
+            <artifactId>k8clusters-exceptions</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.k8clusters</groupId>
+            <artifactId>k8clusters-security</artifactId>
+        </dependency> -->
+    </dependencies>
+</project>

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.AuthProviderType;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.OAuthConfig;
 import io.devopsnextgenx.microservices.modules.exception.AppException;
-import io.devopsnextgenx.microservices.modules.model.User;
+import io.devopsnextgenx.microservices.modules.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.SneakyThrows;

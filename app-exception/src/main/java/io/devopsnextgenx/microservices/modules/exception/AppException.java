@@ -28,6 +28,9 @@ public class AppException extends RuntimeException {
         this(errorId, errorId.httpStatus, msg, args);
     }
 
+    public AppException(String msg, Object... args) {
+        this(ERROR_CODE.GENERAL, msg, args);
+    }
     /**
      * Create an exception with {@link ERROR_CODE} and its corresponding {@link HttpStatus}
      *
@@ -70,7 +73,7 @@ public class AppException extends RuntimeException {
     }
 
     public enum ERROR_CODE {
-
+        GENERAL("0100", HttpStatus.I_AM_A_TEAPOT),
         BAD_REQUEST("0400", HttpStatus.BAD_REQUEST),
         API_UNAUTHORIZED("0401", HttpStatus.UNAUTHORIZED),
         FORBIDDEN_AUTH_METHOD("0402", HttpStatus.FORBIDDEN),

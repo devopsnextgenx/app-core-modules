@@ -3,7 +3,8 @@ package io.devopsnextgenx.microservices.modules.security.jwt.facades;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.AuthProviderType;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.OAuthConfig;
 import io.devopsnextgenx.microservices.modules.exception.AppException;
-import io.devopsnextgenx.microservices.modules.model.User;
+import io.devopsnextgenx.microservices.modules.models.User;
+
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,7 +1,8 @@
-package io.devopsnextgenx.microservices.modules.database,mysql;
+package io.devopsnextgenx.microservices.modules.database.mysql;
 
 import javax.sql.DataSource;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;

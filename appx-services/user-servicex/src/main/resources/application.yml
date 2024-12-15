@@ -19,6 +19,8 @@ app:
           maxQueueSize: 1000
     security:
       enabled: true
+      auth:
+        dataLoadFile: ${VAUTHXML:defaultAuth-${spring.profiles.active:local}.xml}
       basic:
         enabled: true
         user:

@@ -1,4 +1,4 @@
-package io.devopsnextgenx.microservices.modules.model;
+package io.devopsnextgenx.microservices.modules.models;
 
 import lombok.Data;
 

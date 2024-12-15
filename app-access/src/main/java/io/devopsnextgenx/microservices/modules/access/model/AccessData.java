@@ -1,16 +1,17 @@
 package io.devopsnextgenx.microservices.modules.access.model;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.devopsnextgenx.microservices.modules.exception.AppException;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.IOException;
 import java.util.Base64;
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
 public class AccessData {
     private String userId;
     private Set<ROLE> roleList;
@@ -24,9 +25,6 @@ public class AccessData {
         this.organizationId = organizationId;
         this.companyId = companyId;
         this.appAuth = appAuth;
-    }
-
-    public AccessData() {
     }
 
     public static AccessData fromString(String accessDataString) {

@@ -18,6 +18,7 @@
     <description>Spring Boot Microservices based core repository</description>
     <modules>
         <module>app-eureka-config-service</module>
+        <module>app-data-loader</module>
         <module>user-service</module>
     </modules>
 </project>
