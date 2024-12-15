@@ -40,10 +40,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>commons-validator</groupId>
-            <artifactId>commons-validator</artifactId>
-        </dependency>
-        <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>
             <artifactId>app-exception</artifactId>
             <scope>provided</scope>

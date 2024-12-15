@@ -24,12 +24,4 @@
         <module>app-security-jwt</module>
         <module>app-security-jwt-selfsigned</module>
     </modules>
-
-    <properties>
-    </properties>
-
-    <dependencyManagement>
-        <dependencies>
-        </dependencies>
-    </dependencyManagement>
 </project>

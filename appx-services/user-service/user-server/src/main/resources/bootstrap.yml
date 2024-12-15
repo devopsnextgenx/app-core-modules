@@ -1,0 +1,15 @@
+application:
+  ssl:
+    trustStore: ${VTRUSTSTORE:k8s.p12}
+    trustStorePassword: ${VTRUSTSTOREPASSWORD:123456}
+
+spring:
+  profiles:
+    active: local
+  cloud:
+    config:
+      uri: https://${VCONFIGHOST:${HOSTNAME:config.k8s.localtest.me}}:${VCONFIGPORT:8761}/config/
+      username: ${VCONFIGUSER:config}
+      password: ${VCONFIGPASSWORD:password}
+      name: ${spring.application.name}
+      label: master

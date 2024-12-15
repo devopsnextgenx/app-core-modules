@@ -17,8 +17,8 @@
     <properties>
         <flywaydb.skip>true</flywaydb.skip>
         <spring.boot.plugin.disabled>true</spring.boot.plugin.disabled>
-        <swagger-generated-sources>gen-src</swagger-generated-sources>
-        <swagger.codegen.v3.inputSpec>${project.basedir}/src/main/resources/static</swagger.codegen.v3.inputSpec>
+        <openapi-generated-sources>gen-src</openapi-generated-sources>
+        <openapi.codegen.v3.inputSpec>${project.basedir}/src/main/resources/static</openapi.codegen.v3.inputSpec>
         <defaultPackage>io.devopsnextgenx.microservices.modules</defaultPackage>
         <module.java.defaultPackage>${defaultPackage}.${project.artifactId}</module.java.defaultPackage>
 
@@ -49,6 +49,9 @@
         <jackson-datatype-jsr310.version>2.18.2</jackson-datatype-jsr310.version>
         <micrometer.version>1.14.2</micrometer.version>
         <metrics.version>3.0.2</metrics.version>
+        <jakarta.validation-api.version>3.1.0</jakarta.validation-api.version>
+        <swagger-annotations.version>2.2.26</swagger-annotations.version>
+        <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
     </properties>
 
     <dependencyManagement>
@@ -224,6 +227,22 @@
                 <artifactId>micrometer-registry-prometheus</artifactId>
                 <version>${micrometer.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>jakarta.validation</groupId>
+                <artifactId>jakarta.validation-api</artifactId>
+                <version>${jakarta.validation-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-annotations.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openapitools</groupId>
+                <artifactId>jackson-databind-nullable</artifactId>
+                <version>${jackson-databind-nullable.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -246,17 +265,18 @@
                 <plugin>
                     <groupId>org.openapitools</groupId>
                     <artifactId>openapi-generator-maven-plugin</artifactId>
+                    <version>7.10.0</version>
                     <executions>
                         <execution>
-                            <id>swagger-server-code-gen</id>
+                            <id>openapi-server-code-gen</id>
                             <phase>generate-sources</phase>
                             <goals>
                                 <goal>generate</goal>
                             </goals>
                             <configuration>
-                                <skip>${swagger.codegen.v3.skipServer}</skip>
-                                <inputSpec>${swagger.codegen.v3.inputSpec}/${schemaName}-schema.yaml</inputSpec>
-                                <output>${project.basedir}/${swagger-generated-sources}</output>
+                                <skip>${openapi.codegen.v3.skipServer}</skip>
+                                <inputSpec>${openapi.codegen.v3.inputSpec}/${schemaName}-schema.yaml</inputSpec>
+                                <output>${project.basedir}/${openapi-generated-sources}</output>
                                 <generatorName>spring</generatorName>
                                 <basePackage>${module.java.defaultPackage}</basePackage>
                                 <modelPackage>${default.package}.model</modelPackage>
@@ -293,9 +313,9 @@
                                 <goal>generate</goal>
                             </goals>
                             <configuration>
-                                <skip>${swagger.codegen.v3.skipClient}</skip>
-                                <inputSpec>${swagger.codegen.v3.inputSpec}/${schemaName}-schema.yaml</inputSpec>
-                                <output>${project.basedir}/${swagger-generated-sources}</output>
+                                <skip>${openapi.codegen.v3.skipClient}</skip>
+                                <inputSpec>${openapi.codegen.v3.inputSpec}/${schemaName}-schema.yaml</inputSpec>
+                                <output>${project.basedir}/${openapi-generated-sources}</output>
                                 <generatorName>java</generatorName>
                                 <basePackage>${module.java.defaultPackage}</basePackage>
                                 <modelPackage>${module.java.defaultPackage}.dto</modelPackage>
@@ -333,8 +353,8 @@
                                 <goal>generate</goal>
                             </goals>
                             <configuration>
-                                <skip>${swagger.codegen.v3.skipTypeScript}</skip>
-                                <inputSpec>${swagger.codegen.v3.inputSpec}/${schemaName}-schema.yaml</inputSpec>
+                                <skip>${openapi.codegen.v3.skipTypeScript}</skip>
+                                <inputSpec>${openapi.codegen.v3.inputSpec}/${schemaName}-schema.yaml</inputSpec>
                                 <output>typings</output>
                                 <generatorName>typescript-angular</generatorName>
                                 <generateSupportingFiles>false</generateSupportingFiles>
@@ -356,7 +376,7 @@
                             <configuration>
                                 <sources>
                                     <source>
-                                        ${project.basedir}/${swagger-generated-sources}/main/java</source>
+                                        ${project.basedir}/${openapi-generated-sources}/main/java</source>
                                 </sources>
                             </configuration>
                         </execution>

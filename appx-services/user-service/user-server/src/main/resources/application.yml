@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: user-service
+  devtools:
+    restart:
+      exclude: static/**,public/**
+  ssl:
+    bundle:
+      jks:
+        web-server:
+          key:
+            alias: k8s
+            password: 123456
+          keystore:
+            location: classpath:k8s.p12
+            password: 123456
+            type: PKCS12
+
+server:
+  port: ${VPORT:8080}
+  ssl:
+    # client-auth: need
+    bundle: web-server
+  
+springdoc:
+  show-actuator: true
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    enabled: true
+    url: user-schema.yaml
+    path: /swagger-ui.html
+    syntaxHighlight:
+      activated: true
+
+logging:
+  level:
+    root: INFO

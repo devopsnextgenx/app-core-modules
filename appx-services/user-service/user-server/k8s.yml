@@ -1,0 +1,100 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: amn
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: amn-prem-secret
+  namespace: amn
+type: kubernetes.io/tls
+data:
+  tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURxVENDQXBHZ0F3SUJBZ0lKQU9CVXJhd211YU1wTUEwR0NTcUdTSWIzRFFFQkN3VUFNR3N4Q3pBSkJnTlYKQkFZVEFrbE9NUlF3RWdZRFZRUUlEQXROWVdoaGNtRnphSFJ5WVRFTk1Bc0dBMVVFQnd3RVVIVnVaVEVUTUJFRwpBMVVFQ2d3S1UybGxiV1Z1Y3lCSlR6RWlNQ0FHQTFVRUF3d1pZVzF1TG10MVltVXRjSEpsYlM1a2JTMXNZV0p6CkxtTnZiVEFlRncweE9UQTBNVEV3TXpReU1UQmFGdzB5TURBME1UQXdNelF5TVRCYU1Hc3hDekFKQmdOVkJBWVQKQWtsT01SUXdFZ1lEVlFRSURBdE5ZV2hoY21GemFIUnlZVEVOTUFzR0ExVUVCd3dFVUhWdVpURVRNQkVHQTFVRQpDZ3dLVTJsbGJXVnVjeUJKVHpFaU1DQUdBMVVFQXd3WllXMXVMbXQxWW1VdGNISmxiUzVrYlMxc1lXSnpMbU52CmJUQ0NBU0l3RFFZSktvWklodmNOQVFFQkJRQURnZ0VQQURDQ0FRb0NnZ0VCQUxwY3JEZ2Iwak8zZ3Z4R2R5angKckJpbXY2YmIrVEQ2SjlmV3d5WHZ5TWJBeVFwRGRBM1hMdmZTWlBUbkEyU1RZeVZrL3FIdEk2dGtFckdzV2xlMgpJK1JlVWZjNGFrMXVGcGhTb2YyUTJRc0t0K0l1S0dEN2tncVU4M3dYeG50YlhBS0NVeFpCNnh1YWlkZ2pGanRkCkRvcUtKTkNwMitKMCtiOEViaUpqQWJ1M1hSK3pmTXFhTU5IakRHSzh0SUt5SHJaMjVZdEIvKzkyTmdzNm00V0MKckpmZmlFQTVNem1mNVhvLzd2bWRqZWswdGxTRGtzNE1ML0ZtUFVMTmNNWStEWXNCSGFGMTFOUi9qWEY5WkQwZwpDRitKQllqejBSK2hpV0Q2UzcySVBvYnVPSHZaU09jYkxMTHIreUI5ZGJaaGV6Qi9LNWo1L3RjUTJZRkdqQ25zCjVBOENBd0VBQWFOUU1FNHdIUVlEVlIwT0JCWUVGRWd2ajEyNDdzOW1kRktoT1Uzb3VidzdOS0RkTUI4R0ExVWQKSXdRWU1CYUFGRWd2ajEyNDdzOW1kRktoT1Uzb3VidzdOS0RkTUF3R0ExVWRFd1FGTUFNQkFmOHdEUVlKS29aSQpodmNOQVFFTEJRQURnZ0VCQUpienRSOUo4VldUaEtzUDJSQmM4T2RFeHprUmpmUmpCbmk5bnV0RG1aRnRZNGVrCndVM1BVWHhpYm1BWnFic0VwZ2xJdStEdS9RRVAxem9SU2ZObXJLY25hRUg0NU1FL2JpcHdqNzZBZ1RqakJwZEkKczl4UHdmWk1aaFZRb0RlQWgxZ2g0N3pwSkdmOWIxcFFoOUVROFF6VnIySWtxTmpIS1JudjliSkpRNWFZNFBFVApZMXdiWVFTYkRUNS90MXkra3BubjNFc0NHVUpnTTloTEZpamUvNXpWUUpQWExqdW14Z2p4VnE0eWpXV09tUW9qCjM1aUhneHFDV1h3TjBhVUFlYmZ0YkxObVFEb1l0Qm9nVzl5T1FDSW91SXpvZ3NYSHdid3Y1RGQ3RGVYY095a0kKZVhzdTNkZUViUEVRZDdQUnpBZ0ZJWCtPQ3FoamQvS081bFFGdFcwPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+  tls.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2UUlCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktjd2dnU2pBZ0VBQW9JQkFRQzZYS3c0RzlJenQ0TDgKUm5jbzhhd1lwcittMi9rdytpZlgxc01sNzhqR3dNa0tRM1FOMXk3MzBtVDA1d05razJNbFpQNmg3U09yWkJLeApyRnBYdGlQa1hsSDNPR3BOYmhhWVVxSDlrTmtMQ3JmaUxpaGcrNUlLbFBOOEY4WjdXMXdDZ2xNV1Flc2Jtb25ZCkl4WTdYUTZLaWlUUXFkdmlkUG0vQkc0aVl3Rzd0MTBmczN6S21qRFI0d3hpdkxTQ3NoNjJkdVdMUWYvdmRqWUwKT3B1RmdxeVgzNGhBT1RNNW4rVjZQKzc1blkzcE5MWlVnNUxPREMveFpqMUN6WERHUGcyTEFSMmhkZFRVZjQxeApmV1E5SUFoZmlRV0k4OUVmb1lsZytrdTlpRDZHN2poNzJVam5HeXl5Ni9zZ2ZYVzJZWHN3Znl1WStmN1hFTm1CClJvd3A3T1FQQWdNQkFBRUNnZ0VCQUs4SjZnd05QWUtydzVDVjBzZ1hMZEE5bGxidjEzOEVCclk0bGpTa29remoKdURBMnFPTnpFRDllVXNxZnpGVUVCaVNTVm9QYWl4MG9zbEpGRXRtOVRycnBTRTFPcExHelMrK245VlNIWHdSNgovYm1vSnU3b2V3UUxZU0pWNW12b3BHUUs2bVZHWnNBWGg0OEZiWlUyVXprV2hYdWpmczZWbGhtdTNJN1p0VUFNCllCZUEzRDkzNHdhOXg4Qllad0R6V0UzUU1Rc3h6azJ0ZXRUeU1RdHZiS1RWdlNtN2V4elFMRldnNWFjRnlCQ1IKaXpuR2FkYzBPTDd3Qk53MU03NTBWUlJQclRsTkJKZnU2cjFYQXkwNkY2WTdiWmkzaTZyUTJXUUt5eHdkQUlwVQpaSDY2QmtoeEF4dGRJakluQTB0UTh0Sld5VDVpWEJDWG1tTUdOQzFWZlJrQ2dZRUE0Y0ptY3dXd1UrTVNDcWIvClVpbkg2Y0taNWgvamozK01aMjFVTXVBWWhhTHBjTnFNbTRIa3lObGlFYUEwZ29iaXZJc1lyMWYvRGNJL2JKK2UKVHo3RldIOXkvbTA4cWVyOFh0ME5PMkRTMlRhN01FVnJyUWJHKzkzbXplQnpQazdGMlhJdnpFYzBRYnBDZXRvaApMZUtDMUJwNFZvUkxoY29Eek90UmdITERMc1VDZ1lFQTAxTklTaTBxOXMrYzl2SFhrQmtFTDdNREFyRGJLNXNMCnhVUVBUSWVOUzEzbnFndXowVGlwMDYvRFI2ZWY1MmQwTXpVSHRZY2l2MWtCOFhSSXZNY01TNStFU0s0OVlIbC8KeHZYUXNwWEpXakcwSnhYRlloTk51bDdEb01UOU9kajlncklNZzVCWXVUQWRtejUzVHFyb2E5dXpNdTcrMGhKeQpTT1pCSTliRGRNTUNnWUI3bktIVDRRMkhJUkhEMjJSNWJIOFZzNFBveVJVa2dVWXphMTFxN2VEL2F4QSt4cXV1CmloVG5GSC9wL3JwQnJmR0FJdmxGS1AxeVh5V3pLRUxhU1JodE9IdVNhK1dIZEM3ekVqNG9nUDl5QjlHK3dJUVEKbldGZWowWE0vRlNkalN3dnY2SUVUQWlFNUtONStPMnAzaGljWWxINXJUNWM1eHZsbkFOb1BXNDVzUUtCZ0JjcgpEVVRjbU5aQVFyUXNKWGJ0MXpDbmpvL3Y5Y2RkRXpoSVV1a1AvMlNnNGZJWm9GZ3l2eU92SkZpcHZ2VXV1V1dYCnpjV1FFRFlzT3ZOT3pWNnM3K01tbE9rbStTR25rR091dFhldXhrbDJJNHNaYnU5bXNHSGJXOVUzWTQvQkEySWQKeFJOemN0YXl1THc1Wi9rZThhWkppdWJ0bnRCSEozSm9sQUdxM1BqakFvR0FiNmdhMGVWeFkxdVphSGZJTitFTwpSdlBTTDJPN2JQQjlGMkthUDgxR1pVQVpRbHdDazVRNWxCMkxxczl1OFFqZkRTemZlMUFBY2Vqc1JnRXpCWjFrCmJ0Zy9USVorS1ZiYWRCcGpyb1JrVFZzYjRpSjhmMUtjM0xHeFAzUVFPbkVDOWpna29qaFVrQ2RTejNjYlpwOTEKNU03blNVTEpJUEI5WWdJS0tQbk9WdUk9Ci0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: echo-service
+  namespace: amn
+data:
+  VVERSION: '0.0.1'
+  VHOSTNAME: 'echo-service'
+  VDOMAIN: '.amn.kube-prem.dm-labs.com'
+  VPORT: '8080'
+  VPROFILE: 'dev'
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: echo-service-application
+  namespace: amn
+data:
+  ENVIRONMENTDUMMYVARIABLEFORTEST: 'youseeme?'
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-service
+  namespace: amn
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: echo-service
+  template:
+    metadata:
+      labels:
+        app: echo-service
+    spec:
+      terminationGracePeriodSeconds: 60
+      imagePullSecrets:
+        - name: us-west-2-ecr-registry
+      containers:
+      - name: echo-service
+        image: 007974164823.dkr.ecr.eu-west-1.amazonaws.com/amn/amn-echo:latest
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: echo-service
+        - configMapRef:
+            name: echo-service-application
+        ports:
+        - containerPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: echo-service
+  namespace: amn
+spec:
+  selector:
+    app: echo-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: echo-service
+  namespace: amn
+spec:
+  tls:
+    - hosts:
+        - echo-service.amn.kube-prem.dm-labs.com
+      secretName: amn-prem-secret
+  rules:
+    - host: echo-service.amn.kube-prem.dm-labs.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: user-service
+              servicePort: 80
