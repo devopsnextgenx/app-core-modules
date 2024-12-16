@@ -1,8 +1,10 @@
 server:
   ssl:
-    # client-auth: need
-    bundle: web-server
-
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:appx.p12
+    key-store-password: appxxppa
+    key-alias: appx
 management:
   info:
     env:
@@ -39,30 +41,18 @@ eureka:
       keyStore: classpath:appx.p12
       trustStore: classpath:appx.p12
       keyStoreType: PKCS12
-      keyStorePassword: 123456
-      trustStorePassword: 123456
-      keyPassword: 123456
+      keyStorePassword: appxxppa
+      trustStorePassword: appxxppa
+      keyPassword: appxxppa
 logging:
   level:
     ROOT: INFO
     org.springframework.web: WARN
 spring:
-  ssl:
-    bundle:
-      jks:
-        web-server:
-          key:
-            alias: appx
-            password: 123456
-          keystore:
-            location: classpath:appx.p12
-            password: 123456
-            type: PKCS12
   cloud:
     config:
       discovery:
         enabled: true
-
 hystrix:
   command:
     default:
