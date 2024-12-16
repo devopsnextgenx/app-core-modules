@@ -26,74 +26,81 @@ spring:
             location: classpath:appx.p12
             password: appxxppa
             type: PKCS12
-app:
-  cloud:
-    aws:
-      region: us-east-1
-      credentialsClass: com.amazonaws.auth.profile.ProfileCredentialsProvider
-  modules:
-    logging:
-      enabled: true
-    tracing:
-      enabled: true
-      jaeger:
-        enabled: true
-        agent:
-          jaegerHost: localhost
-          jaegerPort: 6831
-        trace:
-          samplingRate: 1
-          flushInterval: 1000
-          maxQueueSize: 1000
-    security:
-      enabled: true
-      auth:
-        dataLoadFile: ${VAUTHXML:defaultAuth-${spring.profiles.active:local}.xml}
-      basic:
-        enabled: true
-        user:
-          enabled: false
-          name: user
-          password: password
-          role: USER
-      jwt:
-        enabled: true
-        secret: fake-client-secret
-        expiration: 3600
-        selfSigned:
-          enabled: true
-          enableController: true
-      oauth:
-        defaultAuthType: SELFSIGNED
-        applications:
-          # auth0:
-          #   authType: AUTH0
-          #   domain: https://devopsnextgenx.auth0.com/
-          #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
-          #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
-          #   audience: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
-          #   redirectUrl: http://devopsnextgenx.localtest.me
-          #   dbConnection: Username-Password-Authentication
-          # auth0-v2:
-          #   authType: AUTH0
-          #   domain: https://devopsnextgenx.auth0.com/
-          #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
-          #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
-          #   audience: https://devopsnextgenx.auth0.com/api/v2/
-          self-signed:
-            authType: SELFSIGNED
-            domain: ${AUTH_DOMAIN:https://devopsnextgenx.localtest.me/}
-            clientId: ${AUTH_API_V2_clientId:fake-client-id}
-            clientSecret: fake-client-secret
-    swagger:
-      enabled: true
-      users:
-        swaggerUser: ${SWAGGER_USER:user}
-        swaggerUserPassword: ${SWAGGER_USER_PASS:user}
-        swaggerAdmin: ${SWAGGER_ADMIN:admin}
-        swaggerAdminPassword: ${SWAGGER_ADMIN_PASS:admin}
-    services:
-      userServiceHost: http://user-service.localtest.me
+
+# app:
+#   modules:
+#     security:
+#       basic:
+#         api:
+#           path: /api
+# app:
+#   cloud:
+#     aws:
+#       region: us-east-1
+#       credentialsClass: com.amazonaws.auth.profile.ProfileCredentialsProvider
+#   modules:
+#     logging:
+#       enabled: true
+#     tracing:
+#       enabled: true
+#       jaeger:
+#         enabled: true
+#         agent:
+#           jaegerHost: localhost
+#           jaegerPort: 6831
+#         trace:
+#           samplingRate: 1
+#           flushInterval: 1000
+#           maxQueueSize: 1000
+#     security:
+#       enabled: true
+#       auth:
+#         dataLoadFile: ${VAUTHXML:defaultAuth-${spring.profiles.active:local}.xml}
+#       basic:
+#         enabled: true
+#         user:
+#           enabled: false
+#           name: user
+#           password: password
+#           role: USER
+#       jwt:
+#         enabled: true
+#         secret: fake-client-secret
+#         expiration: 3600
+#         selfSigned:
+#           enabled: true
+#           enableController: true
+#       oauth:
+#         defaultAuthType: SELFSIGNED
+#         applications:
+#           # auth0:
+#           #   authType: AUTH0
+#           #   domain: https://devopsnextgenx.auth0.com/
+#           #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+#           #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
+#           #   audience: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+#           #   redirectUrl: http://devopsnextgenx.localtest.me
+#           #   dbConnection: Username-Password-Authentication
+#           # auth0-v2:
+#           #   authType: AUTH0
+#           #   domain: https://devopsnextgenx.auth0.com/
+#           #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+#           #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
+#           #   audience: https://devopsnextgenx.auth0.com/api/v2/
+#           self-signed:
+#             authType: SELFSIGNED
+#             domain: ${AUTH_DOMAIN:https://devopsnextgenx.localtest.me/}
+#             clientId: ${AUTH_API_V2_clientId:fake-client-id}
+#             clientSecret: fake-client-secret
+#     swagger:
+#       enabled: true
+#       users:
+#         swaggerUser: ${SWAGGER_USER:user}
+#         swaggerUserPassword: ${SWAGGER_USER_PASS:user}
+#         swaggerAdmin: ${SWAGGER_ADMIN:admin}
+#         swaggerAdminPassword: ${SWAGGER_ADMIN_PASS:admin}
+#     services:
+#       userServiceHost: http://user-service.localtest.me
 
 management:
   prometheus:
