@@ -15,7 +15,7 @@
             <pattern>${logPattern}</pattern>
         </encoder>
     </appender>
-    <springProfile name="default">
+    <springProfile name="${env:app.dev.profiles:-native|default|local}">
         <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
             <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
                 <evaluator class="io.devopsnextgenx.microservices.modules.logging.config.filter.OnNoMarkerEvaluator"/>
