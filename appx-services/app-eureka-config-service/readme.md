@@ -1,24 +1,22 @@
 ### Setup Certificate
 ```bash
 # Create Certificate
-
-keytool -genkeypair -alias appx -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore app-eureka-config-service/src/main/resources/appx.p12 -validity 3650
 # Password: appxxppa
-keytool -keyalg RSA -genkey -alias eureka -keystore eureka.jks
-keytool -keyalg RSA -genkey -alias client -keystore client.jks
+keytool -genkeypair -alias appx \
+  -keyalg RSA -keysize 2048 \
+  -storetype PKCS12 \
+  -keystore src/main/resources/appx.p12 \
+  -validity 3650 \
+  -dname "CN=*.appx.localtest.me,OU=appx,O=devopsnextgenx,L=Troy,S=MI,C=US" \
+  -ext "san=dns:*.appx.localtest.me"
 
-# Export certificate
-keytool -export -alias client -file client.crt -keystore client.jks
-keytool -export -alias eureka -file eureka.crt -keystore eureka.jks
+# Export the certificate
+keytool -exportcert -alias appx -keystore src/main/resources/appx.p12 -storetype PKCS12 -file src/main/resources/appx.crt
 
-# Import certificate
-keytool -import -alias eureka -file eureka.p12 -keystore client.jks
-keytool -import -alias client -file client.crt -keystore eureka.jks
+# Import the certificate -> remove existing alias present and then import new certificate with same alias
+sudo keytool -delete -alias appx -keystore /etc/ssl/certs/java/cacerts -storepass changeit
+sudo keytool -importcert -alias appx -file src/main/resources/appx.crt -keystore /etc/ssl/certs/java/cacerts -storepass changeit
 
-
-
-keytool -exportcert -keystore app-eureka-config-service/src/main/resources/appx.p12 -storepass appxxppa -storetype PKCS12 -alias appx -file app-eureka-config-service/src/main/resources/appx.cer
-keytool -importcert -keystore /etc/ssl/certs/java/cacerts -storepass changeit -alias appx -file app-eureka-config-service/src/main/resources/appx.cer
 ```
 
 ### Actuator Urls:

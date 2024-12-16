@@ -108,8 +108,11 @@ management:
 server:
   port: ${VPORT:8080}
   ssl:
-    # client-auth: need
-    bundle: web-server
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:appx.p12
+    key-store-password: appxxppa
+    key-alias: appx
 
 springdoc:
     api-docs:
