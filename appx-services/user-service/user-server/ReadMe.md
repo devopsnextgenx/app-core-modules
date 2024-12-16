@@ -21,3 +21,9 @@ Get User by Id: https://user-service.appx.localtest.me:8080/api/user/123e4567-e8
 
 ### Swagger Url:
 Swagger endpoint : https://user-service.appx.localtest.me:8080/swagger-ui/index.html
+
+### Actuator Endpoints:
+- Prometheus: https://user-service.appx.localtest.me:8080/actuator/prometheus
+- Health: https://user-service.appx.localtest.me:8080/actuator/health
+- Info: https://user-service.appx.localtest.me:8080/actuator/info
+- Metrics: https://user-service.appx.localtest.me:8080/actuator/metrics

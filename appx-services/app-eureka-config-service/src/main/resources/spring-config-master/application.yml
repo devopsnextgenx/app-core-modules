@@ -9,11 +9,15 @@ management:
   info:
     env:
       enabled: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
   endpoints:
     web:
-      base-path: /management/actuator
+      base-path: /actuator
       exposure:
-        include: '*'
+        include: prometheus,health,metrics,info
 eureka:
   instance:
     instance-id: ${VSERVICENAME:${spring.application.name}}.${VSERVICENAME:${HOSTNAME:appx.localtest.me}}:${spring.application.name}:${spring.application.instance_id:${server.port}}
