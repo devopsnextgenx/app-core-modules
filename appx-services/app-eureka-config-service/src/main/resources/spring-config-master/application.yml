@@ -99,10 +99,10 @@ app:
         dataLoadFile: ${VAUTHXML:defaultAuth-${spring.profiles.active:local}.xml}
       basic:
         enabled: true
-        api:
-          path: /api
+        # api:
+        #   path: /api/**
         user:
-          enabled: false
+          enabled: true
           name: user
           password: password
           role: USER
