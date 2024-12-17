@@ -24,7 +24,7 @@ import java.util.Set;
 @MappedSuperclass
 public class BaseEntity {
     @Id
-    @GenericGenerator(name = "K8UUIDGenerator", strategy = "io.k8clusters.base.repo.models.K8UUIDGenerator")
+    @GenericGenerator(name = "K8UUIDGenerator", strategy = "io.k8clusters.utils.models.K8UUIDGenerator")
     @GeneratedValue(generator = "K8UUIDGenerator", strategy = GenerationType.IDENTITY)
     @Column(unique=true, nullable=false)
     public String id;

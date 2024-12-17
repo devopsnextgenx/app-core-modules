@@ -304,8 +304,9 @@
                                 <output>${project.basedir}/${openapi-generated-sources}</output>
                                 <generatorName>spring</generatorName>
                                 <basePackage>${module.java.defaultPackage}</basePackage>
-                                <modelPackage>${default.package}.model</modelPackage>
+                                <modelPackage>${default.package}.dto</modelPackage>
                                 <apiPackage>${default.package}.api</apiPackage>
+                                <modelNameSuffix>Dto</modelNameSuffix>
                                 <generateApis>true</generateApis>
                                 <generateModels>true</generateModels>
                                 <generateApiTests>false</generateApiTests>
@@ -345,8 +346,8 @@
                                 <basePackage>${module.java.defaultPackage}</basePackage>
                                 <modelPackage>${module.java.defaultPackage}.dto</modelPackage>
                                 <apiPackage>${module.java.defaultPackage}.api</apiPackage>
-                                <!--
-                                <invokerPackage>${module.java.defaultPackage}.client</invokerPackage> -->
+                                <invokerPackage>${module.java.defaultPackage}.client</invokerPackage>
+                                <modelNameSuffix>Dto</modelNameSuffix>
                                 <generateApis>true</generateApis>
                                 <generateModels>true</generateModels>
                                 <generateApiTests>false</generateApiTests>

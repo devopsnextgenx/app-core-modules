@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    include:
+      - default
+  flyway:
+    enabled: true

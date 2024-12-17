@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.devopsnextgenx.microservices.modules</groupId>
+        <artifactId>appx-service</artifactId>
+        <version>current-SNAPSHOT</version>
+    </parent>
+
+    <groupId>io.devopsnextgenx.microservices.modules</groupId>
+    <artifactId>app-user-auth-service</artifactId>
+    <version>current-SNAPSHOT</version>
+    <name>app-user-auth-service</name>
+    <packaging>pom</packaging>
+    <modules>
+        <module>user-auth-api</module>
+        <module>user-auth-service</module>
+    </modules>
+</project>
