@@ -38,7 +38,8 @@
             "mainClass": "io.devopsnextgenx.microservices.modules.eureka.EurekaConfigServerApplication",
             "projectName": "app-eureka-config-service",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=43581 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=app-eureka-config-service"
         },
         {
             "type": "java",
@@ -57,6 +58,16 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "io.devopsnextgenx.microservices.modules.user.UserApplication",
             "projectName": "user-server",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-UserAuthApplication<user-auth-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "io.devopsnextgenx.microservices.modules.UserAuthApplication",
+            "projectName": "user-auth-service",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

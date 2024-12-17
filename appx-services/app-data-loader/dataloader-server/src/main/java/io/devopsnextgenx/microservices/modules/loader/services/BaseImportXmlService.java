@@ -45,7 +45,7 @@ public abstract class BaseImportXmlService {
         }
         return rtn;
     }
-    private List<Class> excluded = Arrays.asList();
+    private List<Class<?>> excluded = Arrays.asList();
 
     /**
      * return map of all types in the ApplicationContext where the key is
