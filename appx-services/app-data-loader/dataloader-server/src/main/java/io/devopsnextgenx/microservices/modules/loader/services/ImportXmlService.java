@@ -6,10 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 
 import io.devopsnextgenx.microservices.modules.access.model.IAuthenticationFacade;
+import io.devopsnextgenx.microservices.modules.dto.EntityDto;
+import io.devopsnextgenx.microservices.modules.dto.EntityListDto;
+import io.devopsnextgenx.microservices.modules.dto.XmlImporterDto;
 import io.devopsnextgenx.microservices.modules.loader.configuration.DataLoaderProperties;
-import io.devopsnextgenx.microservices.modules.model.Entity;
-import io.devopsnextgenx.microservices.modules.model.EntityList;
-import io.devopsnextgenx.microservices.modules.model.XmlImporter;
 import io.devopsnextgenx.microservices.modules.repository.IdMapperRepository;
 import io.devopsnextgenx.microservices.modules.utils.creators.Creator;
 
@@ -48,11 +48,11 @@ public class ImportXmlService extends BaseImportXmlService {
         return idMapperRepository;
     }
 
-    public XmlImporter xmlImport(String mode){
-        XmlImporter xmlImporter = new XmlImporter();
+    public XmlImporterDto xmlImport(String mode){
+        XmlImporterDto xmlImporter = new XmlImporterDto();
         List<String> errorsList = new ArrayList<>();
-        List<Entity> entityList = new ArrayList<>();
-        xmlImporter.setNotCreated(new EntityList());
+        List<EntityDto> entityList = new ArrayList<>();
+        xmlImporter.setNotCreated(new EntityListDto());
         int elementsToCreate = 0;
         int createdElements = 0;
         int updatedElements = 0;

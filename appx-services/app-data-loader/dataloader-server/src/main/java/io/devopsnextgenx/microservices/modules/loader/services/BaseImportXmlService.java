@@ -9,10 +9,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.task.DelegatingSecurityContextTaskExecutor;
 
 import io.devopsnextgenx.microservices.modules.access.model.IAuthenticationFacade;
+import io.devopsnextgenx.microservices.modules.dto.EntityDto;
+import io.devopsnextgenx.microservices.modules.dto.EntityListDto;
+import io.devopsnextgenx.microservices.modules.dto.XmlImporterDto;
 import io.devopsnextgenx.microservices.modules.exception.AppException;
-import io.devopsnextgenx.microservices.modules.model.Entity;
-import io.devopsnextgenx.microservices.modules.model.EntityList;
-import io.devopsnextgenx.microservices.modules.model.XmlImporter;
 import io.devopsnextgenx.microservices.modules.models.BaseEntity;
 import io.devopsnextgenx.microservices.modules.models.IdMapper;
 import io.devopsnextgenx.microservices.modules.repository.IdMapperRepository;
@@ -97,15 +97,16 @@ public abstract class BaseImportXmlService {
         return creatorMap.get(be.getClass().getSimpleName());
     }
 
-    public XmlImporter recreateDBWithMicroService(String mode, ApplicationContext beans) {
+    public XmlImporterDto recreateDBWithMicroService(String mode, ApplicationContext beans) {
         this.reportLog("RecreateDB Initiated by : %s", getAuthenticationFacade().getUserName());
 
         List<String> errorsList = new ArrayList<>();
-        List<Entity> entityList = new ArrayList<>();
-        XmlImporter xmlImporter = new XmlImporter();
-        xmlImporter.setNotCreated(new EntityList());
+        List<EntityDto> entityList = new ArrayList<>();
+        XmlImporterDto xmlImporter = new XmlImporterDto();
+        xmlImporter.setNotCreated(new EntityListDto());
         int elementsToCreate = 0;
         int createdElements = 0;
+
         int updatedElements = 0;
         int lastCreated = -1;
         try {
@@ -171,7 +172,7 @@ public abstract class BaseImportXmlService {
                                 } catch (Exception e){
                                     this.reportLog("Error creating the entity of type %s with externalId: %s", be.getClass().getSimpleName(), be.getExternalId(), e);
                                     errorsList.add(be.getExternalId());
-                                    Entity entity = new Entity();
+                                    EntityDto entity = new EntityDto();
                                     entity.setExternalId(be.getExternalId());
                                     String message = "%s";
                                     entity.setMessage(String.format(message, getCauseMessage(e)));

@@ -2,7 +2,7 @@ package io.devopsnextgenx.microservices.modules.auth.controller;
 
 import io.devopsnextgenx.microservices.modules.auth.service.AuthService;
 import io.devopsnextgenx.microservices.modules.userauth.auth.api.AuthServiceApi;
-import io.devopsnextgenx.microservices.modules.userauth.auth.model.AuthToken;
+import io.devopsnextgenx.microservices.modules.userauth.auth.dto.AuthTokenDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +28,7 @@ public class AuthController implements AuthServiceApi {
     private AuthService authService;
 
     @Override
-    public ResponseEntity<AuthToken> authToken(@NotNull @Valid String code) {
+    public ResponseEntity<AuthTokenDto> authToken(@NotNull @Valid String code) {
         return ResponseEntity.ok(authService.getAccessTokenFromGrantCode(code));
     }
 }

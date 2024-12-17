@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.devopsnextgenx.microservices.modules.api.UserApi;
-import io.devopsnextgenx.microservices.modules.model.User;
+import io.devopsnextgenx.microservices.modules.dto.UserDto;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -25,8 +25,8 @@ public class UserController implements UserApi {
     }
 
     @Override
-    public ResponseEntity<User> getUserById(UUID id) {
-        User user = new User().email("test").firstName("amit").lastName("kshirsagar").id(id);
+    public ResponseEntity<UserDto> getUserById(UUID id) {
+        UserDto user = new UserDto().email("test").firstName("amit").lastName("kshirsagar").id(id);
         return ResponseEntity.ok(user);
     }
 

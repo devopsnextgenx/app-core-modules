@@ -1,8 +1,9 @@
 package io.devopsnextgenx.microservices.modules.user.controller;
 
+import io.devopsnextgenx.microservices.modules.user.models.UserCloner;
 import io.devopsnextgenx.microservices.modules.user.service.UserService;
 import io.devopsnextgenx.microservices.modules.userauth.user.api.UsersApi;
-import io.devopsnextgenx.microservices.modules.userauth.user.model.User;
+import io.devopsnextgenx.microservices.modules.userauth.user.dto.UserDto;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,28 +28,31 @@ public class UserController implements UsersApi {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserCloner userCloner;
+
     @Override
-    public ResponseEntity<List<User>> listUsers() {
+    public ResponseEntity<List<UserDto>> listUsers() {
         return ResponseEntity.ok(userService.listAll());
     }
 
     @Override
-    public ResponseEntity<User> getUserById(String id) {
+    public ResponseEntity<UserDto> getUserById(String id) {
         return ResponseEntity.ok(userService.getEntityById(id));
     }
 
     @Override
-    public ResponseEntity<User> postUser(User user) {
-        return ResponseEntity.ok(userService.postEntity(user));
+    public ResponseEntity<UserDto> postUser(UserDto user) {
+        return ResponseEntity.ok(userService.postEntity(userCloner.cloneToModel(user)));
     }
 
     @Override
-    public ResponseEntity<User> putUserById(String id, @Valid User user) {
-        return ResponseEntity.ok(userService.putEntity(id, user));
+    public ResponseEntity<UserDto> putUserById(String id, @Valid UserDto user) {
+        return ResponseEntity.ok(userService.putEntity(id,userCloner.cloneToModel(user)));
     }
 
     @Override
-    public ResponseEntity<User> patchUserById(String id, @Valid User user) {
-        return ResponseEntity.ok(userService.putEntity(id, user));
+    public ResponseEntity<UserDto> patchUserById(String id, @Valid UserDto user) {
+        return ResponseEntity.ok(userService.putEntity(id,userCloner.cloneToModel(user)));
     }
 }

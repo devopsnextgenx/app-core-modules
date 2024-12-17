@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.devopsnextgenx.microservices.modules.exception.AppException;
 import io.devopsnextgenx.microservices.modules.security.configuration.AuthServiceProperties;
-import io.devopsnextgenx.microservices.modules.userauth.auth.model.AuthToken;
+import io.devopsnextgenx.microservices.modules.userauth.auth.dto.AuthTokenDto;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -40,8 +40,8 @@ public class AuthService {
     //------------------------------------------------------------//
     // Exchange the given grant code with an access token (id token)
     //------------------------------------------------------------//
-    public AuthToken getAccessTokenFromGrantCode(String grantCode) throws AppException {
-        AuthToken authToken = new AuthToken();
+    public AuthTokenDto getAccessTokenFromGrantCode(String grantCode) throws AppException {
+        AuthTokenDto authToken = new AuthTokenDto();
         try {
             String response = requestAccessAndRefreshTokens(grantCode);
             JsonNode jsonObject =  mapper.readTree( response );

@@ -19,10 +19,8 @@ import io.devopsnextgenx.microservices.modules.user.models.UserCloner;
 import io.devopsnextgenx.microservices.modules.user.repository.RoleRepository;
 import io.devopsnextgenx.microservices.modules.user.repository.UserRepository;
 import io.devopsnextgenx.microservices.modules.user.service.UserService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.client.RestTemplate;
@@ -85,7 +83,7 @@ public class UserAuthApplication {
     }
 
     @Bean
-    public UserService userService(UserRepository userRepository) {
-        return new UserService(userRepository);
+    public UserService userService(UserRepository userRepository, UserCloner userCloner) {
+        return new UserService(userRepository, userCloner);
     }
 }

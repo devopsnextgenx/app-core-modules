@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.devopsnextgenx.microservices.modules.api.ImportXmlApi;
-import io.devopsnextgenx.microservices.modules.model.XmlImporter;
+import io.devopsnextgenx.microservices.modules.dto.XmlImporterDto;
 import io.devopsnextgenx.microservices.modules.loader.services.ImportXmlService;
 
 /**
@@ -25,8 +25,8 @@ public class AdminController implements ImportXmlApi {
     private ImportXmlService importXmlService;
 
     @Override
-    public ResponseEntity<XmlImporter> importXml(String mode) {
-        XmlImporter xmlImporter = importXmlService.xmlImport(mode);
+    public ResponseEntity<XmlImporterDto> importXml(String mode) {
+        XmlImporterDto xmlImporter = importXmlService.xmlImport(mode);
         return ResponseEntity.ok(xmlImporter);
     }
 }

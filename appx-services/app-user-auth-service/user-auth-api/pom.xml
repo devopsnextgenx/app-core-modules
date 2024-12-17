@@ -71,6 +71,7 @@
                             <modelPackage>${module.java.defaultPackage}.auth.dto</modelPackage>
                             <apiPackage>${module.java.defaultPackage}.auth.api</apiPackage>
                             <output>${project.basedir}/${openapi-generated-sources}</output>
+                            <modelNameSuffix>Dto</modelNameSuffix>
                             <generatorName>spring</generatorName>
                             <generateApis>true</generateApis>
                             <generateModels>true</generateModels>
