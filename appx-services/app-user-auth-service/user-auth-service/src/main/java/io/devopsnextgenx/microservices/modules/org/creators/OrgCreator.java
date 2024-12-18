@@ -42,7 +42,7 @@ public class OrgCreator extends Creator {
 
     @Override
     public BaseEntity loadFromDb(BaseEntity be) {
-        return orgRepository.getOne(be.getId());
+        return orgRepository.getReferenceById(be.getId());
     }
 
     @Override

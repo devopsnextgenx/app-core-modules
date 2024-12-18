@@ -1,16 +1,15 @@
 package io.devopsnextgenx.microservices.modules.models;
 
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Transient;
 
 import java.util.Set;
+
+import org.hibernate.annotations.UuidGenerator;
 
 /**
  * BaseEntity:
@@ -24,9 +23,8 @@ import java.util.Set;
 @MappedSuperclass
 public class BaseEntity {
     @Id
-    @GenericGenerator(name = "AppUIDGenerator", strategy = "io.devopsnextgenx.microservices.modules.models.AppUIDGenerator")
-    @GeneratedValue(generator = "AppUIDGenerator", strategy = GenerationType.IDENTITY)
-    @Column(unique=true, nullable=false)
+    @Column(unique = true, nullable = false)
+    @UuidGenerator
     public String id;
 
     @Column(name = "isDeleted")

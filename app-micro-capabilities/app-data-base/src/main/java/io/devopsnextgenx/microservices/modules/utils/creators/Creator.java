@@ -9,6 +9,7 @@ import io.devopsnextgenx.microservices.modules.repository.IdMapperRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,8 +63,8 @@ public abstract class Creator {
      * @param be
      * @return list of all related ExternalId's
      */
-    public List<String> getExternalIds(BaseEntity be){
-        return  new ArrayList(Arrays.asList(be.getExternalId()));
+    public List<String> getExternalIds(BaseEntity be) {
+        return new ArrayList<>(Collections.singletonList(be.getExternalId()));
     }
 
     /**

@@ -42,6 +42,6 @@ public class RoleCreator extends Creator {
 
     @Override
     public BaseEntity loadFromDb(BaseEntity be) {
-        return roleRepository.getOne(be.getId());
+        return roleRepository.getReferenceById(be.getId());
     }
 }
