@@ -88,6 +88,10 @@
 			<artifactId>app-flyway</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>io.devopsnextgenx.microservices.modules</groupId>
+			<artifactId>app-mysql</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>

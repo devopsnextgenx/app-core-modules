@@ -1,8 +1,8 @@
 spring:
-  profiles:
-    include:
-      - test
-      - dev
-      - db
+  # profiles:
+  #   include:
+  #     - test
+  #     - dev
+  #     - db
   flyway:
     enabled: true

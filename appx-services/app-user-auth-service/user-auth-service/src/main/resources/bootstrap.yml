@@ -1,5 +1,17 @@
+app:
+  ssl:
+    trustStore: ${VTRUSTSTORE:appx.p12}
+    trustStorePassword: ${VTRUSTSTOREPASSWORD:appxxppa}
+
 spring:
+  profiles:
+    active: local
   cloud:
+    config:
+      uri: https://${VCONFIGHOST:${HOSTNAME:config.appx.localtest.me}}:${VCONFIGPORT:8761}/config/
+      username: ${VCONFIGUSER:config}
+      password: ${VCONFIGPASSWORD:password}
+      label: master
     consul:
       host: ${CONSULHOST:consul.localhost}
       port: ${CONSULPORT:8500}
