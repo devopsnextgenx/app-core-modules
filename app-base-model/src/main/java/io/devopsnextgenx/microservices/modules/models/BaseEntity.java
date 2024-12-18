@@ -24,7 +24,8 @@ import java.util.Set;
 @MappedSuperclass
 public class BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GenericGenerator(name = "AppUIDGenerator", strategy = "io.devopsnextgenx.microservices.modules.models.AppUIDGenerator")
+    @GeneratedValue(generator = "AppUIDGenerator", strategy = GenerationType.IDENTITY)
     @Column(unique=true, nullable=false)
     public String id;
 

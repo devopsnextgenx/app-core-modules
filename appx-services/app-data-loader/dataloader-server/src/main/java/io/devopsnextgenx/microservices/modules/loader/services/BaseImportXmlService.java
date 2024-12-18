@@ -149,11 +149,21 @@ public abstract class BaseImportXmlService {
                                     }
                                     if (creator.prepared(be)) {
                                         BaseEntity baseEntity = null;
-                                        if (idMapper == null || isOverride(mode)) {
-                                            baseEntity = creator.createOrUpdate(be);
-                                        } else {
-                                            be.setId(idMapper.getId());
-                                            baseEntity = creator.loadFromDb(be);
+                                        try {
+                                            if (idMapper == null || isOverride(mode)) {
+                                                baseEntity = creator.createOrUpdate(be);
+                                            } else {
+                                                be.setId(idMapper.getId());
+                                                baseEntity = creator.loadFromDb(be);
+                                            }
+                                        } catch (org.hibernate.StaleObjectStateException e) {
+                                            // Retry the operation after refreshing the entity
+                                            if (idMapper == null || isOverride(mode)) {
+                                                baseEntity = creator.createOrUpdate(be);
+                                            } else {
+                                                be.setId(idMapper.getId());
+                                                baseEntity = creator.loadFromDb(be);
+                                            }
                                         }
                                         String id = getIdFromBaseEntityOrCarrier(baseEntity);
                                         if (id != null) {
@@ -170,6 +180,7 @@ public abstract class BaseImportXmlService {
                                         }
                                     }
                                 } catch (Exception e){
+                                    this.reportLog("Error: %s", e.getMessage());
                                     this.reportLog("Error creating the entity of type %s with externalId: %s", be.getClass().getSimpleName(), be.getExternalId(), e);
                                     errorsList.add(be.getExternalId());
                                     EntityDto entity = new EntityDto();
@@ -242,17 +253,17 @@ public abstract class BaseImportXmlService {
 
     private Runnable getParallelTask(BaseEntity entity) {
         return () -> {
-            log.info("[{}] Started task {}. Thread: {}",
-                    SecurityContextHolder.getContext().getAuthentication().getName(), entity.getClass().getSimpleName(),
-                    Thread.currentThread().getName());
+            // log.info("[{}] Started task {}. Thread: {}",
+            //         SecurityContextHolder.getContext().getAuthentication().getName(), entity.getClass().getSimpleName(),
+            //         Thread.currentThread().getName());
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            log.info("[{}] Ended task {}. Thread: {}",
-                    SecurityContextHolder.getContext().getAuthentication().getName(), entity.getClass().getSimpleName(),
-                    Thread.currentThread().getName());
+            // log.info("[{}] Ended task {}. Thread: {}",
+            //         SecurityContextHolder.getContext().getAuthentication().getName(), entity.getClass().getSimpleName(),
+            //         Thread.currentThread().getName());
         };
     }
 
