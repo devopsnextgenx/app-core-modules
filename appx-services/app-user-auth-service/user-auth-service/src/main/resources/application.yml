@@ -7,7 +7,7 @@ spring:
   jackson:
     default-property-inclusion: non_null
   datasource:
-    url: jdbc:mysql://${VDATABASE:mysql.local.k8cluster.io}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_auth_db}?createDatabaseIfNotExist=true&autoReconnect=true
+    url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_auth_db}?createDatabaseIfNotExist=true&autoReconnect=true
     name: authdb
     username: ${VDBUSER:admin}
     password: ${VDBPASS:admin123}
@@ -22,7 +22,7 @@ spring:
     show-sql: false
 
 server:
-  hostname: ${VHOSTNAME:${HOSTNAME:authservice.local.k8cluster.io}}
+  hostname: ${VHOSTNAME:${HOSTNAME:authservice.local.localtest.me}}
   port: ${VPORT:2001}
 
 k8clusters:

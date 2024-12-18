@@ -54,8 +54,8 @@ spec:
   selector:
     appx-app: echo-service
 ---
-# http://echo.local.k8cluster.io/
-# https://echo.local.k8cluster.io/
+# http://echo.local.localtest.me/
+# https://echo.local.localtest.me/
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -67,10 +67,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - echo.local.k8cluster.io
+        - echo.local.localtest.me
       secretName: dev-secret
   rules:
-    - host: echo.local.k8cluster.io
+    - host: echo.local.localtest.me
       http:
         paths:
           - path: /

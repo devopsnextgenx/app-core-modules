@@ -1,5 +1,5 @@
 server:
-  hostname: ${VHOSTNAME:test-module.local.k8cluster.io}
+  hostname: ${VHOSTNAME:test-module.local.localtest.me}
   port: ${VPORT:2000}
 
 app:

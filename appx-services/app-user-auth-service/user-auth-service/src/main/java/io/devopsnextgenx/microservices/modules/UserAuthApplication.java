@@ -21,6 +21,7 @@ import io.devopsnextgenx.microservices.modules.user.repository.UserRepository;
 import io.devopsnextgenx.microservices.modules.user.service.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.client.RestTemplate;
@@ -37,6 +38,7 @@ public class UserAuthApplication {
     }
 
     @Bean
+    @ConditionalOnMissingBean(name = "restTemplate")
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }

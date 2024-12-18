@@ -8,7 +8,7 @@ info:
     name: Amit Kshirsagar
 
 servers:
-  - url: 'http://user-{environment}.k8cluster.io/api'
+  - url: 'http://user-{environment}.localtest.me/api'
     variables:
       environment:
         default: api.local    # Local server

@@ -1,6 +1,6 @@
 openapi: 3.0.0
 servers:
-  - url: 'http://import-xml.local.k8cluster.io'
+  - url: 'http://import-xml.local.localtest.me'
 info:
   description: >-
     The ImportXml API.

@@ -179,10 +179,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - nginx.metric.local.k8cluster.io
+        - nginx.metric.local.localtest.me
       secretName: nginx-tls-secret
   rules:
-    - host: nginx.metric.local.k8cluster.io
+    - host: nginx.metric.local.localtest.me
       http:
         paths:
           - path: /

@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   mongo:
-    domainname: local.k8cluster.io
+    domainname: local.localtest.me
     hostname: mongo
     image: mongo:latest
     container_name: mongodb
