@@ -6,11 +6,16 @@ spring:
       order: 5
   jackson:
     default-property-inclusion: non_null
+  # datasource:
+  #   url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_auth_db}?createDatabaseIfNotExist=true&autoReconnect=true
+  #   name: authdb
+  #   username: ${VDBUSER:admin}
+  #   password: ${VDBPASS:admin123}
   datasource:
-    url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_auth_db}?createDatabaseIfNotExist=true&autoReconnect=true
-    name: authdb
-    username: ${VDBUSER:admin}
-    password: ${VDBPASS:admin123}
+      url: jdbc:mysql://localhost:3306/user?createDatabaseIfNotExist=true&autoReconnect=true
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: validate
