@@ -98,7 +98,7 @@ public abstract class BaseImportXmlService {
     }
 
     public XmlImporterDto recreateDBWithMicroService(String mode, ApplicationContext beans) {
-        this.reportLog("RecreateDB Initiated by : %s", getAuthenticationFacade().getUserName());
+        // this.reportLog("RecreateDB Initiated by : %s", getAuthenticationFacade().getUserName());
 
         List<String> errorsList = new ArrayList<>();
         List<EntityDto> entityList = new ArrayList<>();

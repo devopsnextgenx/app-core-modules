@@ -7,7 +7,7 @@
     <import resource="defaultAuth-test.xml" />
 
     <bean id="adminUser"
-          class="io.k8clusters.user.models.User">
+          class="io.devopsnextgenx.microservices.modules.user.models.User">
         <property name="id" value="100user0id000000000000000001"/>
         <property name="userName" value="amitkshirsagar13"/>
         <property name="email" value="amit.kshirsagar.13@gmail.com"/>
@@ -24,7 +24,7 @@
     </bean>
 
     <bean id="demoUser"
-          class="io.k8clusters.user.models.User">
+          class="io.devopsnextgenx.microservices.modules.user.models.User">
         <property name="id" value="100user0id000000000000000002"/>
         <property name="userName" value="poonamkshirsagar13"/>
         <property name="email" value="poonam.kshirsagar.13@gmail.com"/>
@@ -40,7 +40,7 @@
     </bean>
 
     <bean id="testUser"
-          class="io.k8clusters.user.models.User">
+          class="io.devopsnextgenx.microservices.modules.user.models.User">
         <property name="id" value="100user0id000000000000000003"/>
         <property name="userName" value="amoghkshirsagar13"/>
         <property name="email" value="amogh.kshirsagar.13@gmail.com"/>
@@ -55,7 +55,7 @@
         <property name="externalId" value="USR-00003"/>
     </bean>
 
-    <bean id="k8clustersOrg" class="io.k8clusters.org.models.Organization">
+    <bean id="k8clustersOrg" class="io.devopsnextgenx.microservices.modules.org.models.Organization">
         <property name="id" value="100org0id0000000000000000001"/>
         <property name="orgName" value="K8Clusters" />
         <property name="active" value="true" />
