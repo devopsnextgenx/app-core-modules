@@ -31,17 +31,21 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
-        <!-- <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency> -->
         <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>
             <artifactId>user-auth-api</artifactId>
         </dependency>
         <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>
-            <artifactId>app-data-base</artifactId>
+            <artifactId>app-data-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-mysql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-flyway</artifactId>
         </dependency>
         <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>
@@ -85,15 +89,7 @@
         </dependency>
         <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>
-            <artifactId>app-micro-swagger</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.devopsnextgenx.microservices.modules</groupId>
-            <artifactId>app-flyway</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.devopsnextgenx.microservices.modules</groupId>
-            <artifactId>app-mysql</artifactId>
+            <artifactId>app-swagger</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -132,61 +128,5 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
         </dependency>
-        <!-- <dependency>
-            <groupId>io.k8clusters</groupId>
-            <artifactId>k8clusters-swagger-configuration</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-models</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.k8clusters</groupId>
-            <artifactId>k8clusters-filters</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.k8clusters</groupId>
-            <artifactId>k8clusters-metrics</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
-        </dependency>
-        <dependency>
-            <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.k8clusters</groupId>
-            <artifactId>k8clusters-security</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.k8clusters</groupId>
-            <artifactId>user-auth-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.k8clusters</groupId>
-            <artifactId>import-xml-server</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency> -->
     </dependencies>
 </project>

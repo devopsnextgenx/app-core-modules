@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.devopsnextgenx.microservices.modules</groupId>
+        <artifactId>app-xmodules-parent</artifactId>
+        <relativePath>../app-xmodules-parent/pom.xml</relativePath>
+        <version>current-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>app-capabilities</artifactId>
+    <name>app-capabilities</name>
+    <version>current-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>app-access</module>
+        <module>app-aws</module>
+        <module>app-data-model</module>
+        <module>app-logging</module>
+        <module>app-tracing</module>
+    </modules>
+</project>

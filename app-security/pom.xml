@@ -23,5 +23,6 @@
         <module>app-security-filter</module>
         <module>app-security-jwt</module>
         <module>app-security-jwt-selfsigned</module>
+        <module>app-security-model</module>
     </modules>
 </project>

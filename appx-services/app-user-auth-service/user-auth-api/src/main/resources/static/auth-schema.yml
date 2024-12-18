@@ -2,7 +2,7 @@ openapi: 3.0.0
 
 info:
   title: Auth API
-  description: Auth Apis for k8clusters.
+  description: Auth Apis for Appx.
   version: 0.1.9
   contact:
     name: Amit Kshirsagar

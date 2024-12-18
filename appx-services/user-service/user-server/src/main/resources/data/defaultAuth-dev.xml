@@ -19,7 +19,7 @@
                 <ref bean="user_role_USER"/>
             </list>
         </property>
-        <property name="organization" ref="k8clustersOrg" />
+        <property name="organization" ref="appxOrg" />
         <property name="externalId" value="USR-00001"/>
     </bean>
 
@@ -35,7 +35,7 @@
                 <ref bean="user_role_USER"/>
             </list>
         </property>
-        <property name="organization" ref="k8clustersOrg" />
+        <property name="organization" ref="appxOrg" />
         <property name="externalId" value="USR-00002"/>
     </bean>
 
@@ -51,13 +51,13 @@
                 <ref bean="user_role_SYSTEM_ADMINISTRATOR"/>
             </list>
         </property>
-        <property name="organization" ref="k8clustersOrg" />
+        <property name="organization" ref="appxOrg" />
         <property name="externalId" value="USR-00003"/>
     </bean>
 
-    <bean id="k8clustersOrg" class="io.devopsnextgenx.microservices.modules.org.models.Organization">
+    <bean id="appxOrg" class="io.devopsnextgenx.microservices.modules.org.models.Organization">
         <property name="id" value="100org0id0000000000000000001"/>
-        <property name="orgName" value="K8Clusters" />
+        <property name="orgName" value="Appx" />
         <property name="active" value="true" />
         <property name="adminId" value="#{adminUser.externalId}" />
         <property name="externalId" value="ORG-00001" />

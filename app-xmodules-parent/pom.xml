@@ -48,6 +48,7 @@
         <hibernate-core.version>6.6.3.Final</hibernate-core.version>
         <lombok.version>1.18.36</lombok.version>
         <openapi.version>2.7.0</openapi.version>
+        <jasypt.version>1.9.3</jasypt.version>
         <mysql.version>9.1.0</mysql.version>
         <flyway.version>11.1.0</flyway.version>
         <spring-cloud-messaging.version>2.2.6.RELEASE</spring-cloud-messaging.version>
@@ -206,6 +207,11 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${openapi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jasypt</groupId>
+                <artifactId>jasypt</artifactId>
+                <version>${jasypt.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.mysql</groupId>

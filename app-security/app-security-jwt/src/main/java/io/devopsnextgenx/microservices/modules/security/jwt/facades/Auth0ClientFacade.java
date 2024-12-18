@@ -7,10 +7,11 @@ import com.auth0.json.auth.TokenHolder;
 import com.auth0.json.mgmt.users.UsersPage;
 import com.auth0.net.AuthRequest;
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import io.devopsnextgenx.microservices.modules.exception.AppException;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.AuthProviderType;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.OAuthConfig;
-import io.devopsnextgenx.microservices.modules.exception.AppException;
-import io.devopsnextgenx.microservices.modules.models.User;
+import io.devopsnextgenx.microservices.modules.user.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.SneakyThrows;
@@ -30,6 +31,8 @@ public class Auth0ClientFacade extends AbstractAuthClientFacade {
 
     public static final String USER_METADATA_FIRST_NAME = "first_name";
     public static final String USER_METADATA_LAST_NAME = "last_name";
+    public static final String USER_METADATA_USER_NAME = "user_name";
+    public static final String USER_METADATA_USER_EMAIL = "user_email";
     public static final int AUTH0_FULL_NAMES_API__MAX_ALLOWED_ITEMS_PER_CALL = 50;
     public static final String AUTH0_HEALTHCHECK_ENDPOINT = "testall";
 
@@ -143,9 +146,11 @@ public class Auth0ClientFacade extends AbstractAuthClientFacade {
     }
 
     private User buildUserFromUserMetaData(com.auth0.json.mgmt.users.User user) {
-        String firstName = user.getUserMetadata().get(USER_METADATA_FIRST_NAME).toString();
-        String lastName = user.getUserMetadata().get(USER_METADATA_LAST_NAME).toString();
-        return new User(firstName, lastName);
+        return User.builder()
+            .firstName(user.getUserMetadata().get(USER_METADATA_FIRST_NAME).toString())
+            .lastName(user.getUserMetadata().get(USER_METADATA_LAST_NAME).toString())
+            .userName(user.getUserMetadata().get(USER_METADATA_USER_NAME).toString())
+            .email(user.getUserMetadata().get(USER_METADATA_USER_EMAIL).toString()).build();
     }
 
     private String quotify(String stirng) {

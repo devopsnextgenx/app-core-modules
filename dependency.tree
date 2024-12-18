@@ -8,14 +8,14 @@
 [[1;34mINFO[m] app-configuration                                                  [jar]
 [[1;34mINFO[m] app-exception                                                      [jar]
 [[1;34mINFO[m] app-access                                                         [jar]
-[[1;34mINFO[m] app-micro-capabilities                                             [pom]
+[[1;34mINFO[m] app-capabilities                                             [pom]
 [[1;34mINFO[m] app-tracing                                                        [jar]
 [[1;34mINFO[m] app-logging                                                        [jar]
 [[1;34mINFO[m] app-base-model                                                     [jar]
-[[1;34mINFO[m] app-data-base                                                      [jar]
+[[1;34mINFO[m] app-data-model                                                      [jar]
 [[1;34mINFO[m] app-flyway                                                         [jar]
-[[1;34mINFO[m] app-micro-swagger                                                  [jar]
-[[1;34mINFO[m] app-micro-swagger                                                  [jar]
+[[1;34mINFO[m] app-swagger                                                  [jar]
+[[1;34mINFO[m] app-swagger                                                  [jar]
 [[1;34mINFO[m] app-mysql                                                          [jar]
 [[1;34mINFO[m] app-aws                                                            [pom]
 [[1;34mINFO[m] app-aws-environment-configuration                                  [jar]
@@ -183,17 +183,17 @@
 [[1;34mINFO[m]    \- org.springframework.security:spring-security-web:jar:6.4.1:compile
 [[1;34mINFO[m]       \- org.springframework:spring-expression:jar:6.2.0:compile
 [[1;34mINFO[m] 
-[[1;34mINFO[m] [1m---< [0;36mio.devopsnextgenx.microservices.modules:app-micro-capabilities[0;1m >---[m
-[[1;34mINFO[m] [1mBuilding app-micro-capabilities current-SNAPSHOT                  [7/37][m
-[[1;34mINFO[m]   from app-micro-capabilities/pom.xml
+[[1;34mINFO[m] [1m---< [0;36mio.devopsnextgenx.microservices.modules:app-capabilities[0;1m >---[m
+[[1;34mINFO[m] [1mBuilding app-capabilities current-SNAPSHOT                  [7/37][m
+[[1;34mINFO[m]   from app-capabilities/pom.xml
 [[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
 [[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.8.1:tree[m [1m(default-cli)[m @ [36mapp-micro-capabilities[0;1m ---[m
-[[1;34mINFO[m] io.devopsnextgenx.microservices.modules:app-micro-capabilities:pom:current-SNAPSHOT
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.8.1:tree[m [1m(default-cli)[m @ [36mapp-capabilities[0;1m ---[m
+[[1;34mINFO[m] io.devopsnextgenx.microservices.modules:app-capabilities:pom:current-SNAPSHOT
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--------< [0;36mio.devopsnextgenx.microservices.modules:app-tracing[0;1m >---------[m
 [[1;34mINFO[m] [1mBuilding app-tracing current-SNAPSHOT                             [8/37][m
-[[1;34mINFO[m]   from app-micro-capabilities/app-tracing/pom.xml
+[[1;34mINFO[m]   from app-capabilities/app-tracing/pom.xml
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.8.1:tree[m [1m(default-cli)[m @ [36mapp-tracing[0;1m ---[m
@@ -397,13 +397,13 @@
 [[1;34mINFO[m] +- org.modelmapper:modelmapper:jar:3.2.2:compile
 [[1;34mINFO[m] \- org.projectlombok:lombok:jar:1.18.36:compile
 [[1;34mINFO[m] 
-[[1;34mINFO[m] [1m-------< [0;36mio.devopsnextgenx.microservices.modules:app-data-base[0;1m >--------[m
-[[1;34mINFO[m] [1mBuilding app-data-base current-SNAPSHOT                          [11/37][m
-[[1;34mINFO[m]   from app-micro-capabilities/app-data-base/pom.xml
+[[1;34mINFO[m] [1m-------< [0;36mio.devopsnextgenx.microservices.modules:app-data-model[0;1m >--------[m
+[[1;34mINFO[m] [1mBuilding app-data-model current-SNAPSHOT                          [11/37][m
+[[1;34mINFO[m]   from app-capabilities/app-data-model/pom.xml
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.8.1:tree[m [1m(default-cli)[m @ [36mapp-data-base[0;1m ---[m
-[[1;34mINFO[m] io.devopsnextgenx.microservices.modules:app-data-base:jar:current-SNAPSHOT
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.8.1:tree[m [1m(default-cli)[m @ [36mapp-data-model[0;1m ---[m
+[[1;34mINFO[m] io.devopsnextgenx.microservices.modules:app-data-model:jar:current-SNAPSHOT
 [[1;34mINFO[m] +- io.devopsnextgenx.microservices.modules:app-base-model:jar:current-SNAPSHOT:compile
 [[1;34mINFO[m] |  +- jakarta.persistence:jakarta.persistence-api:jar:3.1.0:compile
 [[1;34mINFO[m] |  +- org.hibernate.orm:hibernate-core:jar:6.6.2.Final:compile
@@ -458,7 +458,7 @@
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m---------< [0;36mio.devopsnextgenx.microservices.modules:app-flyway[0;1m >---------[m
 [[1;34mINFO[m] [1mBuilding app-flyway current-SNAPSHOT                             [12/37][m
-[[1;34mINFO[m]   from app-micro-capabilities/app-flyway/pom.xml
+[[1;34mINFO[m]   from app-capabilities/app-flyway/pom.xml
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.8.1:tree[m [1m(default-cli)[m @ [36mapp-flyway[0;1m ---[m
@@ -501,13 +501,13 @@
 [[1;34mINFO[m] \- com.mysql:mysql-connector-j:jar:9.1.0:compile
 [[1;34mINFO[m]    \- com.google.protobuf:protobuf-java:jar:4.26.1:compile
 [[1;34mINFO[m] 
-[[1;34mINFO[m] [1m-----< [0;36mio.devopsnextgenx.microservices.modules:app-micro-swagger[0;1m >------[m
-[[1;34mINFO[m] [1mBuilding app-micro-swagger current-SNAPSHOT                      [13/37][m
-[[1;34mINFO[m]   from app-micro-capabilities/app-micro-swagger/pom.xml
+[[1;34mINFO[m] [1m-----< [0;36mio.devopsnextgenx.microservices.modules:app-swagger[0;1m >------[m
+[[1;34mINFO[m] [1mBuilding app-swagger current-SNAPSHOT                      [13/37][m
+[[1;34mINFO[m]   from app-capabilities/app-swagger/pom.xml
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.8.1:tree[m [1m(default-cli)[m @ [36mapp-micro-swagger[0;1m ---[m
-[[1;34mINFO[m] io.devopsnextgenx.microservices.modules:app-micro-swagger:jar:current-SNAPSHOT
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.8.1:tree[m [1m(default-cli)[m @ [36mapp-swagger[0;1m ---[m
+[[1;34mINFO[m] io.devopsnextgenx.microservices.modules:app-swagger:jar:current-SNAPSHOT
 [[1;34mINFO[m] +- io.devopsnextgenx.microservices.modules:app-configuration:jar:current-SNAPSHOT:provided
 [[1;34mINFO[m] +- org.springdoc:springdoc-openapi-starter-webmvc-ui:jar:2.7.0:compile
 [[1;34mINFO[m] |  +- org.springdoc:springdoc-openapi-starter-webmvc-api:jar:2.7.0:compile
@@ -581,8 +581,8 @@
 [[1;34mINFO[m]    \- org.hamcrest:hamcrest-core:jar:2.2:test
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m-------< [0;36mio.devopsnextgenx.microservices.modules:app-monitoring[0;1m >-------[m
-[[1;34mINFO[m] [1mBuilding app-micro-swagger current-SNAPSHOT                      [14/37][m
-[[1;34mINFO[m]   from app-micro-capabilities/app-monitoring/pom.xml
+[[1;34mINFO[m] [1mBuilding app-swagger current-SNAPSHOT                      [14/37][m
+[[1;34mINFO[m]   from app-capabilities/app-monitoring/pom.xml
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.8.1:tree[m [1m(default-cli)[m @ [36mapp-monitoring[0;1m ---[m
@@ -660,7 +660,7 @@
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m---------< [0;36mio.devopsnextgenx.microservices.modules:app-mysql[0;1m >----------[m
 [[1;34mINFO[m] [1mBuilding app-mysql current-SNAPSHOT                              [15/37][m
-[[1;34mINFO[m]   from app-micro-capabilities/app-mysql/pom.xml
+[[1;34mINFO[m]   from app-capabilities/app-mysql/pom.xml
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.8.1:tree[m [1m(default-cli)[m @ [36mapp-mysql[0;1m ---[m
@@ -1557,7 +1557,7 @@
 [[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.8.1:tree[m [1m(default-cli)[m @ [36mapp-security-jwt-selfsigned[0;1m ---[m
 [[1;34mINFO[m] io.devopsnextgenx.microservices.modules:app-security-jwt-selfsigned:jar:current-SNAPSHOT
 [[1;34mINFO[m] +- org.apache.commons:commons-lang3:jar:3.17.0:provided
-[[1;34mINFO[m] +- io.devopsnextgenx.microservices.modules:app-micro-swagger:jar:current-SNAPSHOT:provided
+[[1;34mINFO[m] +- io.devopsnextgenx.microservices.modules:app-swagger:jar:current-SNAPSHOT:provided
 [[1;34mINFO[m] |  \- org.springdoc:springdoc-openapi-starter-webmvc-ui:jar:2.7.0:provided
 [[1;34mINFO[m] |     +- org.springdoc:springdoc-openapi-starter-webmvc-api:jar:2.7.0:provided
 [[1;34mINFO[m] |     |  \- org.springdoc:springdoc-openapi-starter-common:jar:2.7.0:provided
@@ -2002,7 +2002,7 @@
 [[1;34mINFO[m] |  |  +- jakarta.inject:jakarta.inject-api:jar:2.0.1:runtime
 [[1;34mINFO[m] |  |  \- org.antlr:antlr4-runtime:jar:4.13.0:compile
 [[1;34mINFO[m] |  \- org.modelmapper:modelmapper:jar:3.2.2:compile
-[[1;34mINFO[m] +- io.devopsnextgenx.microservices.modules:app-data-base:jar:current-SNAPSHOT:compile
+[[1;34mINFO[m] +- io.devopsnextgenx.microservices.modules:app-data-model:jar:current-SNAPSHOT:compile
 [[1;34mINFO[m] |  +- org.springframework.boot:spring-boot-starter-data-jpa:jar:3.4.0:compile
 [[1;34mINFO[m] |  |  +- org.springframework.boot:spring-boot-starter-jdbc:jar:3.4.0:compile
 [[1;34mINFO[m] |  |  |  +- com.zaxxer:HikariCP:jar:5.1.0:compile
@@ -2333,7 +2333,7 @@
 [[1;34mINFO[m] |  |     \- org.springframework.security:spring-security-web:jar:6.4.1:compile
 [[1;34mINFO[m] |  +- io.devopsnextgenx.microservices.modules:app-exception:jar:current-SNAPSHOT:compile
 [[1;34mINFO[m] |  \- jakarta.servlet:jakarta.servlet-api:jar:6.1.0:compile
-[[1;34mINFO[m] +- io.devopsnextgenx.microservices.modules:app-micro-swagger:jar:current-SNAPSHOT:compile
+[[1;34mINFO[m] +- io.devopsnextgenx.microservices.modules:app-swagger:jar:current-SNAPSHOT:compile
 [[1;34mINFO[m] |  \- org.springdoc:springdoc-openapi-starter-webmvc-ui:jar:2.7.0:compile
 [[1;34mINFO[m] |     +- org.springdoc:springdoc-openapi-starter-webmvc-api:jar:2.7.0:compile
 [[1;34mINFO[m] |     |  \- org.springdoc:springdoc-openapi-starter-common:jar:2.7.0:compile
@@ -2404,14 +2404,14 @@
 [[1;34mINFO[m] app-configuration current-SNAPSHOT ................. [1;32mSUCCESS[m [  0.085 s]
 [[1;34mINFO[m] app-exception current-SNAPSHOT ..................... [1;32mSUCCESS[m [  0.025 s]
 [[1;34mINFO[m] app-access current-SNAPSHOT ........................ [1;32mSUCCESS[m [  0.032 s]
-[[1;34mINFO[m] app-micro-capabilities current-SNAPSHOT ............ [1;32mSUCCESS[m [  0.005 s]
+[[1;34mINFO[m] app-capabilities current-SNAPSHOT ............ [1;32mSUCCESS[m [  0.005 s]
 [[1;34mINFO[m] app-tracing current-SNAPSHOT ....................... [1;32mSUCCESS[m [  0.052 s]
 [[1;34mINFO[m] app-logging current-SNAPSHOT ....................... [1;32mSUCCESS[m [  0.021 s]
 [[1;34mINFO[m] app-base-model current-SNAPSHOT .................... [1;32mSUCCESS[m [  0.036 s]
-[[1;34mINFO[m] app-data-base current-SNAPSHOT ..................... [1;32mSUCCESS[m [  0.026 s]
+[[1;34mINFO[m] app-data-model current-SNAPSHOT ..................... [1;32mSUCCESS[m [  0.026 s]
 [[1;34mINFO[m] app-flyway current-SNAPSHOT ........................ [1;32mSUCCESS[m [  0.019 s]
-[[1;34mINFO[m] app-micro-swagger current-SNAPSHOT ................. [1;32mSUCCESS[m [  0.046 s]
-[[1;34mINFO[m] app-micro-swagger current-SNAPSHOT ................. [1;32mSUCCESS[m [  0.026 s]
+[[1;34mINFO[m] app-swagger current-SNAPSHOT ................. [1;32mSUCCESS[m [  0.046 s]
+[[1;34mINFO[m] app-swagger current-SNAPSHOT ................. [1;32mSUCCESS[m [  0.026 s]
 [[1;34mINFO[m] app-mysql current-SNAPSHOT ......................... [1;32mSUCCESS[m [  0.011 s]
 [[1;34mINFO[m] app-aws current-SNAPSHOT ........................... [1;32mSUCCESS[m [  0.006 s]
 [[1;34mINFO[m] app-aws-environment-configuration current-SNAPSHOT . [1;32mSUCCESS[m [  0.058 s]

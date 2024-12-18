@@ -7,9 +7,9 @@ import com.auth0.jwt.impl.PublicClaims;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.google.common.collect.ImmutableMap;
 import io.devopsnextgenx.microservices.modules.exception.AppException;
-import io.devopsnextgenx.microservices.modules.models.User;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.AuthProviderType;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.OAuthConfig;
+import io.devopsnextgenx.microservices.modules.user.models.User;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -114,7 +114,7 @@ public class SelfSignedClientFacade extends AbstractAuthClientFacade {
     public Map<String, User> getUsersFullNames(List<String> usersEmails) {
         Map<String, User> responseTest = new HashMap<>();
         usersEmails.forEach(userEmail -> {
-            responseTest.put(userEmail, new User(userEmail, userEmail));
+            responseTest.put(userEmail, User.builder().firstName(userEmail).lastName(userEmail).email(userEmail).build());
         });
         return responseTest;
     }

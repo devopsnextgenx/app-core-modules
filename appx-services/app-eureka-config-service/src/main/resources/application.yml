@@ -101,6 +101,14 @@ app:
           enableController: false
 
 spring:
+  datasource:
+    url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_auth_db}?createDatabaseIfNotExist=true&autoReconnect=true
+    name: authdb
+    username: root
+    password: root
+    # username: ${VDBUSER:admin}
+    # password: ${VDBPASS:admin123}
+    driver-class-name: com.mysql.cj.jdbc.Driver
   ssl:
     bundle:
       jks:

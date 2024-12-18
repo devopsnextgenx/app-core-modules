@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * io.k8clusters.auth.repo.repository.UserRepository:
+ * UserRepository:
  *
  * @author Amit Kshirsagar
  * @version 1.0

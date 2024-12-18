@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * k8clusters:
+ * UserController:
  *
  * @author Amit Kshirsagar
  * @version 1.0

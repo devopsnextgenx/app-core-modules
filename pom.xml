@@ -18,13 +18,8 @@
     <modules>
         <module>app-xmodules-parent</module>
         <module>app-xmodules-bom</module>
-        <module>app-configuration</module>
-        <module>app-exception</module>
-        <module>app-access</module>
-        <module>app-logging</module>
-        <module>app-micro-capabilities</module>
-        <module>app-aws</module>
-        <module>app-base-model</module>
+        <module>app-base</module>
+        <module>app-capabilities</module>
         <module>app-security</module>
         <module>appx-services</module>
     </modules>

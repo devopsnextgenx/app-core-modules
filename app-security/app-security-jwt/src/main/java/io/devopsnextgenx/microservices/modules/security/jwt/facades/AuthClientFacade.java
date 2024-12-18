@@ -1,7 +1,8 @@
 package io.devopsnextgenx.microservices.modules.security.jwt.facades;
 
-import io.devopsnextgenx.microservices.modules.models.User;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.AuthProviderType;
+import io.devopsnextgenx.microservices.modules.user.models.User;
+
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
