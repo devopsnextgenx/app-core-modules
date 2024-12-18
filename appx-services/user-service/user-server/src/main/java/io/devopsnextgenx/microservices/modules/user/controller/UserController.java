@@ -14,11 +14,13 @@ import io.devopsnextgenx.microservices.modules.api.UserApi;
 import io.devopsnextgenx.microservices.modules.dto.UserDto;
 import io.devopsnextgenx.microservices.modules.models.User;
 import io.devopsnextgenx.microservices.modules.repository.UserRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
 @RequestMapping("/api")
+@SecurityRequirement(name = "JWT")
 public class UserController implements UserApi {
     @Autowired
     private UserRepository userRepository;
