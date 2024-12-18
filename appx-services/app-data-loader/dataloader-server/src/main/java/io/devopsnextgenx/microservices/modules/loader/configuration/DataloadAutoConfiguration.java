@@ -6,14 +6,23 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import io.devopsnextgenx.microservices.modules.security.configuration.AuthServiceProperties;
+
 @Configuration
 @EnableConfigurationProperties
 public class DataloadAutoConfiguration {
     
     @Bean
     @ConditionalOnMissingBean
-    @ConfigurationProperties("app.security.auth")
+    @ConfigurationProperties("app.security.dataloader")
     public DataLoaderProperties dataLoaderProperties(){
         return new DataLoaderProperties();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    @ConfigurationProperties("app.security.auth")
+    public AuthServiceProperties authServiceProperties(){
+        return new AuthServiceProperties();
     }
 }

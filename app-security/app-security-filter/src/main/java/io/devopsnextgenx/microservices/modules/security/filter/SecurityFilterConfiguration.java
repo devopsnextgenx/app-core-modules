@@ -2,10 +2,14 @@ package io.devopsnextgenx.microservices.modules.security.filter;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.context.WebApplicationContext;
 
+import io.devopsnextgenx.microservices.modules.access.model.AuthenticationFacade;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -128,4 +132,10 @@ public class SecurityFilterConfiguration {
 
     //     return http.build();
     // }
+
+    @Bean
+    @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public AuthenticationFacade authenticationFacade() {
+        return new AuthenticationFacade();
+    }
 }

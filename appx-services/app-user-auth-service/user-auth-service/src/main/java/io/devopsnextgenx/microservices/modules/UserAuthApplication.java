@@ -23,20 +23,30 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootApplication
-@EnableJpaRepositories("io.deviopsnextgenx.microservices.modules")
+@EnableJpaRepositories("io.devopsnextgenx.microservices.modules")
 public class UserAuthApplication {
     public static void main(String[] args) {
         SpringApplication.run(UserAuthApplication.class, args);
     }
 
+    // TODO move this to security/authentication module, as its more relevent
+    @Bean
+    @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public AuthenticationFacade authenticationFacade() {
+        return new AuthenticationFacade();
+    }
+    
     @Bean
     @ConditionalOnMissingBean(name = "restTemplate")
     public RestTemplate restTemplate() {
