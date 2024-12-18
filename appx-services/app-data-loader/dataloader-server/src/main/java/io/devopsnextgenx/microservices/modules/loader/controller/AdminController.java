@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.devopsnextgenx.microservices.modules.api.ImportXmlApi;
 import io.devopsnextgenx.microservices.modules.dto.XmlImporterDto;
 import io.devopsnextgenx.microservices.modules.loader.services.ImportXmlService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 /**
  * AdminController:
@@ -20,6 +21,7 @@ import io.devopsnextgenx.microservices.modules.loader.services.ImportXmlService;
 
 @RestController
 @RequestMapping("/api")
+@SecurityRequirement(name = "JWT")
 public class AdminController implements ImportXmlApi {
     @Autowired
     private ImportXmlService importXmlService;

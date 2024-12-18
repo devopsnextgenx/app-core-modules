@@ -1,6 +1,5 @@
-package io.devopsnextgenx.microservices.modules.user.models;
+package io.devopsnextgenx.microservices.modules.models;
 
-import io.devopsnextgenx.microservices.modules.models.BaseModelAudit;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

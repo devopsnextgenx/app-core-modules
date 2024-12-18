@@ -1,10 +1,9 @@
-package io.devopsnextgenx.microservices.modules.org.creators;
+package io.devopsnextgenx.microservices.modules.utils.creators;
 
-import io.devopsnextgenx.microservices.modules.utils.creators.Creator;
 import io.devopsnextgenx.microservices.modules.models.BaseEntity;
-import io.devopsnextgenx.microservices.modules.org.models.Organization;
-import io.devopsnextgenx.microservices.modules.org.repository.OrgRepository;
+import io.devopsnextgenx.microservices.modules.models.Organization;
 import io.devopsnextgenx.microservices.modules.repository.IdMapperRepository;
+import io.devopsnextgenx.microservices.modules.repository.OrgRepository;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 

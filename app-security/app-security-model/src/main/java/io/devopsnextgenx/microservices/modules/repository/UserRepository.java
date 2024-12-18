@@ -1,13 +1,13 @@
-package io.devopsnextgenx.microservices.modules.user.repository;
-
-import io.devopsnextgenx.microservices.modules.user.models.Role;
-import jakarta.transaction.Transactional;
+package io.devopsnextgenx.microservices.modules.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import io.devopsnextgenx.microservices.modules.models.User;
+import jakarta.transaction.Transactional;
+
 /**
- * RoleRepository:
+ * UserRepository:
  *
  * @author Amit Kshirsagar
  * @version 1.0
@@ -16,6 +16,6 @@ import org.springframework.stereotype.Repository;
  */
 @Transactional
 @Repository
-public interface RoleRepository extends JpaRepository<Role, String> {
+public interface UserRepository extends JpaRepository<User, String> {
 
 }

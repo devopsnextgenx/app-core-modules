@@ -1,1 +1,0 @@
-org.springframework.cloud.bootstrap.BootstrapConfiguration=io.k8s.framework.config.ConfigClientBootstrapConfiguration

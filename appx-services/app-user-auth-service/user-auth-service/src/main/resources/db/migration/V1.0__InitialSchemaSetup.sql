@@ -19,6 +19,8 @@ DEALLOCATE PREPARE stmt;
 SET @q = CONCAT("CREATE TABLE IF NOT EXISTS ", @auth_schema_name, ".USER (
   `id` varchar(40) NOT NULL,
   `userName` varchar(255) DEFAULT NULL,
+  `firstName` varchar(255) DEFAULT NULL,
+  `lastName` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `organizationId` varchar(255) DEFAULT NULL,
   `active` bit(1) NOT NULL,

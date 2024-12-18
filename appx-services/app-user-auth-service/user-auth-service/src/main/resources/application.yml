@@ -1,9 +1,6 @@
 spring:
   application:
     name: user-auth-module
-  security:
-    filter:
-      order: 5
   jackson:
     default-property-inclusion: non_null
   datasource:
@@ -14,11 +11,6 @@ spring:
     # username: ${VDBUSER:admin}
     # password: ${VDBPASS:admin123}
     driver-class-name: com.mysql.cj.jdbc.Driver
-  # datasource:
-  #     url: jdbc:mysql://localhost:3306/user?createDatabaseIfNotExist=true&autoReconnect=true
-  #     username: root
-  #     password: root
-  #     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       # ddl-auto: update
@@ -33,26 +25,3 @@ spring:
 server:
   hostname: ${VHOSTNAME:${HOSTNAME:authservice.local.localtest.me}}
   port: ${VPORT:2001}
-
-# k8clusters:
-#   auth:
-#     apiV2Audience: ${AUTH_API_V2_AUDIENCE:https://k8cluster.auth0.com/api/v2/}
-#     callbackUrl: ${AUTH_API_V2_AUDIENCE:http://localhost:4200}
-#     clientId: ${AUTH_CLIENT_ID:AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN}
-#     clientSecret: ${AUTH_CLIENT_SECRET:R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw}
-#     domain: ${AUTH_DOMAIN:https://k8cluster.auth0.com}
-#     issuer: ${AUTH_ISSUER:https://k8cluster.auth0.com/}
-#     swaggerUser: ${SWAGGER_USER:user}
-#     swaggerUserPassword: ${SWAGGER_USER_PASS:Admin#1234}
-#     swaggerAdmin: ${SWAGGER_ADMIN:admin}
-#     swaggerAdminPassword: ${SWAGGER_ADMIN_PASS:Admin#1234}
-#     xmlFileName: ${VAUTHXML:defaultAuth-${spring.profiles.active:local}.xml}
-#   swagger:
-#     title: User-Auth-Service
-#     description: |
-#       Returns the list of the User-Auth-Service.
-#     version: 3.0
-#     contacts:
-#       name: Amit Kshirsagar
-#       email: amit.kshirsagar.13@gmail.com
-#       url: https://amitkshirsagar13.github.io/about

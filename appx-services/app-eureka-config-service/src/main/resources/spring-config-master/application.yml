@@ -119,6 +119,8 @@ app:
           role: USER
       jwt:
         enabled: true
+        api:
+          path: /api/**
         secret: fake-client-secret
         expiration: 3600
         selfSigned:

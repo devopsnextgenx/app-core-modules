@@ -2,7 +2,7 @@ package io.devopsnextgenx.microservices.modules.org.importxml;
 
 import io.devopsnextgenx.microservices.modules.loader.services.AbstractPostImportXmlServiceProcessor;
 import io.devopsnextgenx.microservices.modules.loader.services.ImportXmlService;
-import io.devopsnextgenx.microservices.modules.org.models.Organization;
+import io.devopsnextgenx.microservices.modules.models.Organization;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

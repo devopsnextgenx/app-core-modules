@@ -1,6 +1,6 @@
-package io.devopsnextgenx.microservices.modules.user.models;
+package io.devopsnextgenx.microservices.modules.models.providers;
 
-import io.devopsnextgenx.microservices.modules.models.providers.AbstractCloner;
+import io.devopsnextgenx.microservices.modules.models.User;
 import io.devopsnextgenx.microservices.modules.userauth.user.dto.UserDto;
 
 public class UserCloner extends AbstractCloner<User, UserDto> {

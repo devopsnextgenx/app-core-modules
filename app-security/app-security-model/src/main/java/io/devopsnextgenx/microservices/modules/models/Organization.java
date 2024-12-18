@@ -1,4 +1,4 @@
-package io.devopsnextgenx.microservices.modules.org.models;
+package io.devopsnextgenx.microservices.modules.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-import io.devopsnextgenx.microservices.modules.models.BaseModelAudit;
 import jakarta.persistence.Entity;
 
 @Data

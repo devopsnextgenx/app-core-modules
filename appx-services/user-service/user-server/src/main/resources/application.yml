@@ -3,18 +3,24 @@ spring:
   application:
       name: user-service
   datasource:
-      url: jdbc:mysql://localhost:3306/user
-      username: root
-      password: root
-      driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_auth_db}?createDatabaseIfNotExist=true&autoReconnect=true
+    name: authdb
+    username: root
+    password: root
+    # username: ${VDBUSER:admin}
+    # password: ${VDBPASS:admin123}
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
+    hibernate:
+      # ddl-auto: update
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
       hibernate:
-          ddl-auto: update
-      show-sql: false
-      properties:
-          hibernate:
-              '[dialect]': org.hibernate.dialect.MySQL8Dialect
-              '[format_sql]': false
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: false
+
   ssl:
     bundle:
       jks:
@@ -27,111 +33,92 @@ spring:
             password: appxxppa
             type: PKCS12
 
-# app:
-#   modules:
-#     security:
-#       basic:
+app:
+  cloud:
+    aws:
+      region: us-east-1
+      credentialsClass: com.amazonaws.auth.profile.ProfileCredentialsProvider
+  modules:
+    logging:
+      enabled: true
+    tracing:
+      enabled: true
+      jaeger:
+        enabled: true
+        agent:
+          jaegerHost: localhost
+          jaegerPort: 6831
+        trace:
+          samplingRate: 1
+          flushInterval: 1000
+          maxQueueSize: 1000
+    security:
+      enabled: true
+      auth:
+        dataLoadFile: ${VAUTHXML:defaultAuth-${spring.profiles.active:local}.xml}
+      basic:
+        enabled: true
 #         api:
 #           path: /api/**
-# app:
-#   cloud:
-#     aws:
-#       region: us-east-1
-#       credentialsClass: com.amazonaws.auth.profile.ProfileCredentialsProvider
-#   modules:
-#     logging:
-#       enabled: true
-#     tracing:
-#       enabled: true
-#       jaeger:
-#         enabled: true
-#         agent:
-#           jaegerHost: localhost
-#           jaegerPort: 6831
-#         trace:
-#           samplingRate: 1
-#           flushInterval: 1000
-#           maxQueueSize: 1000
-#     security:
-#       enabled: true
-#       auth:
-#         dataLoadFile: ${VAUTHXML:defaultAuth-${spring.profiles.active:local}.xml}
-#       basic:
-#         enabled: true
-#         user:
-#           enabled: false
-#           name: user
-#           password: password
-#           role: USER
-#       jwt:
-#         enabled: true
-#         secret: fake-client-secret
-#         expiration: 3600
-#         selfSigned:
-#           enabled: true
-#           enableController: true
-#       oauth:
-#         defaultAuthType: SELFSIGNED
-#         applications:
-#           # auth0:
-#           #   authType: AUTH0
-#           #   domain: https://devopsnextgenx.auth0.com/
-#           #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
-#           #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
-#           #   audience: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
-#           #   redirectUrl: http://devopsnextgenx.localtest.me
-#           #   dbConnection: Username-Password-Authentication
-#           # auth0-v2:
-#           #   authType: AUTH0
-#           #   domain: https://devopsnextgenx.auth0.com/
-#           #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
-#           #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
-#           #   audience: https://devopsnextgenx.auth0.com/api/v2/
-#           self-signed:
-#             authType: SELFSIGNED
-#             domain: ${AUTH_DOMAIN:https://devopsnextgenx.localtest.me/}
-#             clientId: ${AUTH_API_V2_clientId:fake-client-id}
-#             clientSecret: fake-client-secret
-#     swagger:
-#       enabled: true
-#       users:
-#         swaggerUser: ${SWAGGER_USER:user}
-#         swaggerUserPassword: ${SWAGGER_USER_PASS:user}
-#         swaggerAdmin: ${SWAGGER_ADMIN:admin}
-#         swaggerAdminPassword: ${SWAGGER_ADMIN_PASS:admin}
-#     services:
-#       userServiceHost: http://user-service.localtest.me
-
-management:
-  prometheus:
-    metrics:
-      export:
+        user:
+          enabled: false
+          name: user
+          password: password
+          role: USER
+      jwt:
         enabled: true
-  endpoints:
-    web:
-      base-path: /actuator
-      exposure:
-        include: prometheus,health,metrics,info
+        secret: fake-client-secret
+        expiration: 3600
+        selfSigned:
+          enabled: true
+          enableController: true
+      oauth:
+        defaultAuthType: SELFSIGNED
+        applications:
+          # auth0:
+          #   authType: AUTH0
+          #   domain: https://devopsnextgenx.auth0.com/
+          #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+          #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
+          #   audience: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+          #   redirectUrl: http://devopsnextgenx.localtest.me
+          #   dbConnection: Username-Password-Authentication
+          # auth0-v2:
+          #   authType: AUTH0
+          #   domain: https://devopsnextgenx.auth0.com/
+          #   clientId: AJn1FDdQtsuolZeU4MIK2O7NbXvjccKN
+          #   clientSecret: R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw
+          #   audience: https://devopsnextgenx.auth0.com/api/v2/
+          self-signed:
+            authType: SELFSIGNED
+            domain: ${AUTH_DOMAIN:https://devopsnextgenx.localtest.me/}
+            clientId: ${AUTH_API_V2_clientId:fake-client-id}
+            clientSecret: fake-client-secret
+    swagger:
+      enabled: true
+      users:
+        swaggerUser: ${SWAGGER_USER:user}
+        swaggerUserPassword: ${SWAGGER_USER_PASS:user}
+        swaggerAdmin: ${SWAGGER_ADMIN:admin}
+        swaggerAdminPassword: ${SWAGGER_ADMIN_PASS:admin}
+    services:
+      userServiceHost: http://user-service.localtest.me
+
+
 server:
   port: ${VPORT:8080}
-  ssl:
-    enabled: true
-    key-store-type: PKCS12
-    key-store: classpath:appx.p12
-    key-store-password: appxxppa
-    key-alias: appx
 
-springdoc:
-    api-docs:
-        path: /v3/api-docs
-        enabled: true
-    swagger-ui:
-      enabled: true
-      url: user-schema.yaml
-      path: /swagger-ui.html
-      filter: true
-      tryItOutEnabled: true
-      operationsSorter: method
-      tagsSorter: alpha
-      syntaxHighlight:
-        activated: true
+# springdoc:
+#     api-docs:
+#         path: /v3/api-docs
+#         enabled: true
+#     swagger-ui:
+#       enabled: true
+#       # url: user-schema.yaml
+#       path: /swagger-ui.html
+#       filter: true
+#       tryItOutEnabled: true
+#       operationsSorter: method
+#       tagsSorter: alpha
+#       syntaxHighlight:
+#         activated: true

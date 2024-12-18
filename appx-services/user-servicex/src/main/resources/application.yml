@@ -116,7 +116,7 @@ springdoc:
         enabled: true
     swagger-ui:
       enabled: true
-      url: user-schema.yaml
+      # url: user-schema.yaml
       path: /swagger-ui.html
       filter: true
       tryItOutEnabled: true

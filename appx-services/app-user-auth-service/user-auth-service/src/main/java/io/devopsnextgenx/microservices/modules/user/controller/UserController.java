@@ -1,9 +1,10 @@
 package io.devopsnextgenx.microservices.modules.user.controller;
 
-import io.devopsnextgenx.microservices.modules.user.models.UserCloner;
+import io.devopsnextgenx.microservices.modules.models.providers.UserCloner;
 import io.devopsnextgenx.microservices.modules.user.service.UserService;
 import io.devopsnextgenx.microservices.modules.userauth.user.api.UsersApi;
 import io.devopsnextgenx.microservices.modules.userauth.user.dto.UserDto;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api")
+@SecurityRequirement(name = "JWT")
 public class UserController implements UsersApi {
 
     @Autowired

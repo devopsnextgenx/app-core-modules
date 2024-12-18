@@ -7,7 +7,7 @@
     <import resource="defaultAuth-test.xml" />
 
     <bean id="adminUser"
-          class="io.devopsnextgenx.microservices.modules.user.models.User">
+          class="io.devopsnextgenx.microservices.modules.models.User">
         <property name="userName" value="amitkshirsagar13"/>
         <property name="email" value="amit.kshirsagar.13@gmail.com"/>
         <property name="active" value="true"/>
@@ -23,7 +23,7 @@
     </bean>
 
     <bean id="demoUser"
-          class="io.devopsnextgenx.microservices.modules.user.models.User">
+          class="io.devopsnextgenx.microservices.modules.models.User">
         <property name="userName" value="poonamkshirsagar13"/>
         <property name="email" value="poonam.kshirsagar.13@gmail.com"/>
         <property name="active" value="true"/>
@@ -38,7 +38,7 @@
     </bean>
 
     <bean id="testUser"
-          class="io.devopsnextgenx.microservices.modules.user.models.User">
+          class="io.devopsnextgenx.microservices.modules.models.User">
         <property name="userName" value="amoghkshirsagar13"/>
         <property name="email" value="amogh.kshirsagar.13@gmail.com"/>
         <property name="active" value="true"/>
@@ -52,7 +52,7 @@
         <property name="externalId" value="USR-00003"/>
     </bean>
 
-    <bean id="appxOrg" class="io.devopsnextgenx.microservices.modules.org.models.Organization">
+    <bean id="appxOrg" class="io.devopsnextgenx.microservices.modules.models.Organization">
         <property name="orgName" value="Appx" />
         <property name="active" value="true" />
         <property name="adminId" value="#{adminUser.externalId}" />
