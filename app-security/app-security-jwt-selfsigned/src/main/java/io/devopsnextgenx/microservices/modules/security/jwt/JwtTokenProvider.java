@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 import io.jsonwebtoken.JwtException;
 import java.util.Collection;
