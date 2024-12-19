@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 /**
  * UserController:
@@ -35,7 +36,13 @@ public class UserController implements UsersApi {
 
     @Override
     public ResponseEntity<List<UserDto>> listUsers() {
-        return ResponseEntity.ok(userService.listAll());
+        try {
+            return ResponseEntity.ok(userService.listAll());
+        } catch (TimeoutException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return (ResponseEntity<List<UserDto>>) ResponseEntity.internalServerError();
     }
 
     @Override
