@@ -3,6 +3,8 @@ app:
     trustStore: ${VTRUSTSTORE:appx.p12}
     trustStorePassword: ${VTRUSTSTOREPASSWORD:appxxppa}
 
+VCONFIGHOST: config.appx.localtest.me
+
 spring:
   profiles:
     active: local
