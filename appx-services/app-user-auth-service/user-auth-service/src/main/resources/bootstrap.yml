@@ -4,7 +4,13 @@ app:
     trustStorePassword: ${VTRUSTSTOREPASSWORD:appxxppa}
 
 VCONFIGHOST: config.appx.localtest.me
-
+server:
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:appx.p12
+    key-store-password: appxxppa
+    key-alias: appx
 spring:
   profiles:
     active: local

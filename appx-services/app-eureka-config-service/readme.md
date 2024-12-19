@@ -17,6 +17,7 @@ keytool -exportcert -alias appx -keystore src/main/resources/appx.p12 -storetype
 sudo keytool -delete -alias appx -keystore /etc/ssl/certs/java/cacerts -storepass changeit
 sudo keytool -importcert -alias appx -file src/main/resources/appx.crt -keystore /etc/ssl/certs/java/cacerts -storepass changeit
 
+keytool -importcert -alias appx -file src/main/resources/appx.crt -keystore "c:/Program Files/Zulu/zulu-17/lib/security/cacerts" -storepass changeit
 ```
 
 ### Actuator Urls:
