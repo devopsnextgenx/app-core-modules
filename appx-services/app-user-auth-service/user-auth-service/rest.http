@@ -1,0 +1,4 @@
+### Get Circuit Breaker Status
+GET https://user-auth-service.appx.localtest.me:2001/actuator/circuitbreakers
+Accept: application/json
+
