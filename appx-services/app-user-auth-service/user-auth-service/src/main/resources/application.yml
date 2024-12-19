@@ -10,9 +10,3 @@ spring:
 server:
   hostname: ${VHOSTNAME:${HOSTNAME:authservice.local.localtest.me}}
   port: ${VPORT:2001}
-  ssl:
-    enabled: true
-    key-store-type: PKCS12
-    key-store: classpath:appx.p12
-    key-store-password: appxxppa
-    key-alias: appx
