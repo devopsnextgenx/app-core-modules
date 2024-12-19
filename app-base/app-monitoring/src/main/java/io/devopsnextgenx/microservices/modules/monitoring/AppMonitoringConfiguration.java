@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JCircuitBreakerFactory;
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JConfigBuilder;
-import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4jBulkheadProvider;
-import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
+// import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4jBulkheadProvider;
+// import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.cloud.client.circuitbreaker.Customizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,9 +17,9 @@ import org.springframework.context.annotation.Configuration;
 // import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
-import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
 import io.github.resilience4j.timelimiter.TimeLimiterConfig;
-import io.github.resilience4j.timelimiter.TimeLimiterRegistry;
+// import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
+// import io.github.resilience4j.timelimiter.TimeLimiterRegistry;
 
 // import jakarta.servlet.Servlet;
 // import jakarta.servlet.ServletContext;
