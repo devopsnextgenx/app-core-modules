@@ -27,6 +27,7 @@
 
         <spring-boot.version>3.4.0</spring-boot.version>
         <spring-cloud.version>2024.0.0</spring-cloud.version>
+        <hystrix.version>2.2.10.RELEASE</hystrix.version>
         <awspring.version>3.2.1</awspring.version>
         <aws.sdk.version>2.29.29</aws.sdk.version>
         <jackson.version>2.15.4</jackson.version>
@@ -78,6 +79,16 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+                <version>${hystrix.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+                <version>3.2.0</version>
+            </dependency>
+            <dependency>
                 <groupId>com.fasterxml.jackson.datatype</groupId>
                 <artifactId>jackson-datatype-jsr310</artifactId>
                 <version>${jackson-datatype-jsr310.version}</version>
@@ -111,6 +122,11 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.module</groupId>
+                <artifactId>jackson-module-afterburner</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
             <dependency>

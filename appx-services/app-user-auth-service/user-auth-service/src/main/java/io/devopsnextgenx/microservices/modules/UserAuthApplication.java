@@ -22,6 +22,7 @@ import io.devopsnextgenx.microservices.modules.user.service.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Scope;
@@ -34,6 +35,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+@EnableHystrix
 @SpringBootApplication
 @ComponentScan("io.devopsnextgenx.microservices.modules")
 @EnableJpaRepositories("io.devopsnextgenx.microservices.modules")
