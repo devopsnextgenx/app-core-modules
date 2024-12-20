@@ -13,6 +13,14 @@
     <version>current-SNAPSHOT</version>
     <dependencies>
         <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot</artifactId>
+        </dependency>
+        <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>
             <artifactId>app-data-model</artifactId>
         </dependency>

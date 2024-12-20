@@ -10,3 +10,13 @@ spring:
 server:
   hostname: ${VHOSTNAME:${HOSTNAME:authservice.local.localtest.me}}
   port: ${VPORT:2001}
+
+jasypt:
+  encryptor:
+    password: terces##secret
+
+app:
+  modules:
+    security:
+      secretKey: terces##secret
+      encrypted: classpath:encrypted.properties

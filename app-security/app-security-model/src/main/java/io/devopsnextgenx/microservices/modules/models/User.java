@@ -2,6 +2,7 @@ package io.devopsnextgenx.microservices.modules.models;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -14,6 +15,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+
+import io.devopsnextgenx.microservices.modules.utils.converters.PasswordEncryptor;
 
 /**
  * User:
@@ -34,6 +37,8 @@ public class User extends BaseModelAudit {
     private String firstName;
     private String lastName;
     private String email;
+    @Convert(converter = PasswordEncryptor.class)
+    private String password;
     private boolean active;
 
     @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
