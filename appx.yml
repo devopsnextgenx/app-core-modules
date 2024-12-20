@@ -1,0 +1,57 @@
+fuge_global:
+  run_containers: true
+  translate_localhost: true
+  dns_enabled: true
+  dns_host: $localhost
+  dns_port: 1001
+  dns_suffix: localtest.local
+  dns_external:
+    - "fugehost.localtest.local IN A $localhost"
+    - "appx.localtest.local IN SRV 0 5 3001 fugehost.localtest.local"
+  tail: true
+  monitor: false
+  monitor_excludes:
+    - '**/target/**'
+    - '**/node_modules/**'
+    - '**/.git/**'
+    - '*.log'
+    - '**/*.log'
+    - '**/fuge*.yml'
+    - '**/*.syslog'
+    - '**/*.cvf'
+
+  environment:
+    - STACK_ENV=local
+    - STACK_PREFIX=localtest
+    - DNS_BASE=localtest.local
+    - REGISTRY_ROUTE53=1
+    - VCONFIGHOST=config.appx.localtest.me
+    - VCONSULPORT=consule.appx.localtest.me
+    - VVAULTHOST=vault.appx.localtest.me
+
+eureka-config:
+  type: process
+  path: appx-services/app-eureka-config-service
+  run: mvn spring-boot:run
+  group: infra
+  tail: true
+  ports:
+    - eureka=8761:8761
+
+user-auth:
+  type: process
+  path: appx-services/app-user-auth-service
+  run: mvn spring-boot:run
+  group: infra
+  tail: true
+  ports:
+    - userAuth=2001:2001
+
+user:
+  type: process
+  path: appx-services/app-user-service
+  run: mvn spring-boot:run
+  group: core
+  tail: true
+  ports:
+    - user=8080:8080

@@ -17,3 +17,5 @@ consul-data/
 # OpenAPI gen-src
 gen-src/
 typings/
+
+log/

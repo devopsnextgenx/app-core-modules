@@ -15,14 +15,14 @@ spring:
       password: ${VCONFIGPASSWORD:password}
       label: master
     consul:
-      host: ${CONSULHOST:consul.localhost}
-      port: ${CONSULPORT:8500}
+      host: ${VCONSULHOST:consul.localhost}
+      port: ${VCONSULPORT:8500}
       discovery:
         instance-id: ${spring.application.name}-${hostname}-${server.port}
         prefer-ip-address: true
     vault:
-      host: ${VAULTHOST:vault.localhost}
-      port: ${VAULTPORT:8200}
+      host: ${VVAULTHOST:vault.localhost}
+      port: ${VVAULTPORT:8200}
       kv:
         enabled: true
       scheme: ${VAULT_METHOD:http}
