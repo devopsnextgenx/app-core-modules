@@ -32,7 +32,7 @@ fuge_global:
 eureka-config:
   type: process
   path: appx-services/app-eureka-config-service
-  run: mvn spring-boot:run
+  run: mvn spring-boot:run -DskipTests
   group: infra
   tail: true
   ports:
@@ -40,8 +40,8 @@ eureka-config:
 
 user-auth:
   type: process
-  path: appx-services/app-user-auth-service
-  run: mvn spring-boot:run
+  path: appx-services/app-user-auth-service/user-auth-service
+  run: mvn spring-boot:run -DskipTests
   group: infra
   tail: true
   ports:
@@ -49,8 +49,8 @@ user-auth:
 
 user:
   type: process
-  path: appx-services/app-user-service
-  run: mvn spring-boot:run
+  path: appx-services/app-user-service/user-service
+  run: mvn spring-boot:run -DskipTests
   group: core
   tail: true
   ports:

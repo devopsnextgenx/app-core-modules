@@ -20,6 +20,6 @@
         <module>app-eureka-config-service</module>
         <module>app-user-auth-service</module>
         <module>app-data-loader</module>
-        <module>user-service</module>
+        <module>app-user-service</module>
     </modules>
 </project>

@@ -4,14 +4,14 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>io.devopsnextgenx.microservices.modules</groupId>
-        <artifactId>user-service</artifactId>
+        <artifactId>app-user-service</artifactId>
         <version>current-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>user-server</artifactId>
-    <name>user-server</name>
-    <description>User API Server</description>
+    <artifactId>user-service</artifactId>
+    <name>user-service</name>
+    <description>User API service</description>
 
     <properties>
         <java.version>17</java.version>
