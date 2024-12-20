@@ -31,11 +31,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @EnableEurekaServer
 @EnableConfigServer
 @ComponentScan(basePackages = "io.devopsnextgenx")
+@ComponentScan(basePackages = "io.devopsnextgenx.microservices")
 public class EurekaConfigServerApplication {
-
-    @Autowired
-    public UserDetailsService userDetailsService;
-
 	public static void main(String[] args) {
 		SpringApplication.run(EurekaConfigServerApplication.class, args);
 	}

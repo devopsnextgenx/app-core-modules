@@ -13,10 +13,10 @@ import io.devopsnextgenx.microservices.modules.utils.creators.OrgCreator;
 import io.devopsnextgenx.microservices.modules.utils.creators.RoleCreator;
 import io.devopsnextgenx.microservices.modules.utils.creators.UserCreator;
 import io.devopsnextgenx.microservices.modules.org.importxml.OrgPostXmlImportServiceProcessor;
+import io.devopsnextgenx.microservices.modules.repositories.AppxUserRepository;
+import io.devopsnextgenx.microservices.modules.repositories.OrgRepository;
+import io.devopsnextgenx.microservices.modules.repositories.RoleRepository;
 import io.devopsnextgenx.microservices.modules.repository.IdMapperRepository;
-import io.devopsnextgenx.microservices.modules.repository.OrgRepository;
-import io.devopsnextgenx.microservices.modules.repository.RoleRepository;
-import io.devopsnextgenx.microservices.modules.repository.UserRepository;
 import io.devopsnextgenx.microservices.modules.security.configuration.AuthServiceProperties;
 import io.devopsnextgenx.microservices.modules.user.service.UserService;
 import org.springframework.boot.SpringApplication;
@@ -58,7 +58,7 @@ public class UserAuthApplication {
     }
 
     @Bean
-    public UserCreator userCreator(IdMapperRepository idMapperRepository, UserRepository userRepository) {
+    public UserCreator userCreator(IdMapperRepository idMapperRepository, AppxUserRepository userRepository) {
         return new UserCreator(idMapperRepository, userRepository);
     }
 
@@ -99,7 +99,7 @@ public class UserAuthApplication {
     }
 
     @Bean
-    public UserService userService(UserRepository userRepository, UserCloner userCloner) {
+    public UserService userService(AppxUserRepository userRepository, UserCloner userCloner) {
         return new UserService(userRepository, userCloner);
     }
 }

@@ -1,12 +1,10 @@
 spring.profiles.active: ${VPROFILE:native}
-
 info:
   application: 
     name: Spring Eureka Config Service
     description: Spring Eureka Config Service
     version: 1.0.0
     management: /actuator
-
 server:
   port: ${VPORT:8761}
   ssl:
@@ -57,12 +55,17 @@ management:
 app:
   user-list:
     users:
-      - username: eureka
-        password: password
-        role: USER
-      - username: config
-        password: password
-        role: USER
+      - username: admin
+        password: p@ssw0rd
+        firstName: eureka
+        lastName: config
+        email: admin@devopsnextgenx.io
+        roles:
+          - SYSTEM_ADMINISTRATOR
+          - ORGANIZATION_ADMINISTRATOR
+          - DATA_MANAGER
+          - COMPANY_ADMINISTRATOR
+          - SERVICE_ACCOUNT
   cloud:
     aws:
       region: us-east-1
@@ -106,11 +109,18 @@ spring:
   datasource:
     url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_auth_db}?createDatabaseIfNotExist=true&autoReconnect=true
     name: authdb
-    username: root
-    password: root
-    # username: ${VDBUSER:admin}
-    # password: ${VDBPASS:admin123}
+    username: ${VDBUSER:root}
+    password: ${VDBPASS:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      # ddl-auto: update
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  sql:
+    init:
+      mode: always      
   ssl:
     bundle:
       jks:

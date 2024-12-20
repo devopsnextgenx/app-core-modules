@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.devopsnextgenx.microservices.modules.api.UserApi;
 import io.devopsnextgenx.microservices.modules.dto.UserDto;
 import io.devopsnextgenx.microservices.modules.models.User;
-import io.devopsnextgenx.microservices.modules.repository.UserRepository;
+import io.devopsnextgenx.microservices.modules.repositories.AppxUserRepository;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @SecurityRequirement(name = "JWT")
 public class UserController implements UserApi {
     @Autowired
-    private UserRepository userRepository;
+    private AppxUserRepository userRepository;
 
     @RequestMapping(value = "/echo", method = {RequestMethod.GET}, produces = {MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<String> echo() {

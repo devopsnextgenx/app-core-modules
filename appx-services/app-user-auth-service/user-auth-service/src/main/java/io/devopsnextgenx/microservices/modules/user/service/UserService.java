@@ -2,7 +2,7 @@ package io.devopsnextgenx.microservices.modules.user.service;
 
 import io.devopsnextgenx.microservices.modules.models.User;
 import io.devopsnextgenx.microservices.modules.models.providers.UserCloner;
-import io.devopsnextgenx.microservices.modules.repository.UserRepository;
+import io.devopsnextgenx.microservices.modules.repositories.AppxUserRepository;
 import io.devopsnextgenx.microservices.modules.userauth.user.dto.UserDto;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.micrometer.core.annotation.Timed;
@@ -12,12 +12,6 @@ import java.util.List;
 import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
-// import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
-// import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-
-// import lombok.AllArgsConstructor;
 /**
  * UserService:
  *
@@ -28,10 +22,10 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 public class UserService {
-    private UserRepository userRepository;
+    private AppxUserRepository userRepository;
     private UserCloner userCloner;
 
-    public UserService(UserRepository userRepository, UserCloner userCloner) {
+    public UserService(AppxUserRepository userRepository, UserCloner userCloner) {
         this.userRepository = userRepository;
         this.userCloner = userCloner;
     }

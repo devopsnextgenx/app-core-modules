@@ -6,5 +6,5 @@ import lombok.Data;
 
 @Data
 public class UserList {
-    private List<User> users;
+    private List<SeedUser> users;
 }

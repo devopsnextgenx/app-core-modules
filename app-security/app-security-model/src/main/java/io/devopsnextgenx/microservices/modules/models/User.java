@@ -45,7 +45,12 @@ public class User extends BaseModelAudit {
     @JoinColumn(name="organizationId", nullable=false)
     private Organization organization;
 
-    @ManyToMany
+    @ManyToMany(
+        cascade = {
+            CascadeType.PERSIST, 
+            CascadeType.MERGE
+        }
+    )
     @JoinTable(
             name = "USERS_ROLES",
             joinColumns = @JoinColumn(

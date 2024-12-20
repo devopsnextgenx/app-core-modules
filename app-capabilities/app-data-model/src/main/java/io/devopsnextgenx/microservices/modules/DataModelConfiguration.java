@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import io.devopsnextgenx.microservices.modules.utils.converters.PasswordEncryptor;
+
 @Configuration
 @ConditionalOnProperty(name = "app.modules.security.enabled", havingValue = "true", matchIfMissing = false)
 public class DataModelConfiguration {
@@ -28,5 +30,10 @@ public class DataModelConfiguration {
         config.setStringOutputType("base64");
         encryptor.setConfig(config);
         return encryptor;
+    }
+
+    @Bean
+    public PasswordEncryptor passwordEncryptor() {
+        return new PasswordEncryptor();
     }
 }

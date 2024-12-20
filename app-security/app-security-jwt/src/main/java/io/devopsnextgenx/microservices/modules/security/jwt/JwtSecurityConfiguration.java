@@ -1,6 +1,7 @@
 package io.devopsnextgenx.microservices.modules.security.jwt;
 
 import io.devopsnextgenx.base.modules.config.YamlPropertyLoaderFactory;
+import io.devopsnextgenx.microservices.modules.repositories.AppxUserRepositoryImpl;
 import io.devopsnextgenx.microservices.modules.security.jwt.cache.JWTVerifierCache;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.SwaggerUISecurityConfig;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.AppConfig;
@@ -8,6 +9,8 @@ import io.devopsnextgenx.microservices.modules.security.jwt.config.OAuthApplicat
 import io.devopsnextgenx.microservices.modules.security.jwt.helpers.JwtVerifierHelper;
 import io.devopsnextgenx.microservices.modules.security.jwt.helpers.OAuthLoginHelper;
 import io.devopsnextgenx.microservices.modules.security.jwt.validators.ProductionTokenValidator;
+import io.devopsnextgenx.microservices.modules.services.AppxUserDetailsService;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -21,7 +24,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
@@ -84,10 +86,9 @@ public class JwtSecurityConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(UserDetailsService.class)
-    public UserDetailsService userDetailsService(SwaggerUISecurityConfig appSwaggerUISecurityConfig, PasswordEncoder passwordEncoder) {
-        log.info("BasicSecurityConfiguration: userDetailsService");
-        InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
-        return userDetailsManager;
+    public UserDetailsService userDetailsService(AppxUserRepositoryImpl appxUserRepositoryImpl, PasswordEncoder passwordEncoder) {
+        log.info("JwtSecurityConfiguration: userDetailsService");
+        return new AppxUserDetailsService(appxUserRepositoryImpl);
     }
 
     @Bean

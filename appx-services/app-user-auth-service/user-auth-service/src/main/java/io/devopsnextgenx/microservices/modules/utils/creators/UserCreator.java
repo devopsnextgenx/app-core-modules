@@ -2,8 +2,8 @@ package io.devopsnextgenx.microservices.modules.utils.creators;
 
 import io.devopsnextgenx.microservices.modules.models.BaseEntity;
 import io.devopsnextgenx.microservices.modules.models.User;
+import io.devopsnextgenx.microservices.modules.repositories.AppxUserRepository;
 import io.devopsnextgenx.microservices.modules.repository.IdMapperRepository;
-import io.devopsnextgenx.microservices.modules.repository.UserRepository;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -20,8 +20,8 @@ import org.apache.commons.lang3.StringUtils;
 @Slf4j
 public class UserCreator extends Creator {
 
-    private UserRepository userRepository;
-    public UserCreator(IdMapperRepository idMapperRepository, UserRepository userRepository) {
+    private AppxUserRepository userRepository;
+    public UserCreator(IdMapperRepository idMapperRepository, AppxUserRepository userRepository) {
         setIdMapperRepository(idMapperRepository);
         setUserRepository(userRepository);
     }

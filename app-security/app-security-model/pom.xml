@@ -13,12 +13,20 @@
     <version>current-SNAPSHOT</version>
     <dependencies>
         <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-access</artifactId>
         </dependency>
         <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>

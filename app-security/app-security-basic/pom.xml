@@ -27,6 +27,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-security-service</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>

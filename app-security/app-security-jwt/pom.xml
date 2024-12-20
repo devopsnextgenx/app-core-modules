@@ -10,6 +10,7 @@
         <version>current-SNAPSHOT</version>
     </parent>
 
+    <groupId>io.devopsnextgenx.microservices.modules</groupId>
     <artifactId>app-security-jwt</artifactId>
     <name>app-security-jwt</name>
 
@@ -52,16 +53,16 @@
         </dependency>
         <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>app-security-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
             <artifactId>app-logging</artifactId>
         </dependency>
         <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>
             <artifactId>app-base-model</artifactId>
-            <scope>provided</scope>
         </dependency>
-        <!--  3.18.1 is last version supporting nested map claims for JWTCreator.Builder needed for
-        'is_federated' nested claim      -->
-        <!--  If sso solution will be changed we can use higher version -->
         <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
@@ -70,38 +71,31 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>30.1-jre</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-validator</groupId>

@@ -1,4 +1,4 @@
-package io.devopsnextgenx.microservices.modules.repository;
+package io.devopsnextgenx.microservices.modules.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
