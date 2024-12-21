@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/api")
 @SecurityRequirement(name = "JWT")
-public class UserController implements UserApi {
+public class UserController implements UsersApi {
     @Autowired
     private AppxUserRepository userRepository;
 
@@ -34,7 +34,7 @@ public class UserController implements UserApi {
     }
 
     @Override
-    public ResponseEntity<UserDto> getUserById(UUID id) {
+    public ResponseEntity<UserDto> _getUserById(String id) {
         User user = userRepository.getReferenceById(id.toString());
         List<RoleDto> roles = user.getUserRoles().stream().map(role -> RoleDto.fromValue(role.getName().name())).toList();
         return ResponseEntity.ok(new UserDto()
@@ -45,11 +45,4 @@ public class UserController implements UserApi {
         .roles(roles)
         .id(user.getId()));
     }
-
-    @Override
-    public ResponseEntity<Void> deleteUserById(UUID id) {
-        return ResponseEntity.status(201).body(null);
-    }
-
-    
 }
