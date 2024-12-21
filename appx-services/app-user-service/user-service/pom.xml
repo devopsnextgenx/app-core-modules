@@ -14,9 +14,6 @@
     <description>User API service</description>
 
     <properties>
-        <java.version>17</java.version>
-        <default.package>io.devopsnextgenx.microservices.modules</default.package>
-        <schemaName>user</schemaName>
         <spring.boot.plugin.disabled>false</spring.boot.plugin.disabled>
     </properties>
 
@@ -123,14 +120,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.k8s.framework</groupId>
-                <artifactId>user-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 </project>

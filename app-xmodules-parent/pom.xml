@@ -307,6 +307,7 @@
                     <configuration>
                         <fork>true</fork>
                         <skip>${spring.boot.plugin.disabled}</skip>
+                        <jmxPort>0</jmxPort>
                         <excludes>
                             <exclude>
                                 <groupId>org.projectlombok</groupId>
