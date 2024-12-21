@@ -38,7 +38,7 @@ DEALLOCATE PREPARE stmt;
 SET @q = CONCAT("CREATE TABLE IF NOT EXISTS ", @auth_schema_name, ".ROLE (
   `id` varchar(40) NOT NULL,
   `isDeleted` bit(1) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `name` tinyint DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8");
 PREPARE stmt FROM @q;

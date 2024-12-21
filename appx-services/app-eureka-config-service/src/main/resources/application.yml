@@ -115,12 +115,12 @@ spring:
   jpa:
     hibernate:
       # ddl-auto: update
-      ddl-auto: none
+      ddl-auto: validate
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-  sql:
-    init:
-      mode: always      
+  # sql:
+  #   init:
+  #     mode: always
   ssl:
     bundle:
       jks:

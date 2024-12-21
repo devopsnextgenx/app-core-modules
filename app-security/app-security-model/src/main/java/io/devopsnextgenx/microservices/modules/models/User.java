@@ -50,7 +50,8 @@ public class User extends BaseModelAudit {
         cascade = {
             CascadeType.PERSIST, 
             CascadeType.MERGE
-        }
+        },
+        fetch = FetchType.EAGER
     )
     @JoinTable(
             name = "USERS_ROLES",
