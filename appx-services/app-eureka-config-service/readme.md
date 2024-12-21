@@ -22,11 +22,14 @@ keytool -importcert -alias appx -file src/main/resources/appx.crt -keystore "c:/
 
 ### Actuator Urls:
 
-- [info](https://eureka.appx.localtest.me:8761/management/actuator/info)
-- [health](https://eureka.appx.localtest.me:8761/management/actuator/health)
+- [info](https://eureka-service.appx.localtest.me:8761/management/actuator/info)
+- [health](https://eureka-service.appx.localtest.me:8761/management/actuator/health)
+
+### Eureka Server:
+- [eureka-service](https://eureka-service.appx.localtest.me:8761/)
 
 ### Config Server:
 
-- [user-service:default](https://eureka.appx.localtest.me:8761/config/user-service/default)
-- [user-service:local](https://eureka.appx.localtest.me:8761/config/user-service/local)
-- [user-service:dev](https://eureka.appx.localtest.me:8761/config/user-service/dev)
+- [user-service:default](https://config-service.appx.localtest.me:8761/config/user-service/default)
+- [user-service:local](https://config-service.appx.localtest.me:8761/config/user-service/local)
+- [user-service:dev](https://config-service.appx.localtest.me:8761/config/user-service/dev)

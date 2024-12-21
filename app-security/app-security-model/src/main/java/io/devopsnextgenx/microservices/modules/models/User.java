@@ -37,7 +37,7 @@ public class User extends BaseModelAudit {
     private String firstName;
     private String lastName;
     private String email;
-    @Convert(converter = PasswordEncryptor.class)
+    // @Convert(converter = PasswordEncryptor.class)
     private String password;
     private boolean active;
 

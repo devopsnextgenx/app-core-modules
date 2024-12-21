@@ -86,7 +86,7 @@ public class JwtSecurityConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(UserDetailsService.class)
-    public UserDetailsService userDetailsService(AppxUserRepositoryImpl appxUserRepositoryImpl, PasswordEncoder passwordEncoder) {
+    public UserDetailsService userDetailsService(AppxUserRepositoryImpl appxUserRepositoryImpl) {
         log.info("JwtSecurityConfiguration: userDetailsService");
         return new AppxUserDetailsService(appxUserRepositoryImpl);
     }

@@ -29,6 +29,9 @@ public class SecurityConfiguration {
     @Autowired
     AppxUserDetailsService userDetailsService;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @EventListener
     public void onApplicationReadyEvent(ApplicationReadyEvent event) {
         UserList appUserList = (UserList) event.getApplicationContext().getBeanFactory().getBean("appUserList");
@@ -45,7 +48,7 @@ public class SecurityConfiguration {
             if(!userDetailsService.existUser(user.getUsername())) {
                     User seedUser = User.builder()
                     .userName(user.getUsername())
-                    .password(user.getPassword())
+                    .password(passwordEncoder.encode(user.getPassword()))
                     .firstName(user.getFirstName())
                     .lastName(user.getLastName())
                     .email(user.getEmail())

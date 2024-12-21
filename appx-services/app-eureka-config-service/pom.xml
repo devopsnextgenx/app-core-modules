@@ -39,7 +39,7 @@
 			<groupId>io.devopsnextgenx.microservices.modules</groupId>
 			<artifactId>app-security-model</artifactId>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>io.devopsnextgenx.microservices.modules</groupId>
 			<artifactId>app-security-filter</artifactId>
 		</dependency>
@@ -54,7 +54,7 @@
 		<dependency>
 			<groupId>io.devopsnextgenx.microservices.modules</groupId>
 			<artifactId>app-security-jwt-selfsigned</artifactId>
-		</dependency> -->
+		</dependency>
 		<!-- <dependency>
 			<groupId>io.devopsnextgenx.microservices.modules</groupId>
 			<artifactId>app-logging</artifactId>

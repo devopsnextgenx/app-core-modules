@@ -19,11 +19,11 @@ public class AppxUserDetailsService implements UserDetailsService {
     
     @Override
     public UserDetails loadUserByUsername(String username) {
-        log.info("UserDetailsService: " + username);
         User user = userRepository.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }
+        log.info("UserDetailsService: {}", user.getEmail());
         return new AppxUserPrincipal(user);
     }
 

@@ -56,7 +56,7 @@ app:
   user-list:
     users:
       - username: admin
-        password: p@ssw0rd
+        password: password
         firstName: eureka
         lastName: config
         email: admin@devopsnextgenx.io
