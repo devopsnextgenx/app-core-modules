@@ -7,6 +7,7 @@ import io.devopsnextgenx.microservices.modules.repository.IdMapperRepository;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * UserCreator:
@@ -21,9 +22,11 @@ import org.apache.commons.lang3.StringUtils;
 public class UserCreator extends Creator {
 
     private AppxUserRepository userRepository;
-    public UserCreator(IdMapperRepository idMapperRepository, AppxUserRepository userRepository) {
+    private PasswordEncoder passwordEncoder;
+    public UserCreator(IdMapperRepository idMapperRepository, AppxUserRepository userRepository, PasswordEncoder passwordEncoder) {
         setIdMapperRepository(idMapperRepository);
         setUserRepository(userRepository);
+        setPasswordEncoder(passwordEncoder);
     }
 
     @Override
@@ -31,6 +34,7 @@ public class UserCreator extends Creator {
         BaseEntity rtn = null;
         User user = (User) be;
         if(isNotExisting(be)) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             rtn = userRepository.save(user);
             be.setId(rtn.getId());
         } else {

@@ -28,6 +28,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -58,8 +59,8 @@ public class UserAuthApplication {
     }
 
     @Bean
-    public UserCreator userCreator(IdMapperRepository idMapperRepository, AppxUserRepository userRepository) {
-        return new UserCreator(idMapperRepository, userRepository);
+    public UserCreator userCreator(IdMapperRepository idMapperRepository, AppxUserRepository userRepository, PasswordEncoder passwordEncoder) {
+        return new UserCreator(idMapperRepository, userRepository, passwordEncoder);
     }
 
     @Bean
