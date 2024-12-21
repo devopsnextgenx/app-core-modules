@@ -3,7 +3,6 @@ package io.devopsnextgenx.microservices.modules.auth.controller;
 import io.devopsnextgenx.microservices.modules.auth.service.AuthService;
 import io.devopsnextgenx.microservices.modules.userauth.auth.api.AuthServiceApi;
 import io.devopsnextgenx.microservices.modules.userauth.auth.dto.AuthTokenDto;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

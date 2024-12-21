@@ -258,4 +258,16 @@ components:
               type: string
             password:
               type: string
+            roles:
+              type: array
+              items:
+                $ref: '#/components/schemas/Role'    
+    Role:
+      type: string
+      enum:
+        - SYSTEM_ADMINISTRATOR
+        - ORGANIZATION_ADMINISTRATOR
+        - DATA_MANAGER
+        - COMPANY_ADMINISTRATOR
+        - SERVICE_ACCOUNT
 

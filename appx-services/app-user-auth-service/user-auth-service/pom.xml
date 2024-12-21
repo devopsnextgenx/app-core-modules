@@ -41,18 +41,6 @@
         </dependency>
         <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>
-            <artifactId>app-mysql</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.devopsnextgenx.microservices.modules</groupId>
-            <artifactId>app-flyway</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.devopsnextgenx.microservices.modules</groupId>
             <artifactId>dataloader-server</artifactId>
         </dependency>
         <dependency>

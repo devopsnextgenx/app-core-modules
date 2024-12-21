@@ -55,7 +55,6 @@ public class UserService {
         .map(item -> userCloner.cloneToDto(item))
         .collect(Collectors.toList());
 
-        log.info("UserList: {}", userList.size());
         return userList;
     }
     

@@ -15,8 +15,11 @@
         <property name="deleted" value="false" />
         <property name="userRoles">
             <list>
-                <ref bean="user_role_SYSTEM_ADMINISTRATOR"/>
-                <ref bean="user_role_USER"/>
+                <ref bean="SYSTEM_ADMINISTRATOR"/>
+                <ref bean="ORGANIZATION_ADMINISTRATOR"/>
+                <ref bean="COMPANY_ADMINISTRATOR"/>
+                <ref bean="DATA_MANAGER"/>
+                <ref bean="SERVICE_ACCOUNT"/>
             </list>
         </property>
         <property name="organization" ref="appxOrg" />
@@ -32,7 +35,7 @@
         <property name="deleted" value="false" />
         <property name="userRoles">
             <list>
-                <ref bean="user_role_USER"/>
+                <ref bean="SERVICE_ACCOUNT"/>
             </list>
         </property>
         <property name="organization" ref="appxOrg" />
@@ -48,7 +51,8 @@
         <property name="deleted" value="false" />
         <property name="userRoles">
             <list>
-                <ref bean="user_role_SYSTEM_ADMINISTRATOR"/>
+                <ref bean="ORGANIZATION_ADMINISTRATOR"/>
+                <ref bean="COMPANY_ADMINISTRATOR"/>
             </list>
         </property>
         <property name="organization" ref="appxOrg" />

@@ -6,9 +6,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import io.devopsnextgenx.microservices.modules.models.Role;
+import io.devopsnextgenx.microservices.modules.principal.AppxUserPrincipal;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import java.util.Date;
+import java.util.List;
+
 import io.jsonwebtoken.JwtException;
 import java.util.Collection;
 import org.springframework.security.core.userdetails.User;
@@ -23,13 +27,15 @@ public class JwtTokenProvider {
     private long validityInMilliseconds;
 
     public String createToken(Authentication authentication) {
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        
+        AppxUserPrincipal userDetails = (AppxUserPrincipal) authentication.getPrincipal();
+        Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
+        List<String> roles = authorities.stream()
+            .map(GrantedAuthority::getAuthority)
+            .toList();
         Claims claims = Jwts.claims()
         .subject(userDetails.getUsername())
-        .empty()
-        .add("roles", userDetails.getAuthorities())
-        .add("user", userDetails.getUsername())
+        .add("roles", roles)
+        .add("email", userDetails.getEmail())
         .build();
 
         Date now = new Date();

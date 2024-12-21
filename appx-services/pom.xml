@@ -17,9 +17,9 @@
     <packaging>pom</packaging>
     <description>Spring Boot Microservices based core repository</description>
     <modules>
+        <module>app-data-loader</module>
         <module>app-eureka-config-service</module>
         <module>app-user-auth-service</module>
-        <module>app-data-loader</module>
         <module>app-user-service</module>
     </modules>
 </project>
