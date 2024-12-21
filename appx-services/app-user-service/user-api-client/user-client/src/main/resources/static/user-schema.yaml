@@ -8,17 +8,18 @@ info:
     name: Amit Kshirsagar
 
 servers:
-  - url: 'http://user-{environment}.localtest.me/api'
+  - url: 'http://user-auth-service.{environment}.localtest.me/api'
     variables:
       environment:
         default: api.local    # Local server
         enum:
-          - api         # Production server
-          - api.dev     # Development server
-          - api.staging # Staging server
+          - api               # Production server
+          - api.dev           # Development server
+          - api.local         # local server
+          - api.staging       # Staging server
 tags:
-  - name: Users
-    description: Users Service
+  - name: UserService
+    description: User Service
 
 security:
   - JwtAuthKey: []
@@ -28,7 +29,7 @@ paths:
     get:
       operationId: listUsers
       tags:
-        - Users
+        - UserService
       description: Returns the List of Users
       responses:
         200:
@@ -46,12 +47,12 @@ paths:
     post:
       operationId: postUser
       tags:
-        - Users
-      description: Returns the List of Users
+        - UserService
+      description: Add a new User
       requestBody:
         $ref: '#/components/requestBodies/User'
       responses:
-        200:
+        201:
           $ref: '#/components/responses/User'
         400:
           $ref: '#/components/responses/BadRequest'
@@ -68,8 +69,8 @@ paths:
     get:
       operationId: getUserById
       tags:
-        - Users
-      description: Returns the List of Users
+        - UserService
+      description: Return the User by Id
       parameters:
         - $ref: '#/components/parameters/id'
       responses:
@@ -88,8 +89,8 @@ paths:
     put:
       operationId: putUserById
       tags:
-        - Users
-      description: Returns the List of Users
+        - UserService
+      description: Replace the User by Id
       parameters:
         - $ref: '#/components/parameters/id'
       requestBody:
@@ -107,11 +108,33 @@ paths:
           $ref: '#/components/responses/404NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
+    delete:
+      operationId: deleteUserById
+      tags:
+        - UserService
+      description: Delete User by Id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        200:
+          description: Successful response with no content
+          content:
+            application/json: {}
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
     patch:
       operationId: patchUserById
       tags:
-        - Users
-      description: Returns the List of Users
+        - UserService
+      description: Update User by Id
       parameters:
         - $ref: '#/components/parameters/id'
       requestBody:
@@ -136,7 +159,6 @@ components:
       type: apiKey
       in: header
       name: Authorization
-      scheme: http
 
   parameters:
     id:
@@ -164,25 +186,25 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/KError'
+            $ref: '#/components/schemas/AppxError'
     Unauthorized:
       description: UNAUTHORIZED
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/KError'
+            $ref: '#/components/schemas/AppxError'
     Forbidden:
       description: FORBIDDEN
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/KError'
+            $ref: '#/components/schemas/AppxError'
     InternalServerError:
       description: INTERNAL_SERVER_ERROR
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/KError'
+            $ref: '#/components/schemas/AppxError'
     ImageResponse:     # Can be referenced as '#/components/responses/ImageResponse'
       description: An image.
       content:
@@ -195,7 +217,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/KError'
+            $ref: '#/components/schemas/AppxError'
 
     Users:
       description: SUCCESS
@@ -214,7 +236,7 @@ components:
             $ref: '#/components/schemas/User'
 
   schemas:
-    KError:
+    AppxError:
       type: object
       properties:
         error:
@@ -226,7 +248,7 @@ components:
 
     Base:
       allOf:
-        - $ref: '#/components/schemas/KError'
+        - $ref: '#/components/schemas/AppxError'
         - type: object
           properties:
             id:

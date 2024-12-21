@@ -2,7 +2,7 @@ package io.devopsnextgenx.microservices.modules.user.controller;
 
 import io.devopsnextgenx.microservices.modules.models.providers.UserCloner;
 import io.devopsnextgenx.microservices.modules.user.service.UserService;
-import io.devopsnextgenx.microservices.modules.userauth.user.api.UsersApi;
+import io.devopsnextgenx.microservices.modules.userauth.user.api.UserServiceApi;
 import io.devopsnextgenx.microservices.modules.userauth.user.dto.UserDto;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
@@ -26,7 +26,7 @@ import java.util.concurrent.TimeoutException;
 @RestController
 @RequestMapping("/api")
 @SecurityRequirement(name = "JWT")
-public class UserController implements UsersApi {
+public class UserController implements UserServiceApi {
 
     @Autowired
     private UserService userService;

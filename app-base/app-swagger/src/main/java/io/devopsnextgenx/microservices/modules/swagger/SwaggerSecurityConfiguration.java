@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
@@ -24,6 +25,10 @@ public class SwaggerSecurityConfiguration {
     private String description;
     @Value("${app.modules.swagger.version:1.0.0}")
     private String version;
+    @Value("${app.modules.swagger.contact.email:x}")
+    private String email;
+    @Value("${app.modules.swagger.contact.name:z}")
+    private String name;
 
     final String securityBasicSchemeName = "basicAuth";
     final String securityJwtSchemeName = "JWT";
@@ -36,6 +41,7 @@ public class SwaggerSecurityConfiguration {
                 .title(title)
                 .version(version)
                 .description(description))
+                .info(new Info().contact(new Contact().email(email).name(name)))
                 .addSecurityItem(
                     new SecurityRequirement()
                         .addList(securityBasicSchemeName, securityJwtSchemeName))

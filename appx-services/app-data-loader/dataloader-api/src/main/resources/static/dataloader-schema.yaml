@@ -54,7 +54,6 @@ components:
       type: apiKey
       in: header
       name: Authorization
-      scheme: http
 
   responses:
     XmlImporter:

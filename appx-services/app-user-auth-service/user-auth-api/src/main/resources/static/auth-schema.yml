@@ -8,14 +8,15 @@ info:
     name: Amit Kshirsagar
 
 servers:
-  - url: 'http://auth-{environment}.localtest.me'
+  - url: 'http://auth-service.{environment}.localtest.me'
     variables:
       environment:
         default: api.local    # Local server
         enum:
-          - api         # Production server
-          - api.dev     # Development server
-          - api.staging # Staging server
+          - api               # Production server
+          - api.dev           # Development server
+          - api.local         # Local server
+          - api.staging       # Staging server
 
 tags:
   - name: AuthService
@@ -59,7 +60,6 @@ components:
       type: apiKey
       in: header
       name: Authorization
-      scheme: http
 
   responses:
     404NotFound:       # Can be referenced as '#/components/responses/404NotFound'
@@ -76,25 +76,25 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/KError'
+            $ref: '#/components/schemas/AppxError'
     Unauthorized:
       description: UNAUTHORIZED
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/KError'
+            $ref: '#/components/schemas/AppxError'
     Forbidden:
       description: FORBIDDEN
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/KError'
+            $ref: '#/components/schemas/AppxError'
     InternalServerError:
       description: INTERNAL_SERVER_ERROR
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/KError'
+            $ref: '#/components/schemas/AppxError'
     ImageResponse:     # Can be referenced as '#/components/responses/ImageResponse'
       description: An image.
       content:
@@ -108,10 +108,10 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/KError'
+            $ref: '#/components/schemas/AppxError'
 
   schemas:
-    KError:
+    AppxError:
       type: object
       properties:
         error:
@@ -123,7 +123,7 @@ components:
 
     AuthToken:
       allOf:
-      - $ref: '#/components/schemas/KError'
+      - $ref: '#/components/schemas/AppxError'
       - type: object
         required:
           - accessToken

@@ -14,6 +14,7 @@ docker compose up -d
 sudo keytool -importcert -alias appx -file appx-services/app-eureka-config-service/src/main/resources/appx.crt -keystore /etc/ssl/certs/java/cacerts -storepass changeit
 
 # For Windows, Open terminal as admin, find the JDK involved and use path accordingly
+keytool -delete -alias appx -keystore "c:/Program Files/Zulu/zulu-17/lib/security/cacerts" -storepass changeit
 keytool -importcert -alias appx -file appx-services/app-eureka-config-service/src/main/resources/appx.crt -keystore "c:/Program Files/Zulu/zulu-17/lib/security/cacerts" -storepass changeit
 ```
 ### Package and Install
@@ -47,9 +48,9 @@ mvn spring-boot:run
 
 ### Other generic instructions
 
-- Open [Eureka Dashboard](https://eureka.appx.localtest.me:8761/) with `config/password`
+- Open [Eureka Dashboard](https://eureka-config-service.appx.localtest.me:8761/) with `admin/p@ssw0rd`
 - Open `Swagger UI` for [User Service](https://user-service.appx.localtest.me:8080/swagger-ui/index.html)
-    - Use `user/password` or `config/password` as Basic Authentication to generate jwt token
+    - Use `user/password` or `admin/p@ssw0rd` as Basic Authentication to generate jwt token
     - Use generated token to set `JWT token` to invoke respective endpoints
 
 - With `jwt-token-generator`, Use user `admin/admin` or `user/user` for generating jwt token using 
