@@ -13,7 +13,7 @@ docker compose up -d
 # For Linux, find cacerts and use that path
 sudo keytool -importcert -alias appx -file appx-services/app-eureka-config-service/src/main/resources/appx.crt -keystore /etc/ssl/certs/java/cacerts -storepass changeit
 
-# For Windows, find the JDK involved and use path accordingly
+# For Windows, Open terminal as admin, find the JDK involved and use path accordingly
 keytool -importcert -alias appx -file appx-services/app-eureka-config-service/src/main/resources/appx.crt -keystore "c:/Program Files/Zulu/zulu-17/lib/security/cacerts" -storepass changeit
 ```
 ### Package and Install
