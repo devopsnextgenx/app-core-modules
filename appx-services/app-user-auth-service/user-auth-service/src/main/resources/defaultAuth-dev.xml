@@ -8,9 +8,11 @@
 
     <bean id="adminUser"
           class="io.devopsnextgenx.microservices.modules.models.User">
+        <property name="firstName" value="Amit"/>
+        <property name="lastName" value="Kshirsagar"/>
         <property name="userName" value="amitkshirsagar13"/>
         <property name="email" value="amit.kshirsagar.13@gmail.com"/>
-        <property name="password" value="amogh123"/>
+        <property name="password" value="admin123"/>
         <property name="active" value="true"/>
         <property name="deleted" value="false" />
         <property name="userRoles">
@@ -28,9 +30,11 @@
 
     <bean id="demoUser"
           class="io.devopsnextgenx.microservices.modules.models.User">
+        <property name="firstName" value="Poonam"/>
+        <property name="lastName" value="Kshirsagar"/>
         <property name="userName" value="poonamkshirsagar13"/>
         <property name="email" value="poonam.kshirsagar.13@gmail.com"/>
-        <property name="password" value="poonam123"/>
+        <property name="password" value="admin123"/>
         <property name="active" value="true"/>
         <property name="deleted" value="false" />
         <property name="userRoles">
@@ -44,9 +48,11 @@
 
     <bean id="testUser"
           class="io.devopsnextgenx.microservices.modules.models.User">
+        <property name="firstName" value="Amogh"/>
+        <property name="lastName" value="Kshirsagar"/>
         <property name="userName" value="amoghkshirsagar13"/>
         <property name="email" value="amogh.kshirsagar.13@gmail.com"/>
-        <property name="password" value="amogh123"/>
+        <property name="password" value="admin123"/>
         <property name="active" value="true"/>
         <property name="deleted" value="false" />
         <property name="userRoles">
