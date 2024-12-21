@@ -23,7 +23,6 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
@@ -84,9 +83,9 @@ public class JwtSecurityConfiguration {
         return new ProductionTokenValidator(oAuthApplicationsConfig, jwtVerifierCache, new JwtVerifierHelper());
     }
 
-    @Bean
+    @Bean("userDetailsService")
     @ConditionalOnMissingBean(UserDetailsService.class)
-    public UserDetailsService userDetailsService(AppxUserRepositoryImpl appxUserRepositoryImpl) {
+    public AppxUserDetailsService userDetailsService(AppxUserRepositoryImpl appxUserRepositoryImpl) {
         log.info("JwtSecurityConfiguration: userDetailsService");
         return new AppxUserDetailsService(appxUserRepositoryImpl);
     }

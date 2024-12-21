@@ -36,14 +36,6 @@ public class SecurityConfiguration {
     public void onApplicationReadyEvent(ApplicationReadyEvent event) {
         UserList appUserList = (UserList) event.getApplicationContext().getBeanFactory().getBean("appUserList");
         log.info("UserList: " + appUserList.getUsers().size());
-        // User.UserBuilder userBuilder = User.builder();
-        // for (io.devopsnextgenx.microservices.modules.eureka.models.User user : appUserList.getUsers()) {
-        //     log.info( "User: " + user.getUsername() + " Password: " + user.getPassword());
-        //     ((InMemoryUserDetailsManager)userDetailsService).createUser(userBuilder.username(
-        //         user.getUsername())
-        //         .password(passwordEncoder.encode(user.getPassword()))
-        //         .roles(user.getRole()).build());
-        // }
         for (SeedUser user : appUserList.getUsers()) {
             if(!userDetailsService.existUser(user.getUsername())) {
                     User seedUser = User.builder()
@@ -52,6 +44,7 @@ public class SecurityConfiguration {
                     .firstName(user.getFirstName())
                     .lastName(user.getLastName())
                     .email(user.getEmail())
+                    .active(true)
                     .userRoles(user.getRoles().stream().map(role -> Role.builder().name(ROLE.valueOf(role)).build()).toList())
                     .organization(
                         Organization.builder()

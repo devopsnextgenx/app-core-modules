@@ -6,7 +6,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import io.devopsnextgenx.microservices.modules.models.User;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class AppxUserPrincipal implements UserDetails {
     private User user;
     public AppxUserPrincipal(User user) {

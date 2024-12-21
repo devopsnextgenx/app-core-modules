@@ -37,9 +37,10 @@ public class User extends BaseModelAudit {
     private String firstName;
     private String lastName;
     private String email;
-    // @Convert(converter = PasswordEncryptor.class)
-    private String password;
     private boolean active;
+
+    @Convert(converter = PasswordEncryptor.class)
+    private String password;
 
     @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name="organizationId", nullable=false)

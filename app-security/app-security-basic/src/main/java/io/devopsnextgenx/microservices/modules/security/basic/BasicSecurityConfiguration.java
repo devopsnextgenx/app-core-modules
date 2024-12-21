@@ -1,32 +1,18 @@
 package io.devopsnextgenx.microservices.modules.security.basic;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import io.devopsnextgenx.microservices.modules.repositories.AppxUserRepositoryImpl;
 import io.devopsnextgenx.microservices.modules.services.AppxUserDetailsService;
-import io.devopsnextgenx.microservices.modules.utils.converters.PasswordEncryptor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -37,15 +23,14 @@ public class BasicSecurityConfiguration {
 
     @Value("${app.modules.security.basic.user.name:admin}")
     private String username;
-    @Value("${app.modules.security.basic.user.password:p@ssw0rd}")
+    @Value("${app.modules.security.basic.user.password:password}")
     private String password;
     @Value("${app.modules.security.basic.user.role:USER}")
     private String role;
 
-    @Bean
-    @ConditionalOnMissingBean(name = "userDetailsService")
-    @ConditionalOnProperty(value = "app.modules.security.basic.user.enabled", havingValue = "true", matchIfMissing = false)
-    public UserDetailsService userDetailsService(AppxUserRepositoryImpl appxUserRepositoryImpl) {
+    @Bean("userDetailsService")
+    @ConditionalOnProperty(value = "app.modules.security.basic.enabled", havingValue = "true", matchIfMissing = false)
+    public AppxUserDetailsService userDetailsService(AppxUserRepositoryImpl appxUserRepositoryImpl) {
         log.info("BasicSecurityConfiguration: userDetailsService");
         return new AppxUserDetailsService(appxUserRepositoryImpl);
     }
@@ -75,22 +60,8 @@ public class BasicSecurityConfiguration {
     }
 
     @Bean
-    public static NoOpPasswordEncoder passwordEncoder() {
-        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
-    }
-    
-
-    // @Bean
-    // public PasswordEncoder passwordEncoder() {
-    //     log.info("BasicSecurityConfiguration: passwordEncoder");
-    //     return new BCryptPasswordEncoder();
-    // }
-
-    @Autowired
-    @DependsOn("passwordEncoder")
-    public void configureGlobal(AuthenticationManagerBuilder auth, AppxUserDetailsService appxUserDetailsService, PasswordEncoder passwordEncoder, DataSource datasource) throws Exception {
-        log.info("BasicSecurityConfiguration: configureGlobal : {}", passwordEncoder.getClass().getName());
-        auth.userDetailsService(appxUserDetailsService).passwordEncoder(passwordEncoder);
-        auth.jdbcAuthentication().dataSource(datasource);
+    public PasswordEncoder passwordEncoder() {
+        log.info("BasicSecurityConfiguration: passwordEncoder");
+        return new BCryptPasswordEncoder();
     }
 }

@@ -149,3 +149,7 @@ spring:
           search-locations: classpath:spring-config-master/
         git:
           uri: ${VGITCONFIGURL:https://github.com/amitkshirsagar13/spring-config.git}
+
+logging:
+  level:
+    org.springframework.security: DEBUG
