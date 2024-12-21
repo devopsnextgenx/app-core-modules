@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.auth0.json.mgmt.Role;
-
-import io.devopsnextgenx.microservices.modules.api.UserApi;
+import io.devopsnextgenx.microservices.modules.api.UsersApi;
 import io.devopsnextgenx.microservices.modules.dto.RoleDto;
 import io.devopsnextgenx.microservices.modules.dto.UserDto;
 import io.devopsnextgenx.microservices.modules.models.User;
