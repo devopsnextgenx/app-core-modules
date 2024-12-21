@@ -1,98 +1,273 @@
-openapi: 3.0.1
+openapi: 3.0.0
 
 info:
-  title: "User"
-  version: "1"
-  description: User API
+  title: User API
+  description: User Apis for Appx.
+  version: 0.1.9
+  contact:
+    name: Amit Kshirsagar
 
 servers:
-  - url: http://localhost:8080/api
-    description: Local server
+  - url: 'http://user-{environment}.localtest.me/api'
+    variables:
+      environment:
+        default: api.local    # Local server
+        enum:
+          - api         # Production server
+          - api.dev     # Development server
+          - api.staging # Staging server
+tags:
+  - name: Users
+    description: Users Service
+
+security:
+  - JwtAuthKey: []
 
 paths:
-
-  /user:
-    post:
-      tags:
-      - User
-      summary: Save User
-      operationId: saveUser
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-
-  /user/{id}:
-    delete:
-      tags:
-      - User
-      summary: Delete User By Id
-      operationId: deleteUserById
-      parameters:
-        - name: id
-          in: path
-          description: Unique Id of an User
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        201:
-          description: OK
-
+  /users:
     get:
+      operationId: listUsers
       tags:
-      - User
-      summary: Get User By Id
-      operationId: getUserById
-      parameters:
-        - name: id
-          in: path
-          description: Unique Id of an User
-          required: true
-          schema:
-            type: string
-            format: uuid
+        - Users
+      description: Returns the List of Users
       responses:
         200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
+          $ref: '#/components/responses/Users'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      operationId: postUser
+      tags:
+        - Users
+      description: Returns the List of Users
+      requestBody:
+        $ref: '#/components/requestBodies/User'
+      responses:
+        200:
+          $ref: '#/components/responses/User'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+
+  /users/{id}:
+    get:
+      operationId: getUserById
+      tags:
+        - Users
+      description: Returns the List of Users
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        200:
+          $ref: '#/components/responses/User'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      operationId: putUserById
+      tags:
+        - Users
+      description: Returns the List of Users
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        $ref: '#/components/requestBodies/User'
+      responses:
+        200:
+          $ref: '#/components/responses/User'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    patch:
+      operationId: patchUserById
+      tags:
+        - Users
+      description: Returns the List of Users
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        $ref: '#/components/requestBodies/User'
+      responses:
+        200:
+          $ref: '#/components/responses/User'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
 
 components:
-  schemas:
+  securitySchemes:
+    JwtAuthKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      scheme: http
+
+  parameters:
+    id:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+      description: id for the item to be fetched
+
+  requestBodies:
     User:
+      description: User RequestBody
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+
+  responses:
+    404NotFound:       # Can be referenced as '#/components/responses/404NotFound'
+      description: The specified resource was not found.
+    BadRequest:
+      description: BAD_REQUEST
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KError'
+    Unauthorized:
+      description: UNAUTHORIZED
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KError'
+    Forbidden:
+      description: FORBIDDEN
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KError'
+    InternalServerError:
+      description: INTERNAL_SERVER_ERROR
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KError'
+    ImageResponse:     # Can be referenced as '#/components/responses/ImageResponse'
+      description: An image.
+      content:
+        image/*:
+          schema:
+            type: string
+            format: binary
+    GenericError:      # Can be referenced as '#/components/responses/GenericError'
+      description: An error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/KError'
+
+    Users:
+      description: SUCCESS
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+
+    User:
+      description: SUCCESS
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+
+  schemas:
+    KError:
       type: object
-      description: Data element for User
-      required:
-        - email
       properties:
-        id:
+        error:
           type: string
-          format: uuid
-        email:
+        status:
           type: string
-        firstName:
-          type: string
-          minLength: 3
-        lastName:
+        correlation-id:
           type: string
 
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
+    Base:
+      allOf:
+        - $ref: '#/components/schemas/KError'
+        - type: object
+          properties:
+            id:
+              type: string
+              example: 1xxnss2
+            deleted:
+              type: boolean
+            created:
+              type: string
+            updated:
+              type: string
+
+    User:
+      allOf:
+        - $ref: '#/components/schemas/Base'
+        - type: object
+          required:
+            - username
+          properties:
+            active:
+              type: boolean
+            userName:
+              type: string
+            firstName:
+              type: string
+            lastName:
+              type: string
+            email:
+              type: string
+            password:
+              type: string
+            roles:
+              type: array
+              items:
+                $ref: '#/components/schemas/Role'    
+    Role:
+      type: string
+      enum:
+        - SYSTEM_ADMINISTRATOR
+        - ORGANIZATION_ADMINISTRATOR
+        - DATA_MANAGER
+        - COMPANY_ADMINISTRATOR
+        - SERVICE_ACCOUNT
+

@@ -181,6 +181,8 @@ app:
           flushInterval: 1000
           maxQueueSize: 1000
     security:
+      secretKey: terces##secret
+      encrypted: classpath:encrypted.properties
       enabled: true
       dataloader:
         dataLoadFile: ${VAUTHXML:defaultAuth-${spring.profiles.active:local}.xml}

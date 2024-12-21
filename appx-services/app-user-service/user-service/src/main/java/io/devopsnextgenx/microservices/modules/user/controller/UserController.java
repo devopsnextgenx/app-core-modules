@@ -1,5 +1,6 @@
 package io.devopsnextgenx.microservices.modules.user.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.auth0.json.mgmt.Role;
+
 import io.devopsnextgenx.microservices.modules.api.UserApi;
+import io.devopsnextgenx.microservices.modules.dto.RoleDto;
 import io.devopsnextgenx.microservices.modules.dto.UserDto;
 import io.devopsnextgenx.microservices.modules.models.User;
 import io.devopsnextgenx.microservices.modules.repositories.AppxUserRepository;
@@ -34,11 +38,14 @@ public class UserController implements UserApi {
     @Override
     public ResponseEntity<UserDto> getUserById(UUID id) {
         User user = userRepository.getReferenceById(id.toString());
+        List<RoleDto> roles = user.getUserRoles().stream().map(role -> RoleDto.fromValue(role.getName().name())).toList();
         return ResponseEntity.ok(new UserDto()
         .email(user.getEmail())
         .firstName(user.getFirstName())
         .lastName(user.getLastName())
-        .id(UUID.fromString(user.getId())));
+        .userName(user.getUserName())
+        .roles(roles)
+        .id(user.getId()));
     }
 
     @Override

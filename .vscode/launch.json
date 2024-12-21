@@ -69,6 +69,17 @@
             "mainClass": "io.devopsnextgenx.microservices.modules.UserAuthApplication",
             "projectName": "user-auth-service",
             "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=55700 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=user-auth-service"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-UserApplication<user-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "io.devopsnextgenx.microservices.modules.user.UserApplication",
+            "projectName": "user-service",
+            "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
     ]
