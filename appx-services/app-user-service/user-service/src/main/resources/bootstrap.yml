@@ -8,8 +8,6 @@ VCONFIGHOST: config.appx.localtest.me
 spring:
   profiles:
     active: local
-  application:
-    name: user-service
   cloud:
     config:
       uri: https://${VCONFIGHOST:${HOSTNAME:config.appx.localtest.me}}:${VCONFIGPORT:8761}/config/

@@ -50,7 +50,8 @@ public class BasicSecurityConfiguration {
                 .anyRequest().permitAll()
             )
             .httpBasic(Customizer.withDefaults());
-        
+            http.csrf(csrf -> csrf.ignoringRequestMatchers("/eureka/**"));
+
             // Test using below in console
             // curl -u user:password -X GET http://localhost:8080/api/demos
             // GET http://localhost:8080/basic/demos

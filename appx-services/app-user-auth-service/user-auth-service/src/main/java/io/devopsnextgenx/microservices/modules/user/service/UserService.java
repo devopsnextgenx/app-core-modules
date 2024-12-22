@@ -57,15 +57,6 @@ public class UserService {
 
         return userList;
     }
-    
-    // public List<UserDto> listAll() {
-    //     CircuitBreaker circuitBreaker = circuitBreakerFactory.create("UserSrvice.listAll");
-    //     return circuitBreaker.run(() -> userRepository.findAll()
-    //     .stream()
-    //     .map(item -> userCloner.cloneToDto(item))
-    //     .collect(Collectors.toList()),
-    //         throwable -> fallbackMethod(throwable));
-    // }
 
     @Timed
     public UserDto getEntityById(String id) {
@@ -85,6 +76,10 @@ public class UserService {
     @Timed
     public UserDto patchEntity(String id, User user) {
         return userCloner.cloneToDto(userRepository.save(user));
+    }
+
+    public void deleteUserById(String id) {
+        userRepository.deleteById(id);
     }
 
     public  List<UserDto> fallbackMethod(Throwable hystrixCommand) {

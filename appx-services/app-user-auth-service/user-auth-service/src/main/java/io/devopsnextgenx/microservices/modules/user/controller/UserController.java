@@ -64,4 +64,10 @@ public class UserController implements UserServiceApi {
     public ResponseEntity<UserDto> patchUserById(String id, @Valid UserDto user) {
         return ResponseEntity.ok(userService.putEntity(id,userCloner.cloneToModel(user)));
     }
+
+    @Override
+    public ResponseEntity<Void> deleteUserById(String id) {
+        userService.deleteUserById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

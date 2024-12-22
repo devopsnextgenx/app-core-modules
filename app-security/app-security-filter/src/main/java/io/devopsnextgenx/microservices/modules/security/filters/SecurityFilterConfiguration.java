@@ -1,4 +1,4 @@
-package io.devopsnextgenx.microservices.modules.security.filter;
+package io.devopsnextgenx.microservices.modules.security.filters;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

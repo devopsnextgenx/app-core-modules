@@ -8,7 +8,6 @@ spring:
     password: ${VDBPASS:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
 server:
-  hostname: ${VHOSTNAME:${HOSTNAME:authservice.local.localtest.me}}
   port: ${VPORT:2001}
 
 app:

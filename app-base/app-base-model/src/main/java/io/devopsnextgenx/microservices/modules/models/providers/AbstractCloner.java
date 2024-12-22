@@ -8,7 +8,7 @@ import org.modelmapper.ModelMapper;
 public abstract class AbstractCloner<T, P> implements CloneCopyStrategy<T,P> {
     private ModelMapper modelMapper;
 
-    public AbstractCloner() {
+    protected AbstractCloner() {
         setModelMapper(new ModelMapper());
         updateTypeMap();
     }

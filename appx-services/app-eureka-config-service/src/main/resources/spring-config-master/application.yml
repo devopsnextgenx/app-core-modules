@@ -26,17 +26,19 @@ eureka:
     status-page-url: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}${management.endpoints.web.base-path}/info
     lease-renewal-interval-in-seconds: 30
     lease-expiration-duration-in-seconds: 90
-    secure-virtual-host-name: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}
-    virtual-host-name: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}
-    hostname: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}
+    secure-virtual-host-name: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}
+    hostname: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}
     secure-port-enabled: true
     secure-port: ${VSECUREPORT:${server.port}}
     non-secure-port-enabled: false
     non-secure-port: ${VNONSECUREPORT:${server.port}}
+    prefer-ip-address: false
   client:
     region: default
+    fetch-registry: true
+    register-with-eureka: true
     eureka-connection-idle-timeout-seconds: 60
-    serviceUrl:
+    service-url:
       defaultZone: https://${VEUREKAUSER:config}:${VEUREKAPASS:password}@${VEUREKAHOST:eureka.appx.localtest.me}:${VEUREKAPORT:8761}/eureka
     healthcheck:
       enabled: true
@@ -48,12 +50,11 @@ eureka:
       keyStorePassword: appxxppa
       trustStorePassword: appxxppa
       keyPassword: appxxppa
-logging:
-  level:
-    ROOT: INFO
-    org.springframework.web: INFO
 spring:
   cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
     config:
       discovery:
         enabled: true
@@ -206,6 +207,7 @@ app:
         enabled: true
         api:
           path: /api/**
+          reqPath: /api/*
         secret: fake-client-secret
         expiration: 3600
         selfSigned:
@@ -242,3 +244,11 @@ app:
         swaggerAdminPassword: ${SWAGGER_ADMIN_PASS:admin}
     services:
       userServiceHost: http://user-service.appx.localtest.me
+
+logging:
+  level:
+    ROOT: INFO
+    com.netflix.discovery: DEBUG
+    com.netflix.eureka: DEBUG
+    org.springframework.cloud.netflix.eureka: DEBUG
+    org.springframework.web.client.RestTemplate: DEBUG

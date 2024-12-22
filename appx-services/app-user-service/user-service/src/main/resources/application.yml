@@ -7,5 +7,21 @@ spring:
     username: ${VDBUSER:root}
     password: ${VDBPASS:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    loadbalancer:
+      enabled: true
 server:
   port: ${VPORT:8080}
+
+app:
+  modules:
+    swagger:
+      enabled: true
+      title: User Auth Service
+      description: User Auth Service
+      version: 1.0
+      contact:
+        name: Amit Kshirsagar
+        email: amit.kshirsagar.13@gmail.com
+    services:
+      user-auth-service: http://USER-AUTH-SERVICE/api/users

@@ -1,7 +1,6 @@
 package io.devopsnextgenx.microservices.modules.user.controller;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +15,7 @@ import io.devopsnextgenx.microservices.modules.dto.RoleDto;
 import io.devopsnextgenx.microservices.modules.dto.UserDto;
 import io.devopsnextgenx.microservices.modules.models.User;
 import io.devopsnextgenx.microservices.modules.repositories.AppxUserRepository;
+import io.devopsnextgenx.microservices.modules.user.service.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,6 +26,9 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController implements UserServiceApi {
     @Autowired
     private AppxUserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/echo", method = {RequestMethod.GET}, produces = {MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<String> echo() {
@@ -48,18 +51,18 @@ public class UserController implements UserServiceApi {
 
     @Override
     public ResponseEntity<List<UserDto>> listUsers() {
-        List<User> users = userRepository.findAll();
-        List<UserDto> userDtos = users.stream().map(user -> {
-            List<RoleDto> roles = user.getUserRoles().stream().map(role -> RoleDto.fromValue(role.getName().name())).toList();
-            return new UserDto()
-                .email(user.getEmail())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .userName(user.getUserName())
-                .roles(roles)
-                .id(user.getId());
-        }).toList();
-        return ResponseEntity.ok(userDtos);
+        // List<User> users = userRepository.findAll();
+        // List<UserDto> userDtos = users.stream().map(user -> {
+        //     List<RoleDto> roles = user.getUserRoles().stream().map(role -> RoleDto.fromValue(role.getName().name())).toList();
+        //     return new UserDto()
+        //         .email(user.getEmail())
+        //         .firstName(user.getFirstName())
+        //         .lastName(user.getLastName())
+        //         .userName(user.getUserName())
+        //         .roles(roles)
+        //         .id(user.getId());
+        // }).toList();
+        return ResponseEntity.ok(userService.listUsersLoadBalancer());
     }
 
     @Override

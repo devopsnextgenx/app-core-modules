@@ -16,19 +16,6 @@ server:
   servlet:
     context-path: /
 eureka:
-  instance:
-    instance-id: ${VSERVICENAME:${spring.application.name}}.${VSERVICENAME:${HOSTNAME:appx.localtest.me}}:${spring.application.name}:${spring.application.instance_id:${server.port}}
-    health-check-url-path: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}${management.endpoints.web.base-path}/health
-    home-page-url: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}/swagger-ui.html
-    status-page-url: https://${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}${management.endpoints.web.base-path}/info
-    lease-renewal-interval-in-seconds: 5
-    secure-virtual-host-name: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}
-    virtual-host-name: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}
-    hostname: ${VSERVICENAME:${spring.application.name}}.${VHOSTNAME:appx.localtest.me}:${server.port}
-    secure-port-enabled: true
-    secure-port: ${VSECUREPORT:${server.port}}
-    non-secure-port-enabled: false
-    non-secure-port: ${VNONSECUREPORT:${server.port}}
   client:
     region: default
     serviceUrl:
