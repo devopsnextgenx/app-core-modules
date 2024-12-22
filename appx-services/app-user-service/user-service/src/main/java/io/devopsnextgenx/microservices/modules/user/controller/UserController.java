@@ -51,17 +51,6 @@ public class UserController implements UserServiceApi {
 
     @Override
     public ResponseEntity<List<UserDto>> listUsers() {
-        // List<User> users = userRepository.findAll();
-        // List<UserDto> userDtos = users.stream().map(user -> {
-        //     List<RoleDto> roles = user.getUserRoles().stream().map(role -> RoleDto.fromValue(role.getName().name())).toList();
-        //     return new UserDto()
-        //         .email(user.getEmail())
-        //         .firstName(user.getFirstName())
-        //         .lastName(user.getLastName())
-        //         .userName(user.getUserName())
-        //         .roles(roles)
-        //         .id(user.getId());
-        // }).toList();
         return ResponseEntity.ok(userService.listUsersLoadBalancer());
     }
 

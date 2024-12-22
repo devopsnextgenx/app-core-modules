@@ -30,13 +30,9 @@ public class UserService {
         this.userCloner = userCloner;
     }
 
-    // @Autowired
-    // private CircuitBreakerFactory<?, ?> circuitBreakerFactory;
-
     @Timed
-    // @HystrixCommand(fallbackMethod = "fallbackMethod")
-    @CircuitBreaker(name = "UserService.listAll", fallbackMethod = "fallbackMethod")
-    public List<UserDto> listAll() throws TimeoutException {
+    @CircuitBreaker(name = "UserService.listAllResilient", fallbackMethod = "fallbackMethod")
+    public List<UserDto> listAllResilient() throws TimeoutException {
         double test = Math.random();
         if (test < 0.4) {
             log.info("Throwing error: 000000000000000000000000000000000000000");
@@ -57,7 +53,7 @@ public class UserService {
 
         return userList;
     }
-
+    
     @Timed
     public UserDto getEntityById(String id) {
         return userCloner.cloneToDto(userRepository.getReferenceById(id));
