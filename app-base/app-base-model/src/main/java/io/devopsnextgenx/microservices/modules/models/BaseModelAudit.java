@@ -1,7 +1,7 @@
 package io.devopsnextgenx.microservices.modules.models;
 
 import lombok.Data;
-
+import lombok.EqualsAndHashCode;
 import jakarta.persistence.Column;
 
 import java.sql.Timestamp;
@@ -15,6 +15,7 @@ import java.sql.Timestamp;
  * @since 12/4/2019
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class BaseModelAudit extends BaseEntity {
     @Column(name = "creationDate")
     private Timestamp creationDate;

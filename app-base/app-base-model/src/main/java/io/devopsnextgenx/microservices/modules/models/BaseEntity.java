@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Transient;
 
+import java.util.Collections;
 import java.util.Set;
 
 import org.hibernate.annotations.UuidGenerator;
@@ -34,7 +35,7 @@ public class BaseEntity {
     private String externalId;
 
     @Transient
-    public Set getDependents() {
-        return null;
+    public Set<Object> getDependents() {
+        return Collections.emptySet();
     }
 }

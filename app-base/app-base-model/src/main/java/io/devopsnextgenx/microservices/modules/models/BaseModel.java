@@ -2,6 +2,7 @@ package io.devopsnextgenx.microservices.modules.models;
 
 import jakarta.persistence.Column;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * BaseModel:
@@ -12,6 +13,7 @@ import lombok.Data;
  * @since 12/4/2019
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class BaseModel extends BaseModelAudit {
     @Column(name = "owner")
     private String owner;
