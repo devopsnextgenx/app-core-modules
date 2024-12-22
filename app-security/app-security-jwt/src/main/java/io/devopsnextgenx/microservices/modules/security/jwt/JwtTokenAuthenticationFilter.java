@@ -9,6 +9,8 @@ import io.devopsnextgenx.microservices.modules.logging.config.filter.BaseApiLogg
 import io.devopsnextgenx.microservices.modules.logging.config.filter.LoggerConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -21,6 +23,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
+@ConfigurationProperties
 public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
 
     public final static String ACCESS_DATA_HEADER = "access-data";
@@ -36,9 +39,12 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
 
     private TokenValidator tokenValidator;
     private BaseApiLogger baseApiLogger;
+    
+    private String applicationName;
 
-    public JwtTokenAuthenticationFilter(TokenValidator tokenValidator) {
+    public JwtTokenAuthenticationFilter(String applicationName, TokenValidator tokenValidator) {
         this.tokenValidator = tokenValidator;
+        this.applicationName = applicationName;
         this.baseApiLogger = new BaseApiLogger();
     }
 
@@ -46,10 +52,13 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         String accessDataString = request.getHeader(ACCESS_DATA_HEADER);
         AccessData accessData = null;
+        LoggerConfig.LoggerConfigBuilder loggerConfig = LoggerConfig.builder()
+            .method(request.getMethod())
+            .service(applicationName)
+            .correlationId(request.getHeader(BaseApiLogger.CORRELATION_ID));
         if(accessDataString!=null) {
             accessData = AccessData.fromString(accessDataString);
-            LoggerConfig loggerConfig = LoggerConfig.builder()
-            .uid(Optional.ofNullable(accessData)
+            loggerConfig.uid(Optional.ofNullable(accessData)
             .map(accessData1 -> accessData1.getUserId())
             .orElse(null))
             .orgId(Optional.ofNullable(accessData)
@@ -57,11 +66,12 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
             .orElse(null))
             .companyId(Optional.ofNullable(accessData)
             .map(accessData1 -> accessData1.getCompanyId())
-            .orElse(null))
-            .method(request.getMethod())
-            .build();
-            this.baseApiLogger.preFilter(loggerConfig, true);
+            .orElse(null));
         }
+
+
+        this.baseApiLogger.preFilter(loggerConfig
+        .build(), true);
         
         String rawToken = request.getHeader(AUTHORIZATION_HEADER);
 

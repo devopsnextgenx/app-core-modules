@@ -245,10 +245,10 @@ app:
     services:
       userServiceHost: http://user-service.appx.localtest.me
 
-logging:
-  level:
-    ROOT: INFO
-    com.netflix.discovery: DEBUG
-    com.netflix.eureka: DEBUG
-    org.springframework.cloud.netflix.eureka: DEBUG
-    org.springframework.web.client.RestTemplate: DEBUG
+# logging:
+#   level:
+#     ROOT: INFO
+    # com.netflix.discovery: DEBUG
+    # com.netflix.eureka: DEBUG
+    # org.springframework.cloud.netflix.eureka: DEBUG
+    # org.springframework.web.client.RestTemplate: DEBUG

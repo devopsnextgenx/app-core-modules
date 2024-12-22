@@ -30,7 +30,7 @@ public class TomcatApiLoggerFilter extends BaseApiLogger implements Filter {
         AccessData accessData = AccessData.fromString(accessDataString);
 
 
-        String CORRELATION_ID = request.getHeader(BaseApiLogger.CORRELATION_ID);
+        String correlationId = request.getHeader(BaseApiLogger.CORRELATION_ID);
         LoggerConfig loggerConfig = LoggerConfig.builder()
                 .uid(Optional.ofNullable(accessData)
                         .map(accessData1 -> accessData1.getUserId())
@@ -46,13 +46,14 @@ public class TomcatApiLoggerFilter extends BaseApiLogger implements Filter {
                 .originator(originator)
                 .method(request.getMethod())
                 .path(extractFullPathAndQueryParams(request))
-                .correlationId(CORRELATION_ID)
+                .correlationId(correlationId)
                 .build();
 
-        GlobalTracer.get().activeSpan().setTag("CID", CORRELATION_ID);
+        GlobalTracer.get().activeSpan().setTag("CID", correlationId);
 
         preFilter(loggerConfig, false);
 
+        response.setHeader(BaseApiLogger.CORRELATION_ID, MDC.get(BaseApiLogger.CORRELATION_ID));
         filterchain.doFilter(request, response);
         postFilter(response.getStatus());
     }

@@ -46,7 +46,7 @@ public class AppSecurityConfiguration {
         FilterRegistrationBean<RequestContextFilter> registration = new FilterRegistrationBean<>();
         registration.setFilter(new RequestContextFilter());
         registration.addUrlPatterns(jwtApiPath);
-        registration.setOrder(100);
+        registration.setOrder(5);
         registration.setName("appxRequestContextFilter");
 
         return registration;

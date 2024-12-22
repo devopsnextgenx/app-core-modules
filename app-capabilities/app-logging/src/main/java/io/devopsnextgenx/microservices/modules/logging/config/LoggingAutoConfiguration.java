@@ -35,7 +35,7 @@ public class LoggingAutoConfiguration {
 
         registrationBean.setFilter(tomcatApiLoggerFilter);
         registrationBean.addUrlPatterns("/api/*");
-        registrationBean.setOrder(10);
+        registrationBean.setOrder(1);
         return registrationBean;
     }
 

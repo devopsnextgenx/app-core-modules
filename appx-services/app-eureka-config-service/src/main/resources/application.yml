@@ -137,6 +137,6 @@ spring:
         git:
           uri: ${VGITCONFIGURL:https://github.com/amitkshirsagar13/spring-config.git}
 
-logging:
-  level:
-    org.springframework.security: DEBUG
+# logging:
+#   level:
+    # org.springframework.security: DEBUG

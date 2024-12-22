@@ -27,6 +27,9 @@ public class JwtSecurityFilterConfiguration {
     @Value("${app.modules.security.jwt.api.path:/jwt/**}")
     private String jwtApiPath;
 
+    @Value("${spring.application.name}")
+    private String applicationName;
+
     @Bean
     @Order(100)
     public SecurityFilterChain jwtSecurityFilterChain(HttpSecurity http) throws Exception {
@@ -39,7 +42,7 @@ public class JwtSecurityFilterConfiguration {
                         .authenticationEntryPoint(
                                 (req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED)))
                 // Add a filter to validate the tokens with every request
-                .addFilterAfter(new JwtTokenAuthenticationFilter(tokenValidator), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(new JwtTokenAuthenticationFilter(applicationName, tokenValidator), UsernamePasswordAuthenticationFilter.class)
                 // authorization requests config
                 .authorizeHttpRequests(request -> request.requestMatchers(jwtApiPath)
                         .authenticated());

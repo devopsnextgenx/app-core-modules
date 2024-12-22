@@ -23,6 +23,7 @@ public class RequestContextFilter implements Filter {
         
         RequestSecurityContext.getContext().setToken(extractAndSetRequestContext(httpServletRequest, RequestSecurityContext.REQUEST_JWT_HEADER_NAME));
         RequestSecurityContext.getContext().setAccessData(extractAndSetRequestContext(httpServletRequest, RequestSecurityContext.REQUEST_ACCESSDATA_HEADER_NAME));
+        RequestSecurityContext.getContext().setCorrelationId(extractAndSetRequestContext(httpServletRequest, RequestSecurityContext.REQUEST_CORRELATIONID_HEADER_NAME));
         
         chain.doFilter(request, response);
     }

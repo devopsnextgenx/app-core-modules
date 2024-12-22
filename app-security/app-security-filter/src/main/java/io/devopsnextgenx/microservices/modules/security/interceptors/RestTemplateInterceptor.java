@@ -1,6 +1,7 @@
 package io.devopsnextgenx.microservices.modules.security.interceptors;
 
 import java.io.IOException;
+import org.slf4j.MDC;
 
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
@@ -23,6 +24,12 @@ public class RestTemplateInterceptor implements ClientHttpRequestInterceptor {
             request.getHeaders().add(RequestSecurityContext.REQUEST_ACCESSDATA_HEADER_NAME, accessData);
         }
 
+        String correlationId = RequestSecurityContext.getContext().getCorrelationId();
+        if(correlationId != null && !correlationId.isEmpty()) {
+            request.getHeaders().add(RequestSecurityContext.REQUEST_CORRELATIONID_HEADER_NAME, correlationId);
+        } else {
+            request.getHeaders().add(RequestSecurityContext.REQUEST_CORRELATIONID_HEADER_NAME, MDC.get(RequestSecurityContext.REQUEST_CORRELATIONID_HEADER_NAME));
+        }
         return execution.execute(request, body);
     }
 }

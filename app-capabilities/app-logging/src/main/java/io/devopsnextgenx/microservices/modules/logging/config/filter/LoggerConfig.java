@@ -3,9 +3,11 @@ package io.devopsnextgenx.microservices.modules.logging.config.filter;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Builder
+@Setter
 public class LoggerConfig {
 
     private String companyId;

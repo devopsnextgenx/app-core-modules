@@ -1,6 +1,9 @@
 package io.devopsnextgenx.microservices.modules.logging.config.filter;
 
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.UUID;
+
 import org.slf4j.MDC;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
@@ -33,22 +36,27 @@ public class BaseApiLogger {
     public static final String DURATION_NAME = "Duration";
 
     public void preFilter(LoggerConfig config, boolean isStart) {
-        MDC.put(MDC_START_TIME, String.valueOf(System.currentTimeMillis()));
-        MDC.put(UID, config.getUid());
-        MDC.put(ORG_ID, config.getOrgId());
-        MDC.put(COMPANY_ID, config.getCompanyId());
-        MDC.put(SESSION_ID, config.getSessionId());
-        MDC.put(FORWARD_IP, config.getForwardIp());
-        MDC.put(SERVICE, config.getService());
-        MDC.put(METHOD_NAME, config.getMethod());
-        MDC.put(PATH_NAME, config.getPath());
-        MDC.put(CORRELATION_ID, config.getCorrelationId());
-        MDC.put(ORIGINATOR_SERVICE_HEADER, config.getOriginator());
+        
+        if (config.getCorrelationId() == null && MDC.get(CORRELATION_ID) == null) config.setCorrelationId(UUID.randomUUID().toString());
+        
+        if(isStart) MDC.put(MDC_START_TIME, String.valueOf(System.currentTimeMillis()));
+        if (config.getUid() != null) MDC.put(UID, config.getUid());
+        if (config.getOrgId() != null) MDC.put(ORG_ID, config.getOrgId());
+        if (config.getCompanyId() != null) MDC.put(COMPANY_ID, config.getCompanyId());
+        if (config.getSessionId() != null) MDC.put(SESSION_ID, config.getSessionId());
+        if (config.getForwardIp() != null) MDC.put(FORWARD_IP, config.getForwardIp());
+        if (config.getService() != null) MDC.put(SERVICE, config.getService());
+        if (config.getMethod() != null) MDC.put(METHOD_NAME, config.getMethod());
+        if (config.getPath() != null) MDC.put(PATH_NAME, config.getPath());
+        if (config.getCorrelationId() != null) MDC.put(CORRELATION_ID, config.getCorrelationId());
+        if (config.getOriginator() != null) MDC.put(ORIGINATOR_SERVICE_HEADER, config.getOriginator());
         if(isStart) log.info(API_MARKER, "API_START");
     }
 
     protected void postFilter(int status) {
         MDC.put(STATUS_NAME, String.valueOf(status));
+        MDC.put(SERVICE, MDC.get(SERVICE));
+        MDC.put(CORRELATION_ID, MDC.get(CORRELATION_ID));
         if (MDC.get(MDC_START_TIME) != null) {
             MDC.put(DURATION_NAME, String.valueOf(System.currentTimeMillis() - Long.valueOf(MDC.get(MDC_START_TIME))));
         }
