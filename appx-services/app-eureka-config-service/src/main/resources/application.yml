@@ -19,7 +19,7 @@ eureka:
   client:
     region: default
     serviceUrl:
-      defaultZone: https://${VEUREKAUSER:config}:${VEUREKAPASS:password}@${VEUREKAHOST:eureka.appx.localtest.me}:${VEUREKAPORT:8761}/eureka
+      defaultZone: https://${VEUREKAUSER:admin}:${VEUREKAPASS:p@ssw0rd}@${VEUREKAHOST:eureka.appx.localtest.me}:${VEUREKAPORT:8761}/eureka
     register-with-eureka: false
     fetchRegistry: false
   server:

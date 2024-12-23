@@ -3,12 +3,12 @@
     <parent>
         <groupId>io.devopsnextgenx.microservices.modules</groupId>
         <artifactId>entity-api-client</artifactId>
-        <version>current</version>
+        <version>current-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>entity-client</artifactId>
     <name>entity-client</name>
-    <version>current</version>
+    <version>current-SNAPSHOT</version>
     <description>Entity Client</description>
     
     <properties>

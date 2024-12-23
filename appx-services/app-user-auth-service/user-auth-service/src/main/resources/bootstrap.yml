@@ -11,8 +11,8 @@ spring:
   cloud:
     config:
       uri: https://${VCONFIGHOST:${HOSTNAME:config.appx.localtest.me}}:${VCONFIGPORT:8761}/config/
-      username: ${VCONFIGUSER:config}
-      password: ${VCONFIGPASSWORD:password}
+      username: ${VCONFIGUSER:admin}
+      password: ${VCONFIGPASSWORD:p@ssw0rd}
       label: master
 #    consul:
 #      host: ${VCONSULHOST:consul.localhost}

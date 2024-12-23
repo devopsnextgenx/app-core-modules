@@ -8,7 +8,7 @@
 
     <groupId>io.devopsnextgenx.microservices.modules</groupId>
     <artifactId>app-entity-service</artifactId>
-    <version>current</version>
+    <version>current-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>app-entity-service</name>
@@ -24,7 +24,7 @@
             <dependency>
                 <groupId>io.devopsnextgenx.microservices.modules</groupId>
                 <artifactId>entity-api</artifactId>
-                <version>current</version>
+                <version>current-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -39,7 +39,7 @@
     </distributionManagement>
     <scm>
         <developerConnection>
-            scm:git:git@github.com/devopsnextgenx/app-core-modules.git
+            scm:git:https://github.com/devopsnextgenx/app-core-modules.git
         </developerConnection>
       <tag>current-SNAPSHOT</tag>
   </scm>

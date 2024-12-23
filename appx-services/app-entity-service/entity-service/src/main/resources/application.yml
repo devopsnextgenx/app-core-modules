@@ -1,0 +1,27 @@
+spring:
+  application:
+      name: entity-service
+  datasource:
+    url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_auth_db}?createDatabaseIfNotExist=true&autoReconnect=true
+    name: authdb
+    username: ${VDBUSER:root}
+    password: ${VDBPASS:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    loadbalancer:
+      enabled: true
+server:
+  port: ${VPORT:0}
+
+app:
+  modules:
+    swagger:
+      enabled: true
+      title: Entity Service
+      description: Entity Service
+      version: 1.0
+      contact:
+        name: Amit Kshirsagar
+        email: amit.kshirsagar.13@gmail.com
+    services:
+      user-auth-service: https://USER-AUTH-SERVICE

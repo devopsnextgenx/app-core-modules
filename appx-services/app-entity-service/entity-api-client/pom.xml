@@ -9,7 +9,7 @@
 
     <groupId>io.devopsnextgenx.microservices.modules</groupId>
     <artifactId>entity-api-client</artifactId>
-    <version>current</version>
+    <version>current-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>entity-api-client</name>

@@ -1,0 +1,284 @@
+openapi: 3.0.0
+
+info:
+  title: Entity API
+  description: Entity Apis for Appx.
+  version: 0.0.1
+  contact:
+    name: Amit Kshirsagar
+
+servers:
+  - url: 'http://entity-service.{environment}.localtest.me/api'
+    variables:
+      environment:
+        default: api.local    # Local server
+        enum:
+          - api               # Production server
+          - api.dev           # Development server
+          - api.local         # local server
+          - api.staging       # Staging server
+tags:
+  - name: EntityService
+    description: Entity Service
+
+security:
+  - JwtAuthKey: []
+
+paths:
+  /entities:
+    get:
+      operationId: listEntities
+      tags:
+        - EntityService
+      description: Returns the List of Entities
+      responses:
+        200:
+          $ref: '#/components/responses/Entities'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      operationId: postUser
+      tags:
+        - EntityService
+      description: Add a new Entity
+      requestBody:
+        $ref: '#/components/requestBodies/Entity'
+      responses:
+        201:
+          $ref: '#/components/responses/Entity'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+
+  /users/{id}:
+    get:
+      operationId: getUserById
+      tags:
+        - EntityService
+      description: Return the Entity by Id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        200:
+          $ref: '#/components/responses/Entity'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      operationId: putUserById
+      tags:
+        - EntityService
+      description: Replace the Entity by Id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        $ref: '#/components/requestBodies/Entity'
+      responses:
+        200:
+          $ref: '#/components/responses/Entity'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      operationId: deleteUserById
+      tags:
+        - EntityService
+      description: Delete Entity by Id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      responses:
+        200:
+          description: Successful response with no content
+          content:
+            application/json: {}
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    patch:
+      operationId: patchUserById
+      tags:
+        - EntityService
+      description: Update Entity by Id
+      parameters:
+        - $ref: '#/components/parameters/id'
+      requestBody:
+        $ref: '#/components/requestBodies/Entity'
+      responses:
+        200:
+          $ref: '#/components/responses/Entity'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/404NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  securitySchemes:
+    JwtAuthKey:
+      type: apiKey
+      in: header
+      name: JWT
+
+  parameters:
+    id:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+      description: id for the item to be fetched
+
+  requestBodies:
+    Entity:
+      description: Entity RequestBody
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Entity'
+
+  responses:
+    404NotFound:       # Can be referenced as '#/components/responses/404NotFound'
+      description: The specified resource was not found.
+    BadRequest:
+      description: BAD_REQUEST
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppxError'
+    Unauthorized:
+      description: UNAUTHORIZED
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppxError'
+    Forbidden:
+      description: FORBIDDEN
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppxError'
+    InternalServerError:
+      description: INTERNAL_SERVER_ERROR
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppxError'
+    ImageResponse:     # Can be referenced as '#/components/responses/ImageResponse'
+      description: An image.
+      content:
+        image/*:
+          schema:
+            type: string
+            format: binary
+    GenericError:      # Can be referenced as '#/components/responses/GenericError'
+      description: An error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AppxError'
+
+    Users:
+      description: SUCCESS
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Entity'
+
+    Entity:
+      description: SUCCESS
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Entity'
+
+  schemas:
+    AppxError:
+      type: object
+      properties:
+        error:
+          type: string
+        status:
+          type: string
+        correlation-id:
+          type: string
+
+    Base:
+      allOf:
+        - $ref: '#/components/schemas/AppxError'
+        - type: object
+          properties:
+            id:
+              type: string
+              example: 1xxnss2
+            deleted:
+              type: boolean
+            created:
+              type: string
+            updated:
+              type: string
+
+    Entity:
+      allOf:
+        - $ref: '#/components/schemas/Base'
+        - type: object
+          required:
+            - username
+          properties:
+            firstName:
+              type: string
+            lastName:
+              type: string
+            roles:
+              type: array
+              items:
+                $ref: '#/components/schemas/Role'    
+    Role:
+      type: string
+      enum:
+        - SYSTEM_ADMINISTRATOR
+        - SERVICE_ACCOUNT
+
