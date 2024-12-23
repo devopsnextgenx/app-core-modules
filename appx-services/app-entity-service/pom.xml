@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.devopsnextgenx.microservices.modules</groupId>
+        <artifactId>appx-service</artifactId>
+        <version>current-SNAPSHOT</version>
+    </parent>
+
+    <groupId>io.devopsnextgenx.microservices.modules</groupId>
+    <artifactId>app-entity-service</artifactId>
+    <version>current</version>
+    <packaging>pom</packaging>
+
+    <name>app-entity-service</name>
+    <description>Spring Boot application for AppX Entity Service</description>
+
+    <modules>
+        <module>entity-api-client</module>
+        <module>entity-service</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>entity-api</artifactId>
+                <version>current</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>io.devopsnextgenx.microservices.modules</id>
+            <name>AppX Entity Service Archtype</name>
+            <url>http://maven.springframework.org/release</url>
+            <layout>default</layout>
+        </repository>
+    </distributionManagement>
+    <scm>
+        <developerConnection>
+            scm:git:git@github.com/devopsnextgenx/app-core-modules.git
+        </developerConnection>
+      <tag>current-SNAPSHOT</tag>
+  </scm>
+</project>
