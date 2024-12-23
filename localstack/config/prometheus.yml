@@ -4,6 +4,6 @@ scrape_configs:
     scrape_interval: 15s # This can be adjusted based on our needs
     scheme: 'https'
     static_configs:
-      - targets: ['user-auth-service.appx.localtest.me:2001','user-service.appx.localtest.me:8080']
+      - targets: ['host.docker.internal:2001','host.docker.internal:8080']
     tls_config:
       insecure_skip_verify: true
