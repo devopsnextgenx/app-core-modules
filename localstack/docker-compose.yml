@@ -39,7 +39,7 @@ services:
   grafana:
     image: grafana/grafana:latest
     ports:
-      - "9000:9000"
+      - "9000:3000"
     environment:
       GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: "/var/lib/grafana/dashboards/exported_dashboard.json"
 
@@ -49,6 +49,10 @@ services:
       - "9090:9090"
     volumes:
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
+    - "user-auth-service.appx.localtest.me:host-gateway"
+    - "user-service.appx.localtest.me:host-gateway"
 
   # mongo:
   #   domainname: localhost
