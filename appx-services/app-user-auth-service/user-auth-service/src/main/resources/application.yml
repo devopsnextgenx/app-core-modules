@@ -7,6 +7,7 @@ spring:
     username: ${VDBUSER:root}
     password: ${VDBPASS:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
+
 server:
   port: ${VPORT:2001}
 

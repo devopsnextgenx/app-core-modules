@@ -19,7 +19,7 @@ eureka:
   client:
     region: default
     serviceUrl:
-      defaultZone: https://${VEUREKAUSER:admin}:${VEUREKAPASS:p@ssw0rd}@${VEUREKAHOST:eureka.appx.localtest.me}:${VEUREKAPORT:8761}/eureka
+      defaultZone: https://${VEUREKAUSER:admin}:${VEUREKAPASS:password}@${VEUREKAHOST:eureka.appx.localtest.me}:${VEUREKAPORT:8761}/eureka
     register-with-eureka: false
     fetchRegistry: false
   server:
@@ -123,8 +123,8 @@ spring:
     name: appx-oauth-service
   # security:
   #   user:
-  #     name: ${VEUREKAUSER:config}     # eureka dashboard user: user | password from console log
-  #     password: ${VEUREKAPASS:password} # password can be got from console log
+  #     name: ${VEUREKAUSER:admin}     # eureka dashboard user: user | password from console log
+  #     password: ${VEUREKAPASS:p@ssw0rd} # password can be got from console log
   cloud:
     config:
       discovery:

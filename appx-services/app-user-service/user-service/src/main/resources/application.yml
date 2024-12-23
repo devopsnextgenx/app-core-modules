@@ -1,15 +1,13 @@
 spring:
   application:
-      name: user-service
+    name: user-service
   datasource:
     url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_auth_db}?createDatabaseIfNotExist=true&autoReconnect=true
     name: authdb
     username: ${VDBUSER:root}
     password: ${VDBPASS:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
-  cloud:
-    loadbalancer:
-      enabled: true
+
 server:
   port: ${VPORT:8080}
 
