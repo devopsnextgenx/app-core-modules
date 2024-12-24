@@ -1,3 +1,6 @@
+x-environment: &env
+  - TMP_DIR: d:/tmp/docker
+
 services:
   localstack:
     domainname: localhost
@@ -39,7 +42,7 @@ services:
   grafana:
     image: grafana/grafana:latest
     ports:
-      - "9000:3000"
+      - "9095:3000"
     environment:
       GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: "/var/lib/grafana/dashboards/exported_dashboard.json"
 
@@ -53,6 +56,38 @@ services:
     - "host.docker.internal:host-gateway"
     - "user-auth-service.appx.localtest.me:host-gateway"
     - "user-service.appx.localtest.me:host-gateway"
+
+  vault:
+    domainname: localhost
+    hostname: vault.localtest.me
+    image: vault:1.13.3
+    container_name: vault-server
+    ports:
+      - "8200:8200"
+    volumes:
+      - "${TMP_DIR:-/tmp}/vault/policies:/vault/policies"
+      - "${TMP_DIR:-/tmp}/vault-data:/vault/data"
+      - "${TMP_DIR:-/tmp}/vault/logs:/vault/logs"
+    environment:
+      - VAULT_ADDR=http://0.0.0.0:8200
+      - VAULT_TOKEN=00000000-0000-0000-0000-000000000000
+    command: server --dev --dev-root-token-id="00000000-0000-0000-0000-000000000000"
+    cap_add:
+      - IPC_LOCK
+    depends_on:
+      - consul
+
+  consul:
+    domainname: localhost
+    hostname: consul.localtest.me
+    image: amitkshirsagar13/consul
+    container_name: consul-server
+    ports:
+      - 8500:8500
+    command: agent -server -bind 0.0.0.0 -client 0.0.0.0 -bootstrap-expect 1 -config-file=/consul/config/config.json
+    volumes:
+      - ./consul/config/consul-config.json:/consul/config/config.json
+      - "${TMP_DIR:-/tmp}/consul-data:/consul/data"
 
   # mongo:
   #   domainname: localhost
@@ -85,38 +120,6 @@ services:
   #       --requirepass "redis"
   #     '
   #   ]
-
-  # vault:
-  #   domainname: localhost
-  #   hostname: vault.localtest.me
-  #   image: vault:1.13.3
-  #   container_name: vault-server
-  #   ports:
-  #     - "8200:8200"
-  #   volumes:
-  #     - "${TMP_DIR:-/tmp}/vault/policies:/vault/policies"
-  #     - "${TMP_DIR:-/tmp}/vault-data:/vault/data"
-  #     - "${TMP_DIR:-/tmp}/vault/logs:/vault/logs"
-  #   environment:
-  #     - VAULT_ADDR=http://0.0.0.0:8200
-  #     - VAULT_TOKEN=00000000-0000-0000-0000-000000000000
-  #   command: server --dev --dev-root-token-id="00000000-0000-0000-0000-000000000000"
-  #   cap_add:
-  #     - IPC_LOCK
-  #   depends_on:
-  #     - consul
-
-  # consul:
-  #   domainname: localhost
-  #   hostname: consul.localtest.me
-  #   image: amitkshirsagar13/consul
-  #   container_name: consul-server
-  #   ports:
-  #     - 8500:8500
-  #   command: agent -server -bind 0.0.0.0 -client 0.0.0.0 -bootstrap-expect 1 -config-file=/consul/config/config.json
-  #   volumes:
-  #     - ./consul/config/consul-config.json:/consul/config/config.json
-  #     - "${TMP_DIR:-/tmp}/consul-data:/consul/data"
 
 #
 #  test-module1:
