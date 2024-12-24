@@ -24,6 +24,37 @@ mvn clean install
 # Skip tests
 mvn clean install -DskipTests
 ```
+
+### Data Setup for Seed User
+
+- Enable vault container with localstack
+- Open [vault](http://localhost:8200/)
+- Add below data to `secret` engine with `appx` Path
+    ```json
+    {
+        "appx.modules.security.context": {
+            "userList": [{
+                "email": "admin@devopsnextgenx.io",
+                "firstName": "eureka-vault",
+                "lastName": "config-vault",
+                "password": "p@ssw0rd",
+                "roles": [
+                "SYSTEM_ADMINISTRATOR",
+                "ORGANIZATION_ADMINISTRATOR",
+                "DATA_MANAGER",
+                "COMPANY_ADMINISTRATOR",
+                "SERVICE_ACCOUNT"
+                ],
+                "username": "admin"
+            }]
+        },
+        "appx.modules.security.jwtSecret": "vaultSecret"
+    }
+    ```
+- Finally it should look like as below.
+
+    ![vault-appx](./snaps/vault-appx.png)
+
 ### Start Services
 
 ```bash

@@ -1,18 +1,27 @@
 spring:
   application:
     name: user-auth-service
-  datasource:
-    url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_auth_db}?createDatabaseIfNotExist=true&autoReconnect=true
-    name: authdb
-    username: ${VDBUSER:root}
-    password: ${VDBPASS:root}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    vault:
+      port: 8200
+      scheme: http
+      authentication: TOKEN
+      token: 00000000-0000-0000-0000-000000000000
+      application-name: appx
+      kv:
+        enabled: true
+        backend: secret
+        default-context: appx
+  config:
+    import: optional:vault://
 
 server:
   port: ${VPORT:2001}
 
-app:
+appx:
   modules:
+    vault:
+      enabled: true
     swagger:
       enabled: true
       title: User Auth Service

@@ -15,7 +15,7 @@ import io.github.resilience4j.timelimiter.TimeLimiterConfig;
 
 @Configuration
 @EnableConfigurationProperties
-@ConditionalOnProperty(value = "app.modules.monitoring.enabled", havingValue = "true", matchIfMissing = false)
+@ConditionalOnProperty(value = "appx.modules.monitoring.enabled", havingValue = "true", matchIfMissing = false)
 public class AppMonitoringConfiguration {
     @Bean
     public Customizer<Resilience4JCircuitBreakerFactory> defaultCustomizer() {

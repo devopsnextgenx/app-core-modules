@@ -13,7 +13,7 @@ spring:
 server:
   port: ${VPORT:0}
 
-app:
+appx:
   modules:
     swagger:
       enabled: true

@@ -32,7 +32,7 @@ public class AwsRuntimeSNSClientProvider implements AmazonSNSClientProvider {
         AmazonSNS amazonSns = AmazonSNSClientBuilder.standard()
                 .withCredentials(credentials)
                 .withRegion(Optional.ofNullable(awsProperties.getRegion())
-                        .orElseThrow(() -> new AppAwsResourceException("Parameter 'app.modules.s3.region' must be specified in integrative configuration")))
+                        .orElseThrow(() -> new AppAwsResourceException("Parameter 'appx.modules.s3.region' must be specified in integrative configuration")))
                 .build();
         log.info("An integrative SNS client was created");
         return amazonSns;
@@ -43,7 +43,7 @@ public class AwsRuntimeSNSClientProvider implements AmazonSNSClientProvider {
         AmazonSNSAsync amazonSnsAsync = AmazonSNSAsyncClientBuilder.standard()
                 .withCredentials(credentials)
                 .withRegion(Optional.ofNullable(awsProperties.getRegion())
-                        .orElseThrow(() -> new AppAwsResourceException("Parameter 'app.modules.s3.region' must be specified in integrative configuration")))
+                        .orElseThrow(() -> new AppAwsResourceException("Parameter 'appx.modules.s3.region' must be specified in integrative configuration")))
 
                 .build();
         log.info("An integrative SNSAsync client was created");
@@ -55,7 +55,7 @@ public class AwsRuntimeSNSClientProvider implements AmazonSNSClientProvider {
 //        AmazonCloudFormation amazonCloudFormation = AmazonCloudFormationClientBuilder.standard()
 //                .withCredentials(credentials)
 //                .withRegion(Optional.ofNullable(awsProperties.getRegion())
-//                        .orElseThrow(() -> new AppAwsResourceException("Parameter 'app.modules.s3.region' must be specified in integrative configuration")))
+//                        .orElseThrow(() -> new AppAwsResourceException("Parameter 'appx.modules.s3.region' must be specified in integrative configuration")))
 //
 //                .build();
 //        log.info("Local amazonCloudFormation client was created.");

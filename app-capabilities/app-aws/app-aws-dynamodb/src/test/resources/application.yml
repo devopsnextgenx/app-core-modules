@@ -2,7 +2,7 @@ server:
   hostname: ${VHOSTNAME:test-module.local.localtest.me}
   port: ${VPORT:2000}
 
-app:
+appx:
   cloud:
     aws:
       region: us-east-1

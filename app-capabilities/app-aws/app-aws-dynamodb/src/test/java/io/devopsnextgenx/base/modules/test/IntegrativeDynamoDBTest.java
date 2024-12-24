@@ -28,7 +28,7 @@ import org.springframework.context.annotation.PropertySource;
 @ActiveProfiles("local")
 @PropertySource(value = "classpath:application-local.yml", factory = YamlPropertyLoaderFactory.class)
 @TestPropertySource(properties = {
-    "app.modules.dynamodb.local = true"
+    "appx.modules.dynamodb.local = true"
 })
 @SpringBootTest(classes = {DynamodbAutoConfiguration.class, AwsEnvironmentModuleAutoConfiguration.class})
 public class IntegrativeDynamoDBTest {

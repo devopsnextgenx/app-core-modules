@@ -35,7 +35,7 @@ import java.util.Objects;
 public class DynamodbAutoConfiguration {
 
     @Bean
-    @ConfigurationProperties(prefix = "app.modules.dynamodb")
+    @ConfigurationProperties(prefix = "appx.modules.dynamodb")
     public AppDynamoDBConfig appDynamoDBConfig() {
         return new AppDynamoDBConfig();
     }
@@ -59,7 +59,7 @@ public class DynamodbAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(name = "app.modules.dynamodb.local", havingValue = "true")
+    @ConditionalOnProperty(name = "appx.modules.dynamodb.local", havingValue = "true")
     public BaseDynamoDBMapperInitializer dynamoDBLocalInitializer(AppDynamoDBConfig config, AmazonDynamoDB dynamoDB, AWSCredentialsProvider credentials, AppAwsProperties awsProperties) {
         return new DynamoDBLocalInitializer(config, dynamoDB, credentials, awsProperties);
     }

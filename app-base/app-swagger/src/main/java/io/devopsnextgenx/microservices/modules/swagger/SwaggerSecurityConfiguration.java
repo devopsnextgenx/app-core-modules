@@ -17,17 +17,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
 @EnableConfigurationProperties
-@ConditionalOnProperty(value = "app.modules.swagger.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(value = "appx.modules.swagger.enabled", havingValue = "true", matchIfMissing = true)
 public class SwaggerSecurityConfiguration {
-    @Value("${app.modules.swagger.title:Micro-Service}")
+    @Value("${appx.modules.swagger.title:Micro-Service}")
     private String title;
-    @Value("${app.modules.swagger.description:Micro-Service API Description}")
+    @Value("${appx.modules.swagger.description:Micro-Service API Description}")
     private String description;
-    @Value("${app.modules.swagger.version:1.0.0}")
+    @Value("${appx.modules.swagger.version:1.0.0}")
     private String version;
-    @Value("${app.modules.swagger.contact.email:x}")
+    @Value("${appx.modules.swagger.contact.email:x}")
     private String email;
-    @Value("${app.modules.swagger.contact.name:z}")
+    @Value("${appx.modules.swagger.contact.name:z}")
     private String name;
 
     final String securityBasicSchemeName = "basicAuth";

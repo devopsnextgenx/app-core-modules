@@ -30,7 +30,7 @@ public class AwsIntegrativeDynamoDBProvider implements AmazonDynamoDBClientProvi
         AmazonDynamoDB dynamoDB = AmazonDynamoDBClientBuilder.standard()
                 .withCredentials(credentials)
                 .withRegion(Optional.ofNullable(awsProperties.getRegion())
-                        .orElseThrow(() -> new AmazonDynamoDBException("Parameter 'app.modules.dynamodb.region' must be specified in integrative configuration")))
+                        .orElseThrow(() -> new AmazonDynamoDBException("Parameter 'appx.modules.dynamodb.region' must be specified in integrative configuration")))
                 .build();
         log.info("An integrative Dynamo DB client was created");
         return dynamoDB;

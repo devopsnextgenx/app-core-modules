@@ -14,14 +14,14 @@ public class DataloadAutoConfiguration {
     
     @Bean
     @ConditionalOnMissingBean
-    @ConfigurationProperties("app.modules.security.dataloader")
+    @ConfigurationProperties("appx.modules.security.dataloader")
     public DataLoaderProperties dataLoaderProperties(){
         return new DataLoaderProperties();
     }
 
     @Bean
     @ConditionalOnMissingBean
-    @ConfigurationProperties("app.modules.security.auth")
+    @ConfigurationProperties("appx.modules.security.auth")
     public AuthServiceProperties authServiceProperties(){
         return new AuthServiceProperties();
     }

@@ -21,7 +21,7 @@ import io.devopsnextgenx.microservices.modules.security.jwt.JwtSecurityConfigura
 @Configuration
 @EnableWebSecurity
 @EnableConfigurationProperties
-@ConditionalOnProperty(value = "app.modules.security.enabled", havingValue = "true", matchIfMissing = false)
+@ConditionalOnProperty(value = "appx.modules.security.enabled", havingValue = "true", matchIfMissing = false)
 @AutoConfigureAfter(value = {
         BasicSecurityConfiguration.class,
         JwtSecurityConfiguration.class
@@ -38,7 +38,7 @@ public class AppSecurityConfiguration {
         return new RestTemplateConfiguration();
     }
 
-    @Value("${app.modules.security.jwt.api.reqPath:/jwt/*}")
+    @Value("${appx.modules.security.jwt.api.reqPath:/jwt/*}")
     private String jwtApiPath;
 
     @Bean

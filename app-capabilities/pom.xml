@@ -24,5 +24,6 @@
         <module>app-data-model</module>
         <module>app-logging</module>
         <module>app-tracing</module>
+        <module>app-vault</module>
     </modules>
 </project>

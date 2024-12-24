@@ -30,7 +30,7 @@ public class AwsRuntimeS3ClientProvider implements AmazonS3ClientProvider {
         AmazonS3 amazonS3 = AmazonS3ClientBuilder.standard()
                 .withCredentials(credentials)
                 .withRegion(Optional.ofNullable(awsProperties.getRegion())
-                        .orElseThrow(() -> new AppAwsResourceException("Parameter 'app.modules.s3.region' must be specified in integrative configuration")))
+                        .orElseThrow(() -> new AppAwsResourceException("Parameter 'appx.modules.s3.region' must be specified in integrative configuration")))
                 .build();
         log.info("An integrative S3 client was created");
         return amazonS3;

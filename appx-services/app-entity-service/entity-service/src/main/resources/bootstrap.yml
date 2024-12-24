@@ -1,4 +1,4 @@
-app:
+appx:
   ssl:
     trustStore: ${VTRUSTSTORE:appx.p12}
     trustStorePassword: ${VTRUSTSTOREPASSWORD:appxxppa}

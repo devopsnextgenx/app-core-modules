@@ -37,23 +37,23 @@ import lombok.extern.slf4j.Slf4j;
         ignoreResourceNotFound = true,
         factory = YamlPropertyLoaderFactory.class) 
 })
-@ConditionalOnProperty(value = "app.modules.security.jwt.enabled", havingValue = "true", matchIfMissing = false)
+@ConditionalOnProperty(value = "appx.modules.security.jwt.enabled", havingValue = "true", matchIfMissing = false)
 public class JwtSecurityConfiguration {
 
     @Bean
-    @ConfigurationProperties(prefix = "app.modules.swagger.users")
+    @ConfigurationProperties(prefix = "appx.modules.swagger.users")
     public SwaggerUISecurityConfig swaggerUISecurityConfig() {
         return new SwaggerUISecurityConfig();
     }
     
     @Bean
-    @ConfigurationProperties("app.modules.security.oauth")
+    @ConfigurationProperties("appx.modules.security.oauth")
     public OAuthApplicationsConfig oauthApplicationsConfig() {
         return new OAuthApplicationsConfig();
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "app.modules.services.userservice")
+    @ConfigurationProperties(prefix = "appx.modules.services.userservice")
     public AppConfig appConfig() {
         return new AppConfig();
     }
@@ -67,7 +67,7 @@ public class JwtSecurityConfiguration {
     @Bean
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public JWTVerifierCache audienceVerifierCache(OAuthLoginHelper oAuthLoginHelper, RestTemplate restTemplate,
-            AppConfig appConfig, @Value("${app.modules.services.userServiceHost}") String userServiceHost) {
+            AppConfig appConfig, @Value("${appx.modules.services.userServiceHost}") String userServiceHost) {
         return new JWTVerifierCache(oAuthLoginHelper, restTemplate, new JwtVerifierHelper(), appConfig,
                 userServiceHost);
     }

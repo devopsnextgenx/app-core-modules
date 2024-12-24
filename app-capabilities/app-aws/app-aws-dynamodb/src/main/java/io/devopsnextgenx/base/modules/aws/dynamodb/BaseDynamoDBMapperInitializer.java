@@ -40,7 +40,7 @@ public abstract class BaseDynamoDBMapperInitializer implements AwsResourceInitia
 
         AttributeEncryptor encryptor = null;
         if (!StringUtils.isNullOrEmpty(appDynamoDBConfig.getArn())) {
-            Objects.requireNonNull(appAwsProperties.getRegion(), "Parameter 'app.modules.dynamodb.region' must be specified with arn.");
+            Objects.requireNonNull(appAwsProperties.getRegion(), "Parameter 'appx.modules.dynamodb.region' must be specified with arn.");
 
             AWSKMS kmsClient = AWSKMSClientBuilder.standard()
                     .withCredentials(awsCredentialsProvider)

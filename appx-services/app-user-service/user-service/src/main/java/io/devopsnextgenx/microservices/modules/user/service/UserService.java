@@ -4,9 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -22,15 +19,9 @@ public class UserService {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${app.modules.services.user-auth-service}")
+    @Value("${appx.modules.services.user-auth-service}")
     private String userAuthServiceUrl;
     
-    @Autowired
-    private LoadBalancerClient loadBalancerClient;
-
-    @Autowired
-    private DiscoveryClient discoveryClient;
-
     public UserDto getUser(String userId) {
         String url = userAuthServiceUrl + userId;
         return restTemplate.getForObject(url, UserDto.class);

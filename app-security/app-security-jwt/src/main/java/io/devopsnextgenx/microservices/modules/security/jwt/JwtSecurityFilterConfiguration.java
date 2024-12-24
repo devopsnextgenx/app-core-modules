@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
-@ConditionalOnProperty(value = "app.modules.security.jwt.enabled", havingValue = "true", matchIfMissing = false)
+@ConditionalOnProperty(value = "appx.modules.security.jwt.enabled", havingValue = "true", matchIfMissing = false)
 public class JwtSecurityFilterConfiguration {
     
     private TokenValidator tokenValidator;
@@ -24,7 +24,7 @@ public class JwtSecurityFilterConfiguration {
         this.tokenValidator = tokenValidator;
     }
 
-    @Value("${app.modules.security.jwt.api.path:/jwt/**}")
+    @Value("${appx.modules.security.jwt.api.path:/jwt/**}")
     private String jwtApiPath;
 
     @Value("${spring.application.name}")

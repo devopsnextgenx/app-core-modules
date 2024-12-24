@@ -40,7 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 @EnableConfigurationProperties
 public class SNSAutoConfiguration {
     @Bean
-    @ConfigurationProperties(prefix = "app.modules.sns")
+    @ConfigurationProperties(prefix = "appx.modules.sns")
     public AppSnsConfig appSnsConfig() {
         return new AppSnsConfig();
     }
@@ -87,7 +87,7 @@ public class SNSAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(name = "app.modules.sns.local", havingValue = "true")
+    @ConditionalOnProperty(name = "appx.modules.sns.local", havingValue = "true")
     AmazonSNSLocalInitializer amazonSNSLocalInitializer(AppSnsConfig config, AmazonSNS amazonSNS) {
         return new AmazonSNSLocalInitializer(config, amazonSNS);
     }

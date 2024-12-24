@@ -1,6 +1,7 @@
-app:
+appx:
   modules:
     security:
+      enabled: true
       jwt:
         enabled: true
       oauth:
@@ -24,8 +25,7 @@ app:
             authType: SELFSIGNED
             domain: ${AUTH_DOMAIN:https://devopsnextgenx.localtest.me/}
             clientId: ${AUTH_API_V2_clientId:https://devopsnextgenx.localtest.me/api/v2/}
-            clientSecret: fake-client-secret    swagger:
-      enabled: true
+            clientSecret: fake-client-secret
     swagger:
       enabled: true
       users:

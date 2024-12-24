@@ -18,24 +18,24 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
 @EnableConfigurationProperties
-@ConditionalOnProperty(value = "app.modules.security.basic.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(value = "appx.modules.security.basic.enabled", havingValue = "true", matchIfMissing = true)
 public class BasicSecurityConfiguration {
 
-    @Value("${app.modules.security.basic.user.name:admin}")
+    @Value("${appx.modules.security.basic.user.name:admin}")
     private String username;
-    @Value("${app.modules.security.basic.user.password:password}")
+    @Value("${appx.modules.security.basic.user.password:password}")
     private String password;
-    @Value("${app.modules.security.basic.user.role:USER}")
+    @Value("${appx.modules.security.basic.user.role:USER}")
     private String role;
 
     @Bean("userDetailsService")
-    @ConditionalOnProperty(value = "app.modules.security.basic.enabled", havingValue = "true", matchIfMissing = false)
+    @ConditionalOnProperty(value = "appx.modules.security.basic.enabled", havingValue = "true", matchIfMissing = false)
     public AppxUserDetailsService userDetailsService(AppxUserRepositoryImpl appxUserRepositoryImpl) {
         log.info("BasicSecurityConfiguration: userDetailsService");
         return new AppxUserDetailsService(appxUserRepositoryImpl);
     }
 
-    @Value("${app.modules.security.basic.api.path:/basic/**}")
+    @Value("${appx.modules.security.basic.api.path:/basic/**}")
     private String basicApiPath;
 
     @Bean

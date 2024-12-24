@@ -22,19 +22,19 @@ import java.net.UnknownHostException;
 @Configuration
 @AutoConfiguration
 @EnableConfigurationProperties
-@ConditionalOnProperty(name = "app.modules.tracing.enabled", havingValue = "true")
+@ConditionalOnProperty(name = "appx.modules.tracing.enabled", havingValue = "true")
 public class TracingAutoConfiguration {
     @Value("${spring.application.name}")
     private String SERVICE_NAME;
-    @Value("${app.modules.tracing.jaeger.host:localhost}")
+    @Value("${appx.modules.tracing.jaeger.host:localhost}")
     private String JAEGER_HOST;
-    @Value("${app.modules.tracing.jaeger.port:6831}")
+    @Value("${appx.modules.tracing.jaeger.port:6831}")
     private int JAEGER_PORT;
-    @Value("${app.modules.tracing.jaeger.trace.samplingRate:1}")
+    @Value("${appx.modules.tracing.jaeger.trace.samplingRate:1}")
     private double SAMPLING_RATE;
-    @Value("${app.modules.tracing.jaeger.trace.flushInterval:1000}")
+    @Value("${appx.modules.tracing.jaeger.trace.flushInterval:1000}")
     private int FLUSH_INTERVAL;
-    @Value("${app.modules.tracing.jaeger.trace.maxQueueSize:100}")
+    @Value("${appx.modules.tracing.jaeger.trace.maxQueueSize:100}")
     private int MAX_QUEUE_SIZE;
 
     @Bean
@@ -43,7 +43,7 @@ public class TracingAutoConfiguration {
     }
 
     @Bean("tracer")
-    @ConditionalOnProperty(name = "app.modules.tracing.jaeger.enabled", havingValue = "true")
+    @ConditionalOnProperty(name = "appx.modules.tracing.jaeger.enabled", havingValue = "true")
     public Tracer tracer(RemoteReporter remoteReporter, Sampler sampler) throws UnknownHostException {
         String hostAddress = InetAddress.getLocalHost().getHostName();
         return new JaegerTracer.Builder(SERVICE_NAME)
@@ -56,7 +56,7 @@ public class TracingAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(name = "app.modules.tracing.jaeger.enabled", havingValue = "true")
+    @ConditionalOnProperty(name = "appx.modules.tracing.jaeger.enabled", havingValue = "true")
     public RemoteReporter remoteReporter() {
         return new RemoteReporter.Builder()
                 .withFlushInterval(FLUSH_INTERVAL)

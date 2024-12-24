@@ -1,12 +1,12 @@
 package io.devopsnextgenx.microservices.modules.security.jwt;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import io.devopsnextgenx.microservices.modules.models.Role;
 import io.devopsnextgenx.microservices.modules.principal.AppxUserPrincipal;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -19,11 +19,12 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 @Component
+@ConfigurationProperties
 public class JwtTokenProvider {
-    @Value("${app.modules.security.jwt.secret}")
+    @Value("${appx.modules.security.jwtSecret}")
     private String secretKey;
 
-    @Value("${app.modules.security.jwt.expiration}")
+    @Value("${appx.modules.security.jwt.expiration}")
     private long validityInMilliseconds;
 
     public String createToken(Authentication authentication) {

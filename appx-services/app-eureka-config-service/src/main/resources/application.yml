@@ -39,20 +39,7 @@ management:
       exposure:
         include: '*'
 
-app:
-  user-list:
-    users:
-      - username: admin
-        password: p@ssw0rd
-        firstName: eureka
-        lastName: config
-        email: admin@devopsnextgenx.io
-        roles:
-          - SYSTEM_ADMINISTRATOR
-          - ORGANIZATION_ADMINISTRATOR
-          - DATA_MANAGER
-          - COMPANY_ADMINISTRATOR
-          - SERVICE_ACCOUNT
+appx:
   cloud:
     aws:
       region: us-east-1
@@ -73,6 +60,19 @@ app:
           maxQueueSize: 1000
     security:
       enabled: true
+      context:
+        userList:
+          - username: admin
+            password: p@ssw0rd
+            firstName: eureka
+            lastName: config
+            email: admin@devopsnextgenx.io
+            roles:
+              - SYSTEM_ADMINISTRATOR
+              - ORGANIZATION_ADMINISTRATOR
+              - DATA_MANAGER
+              - COMPANY_ADMINISTRATOR
+              - SERVICE_ACCOUNT
       secretKey: terces##secret
       encrypted: classpath:encrypted.properties
       basic:
@@ -91,6 +91,8 @@ app:
         selfSigned:
           enabled: false
           enableController: false
+    vault:
+      enabled: true
 
 spring:
   datasource:
@@ -136,6 +138,18 @@ spring:
           search-locations: classpath:spring-config-master/
         git:
           uri: ${VGITCONFIGURL:https://github.com/amitkshirsagar13/spring-config.git}
+    vault:
+      port: 8200
+      scheme: http
+      authentication: TOKEN
+      token: 00000000-0000-0000-0000-000000000000
+      application-name: appx
+      kv:
+        enabled: true
+        backend: secret
+        default-context: appx
+  config:
+    import: optional:vault://
 
 # logging:
 #   level:

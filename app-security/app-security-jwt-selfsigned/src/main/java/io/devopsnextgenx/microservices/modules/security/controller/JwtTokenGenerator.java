@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RestController
 @RequestMapping("/basic/api")
 @SecurityRequirement(name = "basicAuth")
-@ConditionalOnProperty(value = "app.modules.security.jwt.selfSigned.enableController", havingValue = "true", matchIfMissing = false)
+@ConditionalOnProperty(value = "appx.modules.security.jwt.selfSigned.enableController", havingValue = "true", matchIfMissing = false)
 public class JwtTokenGenerator {
 
     @Autowired

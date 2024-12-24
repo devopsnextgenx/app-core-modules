@@ -1,9 +1,5 @@
 package io.devopsnextgenx.microservices.modules.eureka.config;
 
-import java.util.Arrays;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,20 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import io.devopsnextgenx.microservices.modules.eureka.models.SeedUser;
-import io.devopsnextgenx.microservices.modules.eureka.models.UserList;
 
 import io.devopsnextgenx.microservices.modules.models.Organization;
 import io.devopsnextgenx.microservices.modules.models.Role;
 import io.devopsnextgenx.microservices.modules.models.User;
+import io.devopsnextgenx.base.modules.config.models.AppxUser;
+import io.devopsnextgenx.base.modules.config.models.AppxUserList;
 import io.devopsnextgenx.microservices.modules.access.model.ROLE;
 import io.devopsnextgenx.microservices.modules.services.AppxUserDetailsService;
-import io.devopsnextgenx.microservices.modules.utils.converters.PasswordEncryptor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
-public class SecurityConfiguration {
+public class AppxSecurityConfiguration {
     @Autowired
     AppxUserDetailsService userDetailsService;
 
@@ -34,9 +29,9 @@ public class SecurityConfiguration {
 
     @EventListener
     public void onApplicationReadyEvent(ApplicationReadyEvent event) {
-        UserList appUserList = (UserList) event.getApplicationContext().getBeanFactory().getBean("appUserList");
-        log.info("UserList: " + appUserList.getUsers().size());
-        for (SeedUser user : appUserList.getUsers()) {
+        AppxUserList appUserList = (AppxUserList) event.getApplicationContext().getBeanFactory().getBean("appxUserList");
+        log.info("UserList: " + appUserList.getUserList().size());
+        for (AppxUser user : appUserList.getUserList()) {
             if(!userDetailsService.existUser(user.getUsername())) {
                     User seedUser = User.builder()
                     .userName(user.getUsername())
@@ -52,15 +47,9 @@ public class SecurityConfiguration {
                         .orgName("devopsnextgenx")
                         .active(true).build()
                     ).build();
-                    log.info("User: " + seedUser.getUserName() + " Password: " + seedUser.getPassword());
+                    log.info("User: " + seedUser.getUserName() + " FirstName: " + seedUser.getFirstName());
                 userDetailsService.createUser(seedUser);
             }
         }
-    }
-
-    @Bean
-    @ConfigurationProperties("app.user-list")
-    public UserList appUserList() {
-        return new UserList();
     }
 }

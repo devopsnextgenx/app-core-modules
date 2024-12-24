@@ -1,4 +1,4 @@
-app:
+appx:
   ssl:
     trustStore: ${VTRUSTSTORE:appx.p12}
     trustStorePassword: ${VTRUSTSTOREPASSWORD:appxxppa}
@@ -14,3 +14,5 @@ spring:
       username: ${VCONFIGUSER:admin}
       password: ${VCONFIGPASSWORD:p@ssw0rd}
       label: master
+    vault:
+      enabled: false

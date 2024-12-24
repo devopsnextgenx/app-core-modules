@@ -14,12 +14,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
 @Configuration
 @AutoConfigureBefore(JwtSecurityConfiguration.class)
-@ConditionalOnExpression(value = "#{${app.modules.security.jwt.enabled:false} and ${app.modules.security.jwt.selfSigned.enabled:false}}")
+@ConditionalOnExpression(value = "#{${appx.modules.security.jwt.enabled:false} and ${appx.modules.security.jwt.selfSigned.enabled:false}}")
 public class SelfSignedTokenValidatorConfig {
 
     @Bean
     @Primary
-    @ConditionalOnProperty(prefix = "app.modules.security.oauth", name = "defaultAuthType", havingValue = "SELFSIGNED")
+    @ConditionalOnProperty(prefix = "appx.modules.security.oauth", name = "defaultAuthType", havingValue = "SELFSIGNED")
     TokenValidator selfSignedTokenValidator(OAuthApplicationsConfig oAuthApplicationsConfig,
             JWTVerifierCache jwtVerifierCache) {
         return new SelfSignedTokenValidator(oAuthApplicationsConfig, jwtVerifierCache);

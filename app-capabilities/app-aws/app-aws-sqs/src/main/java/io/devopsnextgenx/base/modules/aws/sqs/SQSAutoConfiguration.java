@@ -53,7 +53,7 @@ import java.util.Objects;
 @EnableConfigurationProperties
 public class SQSAutoConfiguration {
     @Bean
-    @ConfigurationProperties(prefix = "app.modules.sqs")
+    @ConfigurationProperties(prefix = "appx.modules.sqs")
     public AppSqsConfig appSqsConfig() {
         return new AppSqsConfig();
     }
@@ -90,7 +90,7 @@ public class SQSAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(name = "app.modules.sqs.local", havingValue = "true")
+    @ConditionalOnProperty(name = "appx.modules.sqs.local", havingValue = "true")
     AmazonSQSLocalInitializer amazonSQSLocalInitializer(AppSqsConfig config, AmazonSQS amazonSqs) {
         return new AmazonSQSLocalInitializer(config, amazonSqs);
     }

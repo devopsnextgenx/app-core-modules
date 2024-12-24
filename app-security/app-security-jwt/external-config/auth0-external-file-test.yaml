@@ -1,4 +1,4 @@
-app:
+appx:
   modules:
     security:
       oauth.applications:

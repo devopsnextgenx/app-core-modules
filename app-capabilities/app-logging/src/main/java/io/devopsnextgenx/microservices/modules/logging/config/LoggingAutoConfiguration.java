@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties
 @AutoConfigureAfter(TracingAutoConfiguration.class)
-@ConditionalOnProperty(value = "app.modules.logging.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(value = "appx.modules.logging.enabled", havingValue = "true", matchIfMissing = true)
 public class LoggingAutoConfiguration {
     @Value("${spring.application.name}")
     private String applicationName;

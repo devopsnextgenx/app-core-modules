@@ -32,7 +32,7 @@ public class AwsRuntimeSQSClientProvider implements AmazonSQSClientProvider {
         AmazonSQS amazonSQS = AmazonSQSClientBuilder.standard()
                 .withCredentials(credentials)
                 .withRegion(Optional.ofNullable(awsProperties.getRegion())
-                        .orElseThrow(() -> new AppAwsResourceException("Parameter 'app.modules.s3.region' must be specified in integrative configuration")))
+                        .orElseThrow(() -> new AppAwsResourceException("Parameter 'appx.modules.s3.region' must be specified in integrative configuration")))
                 .build();
         log.info("An integrative SQS client was created");
         return amazonSQS;
@@ -43,7 +43,7 @@ public class AwsRuntimeSQSClientProvider implements AmazonSQSClientProvider {
         AmazonSQSAsync amazonSQSAsync = AmazonSQSAsyncClientBuilder.standard()
                 .withCredentials(credentials)
                 .withRegion(Optional.ofNullable(awsProperties.getRegion())
-                        .orElseThrow(() -> new AppAwsResourceException("Parameter 'app.modules.s3.region' must be specified in integrative configuration")))
+                        .orElseThrow(() -> new AppAwsResourceException("Parameter 'appx.modules.s3.region' must be specified in integrative configuration")))
 
                 .build();
         log.info("An integrative SQSAsync client was created");

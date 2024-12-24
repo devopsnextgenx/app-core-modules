@@ -33,7 +33,7 @@ import java.util.Objects;
 @EnableConfigurationProperties
 public class S3AutoConfiguration {
     @Bean
-    @ConfigurationProperties(prefix = "app.modules.s3")
+    @ConfigurationProperties(prefix = "appx.modules.s3")
     public AppS3Config appS3Config() {
         return new AppS3Config();
     }
@@ -63,7 +63,7 @@ public class S3AutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(name = "app.modules.s3.local", havingValue = "true")
+    @ConditionalOnProperty(name = "appx.modules.s3.local", havingValue = "true")
     AmazonS3LocalInitializer amazonS3LocalInitializer(AppS3Config config, AmazonS3 amazonS3) {
         return new AmazonS3LocalInitializer(config, amazonS3);
     }

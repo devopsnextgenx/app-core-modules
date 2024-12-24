@@ -1,4 +1,4 @@
-app:
+appx:
   ssl:
     trustStore: ${VTRUSTSTORE:appx.p12}
     trustStorePassword: ${VTRUSTSTOREPASSWORD:appxxppa}
@@ -14,6 +14,19 @@ spring:
       username: ${VCONFIGUSER:admin}
       password: ${VCONFIGPASSWORD:p@ssw0rd}
       label: master
+    vault:
+      enabled: false
+  #     port: 8200
+  #     scheme: http
+  #     authentication: TOKEN
+  #     token: 00000000-0000-0000-0000-000000000000
+  #     application-name: appx
+  #     kv:
+  #       enabled: true
+  #       backend: secret
+  #       default-context: appx
+  # config:
+  #   import: optional:vault://
 #    consul:
 #      host: ${VCONSULHOST:consul.localhost}
 #      port: ${VCONSULPORT:8500}

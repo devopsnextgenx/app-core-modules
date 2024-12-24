@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Configuration;
 import io.devopsnextgenx.microservices.modules.utils.converters.PasswordEncryptor;
 
 @Configuration
-@ConditionalOnProperty(name = "app.modules.security.enabled", havingValue = "true", matchIfMissing = false)
+@ConditionalOnProperty(name = "appx.modules.security.enabled", havingValue = "true", matchIfMissing = false)
 public class DataModelConfiguration {
     
-    @Value("${app.modules.security.secretKey}")
+    @Value("${appx.modules.security.secretKey}")
     private String secretKey;
 
     @Bean("jasyptStringEncryptor")
