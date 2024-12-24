@@ -5,11 +5,6 @@ spring:
     discovery:
       enabled: true
     gateway:
-      httpclient:
-        ssl:
-          trust-store: classpath:appx.p12
-          trust-store-password: appxxppa
-          useInsecureTrustManager: true
       enabled: true
       routes:
       - id: user-service
@@ -21,6 +16,13 @@ spring:
           # - RewritePath=/user-service/(?<segment>/?.*),$\{segment}
           # - TokenRelay=
           # - RemoveRequestHeader=Cookie
+
+      - id: user-auth-service
+        uri: lb://USER-AUTH-SERVICE
+        predicates:
+        - Path=/user-auth-service/**
+        filters:
+          - StripPrefix=1
 
 eureka:
   client:
