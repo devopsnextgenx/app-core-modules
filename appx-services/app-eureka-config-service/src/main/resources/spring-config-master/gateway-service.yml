@@ -1,0 +1,10 @@
+
+## Configuring info endpoint
+info:
+  application: 
+    name: Gateway Service
+    description: Spring Gateway MicroService Local
+    version: 1.0.0
+
+dynamic:
+  message: New Local Fucker...dude... bang

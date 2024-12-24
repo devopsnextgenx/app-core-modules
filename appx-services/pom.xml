@@ -19,6 +19,7 @@
     <modules>
         <module>app-data-loader</module>
         <module>app-eureka-config-service</module>
+        <module>appx-gateway-service</module>
         <module>app-user-auth-service</module>
         <module>app-user-service</module>
         <module>app-entity-service</module>

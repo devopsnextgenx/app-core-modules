@@ -1,0 +1,10 @@
+
+## Configuring info endpoint
+info:
+  application: 
+    name: Gateway Service
+    description: Spring Gateway MicroService Dev
+    version: 1.0.0
+
+dynamic:
+  message: New Dev Fucker...dude... bang

@@ -9,7 +9,7 @@
     </parent>
 	
 	<modelVersion>4.0.0</modelVersion>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>current-SNAPSHOT</version>
 	<artifactId>app-eureka-config-service</artifactId>
 	<name>app-eureka-config-service</name>
 	<description>App Service for running Eureka/Config Server</description>

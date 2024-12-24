@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    discovery:
+      enabled: true
+    gateway:
+      httpclient:
+        ssl:
+          trust-store: classpath:appx.p12
+          trust-store-password: appxxppa
+          useInsecureTrustManager: true
+      enabled: true
+      routes:
+      - id: user-service
+        uri: lb://USER-SERVICE
+        predicates:
+        - Path=/user-service/**
+        filters:
+          - StripPrefix=1
+          # - RewritePath=/user-service/(?<segment>/?.*),$\{segment}
+          # - TokenRelay=
+          # - RemoveRequestHeader=Cookie
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: https://${VEUREKAUSER:admin}:${VEUREKAPASS:p@ssw0rd}@${VEUREKAHOST:eureka.appx.localtest.me}:${VEUREKAPORT:8761}/eureka
+
+server:
+  port: 1080
