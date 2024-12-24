@@ -1,0 +1,37 @@
+spring:
+  cloud:
+    vault:
+      port: 8200
+      scheme: http
+      authentication: TOKEN
+      token: 00000000-0000-0000-0000-000000000000
+      application-name: appx
+      kv:
+        enabled: true
+        backend: secret
+        default-context: appx
+  config:
+    import: optional:vault://
+appx:
+  modules:
+    vault:
+      enabled: true
+    security:
+      jwtSecret: secret00-0000-0000-0000-000000000yml
+      context:
+        userList:
+        - username: yadmin
+          password: yp@ssw0rd
+          firstName: yeureka
+          lastName: yconfig
+          email: yadmin@devopsnextgenx.io
+          roles:
+            - SYSTEM_ADMINISTRATOR
+            - ORGANIZATION_ADMINISTRATOR
+            - DATA_MANAGER
+            - COMPANY_ADMINISTRATOR
+            - SERVICE_ACCOUNT
+
+logging:
+  level:
+    org.springframework.vault: DEBUG
