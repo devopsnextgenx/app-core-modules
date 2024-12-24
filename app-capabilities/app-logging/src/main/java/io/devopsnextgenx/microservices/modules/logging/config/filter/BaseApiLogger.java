@@ -15,7 +15,7 @@ public class BaseApiLogger {
     // HTTP Headers
     public static final String ACCESS_DATA_HEADER = "access-data";
     public static final String ORIGINATOR_SERVICE_HEADER = "ORIGINATOR";
-    public static final String CORRELATION_ID = "Correlation-ID";
+    public static final String CORRELATION_ID = "correlation-id";
     public static final String IP_FORWARD_HEADER = "x-forwarded-for";
     // MDC Params
     public static final String MDC_START_TIME = "REQUEST_START_TIME";

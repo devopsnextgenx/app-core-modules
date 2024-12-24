@@ -2,62 +2,11 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-DemoApplication<demo>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "io.devopsnextgenx.demo.DemoApplication",
-            "projectName": "demo",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
-        },
-        {
-            "type": "java",
-            "name": "Spring Boot-StartApplication<app-service>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "io.devopsnextgenx.microservices.modules.app.services.StartApplication",
-            "projectName": "app-service",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
-        },
-        {
-            "type": "java",
-            "name": "Spring Boot-DemoApplication<user-service>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "io.devopsnextgenx.demo.DemoApplication",
-            "projectName": "user-service",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
-        },
-        {
-            "type": "java",
             "name": "Spring Boot-EurekaConfigServerApplication<app-eureka-config-service>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "io.devopsnextgenx.microservices.modules.eureka.EurekaConfigServerApplication",
             "projectName": "app-eureka-config-service",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env",
-            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=43581 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=app-eureka-config-service"
-        },
-        {
-            "type": "java",
-            "name": "Spring Boot-UserApplication<user-server>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "io.k8s.framework.UserApplication",
-            "projectName": "user-server",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
-        },
-        {
-            "type": "java",
-            "name": "Spring Boot-UserApplication<user-server>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "io.devopsnextgenx.microservices.modules.user.UserApplication",
-            "projectName": "user-server",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         },
@@ -70,7 +19,18 @@
             "projectName": "user-auth-service",
             "args": "",
             "envFile": "${workspaceFolder}/.env",
-            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=55700 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=user-auth-service"
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=55427 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=user-auth-service"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AppxGatewayApplication<appx-gateway-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "io.devopsnextgenx.microservices.modules.gateway.AppxGatewayApplication",
+            "projectName": "appx-gateway-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=54580 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=appx-gateway-service"
         },
         {
             "type": "java",

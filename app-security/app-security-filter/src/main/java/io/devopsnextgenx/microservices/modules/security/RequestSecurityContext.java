@@ -6,7 +6,7 @@ import lombok.Data;
 public class RequestSecurityContext {
     public static final String REQUEST_JWT_HEADER_NAME = "Authorization";
     public static final String REQUEST_ACCESSDATA_HEADER_NAME = "access-data";
-    public static final String REQUEST_CORRELATIONID_HEADER_NAME = "Correlation-ID";
+    public static final String REQUEST_CORRELATIONID_HEADER_NAME = "correlation-id";
 
     private static final ThreadLocal<RequestSecurityContext> CONTEXT = new ThreadLocal<>();
 
