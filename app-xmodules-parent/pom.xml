@@ -25,7 +25,7 @@
         <defaultPackage>io.devopsnextgenx.microservices.modules</defaultPackage>
         <module.java.defaultPackage>${defaultPackage}.${project.artifactId}</module.java.defaultPackage>
 
-        <spring-boot.version>3.4.0</spring-boot.version>
+        <spring-boot.version>3.4.1</spring-boot.version>
         <spring-cloud.version>2024.0.0</spring-cloud.version>
         <hystrix.version>2.2.10.RELEASE</hystrix.version>
         <awspring.version>3.2.1</awspring.version>
