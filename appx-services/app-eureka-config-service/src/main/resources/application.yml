@@ -128,7 +128,21 @@ spring:
   #   user:
   #     name: ${VEUREKAUSER:admin}     # eureka dashboard user: user | password from console log
   #     password: ${VEUREKAPASS:p@ssw0rd} # password can be got from console log
+  config:
+    import:
+      - "optional:vault://"
   cloud:
+    vault:
+      enabled: true
+      port: 8200
+      scheme: http
+      authentication: TOKEN
+      token: 00000000-0000-0000-0000-000000000000
+      application-name: appx
+      kv:
+        enabled: true
+        backend: secret
+        default-context: appx
     config:
       discovery:
         enabled: true
@@ -139,18 +153,6 @@ spring:
           search-locations: classpath:spring-config-master/
         git:
           uri: ${VGITCONFIGURL:https://github.com/amitkshirsagar13/spring-config.git}
-    vault:
-      port: 8200
-      scheme: http
-      authentication: TOKEN
-      token: 00000000-0000-0000-0000-000000000000
-      application-name: appx
-      kv:
-        enabled: true
-        backend: secret
-        default-context: appx
-  config:
-    import: optional:vault://
 
 # logging:
 #   level:

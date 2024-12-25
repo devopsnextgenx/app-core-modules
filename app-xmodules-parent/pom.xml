@@ -46,7 +46,7 @@
         <commons.lang3.version>3.17.0</commons.lang3.version>
         <kotlin.stdlib.version>2.1.0</kotlin.stdlib.version>
         <jakarta.servlet-api.version>6.1.0</jakarta.servlet-api.version>
-        <hibernate-core.version>6.6.3.Final</hibernate-core.version>
+        <hibernate-core.version>6.6.4.Final</hibernate-core.version>
         <lombok.version>1.18.36</lombok.version>
         <openapi.version>2.7.0</openapi.version>
         <jasypt.version>3.0.5</jasypt.version>

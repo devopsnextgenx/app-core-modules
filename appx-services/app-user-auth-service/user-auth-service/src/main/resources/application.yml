@@ -1,19 +1,21 @@
 spring:
   application:
     name: user-auth-service
-  cloud:
-    vault:
-      port: 8200
-      scheme: http
-      authentication: TOKEN
-      token: 00000000-0000-0000-0000-000000000000
-      application-name: appx
-      kv:
-        enabled: true
-        backend: secret
-        default-context: appx
-  config:
-    import: optional:vault://
+  # cloud:
+  #   vault:
+  #     enabled: true
+  #     port: 8200
+  #     scheme: http
+  #     authentication: TOKEN
+  #     token: 00000000-0000-0000-0000-000000000000
+  #     application-name: appx
+  #     kv:
+  #       enabled: true
+  #       backend: secret
+  #       default-context: appx
+  # config:
+  #   import: optional:vault://
+
 
 server:
   port: ${VPORT:2001}
