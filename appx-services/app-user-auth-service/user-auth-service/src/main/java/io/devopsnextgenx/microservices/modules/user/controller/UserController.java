@@ -56,12 +56,12 @@ public class UserController implements UserServiceApi {
     }
 
     @Override
-    public ResponseEntity<UserDto> putUserById(String id, @Valid UserDto user) {
+    public ResponseEntity<UserDto> putUserById(String id, UserDto user) {
         return ResponseEntity.ok(userService.putEntity(id,userCloner.cloneToModel(user)));
     }
 
     @Override
-    public ResponseEntity<UserDto> patchUserById(String id, @Valid UserDto user) {
+    public ResponseEntity<UserDto> patchUserById(String id, UserDto user) {
         return ResponseEntity.ok(userService.putEntity(id,userCloner.cloneToModel(user)));
     }
 

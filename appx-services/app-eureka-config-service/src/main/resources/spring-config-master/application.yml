@@ -183,6 +183,9 @@ appx:
           maxQueueSize: 1000
     security:
       # jwtSecret: terces##secret
+      trustStore:
+        location: classpath:appx.jks
+        # password: appxxppa
       secretKey: terces##secret
       encrypted: classpath:encrypted.properties
       enabled: true

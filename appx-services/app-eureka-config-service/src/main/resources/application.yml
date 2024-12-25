@@ -76,6 +76,8 @@ appx:
       jwtSecret: terces##secret
       secretKey: terces##secret
       encrypted: classpath:encrypted.properties
+      trustStore:
+        location: classpath:appx.jks
       basic:
         enabled: true
         api:

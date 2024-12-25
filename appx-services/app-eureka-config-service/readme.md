@@ -19,6 +19,11 @@ sudo keytool -importcert -alias appx -file appx-services/app-eureka-config-servi
 
 keytool -delete -alias appx -keystore "c:/Program Files/Zulu/zulu-17/lib/security/cacerts" -storepass changeit
 keytool -importcert -alias appx -file appx-services/app-eureka-config-service/src/main/resources/appx.crt -keystore "c:/Program Files/Zulu/zulu-17/lib/security/cacerts" -storepass changeit
+
+
+keytool -importkeystore  -srckeystore appx-services/app-eureka-config-service/src/main/resources/appx.p12 -destkeystore appx-services/app-eureka-config-service/src/main/resources/appx.jks -srcstoretype PKCS12 -deststoretype jks -srcstorepass appxxppa -deststorepass appxxppa -srcalias appx -destalias appx -srckeypass appxxppa -destkeypass appxxppa
+
+keytool -importkeystore -srckeystore appx-services/app-eureka-config-service/src/main/resources/appx.p12 -destkeystore appx-services/app-eureka-config-service/src/main/resources/appx.jks -srcstoretype PKCS12 -deststoretype jks -srcstorepass appxxppa -deststorepass appxxppa
 ```
 
 ### Actuator Urls:
