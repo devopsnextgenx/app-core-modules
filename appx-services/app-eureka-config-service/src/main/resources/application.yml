@@ -73,6 +73,7 @@ appx:
               - DATA_MANAGER
               - COMPANY_ADMINISTRATOR
               - SERVICE_ACCOUNT
+      jwtSecret: terces##secret
       secretKey: terces##secret
       encrypted: classpath:encrypted.properties
       basic:

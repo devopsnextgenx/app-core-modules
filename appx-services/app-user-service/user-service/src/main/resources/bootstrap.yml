@@ -8,22 +8,22 @@ VCONFIGHOST: config.appx.localtest.me
 spring:
   profiles:
     active: local
-  config:
-    import:
-      - "optional:vault://"
+  # config:
+  #   import:
+  #     - "optional:vault://"
       # - "optional:configserver:"
   cloud:
     vault:
-      enabled: true
-      port: 8200
-      scheme: http
-      authentication: TOKEN
-      token: 00000000-0000-0000-0000-000000000000
-      application-name: appx
-      kv:
-        enabled: true
-        backend: secret
-        default-context: appx
+      enabled: false
+      # port: 8200
+      # scheme: http
+      # authentication: TOKEN
+      # token: 00000000-0000-0000-0000-000000000000
+      # application-name: appx
+      # kv:
+      #   enabled: true
+      #   backend: secret
+      #   default-context: appx
     config:
       uri: https://${VCONFIGHOST:${HOSTNAME:config.appx.localtest.me}}:${VCONFIGPORT:8761}/config/
       username: ${VCONFIGUSER:admin}
