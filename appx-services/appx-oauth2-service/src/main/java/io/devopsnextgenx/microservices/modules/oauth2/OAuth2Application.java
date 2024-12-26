@@ -3,6 +3,7 @@ package io.devopsnextgenx.microservices.modules.oauth2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * <p>
@@ -25,7 +26,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 
 @SpringBootApplication
-@ComponentScan("io.devopsnextgenx.microservices.modules")
+@EnableJpaRepositories("io.devopsnextgenx.microservices.modules")
 public class OAuth2Application {
 
 	/**
