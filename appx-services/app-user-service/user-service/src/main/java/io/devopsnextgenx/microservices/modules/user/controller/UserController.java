@@ -2,12 +2,11 @@ package io.devopsnextgenx.microservices.modules.user.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.devopsnextgenx.microservices.modules.api.UserServiceApi;
@@ -24,13 +23,15 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api")
 @SecurityRequirement(name = "JWT")
 public class UserController implements UserServiceApi {
-    @Autowired
-    private AppxUserRepository userRepository;
+    private final AppxUserRepository userRepository;
+    private final UserService userService;
 
-    @Autowired
-    private UserService userService;
-
-    @RequestMapping(value = "/echo", method = {RequestMethod.GET}, produces = {MediaType.APPLICATION_JSON_VALUE })
+    public UserController(AppxUserRepository userRepository, UserService userService) {
+        this.userRepository = userRepository;
+        this.userService = userService;
+    }
+    
+    @GetMapping(value = "/echo", produces = {MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<String> echo() {
         log.info("echo endpoint invoked");
         return new ResponseEntity<>("{'message': 'User'}", HttpStatus.OK);
@@ -38,7 +39,7 @@ public class UserController implements UserServiceApi {
 
     @Override
     public ResponseEntity<UserDto> getUserById(String id) {
-        User user = userRepository.getReferenceById(id.toString());
+        User user = userRepository.getReferenceById(id);
         List<RoleDto> roles = user.getUserRoles().stream().map(role -> RoleDto.fromValue(role.getName().name())).toList();
         return ResponseEntity.ok(new UserDto()
         .email(user.getEmail())

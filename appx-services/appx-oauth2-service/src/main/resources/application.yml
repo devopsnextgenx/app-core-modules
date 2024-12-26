@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_oauth2_db}?createDatabaseIfNotExist=true&autoReconnect=true
+    name: oauth2
+    username: ${VDBUSER:root}
+    password: ${VDBPASS:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+    properties: 
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  profiles:
+    active: native
+  flyway:
+    enabled: true
+    baselineOnMigrate: true
+    user: ${VDBPASS:root}
+    password: ${VDBPASS:root}
+    schemas: ${AUTHSCHEMA:${user.name}_oauth2_db}
+    defaultSchema: ${AUTHSCHEMA:${user.name}_oauth2_db}
+    cleanDisabled: true
+    url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_oauth2_db}?createDatabaseIfNotExist=true&autoReconnect=true
+    locations: classpath:db/migration
+
+error:
+  whitelabel:
+    enabled: false
+
+server:
+  port: 9000
+
+logging.level.org.flywaydb.core.internal.command.DbMigrate: TRACE

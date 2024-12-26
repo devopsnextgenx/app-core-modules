@@ -33,7 +33,8 @@ mvn clean install -DskipTests
     ```json
     {
         "appx.modules.security.context": {
-            "userList": [{
+            "userList": [
+            {
                 "email": "admin@devopsnextgenx.io",
                 "firstName": "eureka-vault",
                 "lastName": "config-vault",
@@ -46,9 +47,11 @@ mvn clean install -DskipTests
                 "SERVICE_ACCOUNT"
                 ],
                 "username": "admin"
-            }]
+            }
+            ]
         },
-        "appx.modules.security.jwtSecret": "vaultSecret"
+        "appx.modules.security.jwtSecret": "vaultSecret",
+        "appx.modules.security.truststore.password": "appxxppa"
     }
     ```
 - Finally it should look like as below.

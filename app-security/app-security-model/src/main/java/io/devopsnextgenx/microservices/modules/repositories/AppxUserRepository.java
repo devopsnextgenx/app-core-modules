@@ -1,7 +1,6 @@
 package io.devopsnextgenx.microservices.modules.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import io.devopsnextgenx.microservices.modules.models.User;
 import jakarta.transaction.Transactional;
@@ -15,6 +14,5 @@ import jakarta.transaction.Transactional;
  * @since 12/4/2019
  */
 @Transactional
-@Repository
 public interface AppxUserRepository extends JpaRepository<User, String> {
 }

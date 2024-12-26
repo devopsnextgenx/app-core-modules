@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
  */
 @RestController
 @RequestMapping("/")
-public class AuthController implements AuthServiceApi {
+public class AuthServiceController implements AuthServiceApi {
 
     @Autowired
     private AuthService authService;

@@ -40,6 +40,7 @@ services:
     - "${TMP_DIR:-/tmp}/mysql-data:/var/lib/mysql"
 
   grafana:
+    container_name: grafana
     image: grafana/grafana:latest
     ports:
       - "9095:3000"
@@ -47,6 +48,7 @@ services:
       GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: "/var/lib/grafana/dashboards/exported_dashboard.json"
 
   prometheus:
+    container_name: prometheus
     image: prom/prometheus:latest
     ports:
       - "9090:9090"
@@ -65,9 +67,7 @@ services:
     ports:
       - "8200:8200"
     volumes:
-      - "${TMP_DIR:-/tmp}/vault/policies:/vault/policies"
-      - "${TMP_DIR:-/tmp}/vault-data:/vault/data"
-      - "${TMP_DIR:-/tmp}/vault/logs:/vault/logs"
+      - "${TMP_DIR:-/tmp}/vault-data:/vault/file"
     environment:
       - VAULT_ADDR=http://0.0.0.0:8200
       - VAULT_TOKEN=00000000-0000-0000-0000-000000000000
