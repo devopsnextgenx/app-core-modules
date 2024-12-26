@@ -26,6 +26,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  */
 
 @SpringBootApplication
+@ComponentScan("io.devopsnextgenx.microservices.modules")
 @EnableJpaRepositories("io.devopsnextgenx.microservices.modules")
 public class OAuth2Application {
 
