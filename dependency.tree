@@ -11,7 +11,7 @@
 [[1;34mINFO[m] app-capabilities                                             [pom]
 [[1;34mINFO[m] app-tracing                                                        [jar]
 [[1;34mINFO[m] app-logging                                                        [jar]
-[[1;34mINFO[m] app-base-model                                                     [jar]
+[[1;34mINFO[m] appx-base-entity                                                     [jar]
 [[1;34mINFO[m] app-data-model                                                      [jar]
 [[1;34mINFO[m] app-flyway                                                         [jar]
 [[1;34mINFO[m] app-swagger                                                  [jar]
@@ -368,15 +368,15 @@
 [[1;34mINFO[m]    +- org.springframework:spring-test:jar:6.2.0:test
 [[1;34mINFO[m]    \- org.xmlunit:xmlunit-core:jar:2.10.0:test
 [[1;34mINFO[m] 
-[[1;34mINFO[m] [1m-------< [0;36mio.devopsnextgenx.microservices.modules:app-base-model[0;1m >-------[m
-[[1;34mINFO[m] [1mBuilding app-base-model current-SNAPSHOT                         [10/37][m
-[[1;34mINFO[m]   from app-base-model/pom.xml
+[[1;34mINFO[m] [1m-------< [0;36mio.devopsnextgenx.microservices.modules:appx-base-entity[0;1m >-------[m
+[[1;34mINFO[m] [1mBuilding appx-base-entity current-SNAPSHOT                         [10/37][m
+[[1;34mINFO[m]   from appx-base-entity/pom.xml
 [[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
 [[1;33mWARNING[m] The artifact org.hibernate:hibernate-core:jar:6.6.3.Final has been relocated to org.hibernate.orm:hibernate-core:jar:6.6.3.Final
 [[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.8.1:tree[m [1m(default-cli)[m @ [36mapp-base-model[0;1m ---[m
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.8.1:tree[m [1m(default-cli)[m @ [36mappx-base-entity[0;1m ---[m
 [[1;33mWARNING[m] The artifact org.hibernate:hibernate-core:jar:6.6.3.Final has been relocated to org.hibernate.orm:hibernate-core:jar:6.6.3.Final
-[[1;34mINFO[m] io.devopsnextgenx.microservices.modules:app-base-model:jar:current-SNAPSHOT
+[[1;34mINFO[m] io.devopsnextgenx.microservices.modules:appx-base-entity:jar:current-SNAPSHOT
 [[1;34mINFO[m] +- jakarta.persistence:jakarta.persistence-api:jar:3.1.0:compile
 [[1;34mINFO[m] +- org.hibernate.orm:hibernate-core:jar:6.6.3.Final:compile
 [[1;34mINFO[m] |  +- jakarta.transaction:jakarta.transaction-api:jar:2.0.1:compile
@@ -404,7 +404,7 @@
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.8.1:tree[m [1m(default-cli)[m @ [36mapp-data-model[0;1m ---[m
 [[1;34mINFO[m] io.devopsnextgenx.microservices.modules:app-data-model:jar:current-SNAPSHOT
-[[1;34mINFO[m] +- io.devopsnextgenx.microservices.modules:app-base-model:jar:current-SNAPSHOT:compile
+[[1;34mINFO[m] +- io.devopsnextgenx.microservices.modules:appx-base-entity:jar:current-SNAPSHOT:compile
 [[1;34mINFO[m] |  +- jakarta.persistence:jakarta.persistence-api:jar:3.1.0:compile
 [[1;34mINFO[m] |  +- org.hibernate.orm:hibernate-core:jar:6.6.2.Final:compile
 [[1;34mINFO[m] |  |  +- jakarta.transaction:jakarta.transaction-api:jar:2.0.1:compile
@@ -1336,7 +1336,7 @@
 [[1;34mINFO[m] |  +- org.slf4j:slf4j-api:jar:2.0.16:compile
 [[1;34mINFO[m] |  \- ch.qos.logback:logback-classic:jar:1.5.12:compile
 [[1;34mINFO[m] |     \- ch.qos.logback:logback-core:jar:1.5.12:compile
-[[1;34mINFO[m] +- io.devopsnextgenx.microservices.modules:app-base-model:jar:current-SNAPSHOT:provided
+[[1;34mINFO[m] +- io.devopsnextgenx.microservices.modules:appx-base-entity:jar:current-SNAPSHOT:provided
 [[1;34mINFO[m] |  +- jakarta.persistence:jakarta.persistence-api:jar:3.1.0:provided
 [[1;34mINFO[m] |  +- org.hibernate.orm:hibernate-core:jar:6.6.2.Final:provided
 [[1;34mINFO[m] |  |  +- jakarta.transaction:jakarta.transaction-api:jar:2.0.1:provided
@@ -1983,7 +1983,7 @@
 [[1;34mINFO[m] |  +- org.springframework:spring-web:jar:6.2.0:compile
 [[1;34mINFO[m] |  \- org.springframework:spring-webmvc:jar:6.2.0:compile
 [[1;34mINFO[m] +- org.projectlombok:lombok:jar:1.18.36:compile
-[[1;34mINFO[m] +- io.devopsnextgenx.microservices.modules:app-base-model:jar:current-SNAPSHOT:compile
+[[1;34mINFO[m] +- io.devopsnextgenx.microservices.modules:appx-base-entity:jar:current-SNAPSHOT:compile
 [[1;34mINFO[m] |  +- jakarta.persistence:jakarta.persistence-api:jar:3.1.0:compile
 [[1;34mINFO[m] |  +- org.hibernate.orm:hibernate-core:jar:6.6.2.Final:compile
 [[1;34mINFO[m] |  |  +- jakarta.transaction:jakarta.transaction-api:jar:2.0.1:compile
@@ -2407,7 +2407,7 @@
 [[1;34mINFO[m] app-capabilities current-SNAPSHOT ............ [1;32mSUCCESS[m [  0.005 s]
 [[1;34mINFO[m] app-tracing current-SNAPSHOT ....................... [1;32mSUCCESS[m [  0.052 s]
 [[1;34mINFO[m] app-logging current-SNAPSHOT ....................... [1;32mSUCCESS[m [  0.021 s]
-[[1;34mINFO[m] app-base-model current-SNAPSHOT .................... [1;32mSUCCESS[m [  0.036 s]
+[[1;34mINFO[m] appx-base-entity current-SNAPSHOT .................... [1;32mSUCCESS[m [  0.036 s]
 [[1;34mINFO[m] app-data-model current-SNAPSHOT ..................... [1;32mSUCCESS[m [  0.026 s]
 [[1;34mINFO[m] app-flyway current-SNAPSHOT ........................ [1;32mSUCCESS[m [  0.019 s]
 [[1;34mINFO[m] app-swagger current-SNAPSHOT ................. [1;32mSUCCESS[m [  0.046 s]

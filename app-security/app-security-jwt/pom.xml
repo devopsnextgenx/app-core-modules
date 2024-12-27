@@ -49,7 +49,7 @@
         </dependency>
         <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>
-            <artifactId>app-security-model</artifactId>
+            <artifactId>app-security-entity</artifactId>
         </dependency>
         <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>
@@ -61,7 +61,7 @@
         </dependency>
         <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>
-            <artifactId>app-base-model</artifactId>
+            <artifactId>appx-base-entity</artifactId>
         </dependency>
         <dependency>
             <groupId>com.auth0</groupId>

@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import io.devopsnextgenx.base.modules.config.models.AppxUserList;
+import io.devopsnextgenx.base.modules.credentials.models.AppxUserList;
 
 @Slf4j
 @Data
@@ -28,6 +28,6 @@ public class VaultAutoConfiguration {
         log.info("=========================================================================");
         log.info("jwtSecret: {}", jwtSecret);
         log.info("=========================================================================");
-        return new AppxUserList();
+        return AppxUserList.builder().build();
     }
 }

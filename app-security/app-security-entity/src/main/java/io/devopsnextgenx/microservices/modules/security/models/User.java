@@ -1,4 +1,4 @@
-package io.devopsnextgenx.microservices.modules.models;
+package io.devopsnextgenx.microservices.modules.security.models;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 import io.devopsnextgenx.microservices.modules.utils.converters.PasswordEncryptor;
+import io.devopsnextgenx.microservices.modules.models.BaseModelAudit;
 
 /**
  * User:
@@ -28,9 +29,9 @@ import io.devopsnextgenx.microservices.modules.utils.converters.PasswordEncrypto
  */
 @Data
 @Builder
-@Entity(name="USER")
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Entity(name="USER")
 public class User extends BaseModelAudit {
     @Column(unique = true, name = "userName")
     private String userName;

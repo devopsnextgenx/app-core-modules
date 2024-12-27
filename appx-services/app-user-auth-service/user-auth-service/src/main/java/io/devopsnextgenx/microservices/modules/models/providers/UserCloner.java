@@ -7,8 +7,8 @@ import org.modelmapper.TypeMap;
 import org.modelmapper.Converter;
 import org.modelmapper.spi.MappingContext;
 
-import io.devopsnextgenx.microservices.modules.models.Role;
-import io.devopsnextgenx.microservices.modules.models.User;
+import io.devopsnextgenx.microservices.modules.security.models.Role;
+import io.devopsnextgenx.microservices.modules.security.models.User;
 import io.devopsnextgenx.microservices.modules.userauth.user.dto.RoleDto;
 import io.devopsnextgenx.microservices.modules.userauth.user.dto.UserDto;
 

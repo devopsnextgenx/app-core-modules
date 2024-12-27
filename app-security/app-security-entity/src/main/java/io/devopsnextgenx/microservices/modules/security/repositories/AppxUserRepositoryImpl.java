@@ -1,16 +1,16 @@
-package io.devopsnextgenx.microservices.modules.repositories;
+package io.devopsnextgenx.microservices.modules.security.repositories;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.stereotype.Repository;
 
-import io.devopsnextgenx.microservices.modules.models.User;
+import io.devopsnextgenx.microservices.modules.security.models.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
-@Transactional
 @Repository
+@Transactional
 @EntityScan(basePackages = "io.devopsnextgenx.microservices.modules.models")
 public class AppxUserRepositoryImpl implements AppxUserRepositoryCustom<User, String> {
     

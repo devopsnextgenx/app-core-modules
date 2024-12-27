@@ -28,7 +28,7 @@ mvn clean install -DskipTests
 ### Data Setup for Seed User
 
 - Enable vault container with localstack
-- Open [vault](http://localhost:8200/)
+- Open [vault](http://localhost:8200/) and login with `00000000-0000-0000-0000-000000000000` token
 - Add below data to `secret` engine with `appx` Path
     ```json
     {

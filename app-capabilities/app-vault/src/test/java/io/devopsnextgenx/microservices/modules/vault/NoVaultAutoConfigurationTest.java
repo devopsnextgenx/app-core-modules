@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import io.devopsnextgenx.base.modules.config.models.AppxUserList;
+import io.devopsnextgenx.base.modules.credentials.models.AppxUserList;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = VaultAutoConfiguration.class)

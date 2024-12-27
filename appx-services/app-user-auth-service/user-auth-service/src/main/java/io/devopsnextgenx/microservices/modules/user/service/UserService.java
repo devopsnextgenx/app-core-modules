@@ -1,8 +1,8 @@
 package io.devopsnextgenx.microservices.modules.user.service;
 
-import io.devopsnextgenx.microservices.modules.models.User;
 import io.devopsnextgenx.microservices.modules.models.providers.UserCloner;
-import io.devopsnextgenx.microservices.modules.repositories.AppxUserRepository;
+import io.devopsnextgenx.microservices.modules.security.models.User;
+import io.devopsnextgenx.microservices.modules.security.repositories.AppxUserRepository;
 import io.devopsnextgenx.microservices.modules.userauth.user.dto.UserDto;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.micrometer.core.annotation.Timed;

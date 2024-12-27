@@ -8,8 +8,8 @@
         <artifactId>app-security</artifactId>
         <version>current-SNAPSHOT</version>
     </parent>
-    <name>app-security-model</name>
-    <artifactId>app-security-model</artifactId>
+    <name>app-security-entity</name>
+    <artifactId>app-security-entity</artifactId>
     <version>current-SNAPSHOT</version>
     <dependencies>
         <dependency>

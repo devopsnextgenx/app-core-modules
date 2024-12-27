@@ -1,0 +1,23 @@
+// 00000000-0000-0000-0000-000000000000
+{
+    "appx.modules.security.context": {
+        "userList": [
+        {
+            "email": "admin@devopsnextgenx.io",
+            "firstName": "eureka-vault",
+            "lastName": "config-vault",
+            "password": "p@ssw0rd",
+            "roles": [
+            "SYSTEM_ADMINISTRATOR",
+            "ORGANIZATION_ADMINISTRATOR",
+            "DATA_MANAGER",
+            "COMPANY_ADMINISTRATOR",
+            "SERVICE_ACCOUNT"
+            ],
+            "username": "admin"
+        }
+        ]
+    },
+    "appx.modules.security.jwtSecret": "vaultSecret",
+    "appx.modules.security.truststore.password": "appxxppa"
+}

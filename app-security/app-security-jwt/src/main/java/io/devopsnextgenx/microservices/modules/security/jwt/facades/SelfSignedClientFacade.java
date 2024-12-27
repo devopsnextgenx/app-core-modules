@@ -7,7 +7,7 @@ import com.auth0.jwt.impl.PublicClaims;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.google.common.collect.ImmutableMap;
 import io.devopsnextgenx.microservices.modules.exception.AppException;
-import io.devopsnextgenx.microservices.modules.models.User;
+import io.devopsnextgenx.microservices.modules.security.models.User;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.AuthProviderType;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.OAuthConfig;
 import lombok.SneakyThrows;

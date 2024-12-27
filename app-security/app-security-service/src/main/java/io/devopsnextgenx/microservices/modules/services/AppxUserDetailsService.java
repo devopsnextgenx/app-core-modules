@@ -4,9 +4,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import io.devopsnextgenx.microservices.modules.models.User;
+import io.devopsnextgenx.microservices.modules.security.models.User;
 import io.devopsnextgenx.microservices.modules.principal.AppxUserPrincipal;
-import io.devopsnextgenx.microservices.modules.repositories.AppxUserRepositoryImpl;
+import io.devopsnextgenx.microservices.modules.security.repositories.AppxUserRepositoryImpl;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

@@ -2,19 +2,16 @@ package io.devopsnextgenx.microservices.modules.oauth2.controller;
 
 import java.security.Principal;
 
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import io.devopsnextgenx.microservices.modules.models.User;
-import io.devopsnextgenx.microservices.modules.repositories.AppxUserRepository;
+import io.devopsnextgenx.microservices.modules.security.models.User;
+import io.devopsnextgenx.microservices.modules.security.repositories.AppxUserRepository;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
 

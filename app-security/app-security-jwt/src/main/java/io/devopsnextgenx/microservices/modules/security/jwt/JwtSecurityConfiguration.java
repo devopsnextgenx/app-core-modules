@@ -1,7 +1,7 @@
 package io.devopsnextgenx.microservices.modules.security.jwt;
 
 import io.devopsnextgenx.base.modules.config.YamlPropertyLoaderFactory;
-import io.devopsnextgenx.microservices.modules.repositories.AppxUserRepositoryImpl;
+import io.devopsnextgenx.microservices.modules.security.repositories.AppxUserRepositoryImpl;
 import io.devopsnextgenx.microservices.modules.security.jwt.cache.JWTVerifierCache;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.SwaggerUISecurityConfig;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.AppConfig;

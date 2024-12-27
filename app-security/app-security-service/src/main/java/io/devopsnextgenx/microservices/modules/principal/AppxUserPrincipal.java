@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import io.devopsnextgenx.microservices.modules.models.User;
+import io.devopsnextgenx.microservices.modules.security.models.User;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

@@ -84,7 +84,7 @@
         </dependency>
         <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>
-            <artifactId>app-security-model</artifactId>
+            <artifactId>app-security-entity</artifactId>
         </dependency>
         <dependency>
             <groupId>io.devopsnextgenx.microservices.modules</groupId>

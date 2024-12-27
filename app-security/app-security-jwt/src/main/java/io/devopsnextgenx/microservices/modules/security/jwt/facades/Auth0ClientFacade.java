@@ -9,7 +9,7 @@ import com.auth0.net.AuthRequest;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import io.devopsnextgenx.microservices.modules.exception.AppException;
-import io.devopsnextgenx.microservices.modules.models.User;
+import io.devopsnextgenx.microservices.modules.security.models.User;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.AuthProviderType;
 import io.devopsnextgenx.microservices.modules.security.jwt.config.OAuthConfig;
 import lombok.AllArgsConstructor;

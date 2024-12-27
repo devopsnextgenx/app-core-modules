@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import io.devopsnextgenx.microservices.modules.repositories.AppxUserRepositoryImpl;
+import io.devopsnextgenx.microservices.modules.security.repositories.AppxUserRepositoryImpl;
 import io.devopsnextgenx.microservices.modules.services.AppxUserDetailsService;
 import lombok.extern.slf4j.Slf4j;
 

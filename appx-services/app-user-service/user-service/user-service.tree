@@ -84,7 +84,7 @@
 [INFO] |  +- javax.validation:validation-api:jar:2.0.1.Final:compile
 [INFO] |  \- org.openapitools:jackson-databind-nullable:jar:0.2.6:compile
 [INFO] +- io.devopsnextgenx.microservices.modules:app-data-model:jar:current-SNAPSHOT:compile
-[INFO] |  +- io.devopsnextgenx.microservices.modules:app-base-model:jar:current-SNAPSHOT:compile
+[INFO] |  +- io.devopsnextgenx.microservices.modules:appx-base-entity:jar:current-SNAPSHOT:compile
 [INFO] |  |  +- org.modelmapper:modelmapper:jar:3.2.2:compile
 [INFO] |  |  +- jakarta.persistence:jakarta.persistence-api:jar:3.1.0:compile
 [INFO] |  |  \- org.hibernate.orm:hibernate-core:jar:6.6.2.Final:compile
@@ -196,7 +196,7 @@
 [INFO] |  +- io.jsonwebtoken:jjwt-api:jar:0.12.6:compile
 [INFO] |  +- io.jsonwebtoken:jjwt-impl:jar:0.12.6:compile
 [INFO] |  \- io.jsonwebtoken:jjwt-jackson:jar:0.12.6:compile
-[INFO] +- io.devopsnextgenx.microservices.modules:app-security-model:jar:current-SNAPSHOT:compile
+[INFO] +- io.devopsnextgenx.microservices.modules:app-security-entity:jar:current-SNAPSHOT:compile
 [INFO] |  +- com.github.ulisesbocchio:jasypt-spring-boot:jar:3.0.5:compile
 [INFO] |  |  \- org.jasypt:jasypt:jar:1.9.3:compile
 [INFO] |  +- io.devopsnextgenx.microservices.modules:app-mysql:jar:current-SNAPSHOT:compile

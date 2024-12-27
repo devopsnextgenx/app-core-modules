@@ -1,8 +1,8 @@
 package io.devopsnextgenx.microservices.modules.utils.creators;
 
 import io.devopsnextgenx.microservices.modules.models.BaseEntity;
-import io.devopsnextgenx.microservices.modules.models.Role;
-import io.devopsnextgenx.microservices.modules.repositories.RoleRepository;
+import io.devopsnextgenx.microservices.modules.security.models.Role;
+import io.devopsnextgenx.microservices.modules.security.repositories.RoleRepository;
 import io.devopsnextgenx.microservices.modules.repository.IdMapperRepository;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

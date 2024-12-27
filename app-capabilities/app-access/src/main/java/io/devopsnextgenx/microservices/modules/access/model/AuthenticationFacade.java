@@ -7,7 +7,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.Data;
 
 /**
- * k8clusters:
+ * appx:
  *
  * @author Amit Kshirsagar
  * @version 1.0

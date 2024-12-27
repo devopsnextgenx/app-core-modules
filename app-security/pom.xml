@@ -23,7 +23,7 @@
         <module>app-security-filter</module>
         <module>app-security-jwt</module>
         <module>app-security-jwt-selfsigned</module>
-        <module>app-security-model</module>
+        <module>app-security-entity</module>
         <module>app-security-service</module>
         <module>app-security-ssl</module>
     </modules>

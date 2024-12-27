@@ -1,8 +1,8 @@
 package io.devopsnextgenx.microservices.modules.utils.creators;
 
 import io.devopsnextgenx.microservices.modules.models.BaseEntity;
-import io.devopsnextgenx.microservices.modules.models.User;
-import io.devopsnextgenx.microservices.modules.repositories.AppxUserRepository;
+import io.devopsnextgenx.microservices.modules.security.models.User;
+import io.devopsnextgenx.microservices.modules.security.repositories.AppxUserRepository;
 import io.devopsnextgenx.microservices.modules.repository.IdMapperRepository;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

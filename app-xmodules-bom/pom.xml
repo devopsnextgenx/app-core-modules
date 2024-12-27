@@ -84,7 +84,12 @@
             </dependency>
             <dependency>
                 <groupId>io.devopsnextgenx.microservices.modules</groupId>
-                <artifactId>app-base-model</artifactId>
+                <artifactId>appx-base-entity</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>appx-credentials-model</artifactId>
                 <version>current-SNAPSHOT</version>
             </dependency>
             <dependency>
@@ -105,6 +110,11 @@
             <dependency>
                 <groupId>io.devopsnextgenx.microservices.modules</groupId>
                 <artifactId>app-security</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>appx-security-entity</artifactId>
                 <version>current-SNAPSHOT</version>
             </dependency>
             <dependency>
@@ -134,7 +144,7 @@
             </dependency>
             <dependency>
                 <groupId>io.devopsnextgenx.microservices.modules</groupId>
-                <artifactId>app-security-model</artifactId>
+                <artifactId>app-security-entity</artifactId>
                 <version>current-SNAPSHOT</version>
             </dependency>
             <dependency>

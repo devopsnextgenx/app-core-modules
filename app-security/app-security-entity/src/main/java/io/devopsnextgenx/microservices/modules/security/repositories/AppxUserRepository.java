@@ -1,8 +1,8 @@
-package io.devopsnextgenx.microservices.modules.repositories;
+package io.devopsnextgenx.microservices.modules.security.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import io.devopsnextgenx.microservices.modules.models.User;
+import io.devopsnextgenx.microservices.modules.security.models.User;
 import jakarta.transaction.Transactional;
 
 /**

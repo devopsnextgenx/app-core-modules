@@ -1,8 +1,6 @@
-package io.devopsnextgenx.microservices.modules.models;
+package io.devopsnextgenx.microservices.modules.security.models;
 
 import org.springframework.security.core.GrantedAuthority;
-
-import io.devopsnextgenx.microservices.modules.access.model.ROLE;
 
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
@@ -10,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import io.devopsnextgenx.microservices.modules.access.model.ROLE;
+import io.devopsnextgenx.microservices.modules.models.BaseModelAudit;
 
 /**
  * Role:
@@ -21,9 +21,9 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @Builder
-@Entity(name="ROLE")
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Entity(name="ROLE")
 public class Role extends BaseModelAudit implements GrantedAuthority {
     private ROLE name;
     

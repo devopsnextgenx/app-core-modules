@@ -85,9 +85,10 @@ public class AuthorizationServerConfig {
 
 	@Bean
 	@Order(2)
-	public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http)
+	public SecurityFilterChain registerOAuth2SecurityFilterChain(HttpSecurity http)
 			throws Exception {
 		http
+			.securityMatcher("/form/login/**")
 			.authorizeHttpRequests((authorize) -> authorize
 				.anyRequest().authenticated()
 			)
@@ -171,7 +172,7 @@ public class AuthorizationServerConfig {
 	@Bean
 	public AuthorizationServerSettings authorizationServerSettings() {
 		return AuthorizationServerSettings.builder()
-		.issuer("http://auth-server.k8s.localtest.me:9000")
+		.issuer("http://auth-server.k8s.localtest.me:5000")
 		.build();
 	}
 }

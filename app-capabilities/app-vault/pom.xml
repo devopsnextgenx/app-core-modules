@@ -25,6 +25,10 @@
             <artifactId>app-configuration</artifactId>
         </dependency>
         <dependency>
+            <groupId>io.devopsnextgenx.microservices.modules</groupId>
+            <artifactId>appx-credentials-model</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>

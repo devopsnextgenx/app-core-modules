@@ -1,7 +1,7 @@
 package io.devopsnextgenx.microservices.modules.access.model;
 
 /**
- * k8clusters:
+ * appx:
  *
  * @author Amit Kshirsagar
  * @version 1.0

@@ -1,7 +1,5 @@
 package io.devopsnextgenx.microservices.modules.eureka.config;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +7,14 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import io.devopsnextgenx.microservices.modules.models.Organization;
-import io.devopsnextgenx.microservices.modules.models.Role;
-import io.devopsnextgenx.microservices.modules.models.User;
-import io.devopsnextgenx.base.modules.config.models.AppxUser;
-import io.devopsnextgenx.base.modules.config.models.AppxUserList;
+import io.devopsnextgenx.microservices.modules.security.models.Organization;
+import io.devopsnextgenx.microservices.modules.security.models.Role;
+import io.devopsnextgenx.microservices.modules.security.models.User;
+import io.devopsnextgenx.base.modules.credentials.models.AppxUser;
+import io.devopsnextgenx.base.modules.credentials.models.AppxUserList;
 import io.devopsnextgenx.microservices.modules.access.model.ROLE;
 import io.devopsnextgenx.microservices.modules.services.AppxUserDetailsService;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
