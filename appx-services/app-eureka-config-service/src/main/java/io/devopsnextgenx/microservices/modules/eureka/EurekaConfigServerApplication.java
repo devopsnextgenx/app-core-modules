@@ -1,12 +1,11 @@
 package io.devopsnextgenx.microservices.modules.eureka;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * 
@@ -27,11 +26,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * 
  * </pre>
  */
-@SpringBootApplication
 @EnableEurekaServer
 @EnableConfigServer
-@ComponentScan(basePackages = "io.devopsnextgenx")
-@ComponentScan(basePackages = "io.devopsnextgenx.microservices")
+@SpringBootApplication
+@ComponentScan(basePackages = "io.devopsnextgenx.microservices.modules")
+@EnableJpaRepositories("io.devopsnextgenx.microservices.modules.security")
 public class EurekaConfigServerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EurekaConfigServerApplication.class, args);

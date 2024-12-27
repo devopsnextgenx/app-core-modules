@@ -11,7 +11,7 @@ import jakarta.transaction.Transactional;
 
 @Repository
 @Transactional
-@EntityScan(basePackages = "io.devopsnextgenx.microservices.modules.models")
+@EntityScan(basePackages = "io.devopsnextgenx.microservices.modules.security.models")
 public class AppxUserRepositoryImpl implements AppxUserRepositoryCustom<User, String> {
     
     @PersistenceContext
