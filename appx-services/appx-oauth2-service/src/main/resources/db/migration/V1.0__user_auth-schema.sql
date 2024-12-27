@@ -1,4 +1,4 @@
-SET @auth_schema_name = concat(substring_index(database(), "_", 1), "_auth_db");
+SET @auth_schema_name = concat(substring_index(database(), "_", 1), "_oauth2_db");
 
 -- CREATE SCHEMA AND TABLES IF NOT EXIST
 SET @q = CONCAT('CREATE SCHEMA IF NOT EXISTS ', @auth_schema_name);

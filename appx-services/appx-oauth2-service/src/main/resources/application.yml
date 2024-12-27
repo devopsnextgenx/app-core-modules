@@ -25,6 +25,11 @@ spring:
     url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_oauth2_db}?createDatabaseIfNotExist=true&autoReconnect=true
     locations: classpath:db/migration
 
+appx:
+  modules:
+    vault:
+      enabled: true
+
 error:
   whitelabel:
     enabled: false

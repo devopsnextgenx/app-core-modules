@@ -99,8 +99,8 @@ appx:
 
 spring:
   datasource:
-    url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_auth_db}?createDatabaseIfNotExist=true&autoReconnect=true
-    name: authdb
+    url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_oauth2_db}?createDatabaseIfNotExist=true&autoReconnect=true
+    name: oauth2
     username: ${VDBUSER:root}
     password: ${VDBPASS:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
