@@ -16,8 +16,10 @@
     <version>current-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>App base level dependencies</description>
+    
     <modules>
-        <module>app-base-model</module>
+        <module>appx-credentials-model</module>
+        <module>appx-base-entity</module>
         <module>app-configuration</module>
         <module>app-exception</module>
         <module>app-flyway</module>

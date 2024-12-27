@@ -1,17 +1,15 @@
-package io.devopsnextgenx.base.modules.config.models;
+package io.devopsnextgenx.base.modules.credentials.models;
 
 import java.util.List;
 
-import org.springframework.context.annotation.Configuration;
-
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Builder;
 import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @ToString
-@Configuration
-@NoArgsConstructor
 public class AppxUser {
     private String username;
     private String password;

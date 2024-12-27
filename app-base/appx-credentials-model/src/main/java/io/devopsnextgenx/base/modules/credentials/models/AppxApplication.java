@@ -1,8 +1,10 @@
-package io.devopsnextgenx.base.modules.config.models;
+package io.devopsnextgenx.base.modules.credentials.models;
 
 import lombok.Data;
+import lombok.Builder;
 
 @Data
+@Builder
 public class AppxApplication {
     private String authType;
     private String domain;
