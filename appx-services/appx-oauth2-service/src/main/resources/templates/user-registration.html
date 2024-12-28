@@ -18,7 +18,8 @@
 
     <div th:if="${errorMessage}" class="error" th:text="${errorMessage}"></div>
 
-    <form th:action="@{/basic/register}" th:object="${user}" method="post">
+    <form th:action="@{/basic/user-registration}" th:object="${user}" method="post">
+      <div class="row">
       <div class="form-group">
         <label for="userName">Username:</label>
         <input
@@ -33,6 +34,20 @@
           th:errors="*{userName}"
           class="error"
         ></span>
+      </div>
+      
+      <div class="form-group">
+
+        <label for="roles">Roles:</label>
+        <select th:field="*{roles}" class="form-control" id="roles" multiple required>
+          <option th:each="role : ${T(io.devopsnextgenx.microservices.modules.access.model.ROLE).values()}"
+            th:value="${role.getRoleName()}"
+            th:text="${role.getRoleName()}">
+          </option>
+        </select>
+        <span th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}" class="error"></span>
+      </div>
+
       </div>
 
       <div class="row">
@@ -85,7 +100,7 @@
         ></span>
       </div>
       <div class="form-group">
-        <label for="password">Email:</label>
+        <label for="password">Password:</label>
         <input
           type="text"
           th:field="*{password}"

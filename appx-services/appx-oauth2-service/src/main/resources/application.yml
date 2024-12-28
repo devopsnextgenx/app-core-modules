@@ -57,3 +57,4 @@ server:
   port: 5000
 
 logging.level.org.flywaydb.core.internal.command.DbMigrate: TRACE
+logging.level.org.springframework.security: DEBUG

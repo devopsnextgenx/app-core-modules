@@ -1,6 +1,7 @@
 package io.devopsnextgenx.microservices.modules.oauth2.controller;
 
 import java.security.Principal;
+import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import io.devopsnextgenx.microservices.modules.security.models.User;
+import io.devopsnextgenx.microservices.modules.security.models.Role;
 import io.devopsnextgenx.microservices.modules.security.repositories.AppxUserRepository;
 import io.devopsnextgenx.microservices.modules.oauth2.utils.UserCloner;
 
@@ -62,12 +64,41 @@ public class OAuth2Controller {
         return new User(); // Initialize empty user for the session
     }
 
-    @GetMapping("/register")
+    @GetMapping("/user-registration")
     public String showForm(Model model) {
         if (!model.containsAttribute("user")) {
             model.addAttribute("user", new User());
         }
-        return "register";
+        return "user-registration";
+    }
+
+    @PostMapping("/user-registration")
+    public String register(@ModelAttribute("user") User user, 
+		SessionStatus sessionStatus,
+		RedirectAttributes redirectAttributes) {
+        user.setUserRoles(user.getRoles().stream().map(role-> Role.builder().name(role).build()).collect(Collectors.toList()));;
+        user.setActive(true);
+		appxUserRepository.save(user);
+		try {
+            // Process the user data here
+            redirectAttributes.addFlashAttribute("successMessage", "Registration successful!");
+            return "redirect:/basic/user-registration-success";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            return "redirect:/basic/user-registration";
+        }
+    }
+	
+    @GetMapping("/user-registration-success")
+    public String showSuccess(@ModelAttribute("user") User user, Model model) {
+        model.addAttribute("user", user);
+        return "user-registration-success";
+    }
+    
+    @GetMapping("/clear")
+    public String clearSession(SessionStatus sessionStatus) {
+        sessionStatus.setComplete(); // Clear the session
+        return "redirect:/basic/user-registration";
     }
 
 	@GetMapping(value = "/user")
@@ -76,42 +107,9 @@ public class OAuth2Controller {
 	}
 
 	@GetMapping(value = "/error")
-	public ResponseEntity<Void> error() {
+	public String error() {
 		log.info("AS /error has been called");
-		return ResponseEntity.noContent().build();
+		return "redirect:/public/error";
 	}
 
-    @PostMapping("/register")
-    public String register(@ModelAttribute("user") User user, 
-		SessionStatus sessionStatus,
-		RedirectAttributes redirectAttributes) {
-        // User userAccount = User.builder().firstName(firstName)
-        // .lastName(lastName)
-        // .userName(username)
-		// .email(email)
-        // .password(passwordEncoder.encode(password))
-        // .active(true).build();
-
-		appxUserRepository.save(user);
-		try {
-            // Process the user data here
-            redirectAttributes.addFlashAttribute("successMessage", "Registration successful!");
-            return "redirect:/basic/success";
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
-            return "redirect:/basic/register";
-        }
-    }
-	
-    @GetMapping("/success")
-    public String showSuccess(@ModelAttribute("user") User user, Model model) {
-        model.addAttribute("user", user);
-        return "success";
-    }
-    
-    @GetMapping("/clear")
-    public String clearSession(SessionStatus sessionStatus) {
-        sessionStatus.setComplete(); // Clear the session
-        return "redirect:/basic/register";
-    }
 }

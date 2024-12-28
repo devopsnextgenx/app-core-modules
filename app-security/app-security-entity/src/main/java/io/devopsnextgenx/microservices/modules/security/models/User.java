@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 import io.devopsnextgenx.microservices.modules.utils.converters.PasswordEncryptor;
+import io.devopsnextgenx.microservices.modules.access.model.ROLE;
 import io.devopsnextgenx.microservices.modules.models.BaseModelAudit;
 
 /**
@@ -62,4 +64,6 @@ public class User extends BaseModelAudit {
                     name = "roleId", referencedColumnName = "id"))
     private List<Role> userRoles;
 
+    @Transient
+    private List<ROLE> roles;
 }
