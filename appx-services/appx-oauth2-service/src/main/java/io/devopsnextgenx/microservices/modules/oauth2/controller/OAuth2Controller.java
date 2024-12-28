@@ -76,12 +76,13 @@ public class OAuth2Controller {
     public String register(@ModelAttribute("user") User user, 
 		SessionStatus sessionStatus,
 		RedirectAttributes redirectAttributes) {
-        user.setUserRoles(user.getRoles().stream().map(role-> Role.builder().name(role).build()).collect(Collectors.toList()));;
         user.setActive(true);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setUserRoles(user.getRoles().stream().map(role-> Role.builder().name(role).build()).toList());
 		appxUserRepository.save(user);
 		try {
             // Process the user data here
-            redirectAttributes.addFlashAttribute("successMessage", "Registration successful!");
+            redirectAttributes.addFlashAttribute("successMessage", "User Registration successful!!!");
             return "redirect:/basic/user-registration-success";
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
