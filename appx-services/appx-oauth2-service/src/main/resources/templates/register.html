@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Register a new user</title>
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css"
+    />
+  </head>
+  <body class="container mt-5">
+    <h1 class="text-center">User Register:</h1>
+
+    <div th:if="${errorMessage}" class="error" th:text="${errorMessage}"></div>
+
+    <form th:action="@{/basic/register}" th:object="${user}" method="post">
+      <div class="form-group">
+        <label for="userName">Username:</label>
+        <input
+          type="text"
+          th:field="*{userName}"
+          class="form-control"
+          id="userName"
+          required
+        />
+        <span
+          th:if="${#fields.hasErrors('userName')}"
+          th:errors="*{userName}"
+          class="error"
+        ></span>
+      </div>
+
+      <div class="row">
+        <div class="col form-group">
+          <label for="firstName">First Name:</label>
+          <input
+            type="text"
+            th:field="*{firstName}"
+            class="form-control"
+            id="firstName"
+            required
+          />
+          <span
+            th:if="${#fields.hasErrors('firstName')}"
+            th:errors="*{firstName}"
+            class="error"
+          ></span>
+        </div>
+
+        <div class="col form-group">
+          <label for="lastName">Last Name:</label>
+          <input
+            type="text"
+            th:field="*{lastName}"
+            class="form-control"
+            id="lastName"
+            required
+          />
+          <span
+            th:if="${#fields.hasErrors('lastName')}"
+            th:errors="*{lastName}"
+            class="error"
+          ></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          th:field="*{email}"
+          class="form-control"
+          id="email"
+          required
+        />
+        <span
+          th:if="${#fields.hasErrors('email')}"
+          th:errors="*{email}"
+          class="error"
+        ></span>
+      </div>
+      <div class="form-group">
+        <label for="password">Email:</label>
+        <input
+          type="text"
+          th:field="*{password}"
+          class="form-control"
+          id="password"
+          required
+        />
+        <span
+          th:if="${#fields.hasErrors('password')}"
+          th:errors="*{password}"
+          class="error"
+        ></span>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block btn-lg">
+        Register
+      </button>
+    </form>
+  </body>
+</html>

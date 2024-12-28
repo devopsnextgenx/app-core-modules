@@ -24,11 +24,30 @@ spring:
     cleanDisabled: true
     url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_oauth2_db}?createDatabaseIfNotExist=true&autoReconnect=true
     locations: classpath:db/migration
+  web:
+    resources:
+      static-locations:
+      - classpath:/public/
+      - classpath:/secure/
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML
+  # mvc:
+  #   static-path-pattern: /content/**
 
 appx:
   modules:
     vault:
       enabled: true
+    security:
+      enabled: true
+      basic:
+        enabled: true
+        api:
+          path: /**
 
 error:
   whitelabel:

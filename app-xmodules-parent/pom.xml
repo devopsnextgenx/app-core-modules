@@ -27,6 +27,7 @@
 
         <spring-boot.version>3.4.1</spring-boot.version>
         <spring-cloud.version>2024.0.0</spring-cloud.version>
+        <spring-oauth2.version>2.5.2.RELEASE</spring-oauth2.version>
         <hystrix.version>2.2.10.RELEASE</hystrix.version>
         <awspring.version>3.2.1</awspring.version>
         <aws.sdk.version>2.29.29</aws.sdk.version>
@@ -87,6 +88,11 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
                 <version>3.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${spring-oauth2.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.datatype</groupId>

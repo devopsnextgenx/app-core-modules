@@ -198,15 +198,6 @@ appx:
         clientSecret: ${AUTH_CLIENT_SECRET:R40JLeatEu6mMUPAA25IyESgAjMmOUqE9LKI9gzWjejksoUJmoiZJaDzqublAFPw}
         domain: ${AUTH_DOMAIN:https://k8cluster.auth0.com}
         issuer: ${AUTH_ISSUER:https://k8cluster.auth0.com/}
-      basic:
-        enabled: true
-        # api:
-        #   path: /api/**
-        user:
-          enabled: true
-          name: user
-          password: password
-          role: USER
       jwt:
         enabled: true
         api:

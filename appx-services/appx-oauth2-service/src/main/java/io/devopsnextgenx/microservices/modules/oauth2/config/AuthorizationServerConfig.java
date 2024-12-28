@@ -37,6 +37,8 @@ import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 
+import io.devopsnextgenx.microservices.modules.oauth2.utils.UserCloner;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -63,46 +65,67 @@ import lombok.extern.slf4j.Slf4j;
 @EnableWebSecurity
 public class AuthorizationServerConfig {
 
-	@Bean 
+    @Bean
+    public UserCloner userCloner() {
+        return new UserCloner();
+    }
+
+	@Bean
 	@Order(1)
 	public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
-		OAuth2AuthorizationServerConfigurer authorizationServerConfigurer =
-            OAuth2AuthorizationServerConfigurer.authorizationServer().oidc(Customizer.withDefaults()); 
+		OAuth2AuthorizationServerConfigurer authorizationServerConfigurer = OAuth2AuthorizationServerConfigurer
+				.authorizationServer().oidc(Customizer.withDefaults());
 		http.securityMatcher(authorizationServerConfigurer.getEndpointsMatcher())
-			.with(authorizationServerConfigurer, Customizer.withDefaults())
-			.authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
-            .exceptionHandling((exceptions) -> exceptions.defaultAuthenticationEntryPointFor(
-                  new LoginUrlAuthenticationEntryPoint("/login"), new MediaTypeRequestMatcher(MediaType.TEXT_HTML))
-			)
-			// Accept access tokens for User Info and/or Client Registration
-			.oauth2ResourceServer((resourceServer) -> resourceServer
-				.jwt(Customizer.withDefaults()));
+				.with(authorizationServerConfigurer, Customizer.withDefaults())
+				.authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
+				.exceptionHandling((exceptions) -> exceptions.defaultAuthenticationEntryPointFor(
+						new LoginUrlAuthenticationEntryPoint("/login"),
+						new MediaTypeRequestMatcher(MediaType.TEXT_HTML)))
+				// Accept access tokens for User Info and/or Client Registration
+				.oauth2ResourceServer((resourceServer) -> resourceServer
+						.jwt(Customizer.withDefaults()));
 
 		return http.build();
 	}
 
 	@Bean
 	@Order(2)
-	public SecurityFilterChain registerOAuth2SecurityFilterChain(HttpSecurity http)
+	public SecurityFilterChain loginOAuth2SecurityFilterChain(HttpSecurity http)
 			throws Exception {
 		http
-			.securityMatcher("/form/login/**")
-			.authorizeHttpRequests((authorize) -> authorize
-				.anyRequest().authenticated()
-			)
-			// Form login handles the redirect to the login page from the
-			// authorization server filter chain
-			.formLogin(Customizer.withDefaults());
+				.securityMatcher("/form/login/**")
+				.authorizeHttpRequests((authorize) -> authorize
+						.anyRequest().authenticated())
+				// Form login handles the redirect to the login page from the
+				// authorization server filter chain
+				.formLogin(Customizer.withDefaults());
 
 		return http.build();
 	}
 
 	@Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring()
-			.requestMatchers(HttpMethod.GET, "/register.html")
-			.requestMatchers(HttpMethod.POST, "/register");
-    }
+	@Order(3)
+	public SecurityFilterChain registerOAuth2SecurityFilterChain(HttpSecurity http)
+			throws Exception {
+
+		http
+			.securityMatcher("/content/**")
+			.authorizeHttpRequests(authorize -> authorize
+				.requestMatchers("/content/public/**").permitAll() // Public resources
+				.anyRequest().authenticated() // All other requests need authentication
+			)
+			.httpBasic(Customizer.withDefaults()) // Enable Basic Auth
+			.csrf(csrf -> csrf.disable()); // Disable CSRF for simplicity
+
+		return http.build();
+	}
+
+	// @Bean
+	// public WebSecurityCustomizer webSecurityCustomizer() {
+	// return web -> web.ignoring()
+	// .requestMatchers(HttpMethod.GET, "/register.html")
+	// .requestMatchers(HttpMethod.POST, "/register");
+	// }
 
 	@Bean
 	public JWKSource<SecurityContext> jwkSource() {
@@ -117,25 +140,24 @@ public class AuthorizationServerConfig {
 		return new ImmutableJWKSet<>(jwkSet);
 	}
 
-	private static KeyPair generateRsaKey() { 
+	private static KeyPair generateRsaKey() {
 		KeyPair keyPair;
 		try {
 			KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
 			keyPairGenerator.initialize(2048);
 			keyPair = keyPairGenerator.generateKeyPair();
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new IllegalStateException(ex);
 		}
 		return keyPair;
 	}
 
-	@Bean 
+	@Bean
 	public JwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource) {
 		return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
 	}
 
-	@Bean 
+	@Bean
 	public RegisteredClientRepository registeredClientRepository(JdbcTemplate jdbcTemplate) {
 		String clientId = "react-app-client";
 		RegisteredClient oidcClient = RegisteredClient.withId(UUID.randomUUID().toString())
@@ -147,7 +169,7 @@ public class AuthorizationServerConfig {
 				.clientAuthenticationMethod(ClientAuthenticationMethod.NONE)
 				// .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
 				.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
-				.authorizationGrantTypes(grantType-> {
+				.authorizationGrantTypes(grantType -> {
 					grantType.add(AuthorizationGrantType.AUTHORIZATION_CODE);
 					grantType.add(AuthorizationGrantType.REFRESH_TOKEN);
 					grantType.add(AuthorizationGrantType.CLIENT_CREDENTIALS);
@@ -157,8 +179,8 @@ public class AuthorizationServerConfig {
 				.clientSettings(ClientSettings.builder().requireProofKey(true).build())
 				.build();
 
-		RegisteredClientRepository registeredClientRepository =	new JdbcRegisteredClientRepository(jdbcTemplate);
-		
+		RegisteredClientRepository registeredClientRepository = new JdbcRegisteredClientRepository(jdbcTemplate);
+
 		if (registeredClientRepository.findByClientId(clientId) == null) {
 			log.info("Save oidcClient");
 			registeredClientRepository.save(oidcClient);
@@ -170,7 +192,7 @@ public class AuthorizationServerConfig {
 	@Bean
 	public AuthorizationServerSettings authorizationServerSettings() {
 		return AuthorizationServerSettings.builder()
-		.issuer("http://auth-server.k8s.localtest.me:5000")
-		.build();
+				.issuer("http://auth-server.k8s.localtest.me:5000")
+				.build();
 	}
 }
