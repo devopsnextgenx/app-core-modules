@@ -29,7 +29,7 @@ SET @q = CONCAT("CREATE TABLE IF NOT EXISTS ", @auth_schema_name, ".USER (
   `createdBy` varchar(40) DEFAULT NULL,
   `updatedBy` varchar(40) DEFAULT NULL,
   `creationDate` TIMESTAMP,
-  `lastModifiedDate` TIMESTAMP,
+  `modifiedDate` TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_lqjrcobrh9jc8wpcar64q1bfh` (`userName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8");
@@ -41,6 +41,10 @@ SET @q = CONCAT("CREATE TABLE IF NOT EXISTS ", @auth_schema_name, ".ROLE (
   `id` varchar(40) NOT NULL,
   `isDeleted` bit(1) DEFAULT NULL,
   `name` tinyint DEFAULT NULL,
+  `createdBy` varchar(40) DEFAULT NULL,
+  `updatedBy` varchar(40) DEFAULT NULL,
+  `creationDate` TIMESTAMP,
+  `modifiedDate` TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8");
 PREPARE stmt FROM @q;
@@ -63,8 +67,10 @@ SET @q = CONCAT("CREATE TABLE IF NOT EXISTS ", @auth_schema_name, ".ORGANIZATION
   `adminId` varchar(255) DEFAULT NULL,
   `active` bit(1) NOT NULL,
   `isDeleted` bit(1) DEFAULT NULL,
+  `createdBy` varchar(40) DEFAULT NULL,
+  `updatedBy` varchar(40) DEFAULT NULL,
   `creationDate` TIMESTAMP,
-  `lastModifiedDate` TIMESTAMP,
+  `modifiedDate` TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_lqjrcobrh9jc8wpcar64q1org` (`orgName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8");
