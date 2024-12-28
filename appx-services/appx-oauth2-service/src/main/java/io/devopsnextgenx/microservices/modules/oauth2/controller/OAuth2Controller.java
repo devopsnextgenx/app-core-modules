@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import io.devopsnextgenx.microservices.modules.security.models.User;
 import io.devopsnextgenx.microservices.modules.security.models.Role;
 import io.devopsnextgenx.microservices.modules.security.repositories.AppxUserRepository;
+import io.devopsnextgenx.microservices.modules.access.model.AuthenticationFacade;
 import io.devopsnextgenx.microservices.modules.oauth2.utils.UserCloner;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,12 +52,12 @@ public class OAuth2Controller {
 
 	private AppxUserRepository appxUserRepository;
 	private PasswordEncoder passwordEncoder;
-	private UserCloner userCloner;
+    private AuthenticationFacade authenticationFacade;
 
-	public OAuth2Controller(AppxUserRepository appxUserRepository, PasswordEncoder passwordEncoder, UserCloner userCloner) {
+	public OAuth2Controller(AppxUserRepository appxUserRepository, PasswordEncoder passwordEncoder, AuthenticationFacade authenticationFacade) {
+        this.authenticationFacade = authenticationFacade;
 		this.appxUserRepository = appxUserRepository;
 		this.passwordEncoder = passwordEncoder;
-		this.userCloner = userCloner;
 	}
 
     @ModelAttribute("user")
@@ -76,6 +77,7 @@ public class OAuth2Controller {
     public String register(@ModelAttribute("user") User user, 
 		SessionStatus sessionStatus,
 		RedirectAttributes redirectAttributes) {
+        log.info("Adding User by: {}", authenticationFacade.getUserName());
         user.setActive(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setUserRoles(user.getRoles().stream().map(role-> Role.builder().name(role).build()).toList());
