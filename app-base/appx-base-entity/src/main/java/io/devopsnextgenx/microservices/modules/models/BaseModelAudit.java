@@ -19,7 +19,9 @@ import java.sql.Timestamp;
 public class BaseModelAudit extends BaseEntity {
     @Column(name = "creationDate")
     private Timestamp creationDate;
-    @Column(name = "lastModifiedDate")
-    private Timestamp lastModifiedDate;
+    @Column(name = "modifiedDate")
+    private Timestamp modifiedDate;
 
+    private String createdBy;
+    private String updatedBy;
 }

@@ -1,7 +1,9 @@
 package io.devopsnextgenx.microservices.modules.access.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.annotation.PostConstruct;
 import lombok.Data;
@@ -26,6 +28,6 @@ public class AuthenticationFacade implements IAuthenticationFacade {
 
     @Override
     public String getUserName() {
-        return securityContext.getAuthentication().getName();
+        return ((UserDetails) securityContext.getAuthentication().getPrincipal()).getUsername();
     }
 }

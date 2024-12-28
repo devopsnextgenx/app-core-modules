@@ -26,6 +26,8 @@ SET @q = CONCAT("CREATE TABLE IF NOT EXISTS ", @auth_schema_name, ".USER (
   `organizationId` varchar(255) DEFAULT NULL,
   `active` bit(1) NOT NULL,
   `isDeleted` bit(1) DEFAULT NULL,
+  `createdBy` varchar(40) DEFAULT NULL,
+  `updatedBy` varchar(40) DEFAULT NULL,
   `creationDate` TIMESTAMP,
   `lastModifiedDate` TIMESTAMP,
   PRIMARY KEY (`id`),

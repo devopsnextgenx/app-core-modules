@@ -1,6 +1,8 @@
 package io.devopsnextgenx.microservices.modules.oauth2.controller;
 
 import java.security.Principal;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import io.devopsnextgenx.microservices.modules.security.models.User;
 import io.devopsnextgenx.microservices.modules.security.models.Role;
 import io.devopsnextgenx.microservices.modules.security.repositories.AppxUserRepository;
+import io.devopsnextgenx.microservices.modules.security.repositories.AppxUserRepositoryImpl;
 import io.devopsnextgenx.microservices.modules.access.model.AuthenticationFacade;
+import io.devopsnextgenx.microservices.modules.access.model.IAuthenticationFacade;
 import io.devopsnextgenx.microservices.modules.oauth2.utils.UserCloner;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,11 +54,11 @@ import lombok.extern.slf4j.Slf4j;
 @SessionAttributes("user")
 public class OAuth2Controller {
 
-	private AppxUserRepository appxUserRepository;
-	private PasswordEncoder passwordEncoder;
-    private AuthenticationFacade authenticationFacade;
+    private PasswordEncoder passwordEncoder;
+	private AppxUserRepositoryImpl appxUserRepository;
+    private IAuthenticationFacade authenticationFacade;
 
-	public OAuth2Controller(AppxUserRepository appxUserRepository, PasswordEncoder passwordEncoder, AuthenticationFacade authenticationFacade) {
+	public OAuth2Controller(AppxUserRepositoryImpl appxUserRepository, PasswordEncoder passwordEncoder, IAuthenticationFacade authenticationFacade) {
         this.authenticationFacade = authenticationFacade;
 		this.appxUserRepository = appxUserRepository;
 		this.passwordEncoder = passwordEncoder;
@@ -78,6 +82,8 @@ public class OAuth2Controller {
 		SessionStatus sessionStatus,
 		RedirectAttributes redirectAttributes) {
         log.info("Adding User by: {}", authenticationFacade.getUserName());
+        user.setCreatedBy(appxUserRepository.findByUsername(authenticationFacade.getUserName()).getId());
+        user.setCreationDate(new Timestamp(new Date().getTime()));
         user.setActive(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setUserRoles(user.getRoles().stream().map(role-> Role.builder().name(role).build()).toList());
