@@ -36,13 +36,7 @@ public class UserController implements UserServiceApi {
 
     @Override
     public ResponseEntity<List<UserDto>> listUsers() {
-        try {
-            return ResponseEntity.ok(userService.listAllResilient());
-        } catch (TimeoutException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return (ResponseEntity<List<UserDto>>) ResponseEntity.internalServerError();
+        return ResponseEntity.ok(userService.listUsers());
     }
 
     @Override

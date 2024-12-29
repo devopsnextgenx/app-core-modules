@@ -54,6 +54,15 @@ public class UserService {
         return userList;
     }
     
+    public List<UserDto> listUsers() {
+        List<UserDto> userList = userRepository.findAll()
+        .stream()
+        .map(item -> userCloner.cloneToDto(item))
+        .collect(Collectors.toList());
+
+        return userList;
+    }
+
     @Timed
     public UserDto getEntityById(String id) {
         return userCloner.cloneToDto(userRepository.getReferenceById(id));
