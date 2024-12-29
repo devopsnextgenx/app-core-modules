@@ -25,7 +25,11 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a th:if="${!#authentication.authenticated}" href="/content/secure/home.html" class="btn btn-primary">Login</a>
+                        <!--
+                            <form th:if="${#authentication.authenticated}" th:action="@{/logout}" method="post">
+                                <button type="submit" class="btn btn-primary">Logout</button>
+                            </form>
+                        -->
                     </li>
                 </ul>
             </div>
@@ -33,10 +37,11 @@
     </nav>
 
     <div class="container mt-5">
-        <h1 class="text-center">Welcome to the OAuth2 Service</h1>
+        <h1 class="text-center">Welcome to the Home Page</h1>
 
         <div class="d-flex justify-content-center mt-4">
-            Login to proceed further.
+            <a href="/basic/user-registration" class="btn btn-primary me-2">Register New User</a>
+            <a href="/basic/client-registration" class="btn btn-primary">Register New Client Application</a>
         </div>
     </div>
 

@@ -22,6 +22,7 @@ import io.devopsnextgenx.microservices.modules.user.service.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Scope;
@@ -36,6 +37,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootApplication
+@EntityScan("io.devopsnextgenx.microservices.modules")
 @ComponentScan("io.devopsnextgenx.microservices.modules")
 @EnableJpaRepositories("io.devopsnextgenx.microservices.modules")
 public class UserAuthApplication {

@@ -1,0 +1,3 @@
+### Login with OAuth2
+GET https://oauth2.appx.localtest.me:5000/login
+Authorization: Basic YWRtaW46cEBzc3cwcmQ=

@@ -5,12 +5,14 @@ import org.springframework.http.CacheControl;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import org.springframework.lang.NonNull;
+
 
 @Configuration
 public class AppxContentWebConfig implements WebMvcConfigurer {
     
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    public void addResourceHandlers(@NonNull ResourceHandlerRegistry registry) {
         // Configure public content
         registry.addResourceHandler("/content/public/**")
                .addResourceLocations("classpath:/content/public/")

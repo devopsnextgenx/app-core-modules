@@ -11,13 +11,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
@@ -69,17 +67,17 @@ import lombok.extern.slf4j.Slf4j;
 @EnableWebSecurity
 public class AuthorizationServerConfig {
 
-    @Bean
-    public UserCloner userCloner() {
-        return new UserCloner();
-    }
+	@Bean
+	public UserCloner userCloner() {
+		return new UserCloner();
+	}
 
-    @Bean
-    @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
-    public AuthenticationFacade authenticationFacade() {
-        return new AuthenticationFacade();
-    }
-	
+	@Bean
+	@Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
+	public AuthenticationFacade authenticationFacade() {
+		return new AuthenticationFacade();
+	}
+
 	@Bean
 	@Order(1)
 	public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http) throws Exception {
@@ -119,13 +117,13 @@ public class AuthorizationServerConfig {
 			throws Exception {
 
 		http
-			.securityMatcher("/content/**")
-			.authorizeHttpRequests(authorize -> authorize
-				.requestMatchers("/content/public/**").permitAll() // Public resources
-				.anyRequest().authenticated() // All other requests need authentication
-			)
-			.httpBasic(Customizer.withDefaults()) // Enable Basic Auth
-			.csrf(csrf -> csrf.disable()); // Disable CSRF for simplicity
+				.securityMatcher("/content/**")
+				.authorizeHttpRequests(authorize -> authorize
+						.requestMatchers("/content/public/**").permitAll() // Public resources
+						.anyRequest().authenticated() // All other requests need authentication
+				)
+				.httpBasic(Customizer.withDefaults()) // Enable Basic Auth
+				.csrf(csrf -> csrf.disable()); // Disable CSRF for simplicity
 
 		return http.build();
 	}

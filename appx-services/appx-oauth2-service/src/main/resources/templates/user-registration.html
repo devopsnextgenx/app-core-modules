@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
@@ -12,8 +12,33 @@
       rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css"
     />
+    <style>
+        body {
+            background-color: #e3f2fd; /* Light blue background */
+        }
+        .navbar {
+            background-color: #90caf9; /* Light blue theme */
+        }
+        .btn-primary {
+            background-color: #42a5f5;
+            border-color: #42a5f5;
+        }
+    </style>
   </head>
   <body class="container mt-5">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Appx OAuth2 Service</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a th:if="${!#authentication.authenticated}" href="/content/secure/home.html" class="btn btn-primary">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <h1 class="text-center">User Register:</h1>
 
     <div th:if="${errorMessage}" class="error" th:text="${errorMessage}"></div>
