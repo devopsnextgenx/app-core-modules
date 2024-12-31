@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>io.devopsnextgenx.microservices.modules</groupId>
+        <artifactId>appx-service</artifactId>
+        <version>current-SNAPSHOT</version>
+    </parent>
+
+    <groupId>io.devopsnextgenx.microservices.modules</groupId>
+    <artifactId>app-product-service</artifactId>
+    <version>current-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>app-product-service</name>
+    <description>Spring Boot application for AppX Product Service</description>
+
+    <modules>
+        <module>product-api-client</module>
+        <module>product-service</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.devopsnextgenx.microservices.modules</groupId>
+                <artifactId>product-api</artifactId>
+                <version>current-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

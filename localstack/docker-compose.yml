@@ -89,18 +89,18 @@ services:
       - ./consul/config/consul-config.json:/consul/config/config.json
       - "${TMP_DIR:-/tmp}/consul-data:/consul/data"
 
-  # mongo:
-  #   domainname: localhost
-  #   hostname: mongo.localtest.me
-  #   image: mongo
-  #   container_name: mongo-server
-  #   ports:
-  #     - "27017:27017"
-  #   environment:
-  #     - MONGO_INITDB_ROOT_USERNAME=admin
-  #     - MONGO_INITDB_ROOT_PASSWORD=password
-  #     - MONGO_USERNAME=admin
-  #     - MONGO_PASSWORD=password
+  mongo:
+    domainname: localhost
+    hostname: mongo.localtest.me
+    image: mongo
+    container_name: mongo-server
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_USERNAME=admin
+      - MONGO_PASSWORD=password
 
   # redis:
   #   domainname: localhost

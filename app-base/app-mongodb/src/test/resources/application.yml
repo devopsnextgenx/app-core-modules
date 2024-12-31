@@ -1,0 +1,11 @@
+appx:
+  modules:
+    db:
+      mongodb:
+        enabled: true
+        dbname: product
+        username: admin
+        password: password
+        authentication-database: admin
+        cluster: mongodb.localtest.me:27017
+        collection: io.devopsnextgenx.microservices.modules.collections

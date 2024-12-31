@@ -1,0 +1,40 @@
+spring:
+  application:
+      name: entity-service
+  datasource:
+    url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_oauth2_db}?createDatabaseIfNotExist=true&autoReconnect=true
+    name: authdb
+    username: ${VDBUSER:root}
+    password: ${VDBPASS:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    loadbalancer:
+      enabled: true
+server:
+  port: ${VPORT:2010}
+
+appx:
+  modules:
+    security:
+      enabled: true
+      basic:
+        enabled: true
+      jwt:
+        enabled: true
+    db:
+      mongodb:
+        enabled: true
+        dbname: product
+        username: admin
+        password: password
+        authentication-database: admin
+        cluster: mongodb.localtest.me:27017
+        collection: io.devopsnextgenx.microservices.modules.product.collections
+    swagger:
+      enabled: true
+      title: Product Service
+      description: Product Service
+      version: 1.0
+      contact:
+        name: Amit Kshirsagar
+        email: amit.kshirsagar.13@gmail.com

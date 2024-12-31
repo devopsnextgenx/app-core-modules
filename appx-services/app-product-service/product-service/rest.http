@@ -1,0 +1,72 @@
+### Add Product to collections
+
+POST https://product-user-service.appx.localtest.me:2010/api/products
+Authorization: eyJhbGciOiJub25lIn0.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlNZU1RFTV9BRE1JTklTVFJBVE9SIiwiT1JHQU5JWkFUSU9OX0FETUlOSVNUUkFUT1IiLCJEQVRBX01BTkFHRVIiLCJDT01QQU5ZX0FETUlOSVNUUkFUT1IiLCJTRVJWSUNFX0FDQ09VTlQiXSwiZW1haWwiOiJhZG1pbkBkZXZvcHNuZXh0Z2VueC5pbyIsImlhdCI6MTczNDg4NzAyMywiZXhwIjoxNzM0ODg3MDI3fQ.
+access-data: eyJ1c2VySWQiOiJhbWl0LmtzaGlyc2FnYXIiLCJjb21wYW55SWQiOiJzaWVtZW5zIiwib3JnYW5pemF0aW9uSWQiOiJETVMiLCAicm9sZUxpc3QiOlsiU1lTVEVNX0FETUlOSVNUUkFUT1IiLCJEQVRBX01BTkFHRVIiXX0=
+Content-Type: application/json
+
+{
+    "name": "Sample Product",
+    "description": "This is a sample product",
+    "price": 19.99,
+    "imgLogo": "https://picsum.photos/150",
+    "imgs": [
+        "https://picsum.photos/150",
+        "https://picsum.photos/150"
+    ],
+    "tags": [
+        "sample",
+        "product"
+    ]
+}
+
+### Add Product to collections
+
+POST https://product-user-service.appx.localtest.me:2010/api/products
+Authorization: eyJhbGciOiJub25lIn0.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlNZU1RFTV9BRE1JTklTVFJBVE9SIiwiT1JHQU5JWkFUSU9OX0FETUlOSVNUUkFUT1IiLCJEQVRBX01BTkFHRVIiLCJDT01QQU5ZX0FETUlOSVNUUkFUT1IiLCJTRVJWSUNFX0FDQ09VTlQiXSwiZW1haWwiOiJhZG1pbkBkZXZvcHNuZXh0Z2VueC5pbyIsImlhdCI6MTczNDg4NzAyMywiZXhwIjoxNzM0ODg3MDI3fQ.
+access-data: eyJ1c2VySWQiOiJhbWl0LmtzaGlyc2FnYXIiLCJjb21wYW55SWQiOiJzaWVtZW5zIiwib3JnYW5pemF0aW9uSWQiOiJETVMiLCAicm9sZUxpc3QiOlsiU1lTVEVNX0FETUlOSVNUUkFUT1IiLCJEQVRBX01BTkFHRVIiXX0=
+Content-Type: application/json
+
+{
+    "name": "Another Product",
+    "description": "This is another sample product",
+    "price": 29.99,
+    "imgLogo": "https://picsum.photos/150",
+    "imgs": [
+        "https://picsum.photos/150",
+        "https://picsum.photos/150"
+    ],
+    "tags": [
+        "another",
+        "product"
+    ]
+}
+
+### Get Products
+
+GET https://product-user-service.appx.localtest.me:2010/api/products
+Authorization: eyJhbGciOiJub25lIn0.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlNZU1RFTV9BRE1JTklTVFJBVE9SIiwiT1JHQU5JWkFUSU9OX0FETUlOSVNUUkFUT1IiLCJEQVRBX01BTkFHRVIiLCJDT01QQU5ZX0FETUlOSVNUUkFUT1IiLCJTRVJWSUNFX0FDQ09VTlQiXSwiZW1haWwiOiJhZG1pbkBkZXZvcHNuZXh0Z2VueC5pbyIsImlhdCI6MTczNDg4NzAyMywiZXhwIjoxNzM0ODg3MDI3fQ.
+access-data: eyJ1c2VySWQiOiJhbWl0LmtzaGlyc2FnYXIiLCJjb21wYW55SWQiOiJzaWVtZW5zIiwib3JnYW5pemF0aW9uSWQiOiJETVMiLCAicm9sZUxpc3QiOlsiU1lTVEVNX0FETUlOSVNUUkFUT1IiLCJEQVRBX01BTkFHRVIiXX0=
+
+### Update Product by ID
+
+PUT https://product-user-service.appx.localtest.me:2010/api/products/677337476a32f66e9be4ed6b
+Authorization: eyJhbGciOiJub25lIn0.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlNZU1RFTV9BRE1JTklTVFJBVE9SIiwiT1JHQU5JWkFUSU9OX0FETUlOSVNUUkFUT1IiLCJEQVRBX01BTkFHRVIiLCJDT01QQU5ZX0FETUlOSVNUUkFUT1IiLCJTRVJWSUNFX0FDQ09VTlQiXSwiZW1haWwiOiJhZG1pbkBkZXZvcHNuZXh0Z2VueC5pbyIsImlhdCI6MTczNDg4NzAyMywiZXhwIjoxNzM0ODg3MDI3fQ.
+access-data: eyJ1c2VySWQiOiJhbWl0LmtzaGlyc2FnYXIiLCJjb21wYW55SWQiOiJzaWVtZW5zIiwib3JnYW5pemF0aW9uSWQiOiJETVMiLCAicm9sZUxpc3QiOlsiU1lTVEVNX0FETUlOSVNUUkFUT1IiLCJEQVRBX01BTkFHRVIiXX0=
+Content-Type: application/json
+
+{
+    "id": "677337476a32f66e9be4ed6b",
+    "name": "Sample Product",
+    "description": "This is a sample product",
+    "price": 19.99,
+    "imgLogo": "https://picsum.photos/150",
+    "imgs": [
+        "https://picsum.photos/150",
+        "https://picsum.photos/150"
+    ],
+    "tags": [
+        "sample",
+        "product"
+    ]
+}

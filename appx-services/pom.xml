@@ -24,5 +24,6 @@
         <module>app-user-auth-service</module>
         <module>app-user-service</module>
         <module>app-entity-service</module>
+        <module>app-product-service</module>
     </modules>
 </project>

@@ -25,6 +25,7 @@
         <module>app-flyway</module>
         <module>app-monitoring</module>
         <module>app-mysql</module>
+        <module>app-mongodb</module>
         <module>app-swagger</module>
     </modules>
 </project>

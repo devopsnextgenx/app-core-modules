@@ -238,12 +238,5 @@ appx:
         swaggerAdmin: ${SWAGGER_ADMIN:admin}
         swaggerAdminPassword: ${SWAGGER_ADMIN_PASS:admin}
     services:
-      userServiceHost: http://user-service.appx.localtest.me
-
-# logging:
-#   level:
-#     ROOT: INFO
-    # com.netflix.discovery: DEBUG
-    # com.netflix.eureka: DEBUG
-    # org.springframework.cloud.netflix.eureka: DEBUG
-    # org.springframework.web.client.RestTemplate: DEBUG
+      userServiceHost: https://USER-AUTH-SERVICE
+      user-auth-service: https://USER-AUTH-SERVICE
