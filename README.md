@@ -51,7 +51,14 @@ mvn clean install -DskipTests
             ]
         },
         "appx.modules.security.jwtSecret": "vaultSecret",
-        "appx.modules.security.truststore.password": "appxxppa"
+        "appx.modules.security.truststore.password": "appxxppa",
+        "spring.security.oauth2.client.registration.github.client-id": "<client-id>",
+        "spring.security.oauth2.client.registration.github.client-secret": "<client-secret>",
+        "spring.security.oauth2.client.registration.github.scope": "user:email,read:user",
+        "spring.security.oauth2.client.registration.google.client-id": "<client-id>",
+        "spring.security.oauth2.client.registration.google.client-secret": "<client-id>",
+        "spring.security.oauth2.client.registration.google.redirect-uri": "https://react.appx.localtest.me:5000/",
+        "spring.security.oauth2.client.registration.google.scope": "email,profile"
     }
     ```
 - Finally it should look like as below.

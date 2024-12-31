@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to the Home Page</h1>
+    <a href="/login">Login</a>
+
+    <div id="user-profile"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('/basic/user')
+                .then(response => response.json())
+                .then(data => {
+                    const userProfileDiv = document.getElementById('user-profile');
+                    userProfileDiv.innerHTML = `
+                        <h2>User Profile</h2>
+                        <p>Name: ${data.principal.attributes.name}</p>
+                        <p>Email: ${data.principal.attributes.login}</p>
+                    `;
+                })
+                .catch(error => console.error('Error fetching user profile:', error));
+        });
+    </script>
+</body>
+</html>

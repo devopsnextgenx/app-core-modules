@@ -1,6 +1,6 @@
 spring:
   application:
-      name: entity-service
+      name: product-service
   datasource:
     url: jdbc:mysql://${VDATABASE:mysql.local.localtest.me}:${VPORT:3306}/${AUTHSCHEMA:${user.name}_oauth2_db}?createDatabaseIfNotExist=true&autoReconnect=true
     name: authdb

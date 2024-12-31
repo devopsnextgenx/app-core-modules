@@ -15,12 +15,12 @@ public class AppxContentWebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(@NonNull ResourceHandlerRegistry registry) {
         // Configure public content
         registry.addResourceHandler("/content/public/**")
-               .addResourceLocations("classpath:/content/public/")
-               .setCacheControl(CacheControl.noCache());
+            .addResourceLocations("classpath:/content/public/")
+            .setCacheControl(CacheControl.noCache());
         
         // Configure protected static content
         registry.addResourceHandler("/content/secure/**")
-               .addResourceLocations("classpath:/content/secure/")
-               .setCacheControl(CacheControl.noCache());
+            .addResourceLocations("classpath:/content/secure/")
+            .setCacheControl(CacheControl.noCache());
     }
 }

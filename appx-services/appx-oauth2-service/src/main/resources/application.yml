@@ -29,6 +29,7 @@ spring:
       static-locations:
       - classpath:/public/
       - classpath:/secure/
+      - classpath:/templates/
   thymeleaf:
     cache: false
     prefix: classpath:/templates/
@@ -46,8 +47,8 @@ appx:
       enabled: true
       basic:
         enabled: true
-        api:
-          path: /**
+        # api:
+        #   path: /basic/**
 
 error:
   whitelabel:
