@@ -128,12 +128,19 @@ public class AuthorizationServerConfig {
 		return http.build();
 	}
 
-	// @Bean
-	// public WebSecurityCustomizer webSecurityCustomizer() {
-	// return web -> web.ignoring()
-	// .requestMatchers(HttpMethod.GET, "/register.html")
-	// .requestMatchers(HttpMethod.POST, "/register");
-	// }
+	@Bean
+	@Order(4)
+	public SecurityFilterChain oauth2FilterChain(HttpSecurity http) throws Exception {
+		http
+			.securityMatcher("/oauth2/**", "/login/**") 
+			.csrf(csrf -> csrf.disable())
+			.authorizeHttpRequests(auth -> auth
+					.requestMatchers("/oauth2/**", "/login/**").permitAll()
+					.anyRequest().authenticated())
+			.oauth2Login(oauth2 -> oauth2
+					.defaultSuccessUrl("/", true));
+		return http.build();
+	}
 
 	@Bean
 	public JWKSource<SecurityContext> jwkSource() {
