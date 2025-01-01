@@ -1,6 +1,7 @@
 package io.devopsnextgenx.microservices.modules.user.controller;
 
 import io.devopsnextgenx.microservices.modules.models.providers.UserCloner;
+import io.devopsnextgenx.microservices.modules.security.models.User;
 import io.devopsnextgenx.microservices.modules.user.service.UserService;
 import io.devopsnextgenx.microservices.modules.userauth.user.api.UserServiceApi;
 import io.devopsnextgenx.microservices.modules.userauth.user.dto.UserDto;
@@ -46,7 +47,8 @@ public class UserController implements UserServiceApi {
 
     @Override
     public ResponseEntity<UserDto> postUser(UserDto user) {
-        return ResponseEntity.ok(userService.postEntity(userCloner.cloneToModel(user)));
+        User userModel = userCloner.cloneToModel(user);
+        return ResponseEntity.ok(userService.postEntity(userModel));
     }
 
     @Override

@@ -40,7 +40,7 @@ DEALLOCATE PREPARE stmt;
 SET @q = CONCAT("CREATE TABLE IF NOT EXISTS ", @auth_schema_name, ".ROLE (
   `id` varchar(40) NOT NULL,
   `isDeleted` bit(1) DEFAULT NULL,
-  `name` tinyint DEFAULT NULL,
+  `name` varchar(40) DEFAULT NULL,
   `createdBy` varchar(40) DEFAULT NULL,
   `updatedBy` varchar(40) DEFAULT NULL,
   `creationDate` TIMESTAMP,

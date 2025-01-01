@@ -3,6 +3,8 @@ package io.devopsnextgenx.microservices.modules.security.models;
 import org.springframework.security.core.GrantedAuthority;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +27,7 @@ import io.devopsnextgenx.microservices.modules.models.BaseModelAudit;
 @AllArgsConstructor
 @Entity(name="ROLE")
 public class Role extends BaseModelAudit implements GrantedAuthority {
+    @Enumerated(EnumType.STRING)
     private ROLE name;
     
     @Override
