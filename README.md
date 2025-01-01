@@ -50,7 +50,7 @@ mvn clean install -DskipTests
             }
             ]
         },
-        "appx.modules.security.jwtSecret": "vaultSecret",
+        "appx.modules.security.jwtSecret": "00000000-0000-0000-0000-000000000000",
         "appx.modules.security.truststore.password": "appxxppa",
         "spring.security.oauth2.client.registration.github.client-id": "<client-id>",
         "spring.security.oauth2.client.registration.github.client-secret": "<client-secret>",

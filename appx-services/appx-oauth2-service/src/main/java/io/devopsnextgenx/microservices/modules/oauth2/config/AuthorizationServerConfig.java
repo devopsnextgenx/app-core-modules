@@ -6,6 +6,7 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -19,6 +20,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.server.authorization.client.JdbcRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
@@ -39,6 +41,7 @@ import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 
 import io.devopsnextgenx.microservices.modules.access.model.AuthenticationFacade;
+import io.devopsnextgenx.microservices.modules.oauth2.utils.JwtTokenProvider;
 import io.devopsnextgenx.microservices.modules.oauth2.utils.UserCloner;
 
 import lombok.extern.slf4j.Slf4j;
@@ -66,6 +69,9 @@ import lombok.extern.slf4j.Slf4j;
 @Configuration
 @EnableWebSecurity
 public class AuthorizationServerConfig {
+
+	@Autowired
+	private JwtTokenProvider tokenProvider;
 
 	@Bean
 	public UserCloner userCloner() {
@@ -137,8 +143,11 @@ public class AuthorizationServerConfig {
 			.authorizeHttpRequests(auth -> auth
 					.requestMatchers("/oauth2/**", "/login/**").permitAll()
 					.anyRequest().authenticated())
-			.oauth2Login(oauth2 -> oauth2
-					.defaultSuccessUrl("/", true));
+			.oauth2Login().successHandler((request, response, authentication) -> {
+                OAuth2User oauth2User = (OAuth2User) authentication.getPrincipal();
+                String token = tokenProvider.createToken(oauth2User);
+                response.getWriter().write(token);
+            });
 		return http.build();
 	}
 

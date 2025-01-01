@@ -6,7 +6,10 @@ import java.util.Date;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.core.OAuth2AccessToken;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,75 +53,32 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("/basic")
+@RequestMapping("/oauth2")
 @SessionAttributes("user")
 public class OAuth2Controller {
 
-    private PasswordEncoder passwordEncoder;
-	private AppxUserRepositoryImpl appxUserRepository;
-    private IAuthenticationFacade authenticationFacade;
-
-	public OAuth2Controller(AppxUserRepositoryImpl appxUserRepository, PasswordEncoder passwordEncoder, IAuthenticationFacade authenticationFacade) {
-        this.authenticationFacade = authenticationFacade;
-		this.appxUserRepository = appxUserRepository;
-		this.passwordEncoder = passwordEncoder;
-	}
-
-    @ModelAttribute("user")
-    public User setUpUserForm() {
-        return new User(); // Initialize empty user for the session
+    @GetMapping("/success")
+    public String handleGitHubCallback(@AuthenticationPrincipal OAuth2User principal) {
+        // Handle the callback and extract the access token
+        // String accessToken = principal.getAttribute("access_token");
+        OAuth2AccessToken accessToken = principal.getAuthorities().stream()
+        .filter(grantedAuthority -> grantedAuthority instanceof OAuth2AccessToken)
+        .map(grantedAuthority -> (OAuth2AccessToken) grantedAuthority)
+        .findFirst()
+        .orElseThrow(() -> new RuntimeException("Access token not found"));
+        // Use the access token for GitHub API requests or store it as needed
+        // Redirect or display user information as required
+        extractJwtToken(accessToken);
+        return "redirect:/oauth2/success"; // Redirect to a profile page, for example
     }
 
-    @GetMapping("/user-registration")
-    public String showForm(Model model) {
-        if (!model.containsAttribute("user")) {
-            model.addAttribute("user", new User());
-        }
-        return "user-registration";
+    // Helper method to extract JWT from the access token
+    private String extractJwtToken(OAuth2AccessToken accessToken) {
+        // Implement logic to extract JWT from the access token
+        // This will depend on the structure of the access token provided by GitHub
+        System.out.println("=====================================================================================================");
+        System.out.println(accessToken.getTokenValue());
+        System.out.println("=====================================================================================================");
+        return null;
     }
-
-    @PostMapping("/user-registration")
-    public String register(@ModelAttribute("user") User user, 
-		SessionStatus sessionStatus,
-		RedirectAttributes redirectAttributes) {
-        log.info("Adding User by: {}", authenticationFacade.getUserName());
-        user.setCreatedBy(appxUserRepository.findByUsername(authenticationFacade.getUserName()).getId());
-        user.setCreationDate(new Timestamp(new Date().getTime()));
-        user.setActive(true);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setUserRoles(user.getRoles().stream().map(role-> Role.builder().name(role).build()).toList());
-		appxUserRepository.save(user);
-		try {
-            // Process the user data here
-            redirectAttributes.addFlashAttribute("successMessage", "User Registration successful!!!");
-            return "redirect:/basic/user-registration-success";
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
-            return "redirect:/basic/user-registration";
-        }
-    }
-	
-    @GetMapping("/user-registration-success")
-    public String showSuccess(@ModelAttribute("user") User user, Model model) {
-        model.addAttribute("user", user);
-        return "user-registration-success";
-    }
-    
-    @GetMapping("/clear")
-    public String clearSession(SessionStatus sessionStatus) {
-        sessionStatus.setComplete(); // Clear the session
-        return "redirect:/basic/user-registration";
-    }
-
-	@GetMapping(value = "/user")
-	public ResponseEntity<Principal> user(Principal user) {
-		return ResponseEntity.ok().body(user);
-	}
-
-	@GetMapping(value = "/error")
-	public String error() {
-		log.info("AS /error has been called");
-		return "redirect:/public/error";
-	}
-
 }
