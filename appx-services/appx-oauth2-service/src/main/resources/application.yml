@@ -34,6 +34,7 @@ spring:
               - email
               - profile
           github:
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             scope:
               - user:email
               - read:user

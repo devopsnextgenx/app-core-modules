@@ -55,9 +55,10 @@ mvn clean install -DskipTests
         "spring.security.oauth2.client.registration.github.client-id": "<client-id>",
         "spring.security.oauth2.client.registration.github.client-secret": "<client-secret>",
         "spring.security.oauth2.client.registration.github.scope": "user:email,read:user",
+        "spring.security.oauth2.client.registration.google.redirect-uri": "https://react.appx.localtest.me:5000/login/oauth2/code/github",
         "spring.security.oauth2.client.registration.google.client-id": "<client-id>",
         "spring.security.oauth2.client.registration.google.client-secret": "<client-id>",
-        "spring.security.oauth2.client.registration.google.redirect-uri": "https://react.appx.localtest.me:5000/",
+        "spring.security.oauth2.client.registration.google.redirect-uri": "https://react.appx.localtest.me:5000/login/oauth2/code/google",
         "spring.security.oauth2.client.registration.google.scope": "email,profile"
     }
     ```
