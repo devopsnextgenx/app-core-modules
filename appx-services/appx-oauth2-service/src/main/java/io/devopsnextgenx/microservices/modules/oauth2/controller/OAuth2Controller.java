@@ -1,33 +1,12 @@
 package io.devopsnextgenx.microservices.modules.oauth2.controller;
 
-import java.security.Principal;
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.stream.Collectors;
-
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import io.devopsnextgenx.microservices.modules.security.models.User;
-import io.devopsnextgenx.microservices.modules.security.models.Role;
-import io.devopsnextgenx.microservices.modules.security.repositories.AppxUserRepository;
-import io.devopsnextgenx.microservices.modules.security.repositories.AppxUserRepositoryImpl;
-import io.devopsnextgenx.microservices.modules.access.model.AuthenticationFacade;
-import io.devopsnextgenx.microservices.modules.access.model.IAuthenticationFacade;
-import io.devopsnextgenx.microservices.modules.oauth2.utils.UserCloner;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
